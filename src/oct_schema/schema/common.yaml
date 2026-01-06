@@ -1,0 +1,89 @@
+id: https://w3id.org/OpenCoralTools/oct-schema/common
+name: common
+title: Common Definitions
+description: Shared slots and enums for oct-schema
+
+prefixes:
+  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+
+default_prefix: oct_schema
+default_range: string
+
+imports:
+  - linkml:types
+
+slots:
+  # Base Record slots
+  id:
+    identifier: true
+    range: uriorcurie
+    description: Unique identifier for the record
+  createdAt:
+    range: datetime
+    description: Timestamp when the record was created
+  createdById:
+    range: string
+    description: ID of the user who created the record
+  updatedAt:
+    range: datetime
+    description: Timestamp when the record was last updated
+  updatedById:
+    range: string
+    description: ID of the user who last updated the record
+  organizationId:
+    range: string
+    description: ID of the organization this record belongs to
+
+  # InventoryRecord slots
+  urlPath:
+    range: string
+    description: URL friendly path to this resource
+  internalPath:
+    range: string
+    description: Internal path structure
+  slug:
+    range: string
+    description: URL friendly identifier part
+
+  # Common Domain slots
+  name:
+    range: string
+    description: Name of the entity
+  description:
+    range: string
+    description: Description of the entity
+
+enums:
+  CoralSize:
+    permissible_values:
+      xs:
+      s:
+      m:
+      l:
+      xl:
+
+  ModelType:
+    permissible_values:
+      user:
+      organization:
+      site:
+      group:
+      coral:
+      genet:
+      recordType:
+      event:
+      invitation:
+      unknown:
+
+  SiteType:
+    permissible_values:
+      site_type_nursery_ex_situ:
+        description: Ex-Situ Nursery
+      site_type_nursery_in_situ:
+        description: In-Situ Nursery
+      site_type_outplanting:
+        description: Outplanting Site
+      site_type_gene_bank:
+        description: Gene Bank

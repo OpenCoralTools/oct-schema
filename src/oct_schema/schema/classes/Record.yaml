@@ -1,0 +1,26 @@
+id: https://w3id.org/OpenCoralTools/oct-schema/classes/Record
+name: Record
+title: Record Class
+description: Base class for all records
+
+prefixes:
+  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
+  linkml: https://w3id.org/linkml/
+
+default_prefix: oct_schema
+default_range: string
+
+imports:
+  - ../common
+
+classes:
+  Record:
+    abstract: true
+    description: Base class for all records
+    slots:
+      - id
+      - createdAt
+      - createdById
+      - updatedAt
+      - updatedById
+      - organizationId

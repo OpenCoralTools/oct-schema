@@ -1,0 +1,24 @@
+id: https://w3id.org/OpenCoralTools/oct-schema/classes/InventoryRecord
+name: InventoryRecord
+title: InventoryRecord Class
+description: Base class for inventory items
+
+prefixes:
+  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
+  linkml: https://w3id.org/linkml/
+
+default_prefix: oct_schema
+default_range: string
+
+imports:
+  - Record
+
+classes:
+  InventoryRecord:
+    is_a: Record
+    abstract: true
+    description: Base class for inventory items that have URL paths
+    slots:
+      - urlPath
+      - internalPath
+      - slug

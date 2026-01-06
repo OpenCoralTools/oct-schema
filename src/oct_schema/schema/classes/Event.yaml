@@ -1,0 +1,41 @@
+id: https://w3id.org/OpenCoralTools/oct-schema/classes/Event
+name: Event
+title: Event Class
+description: Represents an event in the system history
+
+prefixes:
+  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
+  linkml: https://w3id.org/linkml/
+
+default_prefix: oct_schema
+default_range: string
+
+imports:
+  - InventoryRecord
+
+classes:
+  Event:
+    is_a: InventoryRecord
+    description: Represents an event in the system history
+    slots:
+      - eventTypeId
+      - recordId
+      - recordModelType
+    slot_usage:
+      eventTypeId:
+        required: true
+      recordId:
+        required: true
+      recordModelType:
+        required: true
+
+slots:
+  eventTypeId:
+    range: string
+    description: ID of the event type
+  recordId:
+    range: string
+    description: ID of the record associated with the event
+  recordModelType:
+    range: ModelType
+    description: Type of the record model
