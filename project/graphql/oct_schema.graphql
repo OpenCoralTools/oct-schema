@@ -1,0 +1,205 @@
+# metamodel_version: 1.7.0
+enum CoralSize
+  {
+    xs
+    s
+    m
+    l
+    xl
+  }
+
+enum ModelType
+  {
+    user
+    organization
+    site
+    group
+    coral
+    genet
+    recordType
+    event
+    invitation
+    unknown
+  }
+
+enum SiteType
+  {
+    site_type_nursery_ex_situ
+    site_type_nursery_in_situ
+    site_type_outplanting
+    site_type_gene_bank
+  }
+
+type Coral
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+    urlPath: String
+    internalPath: String
+    slug: String
+    name: String!
+    genetId: String!
+    speciesId: String!
+    siteId: String!
+    groupId: String!
+    coralTypeId: String!
+    quantity: Int!
+    coralSize: CoralSize
+  }
+
+type Event
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+    urlPath: String
+    internalPath: String
+    slug: String
+    eventTypeId: String!
+    recordId: String!
+    recordModelType: ModelType!
+  }
+
+type Genet
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+    urlPath: String
+    internalPath: String
+    slug: String
+    name: String!
+    speciesId: String!
+    genetTypeId: String!
+    sfId: String!
+    clonalId: String
+    accessionNumber: String
+  }
+
+interface InventoryRecord
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+    urlPath: String
+    internalPath: String
+    slug: String
+  }
+
+type Location
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+    urlPath: String
+    internalPath: String
+    slug: String
+    groupTypeId: String!
+    name: String!
+    siteId: String!
+    parentId: String!
+    description: String
+    capacity: Int
+  }
+
+type Organization
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+    urlPath: String
+    internalPath: String
+    slug: String
+    name: String!
+    domain: String!
+    siteTypeIds: [String]
+    speciesIds: [String]
+  }
+
+type OrganizationRegisterEntry
+  {
+    orgId: String!
+    name: String!
+    url: String
+    country: String
+    metadata: String
+  }
+
+type Person
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+    name: String!
+    email: String!
+    imageUrl: String
+  }
+
+interface Record
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+  }
+
+type Site
+  {
+    id: String!
+    createdAt: String
+    createdById: String
+    updatedAt: String
+    updatedById: String
+    organizationId: String
+    urlPath: String
+    internalPath: String
+    slug: String
+    siteTypeId: String!
+    name: String!
+    groupIdHierarchy: [String]
+    description: String
+  }
+
+type Species
+  {
+    id: String!
+    commonName: String
+    genus: String!
+    specificEpithet: String!
+  }
+
+type SpeciesRegisterEntry
+  {
+    code: String!
+    genus: String!
+    specificEpithet: String!
+    scientificName: String
+    scientificNameAuthorship: String
+    externalReferences: [String]
+    synonyms: [String]
+    deprecatedCodes: [String]
+  }

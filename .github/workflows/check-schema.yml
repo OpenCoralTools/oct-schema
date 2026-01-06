@@ -1,0 +1,29 @@
+name: Check Schema Generation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-generation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Install just
+        uses: extractions/setup-just@v1
+
+      - name: Generate Project Artifacts
+        run: just gen-project
+
+      - name: Check for uncommitted changes
+        run: |
+          git diff --exit-code || (echo "::error::Generated files are not up to date. Please run 'just gen-project' locally and commit the changes." && exit 1)

@@ -1,0 +1,154 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
+// Represents a specific coral instance
+message Coral
+ {
+  uriorcurie id = 0
+  datetime createdAt = 0
+  string createdById = 0
+  datetime updatedAt = 0
+  string updatedById = 0
+  string organizationId = 0
+  string urlPath = 0
+  string internalPath = 0
+  string slug = 0
+  string name = 0
+  string genetId = 0
+  string speciesId = 0
+  string siteId = 0
+  string groupId = 0
+  string coralTypeId = 0
+  integer quantity = 0
+  coralSize coralSize = 0
+ }
+// Represents an event in the system history
+message Event
+ {
+  uriorcurie id = 0
+  datetime createdAt = 0
+  string createdById = 0
+  datetime updatedAt = 0
+  string updatedById = 0
+  string organizationId = 0
+  string urlPath = 0
+  string internalPath = 0
+  string slug = 0
+  string eventTypeId = 0
+  string recordId = 0
+  modelType recordModelType = 0
+ }
+// Represents a genetic individual
+message Genet
+ {
+  uriorcurie id = 0
+  datetime createdAt = 0
+  string createdById = 0
+  datetime updatedAt = 0
+  string updatedById = 0
+  string organizationId = 0
+  string urlPath = 0
+  string internalPath = 0
+  string slug = 0
+  string name = 0
+  string speciesId = 0
+  string genetTypeId = 0
+  string sfId = 0
+  string clonalId = 0
+  string accessionNumber = 0
+ }
+// Represents a group of items or a container within a site
+message Location
+ {
+  uriorcurie id = 0
+  datetime createdAt = 0
+  string createdById = 0
+  datetime updatedAt = 0
+  string updatedById = 0
+  string organizationId = 0
+  string urlPath = 0
+  string internalPath = 0
+  string slug = 0
+  string groupTypeId = 0
+  string name = 0
+  string siteId = 0
+  string parentId = 0
+  string description = 0
+  integer capacity = 0
+ }
+// Represents an organization
+message Organization
+ {
+  uriorcurie id = 0
+  datetime createdAt = 0
+  string createdById = 0
+  datetime updatedAt = 0
+  string updatedById = 0
+  string organizationId = 0
+  string urlPath = 0
+  string internalPath = 0
+  string slug = 0
+  string name = 0
+  string domain = 0
+ repeated  string siteTypeIds = 0
+ repeated  string speciesIds = 0
+ }
+// A canonical organization record in the registry
+message OrganizationRegisterEntry
+ {
+  string orgId = 0
+  string name = 0
+  string url = 0
+  string country = 0
+  string metadata = 0
+ }
+// Represents a person (user)
+message Person
+ {
+  uriorcurie id = 0
+  datetime createdAt = 0
+  string createdById = 0
+  datetime updatedAt = 0
+  string updatedById = 0
+  string organizationId = 0
+  string name = 0
+  string email = 0
+  string imageUrl = 0
+ }
+// Represents a physical site
+message Site
+ {
+  uriorcurie id = 0
+  datetime createdAt = 0
+  string createdById = 0
+  datetime updatedAt = 0
+  string updatedById = 0
+  string organizationId = 0
+  string urlPath = 0
+  string internalPath = 0
+  string slug = 0
+  string siteTypeId = 0
+  string name = 0
+ repeated  string groupIdHierarchy = 0
+  string description = 0
+ }
+// Represents a species
+message Species
+ {
+  uriorcurie id = 0
+  string commonName = 0
+  string genus = 0
+  string specificEpithet = 0
+ }
+// A canonical species record in the registry
+message SpeciesRegisterEntry
+ {
+  string code = 0
+  string genus = 0
+  string specificEpithet = 0
+  string scientificName = 0
+  string scientificNameAuthorship = 0
+ repeated  string externalReferences = 0
+ repeated  string synonyms = 0
+ repeated  string deprecatedCodes = 0
+ }

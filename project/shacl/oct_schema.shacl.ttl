@@ -1,0 +1,864 @@
+@prefix oct_schema: <https://w3id.org/OpenCoralTools/oct-schema/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+oct_schema:Coral a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents a specific coral instance" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path oct_schema:organizationId ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly identifier part" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path oct_schema:slug ],
+        [ sh:datatype xsd:string ;
+            sh:description "Internal path structure" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path oct_schema:internalPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name of the entity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path oct_schema:updatedById ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path oct_schema:createdById ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the species" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:speciesId ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path oct_schema:updatedAt ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Quantity of items" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:quantity ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly path to this resource" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oct_schema:urlPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the coral type" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:coralTypeId ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the genet" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:genetId ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the site this entity belongs to" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:siteId ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the group/location" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:groupId ],
+        [ sh:description "Size of the coral" ;
+            sh:in ( "xs" "s" "m" "l" "xl" ) ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path oct_schema:coral_size ] ;
+    sh:targetClass oct_schema:Coral .
+
+oct_schema:Event a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents an event in the system history" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Internal path structure" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:internalPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly path to this resource" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:urlPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly identifier part" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:slug ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:description "Type of the record model" ;
+            sh:in ( "user" "organization" "site" "group" "coral" "genet" "recordType" "event" "invitation" "unknown" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path oct_schema:recordModelType ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path oct_schema:updatedById ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oct_schema:createdById ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path oct_schema:updatedAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the event type" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:eventTypeId ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path oct_schema:organizationId ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the record associated with the event" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:recordId ] ;
+    sh:targetClass oct_schema:Event .
+
+oct_schema:Genet a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents a genetic individual" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Name of the entity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the genet type" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:genetTypeId ],
+        [ sh:datatype xsd:string ;
+            sh:description "Clonal ID if applicable" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:clonalId ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly identifier part" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oct_schema:slug ],
+        [ sh:datatype xsd:string ;
+            sh:description "SeaFoundry ID" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:sfId ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path oct_schema:updatedById ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path oct_schema:createdById ],
+        [ sh:datatype xsd:string ;
+            sh:description "Accession number if applicable" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:accessionNumber ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly path to this resource" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:urlPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the species" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:speciesId ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path oct_schema:updatedAt ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "Internal path structure" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oct_schema:internalPath ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path oct_schema:organizationId ] ;
+    sh:targetClass oct_schema:Genet .
+
+oct_schema:InventoryRecord a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Base class for inventory items that have URL paths" ;
+    sh:ignoredProperties ( oct_schema:quantity oct_schema:recordModelType oct_schema:accessionNumber oct_schema:coralTypeId oct_schema:recordId oct_schema:name oct_schema:siteTypeId oct_schema:siteTypeIds oct_schema:coral_size oct_schema:groupTypeId oct_schema:groupId oct_schema:genetId oct_schema:description oct_schema:siteId oct_schema:genetTypeId oct_schema:speciesIds oct_schema:clonalId oct_schema:capacity oct_schema:eventTypeId oct_schema:speciesId oct_schema:groupIdHierarchy oct_schema:domain oct_schema:parentId rdf:type oct_schema:sfId ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "URL friendly identifier part" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:slug ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:updatedAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oct_schema:updatedById ],
+        [ sh:datatype xsd:string ;
+            sh:description "Internal path structure" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:internalPath ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oct_schema:organizationId ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly path to this resource" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:urlPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:createdById ] ;
+    sh:targetClass oct_schema:InventoryRecord .
+
+oct_schema:Location a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents a group of items or a container within a site" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path oct_schema:organizationId ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly path to this resource" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:urlPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the parent entity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:parentId ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the group type" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:groupTypeId ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly identifier part" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oct_schema:slug ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path oct_schema:updatedById ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path oct_schema:updatedAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name of the entity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the site this entity belongs to" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:siteId ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Capacity of the group" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:capacity ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path oct_schema:createdById ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the entity" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Internal path structure" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oct_schema:internalPath ] ;
+    sh:targetClass oct_schema:Location .
+
+oct_schema:Organization a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents an organization" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Internal path structure" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:internalPath ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "List of species IDs supported by the organization" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:speciesIds ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name of the entity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Domain name associated with the organization" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:domain ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path oct_schema:createdById ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path oct_schema:updatedById ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly path to this resource" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:urlPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "List of site type IDs supported by the organization" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:siteTypeIds ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path oct_schema:organizationId ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path oct_schema:updatedAt ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly identifier part" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:slug ] ;
+    sh:targetClass oct_schema:Organization .
+
+oct_schema:OrganizationRegisterEntry a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A canonical organization record in the registry" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Additional metadata as a JSON string or key-value pair" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:metadata ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name of the entity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Country where the organization is based" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:country ],
+        [ sh:datatype xsd:string ;
+            sh:description "Website URL of the organization" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:url ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique identifier for the organization" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:org_id ] ;
+    sh:targetClass oct_schema:OrganizationRegisterEntry .
+
+oct_schema:Person a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents a person (user)" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:updatedAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL to the user's image" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:imageUrl ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oct_schema:updatedById ],
+        [ sh:datatype xsd:string ;
+            sh:description "Email address of the user" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:email ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oct_schema:organizationId ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name of the entity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:name ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:createdById ] ;
+    sh:targetClass oct_schema:Person .
+
+oct_schema:Record a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Base class for all records" ;
+    sh:ignoredProperties ( oct_schema:quantity oct_schema:recordModelType oct_schema:accessionNumber oct_schema:urlPath oct_schema:coralTypeId oct_schema:internalPath oct_schema:recordId oct_schema:imageUrl oct_schema:name oct_schema:siteTypeId oct_schema:siteTypeIds oct_schema:coral_size oct_schema:groupTypeId oct_schema:groupId oct_schema:slug oct_schema:genetId oct_schema:description oct_schema:siteId oct_schema:email oct_schema:genetTypeId oct_schema:speciesIds oct_schema:clonalId oct_schema:capacity oct_schema:eventTypeId oct_schema:speciesId oct_schema:groupIdHierarchy oct_schema:domain oct_schema:parentId rdf:type oct_schema:sfId ) ;
+    sh:property [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:organizationId ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:createdById ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:updatedAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:updatedById ] ;
+    sh:targetClass oct_schema:Record .
+
+oct_schema:Site a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents a physical site" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Hierarchy of group IDs" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:groupIdHierarchy ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who created the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path oct_schema:createdById ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the entity" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the site type" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:siteTypeId ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly path to this resource" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:urlPath ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oct_schema:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name of the entity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:name ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was created" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oct_schema:createdAt ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the user who last updated the record" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path oct_schema:updatedById ],
+        [ sh:datatype xsd:string ;
+            sh:description "ID of the organization this record belongs to" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path oct_schema:organizationId ],
+        [ sh:datatype xsd:string ;
+            sh:description "Internal path structure" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:internalPath ],
+        [ sh:datatype xsd:string ;
+            sh:description "URL friendly identifier part" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:slug ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Timestamp when the record was last updated" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path oct_schema:updatedAt ] ;
+    sh:targetClass oct_schema:Site .
+
+oct_schema:Species a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents a species" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Common name of the species" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:common_name ],
+        [ sh:datatype xsd:string ;
+            sh:description "The specific name (second part of the binomial name)" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:specific_epithet ],
+        [ sh:datatype xsd:string ;
+            sh:description "The genus name" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:genus ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for the record" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:id ] ;
+    sh:targetClass oct_schema:Species .
+
+oct_schema:SpeciesRegisterEntry a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A canonical species record in the registry" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "List of synonymous scientific names" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oct_schema:synonyms ],
+        [ sh:datatype xsd:string ;
+            sh:description "External identifiers (e.g. worms:12345)" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oct_schema:external_references ],
+        [ sh:datatype xsd:string ;
+            sh:description "The genus name" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oct_schema:genus ],
+        [ sh:datatype xsd:string ;
+            sh:description "Previous or deprecated codes for this species" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oct_schema:deprecated_codes ],
+        [ sh:datatype xsd:string ;
+            sh:description "The specific name (second part of the binomial name)" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oct_schema:specific_epithet ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique 4-character species code (e.g. apal)" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oct_schema:code ],
+        [ sh:datatype xsd:string ;
+            sh:description "Full scientific name (genus + specific_epithet)" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oct_schema:scientific_name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Author and year of the species description" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oct_schema:scientific_name_authorship ] ;
+    sh:targetClass oct_schema:SpeciesRegisterEntry .

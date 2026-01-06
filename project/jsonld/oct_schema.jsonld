@@ -1,0 +1,2009 @@
+{
+  "name": "oct-schema",
+  "description": "Data standards for coral research and conservation",
+  "title": "oct-schema",
+  "see_also": [
+    "https://OpenCoralTools.github.io/oct-schema"
+  ],
+  "id": "https://w3id.org/OpenCoralTools/oct-schema",
+  "imports": [
+    "linkml:types",
+    "common",
+    "Record",
+    "InventoryRecord",
+    "Organization",
+    "Site",
+    "Location",
+    "Genet",
+    "Coral",
+    "Species",
+    "Person",
+    "Event",
+    "registry/SpeciesRegisterEntry",
+    "registry/OrganizationRegisterEntry",
+    "common",
+    "common"
+  ],
+  "license": "MIT",
+  "prefixes": [
+    {
+      "prefix_prefix": "oct_schema",
+      "prefix_reference": "https://w3id.org/OpenCoralTools/oct-schema/"
+    },
+    {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    }
+  ],
+  "default_prefix": "oct_schema",
+  "default_range": "string",
+  "types": [
+    {
+      "name": "string",
+      "definition_uri": "https://w3id.org/linkml/String",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string.   If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "integer",
+      "definition_uri": "https://w3id.org/linkml/Integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "boolean",
+      "definition_uri": "https://w3id.org/linkml/Boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "http://www.w3.org/2001/XMLSchema#boolean",
+      "repr": "bool",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "float",
+      "definition_uri": "https://w3id.org/linkml/Float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#float",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "double",
+      "definition_uri": "https://w3id.org/linkml/Double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#double",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "decimal",
+      "definition_uri": "https://w3id.org/linkml/Decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "http://www.w3.org/2001/XMLSchema#decimal",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "time",
+      "definition_uri": "https://w3id.org/linkml/Time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#time",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date",
+      "definition_uri": "https://w3id.org/linkml/Date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "http://www.w3.org/2001/XMLSchema#date",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "datetime",
+      "definition_uri": "https://w3id.org/linkml/Datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date_or_datetime",
+      "definition_uri": "https://w3id.org/linkml/DateOrDatetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "https://w3id.org/linkml/DateOrDatetime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uriorcurie",
+      "definition_uri": "https://w3id.org/linkml/Uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "URIorCURIE",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "curie",
+      "definition_uri": "https://w3id.org/linkml/Curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "Curie",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uri",
+      "definition_uri": "https://w3id.org/linkml/Uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "ncname",
+      "definition_uri": "https://w3id.org/linkml/Ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NCName",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "objectidentifier",
+      "definition_uri": "https://w3id.org/linkml/Objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "ElementIdentifier",
+      "uri": "http://www.w3.org/ns/shex#iri",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "nodeidentifier",
+      "definition_uri": "https://w3id.org/linkml/Nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NodeIdentifier",
+      "uri": "http://www.w3.org/ns/shex#nonLiteral",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpointer",
+      "definition_uri": "https://w3id.org/linkml/Jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpath",
+      "definition_uri": "https://w3id.org/linkml/Jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "sparqlpath",
+      "definition_uri": "https://w3id.org/linkml/Sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    }
+  ],
+  "enums": [
+    {
+      "name": "CoralSize",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/CoralSize",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "permissible_values": [
+        {
+          "text": "xs"
+        },
+        {
+          "text": "s"
+        },
+        {
+          "text": "m"
+        },
+        {
+          "text": "l"
+        },
+        {
+          "text": "xl"
+        }
+      ]
+    },
+    {
+      "name": "ModelType",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/ModelType",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "permissible_values": [
+        {
+          "text": "user"
+        },
+        {
+          "text": "organization"
+        },
+        {
+          "text": "site"
+        },
+        {
+          "text": "group"
+        },
+        {
+          "text": "coral"
+        },
+        {
+          "text": "genet"
+        },
+        {
+          "text": "recordType"
+        },
+        {
+          "text": "event"
+        },
+        {
+          "text": "invitation"
+        },
+        {
+          "text": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "SiteType",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/SiteType",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "permissible_values": [
+        {
+          "text": "site_type_nursery_ex_situ",
+          "description": "Ex-Situ Nursery"
+        },
+        {
+          "text": "site_type_nursery_in_situ",
+          "description": "In-Situ Nursery"
+        },
+        {
+          "text": "site_type_outplanting",
+          "description": "Outplanting Site"
+        },
+        {
+          "text": "site_type_gene_bank",
+          "description": "Gene Bank"
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "name": "id",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/id",
+      "description": "Unique identifier for the record",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/id",
+      "identifier": true,
+      "owner": "Species",
+      "domain_of": [
+        "Record",
+        "Species"
+      ],
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "createdAt",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/createdAt",
+      "description": "Timestamp when the record was created",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/createdAt",
+      "owner": "Record",
+      "domain_of": [
+        "Record"
+      ],
+      "range": "datetime",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "createdById",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/createdById",
+      "description": "ID of the user who created the record",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/createdById",
+      "owner": "Record",
+      "domain_of": [
+        "Record"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "updatedAt",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/updatedAt",
+      "description": "Timestamp when the record was last updated",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/updatedAt",
+      "owner": "Record",
+      "domain_of": [
+        "Record"
+      ],
+      "range": "datetime",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "updatedById",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/updatedById",
+      "description": "ID of the user who last updated the record",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/updatedById",
+      "owner": "Record",
+      "domain_of": [
+        "Record"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "organizationId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/organizationId",
+      "description": "ID of the organization this record belongs to",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/organizationId",
+      "owner": "Record",
+      "domain_of": [
+        "Record"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "urlPath",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/urlPath",
+      "description": "URL friendly path to this resource",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/urlPath",
+      "owner": "InventoryRecord",
+      "domain_of": [
+        "InventoryRecord"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "internalPath",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/internalPath",
+      "description": "Internal path structure",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/internalPath",
+      "owner": "InventoryRecord",
+      "domain_of": [
+        "InventoryRecord"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "slug",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/slug",
+      "description": "URL friendly identifier part",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/slug",
+      "owner": "InventoryRecord",
+      "domain_of": [
+        "InventoryRecord"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "description": "Name of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "owner": "OrganizationRegisterEntry",
+      "domain_of": [
+        "Organization",
+        "Site",
+        "Location",
+        "Genet",
+        "Coral",
+        "Person",
+        "OrganizationRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/description",
+      "description": "Description of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/description",
+      "owner": "Location",
+      "domain_of": [
+        "Site",
+        "Location"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "genus",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/genus",
+      "description": "The genus name",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/genus",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "Species",
+        "SpeciesRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "specific_epithet",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/specific_epithet",
+      "description": "The specific name (second part of the binomial name)",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/specific_epithet",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "Species",
+        "SpeciesRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "common_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/common_name",
+      "description": "Common name of the species",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/common_name",
+      "owner": "Species",
+      "domain_of": [
+        "Species"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "domain",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/domain",
+      "description": "Domain name associated with the organization",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Organization",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/domain",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "siteTypeIds",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteTypeIds",
+      "description": "List of site type IDs supported by the organization",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Organization",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteTypeIds",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "speciesIds",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/speciesIds",
+      "description": "List of species IDs supported by the organization",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Organization",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/speciesIds",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "siteTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteTypeId",
+      "description": "ID of the site type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Site",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteTypeId",
+      "owner": "Site",
+      "domain_of": [
+        "Site"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "groupIdHierarchy",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupIdHierarchy",
+      "description": "Hierarchy of group IDs",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Site",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupIdHierarchy",
+      "owner": "Site",
+      "domain_of": [
+        "Site"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "groupTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupTypeId",
+      "description": "ID of the group type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupTypeId",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "siteId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteId",
+      "description": "ID of the site this entity belongs to",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteId",
+      "owner": "Coral",
+      "domain_of": [
+        "Location",
+        "Coral"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "parentId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/parentId",
+      "description": "ID of the parent entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/parentId",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "capacity",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/capacity",
+      "description": "Capacity of the group",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/capacity",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "range": "integer",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "genetTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/genetTypeId",
+      "description": "ID of the genet type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Genet",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/genetTypeId",
+      "owner": "Genet",
+      "domain_of": [
+        "Genet"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sfId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/sfId",
+      "description": "SeaFoundry ID",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Genet",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/sfId",
+      "owner": "Genet",
+      "domain_of": [
+        "Genet"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "clonalId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/clonalId",
+      "description": "Clonal ID if applicable",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Genet",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/clonalId",
+      "owner": "Genet",
+      "domain_of": [
+        "Genet"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "accessionNumber",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/accessionNumber",
+      "description": "Accession number if applicable",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Genet",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/accessionNumber",
+      "owner": "Genet",
+      "domain_of": [
+        "Genet"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "genetId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/genetId",
+      "description": "ID of the genet",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/genetId",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "speciesId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/speciesId",
+      "description": "ID of the species",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/speciesId",
+      "owner": "Coral",
+      "domain_of": [
+        "Genet",
+        "Coral"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "groupId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupId",
+      "description": "ID of the group/location",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupId",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "coralTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/coralTypeId",
+      "description": "ID of the coral type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/coralTypeId",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "quantity",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/quantity",
+      "description": "Quantity of items",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/quantity",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "range": "integer",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "coral_size",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/coral_size",
+      "description": "Size of the coral",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/coral_size",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "range": "CoralSize",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "email",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/email",
+      "description": "Email address of the user",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Person",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/email",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "imageUrl",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/imageUrl",
+      "description": "URL to the user's image",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Person",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/imageUrl",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "eventTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/eventTypeId",
+      "description": "ID of the event type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Event",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/eventTypeId",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "recordId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/recordId",
+      "description": "ID of the record associated with the event",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Event",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/recordId",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "recordModelType",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/recordModelType",
+      "description": "Type of the record model",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Event",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/recordModelType",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "range": "ModelType",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "code",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/code",
+      "description": "Unique 4-character species code (e.g. apal)",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/code",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "scientific_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/scientific_name",
+      "description": "Full scientific name (genus + specific_epithet)",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/scientific_name",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "scientific_name_authorship",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/scientific_name_authorship",
+      "description": "Author and year of the species description",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/scientific_name_authorship",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "external_references",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/external_references",
+      "description": "External identifiers (e.g. worms:12345)",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/external_references",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "synonyms",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/synonyms",
+      "description": "List of synonymous scientific names",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/synonyms",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "deprecated_codes",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/deprecated_codes",
+      "description": "Previous or deprecated codes for this species",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/deprecated_codes",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "org_id",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/org_id",
+      "description": "Unique identifier for the organization",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/org_id",
+      "owner": "OrganizationRegisterEntry",
+      "domain_of": [
+        "OrganizationRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "url",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/url",
+      "description": "Website URL of the organization",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/url",
+      "owner": "OrganizationRegisterEntry",
+      "domain_of": [
+        "OrganizationRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "country",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/country",
+      "description": "Country where the organization is based",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/country",
+      "owner": "OrganizationRegisterEntry",
+      "domain_of": [
+        "OrganizationRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "metadata",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/metadata",
+      "description": "Additional metadata as a JSON string or key-value pair",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/metadata",
+      "owner": "OrganizationRegisterEntry",
+      "domain_of": [
+        "OrganizationRegisterEntry"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Organization_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "description": "Name of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "name",
+      "domain": "Organization",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "alias": "name",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Organization_domain",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/domain",
+      "description": "Domain name associated with the organization",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Organization",
+      "is_a": "domain",
+      "domain": "Organization",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/domain",
+      "alias": "domain",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "domain",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Site_siteTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteTypeId",
+      "description": "ID of the site type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Site",
+      "is_a": "siteTypeId",
+      "domain": "Site",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteTypeId",
+      "alias": "siteTypeId",
+      "owner": "Site",
+      "domain_of": [
+        "Site"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "siteTypeId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Site_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "description": "Name of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "name",
+      "domain": "Site",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "alias": "name",
+      "owner": "Site",
+      "domain_of": [
+        "Site"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Location_groupTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupTypeId",
+      "description": "ID of the group type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "is_a": "groupTypeId",
+      "domain": "Location",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupTypeId",
+      "alias": "groupTypeId",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "groupTypeId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Location_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "description": "Name of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "name",
+      "domain": "Location",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "alias": "name",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Location_siteId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteId",
+      "description": "ID of the site this entity belongs to",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "is_a": "siteId",
+      "domain": "Location",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteId",
+      "alias": "siteId",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "siteId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Location_parentId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/parentId",
+      "description": "ID of the parent entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "is_a": "parentId",
+      "domain": "Location",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/parentId",
+      "alias": "parentId",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "parentId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Genet_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "description": "Name of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "name",
+      "domain": "Genet",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "alias": "name",
+      "owner": "Genet",
+      "domain_of": [
+        "Genet"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Genet_speciesId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/speciesId",
+      "description": "ID of the species",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "is_a": "speciesId",
+      "domain": "Genet",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/speciesId",
+      "alias": "speciesId",
+      "owner": "Genet",
+      "domain_of": [
+        "Genet"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "speciesId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Genet_genetTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/genetTypeId",
+      "description": "ID of the genet type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Genet",
+      "is_a": "genetTypeId",
+      "domain": "Genet",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/genetTypeId",
+      "alias": "genetTypeId",
+      "owner": "Genet",
+      "domain_of": [
+        "Genet"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "genetTypeId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Genet_sfId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/sfId",
+      "description": "SeaFoundry ID",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Genet",
+      "is_a": "sfId",
+      "domain": "Genet",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/sfId",
+      "alias": "sfId",
+      "owner": "Genet",
+      "domain_of": [
+        "Genet"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sfId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Coral_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "description": "Name of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "name",
+      "domain": "Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "alias": "name",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Coral_genetId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/genetId",
+      "description": "ID of the genet",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "is_a": "genetId",
+      "domain": "Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/genetId",
+      "alias": "genetId",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "genetId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Coral_speciesId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/speciesId",
+      "description": "ID of the species",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "is_a": "speciesId",
+      "domain": "Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/speciesId",
+      "alias": "speciesId",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "speciesId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Coral_siteId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteId",
+      "description": "ID of the site this entity belongs to",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "is_a": "siteId",
+      "domain": "Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/siteId",
+      "alias": "siteId",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "siteId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Coral_groupId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupId",
+      "description": "ID of the group/location",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "is_a": "groupId",
+      "domain": "Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/groupId",
+      "alias": "groupId",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "groupId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Coral_coralTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/coralTypeId",
+      "description": "ID of the coral type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "is_a": "coralTypeId",
+      "domain": "Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/coralTypeId",
+      "alias": "coralTypeId",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "coralTypeId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Coral_quantity",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/quantity",
+      "description": "Quantity of items",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "is_a": "quantity",
+      "domain": "Coral",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/quantity",
+      "alias": "quantity",
+      "owner": "Coral",
+      "domain_of": [
+        "Coral"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "quantity",
+      "range": "integer",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Species_id",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/id",
+      "description": "Unique identifier for the record",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "id",
+      "domain": "Species",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/id",
+      "identifier": true,
+      "alias": "id",
+      "owner": "Species",
+      "domain_of": [
+        "Species"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Species_common_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/common_name",
+      "description": "Common name of the species",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "common_name",
+      "domain": "Species",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/common_name",
+      "alias": "common_name",
+      "owner": "Species",
+      "domain_of": [
+        "Species"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "common_name",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Species_genus",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/genus",
+      "description": "The genus name",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "genus",
+      "domain": "Species",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/genus",
+      "alias": "genus",
+      "owner": "Species",
+      "domain_of": [
+        "Species"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "genus",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Species_specific_epithet",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/specific_epithet",
+      "description": "The specific name (second part of the binomial name)",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "specific_epithet",
+      "domain": "Species",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/specific_epithet",
+      "alias": "specific_epithet",
+      "owner": "Species",
+      "domain_of": [
+        "Species"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "specific_epithet",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Person_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "description": "Name of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "name",
+      "domain": "Person",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "alias": "name",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Person_email",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/email",
+      "description": "Email address of the user",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Person",
+      "is_a": "email",
+      "domain": "Person",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/email",
+      "alias": "email",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "email",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Event_eventTypeId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/eventTypeId",
+      "description": "ID of the event type",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Event",
+      "is_a": "eventTypeId",
+      "domain": "Event",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/eventTypeId",
+      "alias": "eventTypeId",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "eventTypeId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Event_recordId",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/recordId",
+      "description": "ID of the record associated with the event",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Event",
+      "is_a": "recordId",
+      "domain": "Event",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/recordId",
+      "alias": "recordId",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "recordId",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Event_recordModelType",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/recordModelType",
+      "description": "Type of the record model",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Event",
+      "is_a": "recordModelType",
+      "domain": "Event",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/recordModelType",
+      "alias": "recordModelType",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "recordModelType",
+      "range": "ModelType",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SpeciesRegisterEntry_code",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/code",
+      "description": "Unique 4-character species code (e.g. apal)",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
+      "is_a": "code",
+      "domain": "SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/code",
+      "identifier": true,
+      "alias": "code",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "code",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SpeciesRegisterEntry_genus",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/genus",
+      "description": "The genus name",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "genus",
+      "domain": "SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/genus",
+      "alias": "genus",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "genus",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SpeciesRegisterEntry_specific_epithet",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/specific_epithet",
+      "description": "The specific name (second part of the binomial name)",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "specific_epithet",
+      "domain": "SpeciesRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/specific_epithet",
+      "alias": "specific_epithet",
+      "owner": "SpeciesRegisterEntry",
+      "domain_of": [
+        "SpeciesRegisterEntry"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "specific_epithet",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "OrganizationRegisterEntry_org_id",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/org_id",
+      "description": "Unique identifier for the organization",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry",
+      "is_a": "org_id",
+      "domain": "OrganizationRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/org_id",
+      "identifier": true,
+      "alias": "org_id",
+      "owner": "OrganizationRegisterEntry",
+      "domain_of": [
+        "OrganizationRegisterEntry"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "org_id",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "OrganizationRegisterEntry_name",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "description": "Name of the entity",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/common",
+      "is_a": "name",
+      "domain": "OrganizationRegisterEntry",
+      "slot_uri": "https://w3id.org/OpenCoralTools/oct-schema/name",
+      "alias": "name",
+      "owner": "OrganizationRegisterEntry",
+      "domain_of": [
+        "OrganizationRegisterEntry"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    }
+  ],
+  "classes": [
+    {
+      "name": "Record",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Record",
+      "description": "Base class for all records",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Record",
+      "abstract": true,
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Record",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "InventoryRecord",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/InventoryRecord",
+      "description": "Base class for inventory items that have URL paths",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/InventoryRecord",
+      "is_a": "Record",
+      "abstract": true,
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId",
+        "urlPath",
+        "internalPath",
+        "slug"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/InventoryRecord",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Organization",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Organization",
+      "description": "Represents an organization",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Organization",
+      "is_a": "InventoryRecord",
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId",
+        "urlPath",
+        "internalPath",
+        "slug",
+        "Organization_name",
+        "Organization_domain",
+        "siteTypeIds",
+        "speciesIds"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Organization",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Site",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Site",
+      "description": "Represents a physical site",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Site",
+      "is_a": "InventoryRecord",
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId",
+        "urlPath",
+        "internalPath",
+        "slug",
+        "Site_siteTypeId",
+        "Site_name",
+        "groupIdHierarchy",
+        "description"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Site",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Location",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Location",
+      "description": "Represents a group of items or a container within a site",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
+      "is_a": "InventoryRecord",
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId",
+        "urlPath",
+        "internalPath",
+        "slug",
+        "Location_groupTypeId",
+        "Location_name",
+        "Location_siteId",
+        "Location_parentId",
+        "description",
+        "capacity"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Location",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Genet",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Genet",
+      "description": "Represents a genetic individual",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Genet",
+      "is_a": "InventoryRecord",
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId",
+        "urlPath",
+        "internalPath",
+        "slug",
+        "Genet_name",
+        "Genet_speciesId",
+        "Genet_genetTypeId",
+        "Genet_sfId",
+        "clonalId",
+        "accessionNumber"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Genet",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Coral",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Coral",
+      "description": "Represents a specific coral instance",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
+      "is_a": "InventoryRecord",
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId",
+        "urlPath",
+        "internalPath",
+        "slug",
+        "Coral_name",
+        "Coral_genetId",
+        "Coral_speciesId",
+        "Coral_siteId",
+        "Coral_groupId",
+        "Coral_coralTypeId",
+        "Coral_quantity",
+        "coral_size"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Coral",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Species",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Species",
+      "description": "Represents a species",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Species",
+      "slots": [
+        "Species_id",
+        "Species_common_name",
+        "Species_genus",
+        "Species_specific_epithet"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Species",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Person",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Person",
+      "description": "Represents a person (user)",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Person",
+      "is_a": "Record",
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId",
+        "Person_name",
+        "Person_email",
+        "imageUrl"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Person",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Event",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/Event",
+      "description": "Represents an event in the system history",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Event",
+      "is_a": "InventoryRecord",
+      "slots": [
+        "id",
+        "createdAt",
+        "createdById",
+        "updatedAt",
+        "updatedById",
+        "organizationId",
+        "urlPath",
+        "internalPath",
+        "slug",
+        "Event_eventTypeId",
+        "Event_recordId",
+        "Event_recordModelType"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/Event",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SpeciesRegisterEntry",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/SpeciesRegisterEntry",
+      "description": "A canonical species record in the registry",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
+      "slots": [
+        "SpeciesRegisterEntry_code",
+        "SpeciesRegisterEntry_genus",
+        "SpeciesRegisterEntry_specific_epithet",
+        "scientific_name",
+        "scientific_name_authorship",
+        "external_references",
+        "synonyms",
+        "deprecated_codes"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/SpeciesRegisterEntry",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "OrganizationRegisterEntry",
+      "definition_uri": "https://w3id.org/OpenCoralTools/oct-schema/OrganizationRegisterEntry",
+      "description": "A canonical organization record in the registry",
+      "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry",
+      "slots": [
+        "OrganizationRegisterEntry_org_id",
+        "OrganizationRegisterEntry_name",
+        "url",
+        "country",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/OpenCoralTools/oct-schema/OrganizationRegisterEntry",
+      "@type": "ClassDefinition"
+    }
+  ],
+  "metamodel_version": "1.7.0",
+  "source_file": "oct_schema.yaml",
+  "source_file_date": "2026-01-06T15:19:45",
+  "source_file_size": 634,
+  "generation_date": "2026-01-06T15:25:21",
+  "@type": "SchemaDefinition",
+  "@context": [
+    "project/jsonld/oct_schema.context.jsonld",
+    "https://w3id.org/linkml/types.context.jsonld",
+    "common.context.jsonld",
+    "Record.context.jsonld",
+    "InventoryRecord.context.jsonld",
+    "Organization.context.jsonld",
+    "Site.context.jsonld",
+    "Location.context.jsonld",
+    "Genet.context.jsonld",
+    "Coral.context.jsonld",
+    "Species.context.jsonld",
+    "Person.context.jsonld",
+    "Event.context.jsonld",
+    "registry/SpeciesRegisterEntry.context.jsonld",
+    "registry/OrganizationRegisterEntry.context.jsonld",
+    {
+      "@base": "https://w3id.org/OpenCoralTools/oct-schema/"
+    }
+  ]
+}

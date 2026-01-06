@@ -1,0 +1,207 @@
+# metamodel_version: 1.7.0
+BASE <https://w3id.org/OpenCoralTools/oct-schema/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:time
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Curie xsd:string
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
+<Coral> CLOSED {
+    (  $<Coral_tes> (  &<InventoryRecord_tes> ;
+          rdf:type [ <InventoryRecord> ] ? ;
+          <name> @linkml:String ;
+          <genetId> @linkml:String ;
+          <speciesId> @linkml:String ;
+          <siteId> @linkml:String ;
+          <groupId> @linkml:String ;
+          <coralTypeId> @linkml:String ;
+          <quantity> @linkml:Integer ;
+          <coral_size> [ <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xs>
+             <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#s> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#m>
+             <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#l> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xl> ] ?
+       ) ;
+       rdf:type [ <Coral> ]
+    )
+}
+
+<Event> CLOSED {
+    (  $<Event_tes> (  &<InventoryRecord_tes> ;
+          rdf:type [ <InventoryRecord> ] ? ;
+          <eventTypeId> @linkml:String ;
+          <recordId> @linkml:String ;
+          <recordModelType> [ <https://w3id.org/OpenCoralTools/oct-schema/ModelType#user>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#organization>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#site>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#group>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#coral>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#genet>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#recordType>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#event>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#invitation>
+             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#unknown> ]
+       ) ;
+       rdf:type [ <Event> ]
+    )
+}
+
+<Genet> CLOSED {
+    (  $<Genet_tes> (  &<InventoryRecord_tes> ;
+          rdf:type [ <InventoryRecord> ] ? ;
+          <name> @linkml:String ;
+          <speciesId> @linkml:String ;
+          <genetTypeId> @linkml:String ;
+          <sfId> @linkml:String ;
+          <clonalId> @linkml:String ? ;
+          <accessionNumber> @linkml:String ?
+       ) ;
+       rdf:type [ <Genet> ]
+    )
+}
+
+<InventoryRecord>  (
+    @<Coral> OR @<Event> OR @<Genet> OR @<Location> OR @<Organization> OR @<Site>
+)
+
+<InventoryRecord_struct> {
+    (  $<InventoryRecord_tes> (  &<Record_tes> ;
+          rdf:type [ <Record> ] ? ;
+          <urlPath> @linkml:String ? ;
+          <internalPath> @linkml:String ? ;
+          <slug> @linkml:String ?
+       ) ;
+       rdf:type [ <InventoryRecord> ]
+    )
+}
+
+<Location> CLOSED {
+    (  $<Location_tes> (  &<InventoryRecord_tes> ;
+          rdf:type [ <InventoryRecord> ] ? ;
+          <groupTypeId> @linkml:String ;
+          <name> @linkml:String ;
+          <siteId> @linkml:String ;
+          <parentId> @linkml:String ;
+          <description> @linkml:String ? ;
+          <capacity> @linkml:Integer ?
+       ) ;
+       rdf:type [ <Location> ]
+    )
+}
+
+<Organization> CLOSED {
+    (  $<Organization_tes> (  &<InventoryRecord_tes> ;
+          rdf:type [ <InventoryRecord> ] ? ;
+          <name> @linkml:String ;
+          <domain> @linkml:String ;
+          <siteTypeIds> @linkml:String * ;
+          <speciesIds> @linkml:String *
+       ) ;
+       rdf:type [ <Organization> ]
+    )
+}
+
+<OrganizationRegisterEntry> CLOSED {
+    (  $<OrganizationRegisterEntry_tes> (  <name> @linkml:String ;
+          <url> @linkml:String ? ;
+          <country> @linkml:String ? ;
+          <metadata> @linkml:String ?
+       ) ;
+       rdf:type [ <OrganizationRegisterEntry> ]
+    )
+}
+
+<Person> CLOSED {
+    (  $<Person_tes> (  &<Record_tes> ;
+          rdf:type [ <Record> ] ? ;
+          <name> @linkml:String ;
+          <email> @linkml:String ;
+          <imageUrl> @linkml:String ?
+       ) ;
+       rdf:type [ <Person> ]
+    )
+}
+
+<Record>  (
+    @<InventoryRecord> OR @<Person>
+)
+
+<Record_struct> {
+    (  $<Record_tes> (  <createdAt> @linkml:Datetime ? ;
+          <createdById> @linkml:String ? ;
+          <updatedAt> @linkml:Datetime ? ;
+          <updatedById> @linkml:String ? ;
+          <organizationId> @linkml:String ?
+       ) ;
+       rdf:type [ <Record> ]
+    )
+}
+
+<Site> CLOSED {
+    (  $<Site_tes> (  &<InventoryRecord_tes> ;
+          rdf:type [ <InventoryRecord> ] ? ;
+          <siteTypeId> @linkml:String ;
+          <name> @linkml:String ;
+          <groupIdHierarchy> @linkml:String * ;
+          <description> @linkml:String ?
+       ) ;
+       rdf:type [ <Site> ]
+    )
+}
+
+<Species> CLOSED {
+    (  $<Species_tes> (  <common_name> @linkml:String ? ;
+          <genus> @linkml:String ;
+          <specific_epithet> @linkml:String
+       ) ;
+       rdf:type [ <Species> ]
+    )
+}
+
+<SpeciesRegisterEntry> CLOSED {
+    (  $<SpeciesRegisterEntry_tes> (  <genus> @linkml:String ;
+          <specific_epithet> @linkml:String ;
+          <scientific_name> @linkml:String ? ;
+          <scientific_name_authorship> @linkml:String ? ;
+          <external_references> @linkml:String * ;
+          <synonyms> @linkml:String * ;
+          <deprecated_codes> @linkml:String *
+       ) ;
+       rdf:type [ <SpeciesRegisterEntry> ]
+    )
+}

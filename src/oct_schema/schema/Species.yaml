@@ -11,14 +11,14 @@ default_prefix: oct_schema
 default_range: string
 
 imports:
-  - ../common
+  - common
 
 classes:
   Species:
     description: Represents a species
     slots:
       - id
-      - ../common_name
+      - common_name
       - genus
       - specific_epithet
     slot_usage:

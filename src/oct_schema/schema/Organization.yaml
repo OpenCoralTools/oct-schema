@@ -1,0 +1,42 @@
+id: https://w3id.org/OpenCoralTools/oct-schema/classes/Organization
+name: Organization
+title: Organization Class
+description: Represents an organization
+
+prefixes:
+  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
+  linkml: https://w3id.org/linkml/
+
+default_prefix: oct_schema
+default_range: string
+
+imports:
+  - InventoryRecord
+
+classes:
+  Organization:
+    is_a: InventoryRecord
+    description: Represents an organization
+    slots:
+      - name
+      - domain
+      - siteTypeIds
+      - speciesIds
+    slot_usage:
+      name:
+        required: true
+      domain:
+        required: true
+
+slots:
+  domain:
+    range: string
+    description: Domain name associated with the organization
+  siteTypeIds:
+    range: string
+    multivalued: true
+    description: List of site type IDs supported by the organization
+  speciesIds:
+    range: string
+    multivalued: true
+    description: List of species IDs supported by the organization

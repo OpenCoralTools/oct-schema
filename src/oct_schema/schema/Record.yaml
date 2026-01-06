@@ -11,7 +11,7 @@ default_prefix: oct_schema
 default_range: string
 
 imports:
-  - ../common
+  - common
 
 classes:
   Record:

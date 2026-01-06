@@ -1,0 +1,882 @@
+{
+    "$defs": {
+        "Coral": {
+            "additionalProperties": false,
+            "description": "Represents a specific coral instance",
+            "properties": {
+                "coralTypeId": {
+                    "description": "ID of the coral type",
+                    "type": "string"
+                },
+                "coral_size": {
+                    "$ref": "#/$defs/CoralSize",
+                    "description": "Size of the coral"
+                },
+                "createdAt": {
+                    "description": "Timestamp when the record was created",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdById": {
+                    "description": "ID of the user who created the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "genetId": {
+                    "description": "ID of the genet",
+                    "type": "string"
+                },
+                "groupId": {
+                    "description": "ID of the group/location",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier for the record",
+                    "type": "string"
+                },
+                "internalPath": {
+                    "description": "Internal path structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the entity",
+                    "type": "string"
+                },
+                "organizationId": {
+                    "description": "ID of the organization this record belongs to",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "quantity": {
+                    "description": "Quantity of items",
+                    "type": "integer"
+                },
+                "siteId": {
+                    "description": "ID of the site this entity belongs to",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "URL friendly identifier part",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "speciesId": {
+                    "description": "ID of the species",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "description": "Timestamp when the record was last updated",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedById": {
+                    "description": "ID of the user who last updated the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "urlPath": {
+                    "description": "URL friendly path to this resource",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "genetId",
+                "speciesId",
+                "siteId",
+                "groupId",
+                "coralTypeId",
+                "quantity",
+                "id"
+            ],
+            "title": "Coral",
+            "type": "object"
+        },
+        "CoralSize": {
+            "description": "",
+            "enum": [
+                "xs",
+                "s",
+                "m",
+                "l",
+                "xl"
+            ],
+            "title": "CoralSize",
+            "type": "string"
+        },
+        "Event": {
+            "additionalProperties": false,
+            "description": "Represents an event in the system history",
+            "properties": {
+                "createdAt": {
+                    "description": "Timestamp when the record was created",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdById": {
+                    "description": "ID of the user who created the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "eventTypeId": {
+                    "description": "ID of the event type",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier for the record",
+                    "type": "string"
+                },
+                "internalPath": {
+                    "description": "Internal path structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "organizationId": {
+                    "description": "ID of the organization this record belongs to",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "recordId": {
+                    "description": "ID of the record associated with the event",
+                    "type": "string"
+                },
+                "recordModelType": {
+                    "$ref": "#/$defs/ModelType",
+                    "description": "Type of the record model"
+                },
+                "slug": {
+                    "description": "URL friendly identifier part",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedAt": {
+                    "description": "Timestamp when the record was last updated",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedById": {
+                    "description": "ID of the user who last updated the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "urlPath": {
+                    "description": "URL friendly path to this resource",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "eventTypeId",
+                "recordId",
+                "recordModelType",
+                "id"
+            ],
+            "title": "Event",
+            "type": "object"
+        },
+        "Genet": {
+            "additionalProperties": false,
+            "description": "Represents a genetic individual",
+            "properties": {
+                "accessionNumber": {
+                    "description": "Accession number if applicable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "clonalId": {
+                    "description": "Clonal ID if applicable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdAt": {
+                    "description": "Timestamp when the record was created",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdById": {
+                    "description": "ID of the user who created the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "genetTypeId": {
+                    "description": "ID of the genet type",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier for the record",
+                    "type": "string"
+                },
+                "internalPath": {
+                    "description": "Internal path structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the entity",
+                    "type": "string"
+                },
+                "organizationId": {
+                    "description": "ID of the organization this record belongs to",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sfId": {
+                    "description": "SeaFoundry ID",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "URL friendly identifier part",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "speciesId": {
+                    "description": "ID of the species",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "description": "Timestamp when the record was last updated",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedById": {
+                    "description": "ID of the user who last updated the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "urlPath": {
+                    "description": "URL friendly path to this resource",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "speciesId",
+                "genetTypeId",
+                "sfId",
+                "id"
+            ],
+            "title": "Genet",
+            "type": "object"
+        },
+        "Location": {
+            "additionalProperties": false,
+            "description": "Represents a group of items or a container within a site",
+            "properties": {
+                "capacity": {
+                    "description": "Capacity of the group",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "createdAt": {
+                    "description": "Timestamp when the record was created",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdById": {
+                    "description": "ID of the user who created the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Description of the entity",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "groupTypeId": {
+                    "description": "ID of the group type",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier for the record",
+                    "type": "string"
+                },
+                "internalPath": {
+                    "description": "Internal path structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the entity",
+                    "type": "string"
+                },
+                "organizationId": {
+                    "description": "ID of the organization this record belongs to",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parentId": {
+                    "description": "ID of the parent entity",
+                    "type": "string"
+                },
+                "siteId": {
+                    "description": "ID of the site this entity belongs to",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "URL friendly identifier part",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedAt": {
+                    "description": "Timestamp when the record was last updated",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedById": {
+                    "description": "ID of the user who last updated the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "urlPath": {
+                    "description": "URL friendly path to this resource",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "groupTypeId",
+                "name",
+                "siteId",
+                "parentId",
+                "id"
+            ],
+            "title": "Location",
+            "type": "object"
+        },
+        "ModelType": {
+            "description": "",
+            "enum": [
+                "user",
+                "organization",
+                "site",
+                "group",
+                "coral",
+                "genet",
+                "recordType",
+                "event",
+                "invitation",
+                "unknown"
+            ],
+            "title": "ModelType",
+            "type": "string"
+        },
+        "Organization": {
+            "additionalProperties": false,
+            "description": "Represents an organization",
+            "properties": {
+                "createdAt": {
+                    "description": "Timestamp when the record was created",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdById": {
+                    "description": "ID of the user who created the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "domain": {
+                    "description": "Domain name associated with the organization",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier for the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "internalPath": {
+                    "description": "Internal path structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the entity",
+                    "type": "string"
+                },
+                "organizationId": {
+                    "description": "ID of the organization this record belongs to",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "siteTypeIds": {
+                    "description": "List of site type IDs supported by the organization",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "slug": {
+                    "description": "URL friendly identifier part",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "speciesIds": {
+                    "description": "List of species IDs supported by the organization",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "updatedAt": {
+                    "description": "Timestamp when the record was last updated",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedById": {
+                    "description": "ID of the user who last updated the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "urlPath": {
+                    "description": "URL friendly path to this resource",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "domain",
+                "id"
+            ],
+            "title": "Organization",
+            "type": "object"
+        },
+        "OrganizationRegisterEntry": {
+            "additionalProperties": false,
+            "description": "A canonical organization record in the registry",
+            "properties": {
+                "country": {
+                    "description": "Country where the organization is based",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata": {
+                    "description": "Additional metadata as a JSON string or key-value pair",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the entity",
+                    "type": "string"
+                },
+                "org_id": {
+                    "description": "Unique identifier for the organization",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Website URL of the organization",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "org_id",
+                "name"
+            ],
+            "title": "OrganizationRegisterEntry",
+            "type": "object"
+        },
+        "Person": {
+            "additionalProperties": false,
+            "description": "Represents a person (user)",
+            "properties": {
+                "createdAt": {
+                    "description": "Timestamp when the record was created",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdById": {
+                    "description": "ID of the user who created the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "email": {
+                    "description": "Email address of the user",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier for the record",
+                    "type": "string"
+                },
+                "imageUrl": {
+                    "description": "URL to the user's image",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the entity",
+                    "type": "string"
+                },
+                "organizationId": {
+                    "description": "ID of the organization this record belongs to",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedAt": {
+                    "description": "Timestamp when the record was last updated",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedById": {
+                    "description": "ID of the user who last updated the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "email",
+                "id"
+            ],
+            "title": "Person",
+            "type": "object"
+        },
+        "Site": {
+            "additionalProperties": false,
+            "description": "Represents a physical site",
+            "properties": {
+                "createdAt": {
+                    "description": "Timestamp when the record was created",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdById": {
+                    "description": "ID of the user who created the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Description of the entity",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "groupIdHierarchy": {
+                    "description": "Hierarchy of group IDs",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for the record",
+                    "type": "string"
+                },
+                "internalPath": {
+                    "description": "Internal path structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the entity",
+                    "type": "string"
+                },
+                "organizationId": {
+                    "description": "ID of the organization this record belongs to",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "siteTypeId": {
+                    "description": "ID of the site type",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "URL friendly identifier part",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedAt": {
+                    "description": "Timestamp when the record was last updated",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updatedById": {
+                    "description": "ID of the user who last updated the record",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "urlPath": {
+                    "description": "URL friendly path to this resource",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "siteTypeId",
+                "name",
+                "id"
+            ],
+            "title": "Site",
+            "type": "object"
+        },
+        "SiteType": {
+            "description": "",
+            "enum": [
+                "site_type_nursery_ex_situ",
+                "site_type_nursery_in_situ",
+                "site_type_outplanting",
+                "site_type_gene_bank"
+            ],
+            "title": "SiteType",
+            "type": "string"
+        },
+        "Species": {
+            "additionalProperties": false,
+            "description": "Represents a species",
+            "properties": {
+                "common_name": {
+                    "description": "Common name of the species",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "genus": {
+                    "description": "The genus name",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier for the record",
+                    "type": "string"
+                },
+                "specific_epithet": {
+                    "description": "The specific name (second part of the binomial name)",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "genus",
+                "specific_epithet"
+            ],
+            "title": "Species",
+            "type": "object"
+        },
+        "SpeciesRegisterEntry": {
+            "additionalProperties": false,
+            "description": "A canonical species record in the registry",
+            "properties": {
+                "code": {
+                    "description": "Unique 4-character species code (e.g. apal)",
+                    "type": "string"
+                },
+                "deprecated_codes": {
+                    "description": "Previous or deprecated codes for this species",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "external_references": {
+                    "description": "External identifiers (e.g. worms:12345)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "genus": {
+                    "description": "The genus name",
+                    "type": "string"
+                },
+                "scientific_name": {
+                    "description": "Full scientific name (genus + specific_epithet)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "scientific_name_authorship": {
+                    "description": "Author and year of the species description",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "specific_epithet": {
+                    "description": "The specific name (second part of the binomial name)",
+                    "type": "string"
+                },
+                "synonyms": {
+                    "description": "List of synonymous scientific names",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "code",
+                "genus",
+                "specific_epithet"
+            ],
+            "title": "SpeciesRegisterEntry",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/OpenCoralTools/oct-schema",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "metamodel_version": "1.7.0",
+    "title": "oct-schema",
+    "type": "object",
+    "version": null
+}

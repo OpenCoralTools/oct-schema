@@ -55,6 +55,17 @@ slots:
     range: string
     description: Description of the entity
 
+  # Species slots
+  genus:
+    range: string
+    description: The genus name
+  specific_epithet:
+    range: string
+    description: The specific name (second part of the binomial name)
+  common_name:
+    range: string
+    description: Common name of the species
+
 enums:
   CoralSize:
     permissible_values:

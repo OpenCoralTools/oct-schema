@@ -17,15 +17,15 @@ default_range: string
 imports:
   - linkml:types
   - common
-  - classes/Record
-  - classes/InventoryRecord
-  - classes/Organization
-  - classes/Site
-  - classes/Location
-  - classes/Genet
-  - classes/Coral
-  - classes/Species
-  - classes/Person
-  - classes/Event
-  - classes/registry/SpeciesRegisterEntry
-  - classes/registry/OrganizationRegisterEntry
+  - Record
+  - InventoryRecord
+  - Organization
+  - Site
+  - Location
+  - Genet
+  - Coral
+  - Species
+  - Person
+  - Event
+  - registry/SpeciesRegisterEntry
+  - registry/OrganizationRegisterEntry

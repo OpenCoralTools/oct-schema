@@ -1,0 +1,38 @@
+id: https://w3id.org/OpenCoralTools/oct-schema/classes/Site
+name: Site
+title: Site Class
+description: Represents a physical site
+
+prefixes:
+  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
+  linkml: https://w3id.org/linkml/
+
+default_prefix: oct_schema
+default_range: string
+
+imports:
+  - InventoryRecord
+
+classes:
+  Site:
+    is_a: InventoryRecord
+    description: Represents a physical site
+    slots:
+      - siteTypeId
+      - name
+      - groupIdHierarchy
+      - description
+    slot_usage:
+      siteTypeId:
+        required: true
+      name:
+        required: true
+
+slots:
+  siteTypeId:
+    range: string
+    description: ID of the site type
+  groupIdHierarchy:
+    range: string
+    multivalued: true
+    description: Hierarchy of group IDs
