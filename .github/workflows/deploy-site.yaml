@@ -1,0 +1,83 @@
+name: Deploy Site
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      # --- Setup Python & LinkML ---
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6.4.3
+        with:
+          python-version: 3.13
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: 3.13
+
+      - name: Install just
+        run: uv tool install rust-just
+
+      - name: Install Python dependencies
+        run: uv sync --dev --no-progress
+
+      # --- Setup Node & Astro ---
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'astro/package-lock.json'
+
+      - name: Install Astro dependencies
+        working-directory: astro
+        run: npm ci
+
+      # --- Build Steps ---
+      - name: Generate and Build MkDocs
+        run: |
+          just gen-doc
+          uv run mkdocs build -d site
+
+      - name: Build Astro App
+        working-directory: astro
+        run: npm run build
+
+      # --- Merge Sites ---
+      - name: Merge Sites
+        run: |
+          # Create docs directory in Astro dist
+          mkdir -p astro/dist/docs
+          # Move MkDocs site output into Astro dist/docs
+          cp -r site/* astro/dist/docs/
+
+      # --- Upload & Deploy ---
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: astro/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

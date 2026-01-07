@@ -1,0 +1,2656 @@
+name: oct-schema
+description: Top-level schema combining Core and Coral modules.
+title: Open Coral Tools Schema
+id: https://opencoral.tools/oct-schema
+imports:
+- linkml:types
+- coral/schema
+- core/schema
+- coral/genet
+- coral/location
+- coral/specimen
+- coral/event
+- core/types
+- core/record
+- core/person
+- core/organization
+- core/location
+- core/specimen
+- core/event
+- core/types
+- core/location
+- core/record
+- core/location
+- core/specimen
+- coral/genet
+- core/event
+- core/types
+- core/record
+- core/record
+- core/location
+- core/types
+- core/record
+- core/types
+- core/location
+- core/record
+- core/types
+- core/location
+- core/record
+license: https://creativecommons.org/publicdomain/zero/1.0/
+prefixes:
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  xsd:
+    prefix_prefix: xsd
+    prefix_reference: http://www.w3.org/2001/XMLSchema#
+  oct:
+    prefix_prefix: oct
+    prefix_reference: https://opencoral.tools/oct-schema/
+default_prefix: https://opencoral.tools/oct-schema/
+default_range: string
+types:
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string.   If you are authoring schemas in LinkML YAML, the type is
+      referenced with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  DateTime:
+    name: DateTime
+    definition_uri: https://opencoral.tools/oct-schema/core/types/DateTime
+    description: A timestamp in ISO 8601 format (e.g. 2023-01-01T12:00:00Z)
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    base: str
+    uri: xsd:dateTime
+  Identifier:
+    name: Identifier
+    definition_uri: https://opencoral.tools/oct-schema/core/types/Identifier
+    description: A unique identifier for a record (URI, UUID, or CURIE)
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    base: str
+    uri: xsd:string
+enums:
+  GenetOriginType:
+    name: GenetOriginType
+    definition_uri: https://opencoral.tools/oct-schema/coral/genet/GenetOriginType
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    permissible_values:
+      wild_collection:
+        text: wild_collection
+      sexual_cohort_root:
+        text: sexual_cohort_root
+      unknown:
+        text: unknown
+      other:
+        text: other
+  LocationType:
+    name: LocationType
+    definition_uri: https://opencoral.tools/oct-schema/core/location/LocationType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    permissible_values:
+      organization:
+        text: organization
+      site:
+        text: site
+      container:
+        text: container
+      position:
+        text: position
+  SiteType:
+    name: SiteType
+    definition_uri: https://opencoral.tools/oct-schema/core/location/SiteType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    permissible_values:
+      in_situ_nursery:
+        text: in_situ_nursery
+      ex_situ_nursery:
+        text: ex_situ_nursery
+      gene_bank:
+        text: gene_bank
+      outplant_site:
+        text: outplant_site
+      lab:
+        text: lab
+      other:
+        text: other
+  ContainerType:
+    name: ContainerType
+    definition_uri: https://opencoral.tools/oct-schema/core/location/ContainerType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    permissible_values:
+      system:
+        text: system
+      tank:
+        text: tank
+      tray:
+        text: tray
+      rack:
+        text: rack
+      table:
+        text: table
+      tree:
+        text: tree
+      tree_branch:
+        text: tree_branch
+      rebar_table:
+        text: rebar_table
+      other:
+        text: other
+  PositionType:
+    name: PositionType
+    definition_uri: https://opencoral.tools/oct-schema/core/location/PositionType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    permissible_values:
+      slot:
+        text: slot
+      cell:
+        text: cell
+      quadrant:
+        text: quadrant
+      row:
+        text: row
+      column:
+        text: column
+      other:
+        text: other
+  InventoryUnitType:
+    name: InventoryUnitType
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    permissible_values:
+      individual:
+        text: individual
+      colony:
+        text: colony
+      fragment:
+        text: fragment
+      substrate_unit:
+        text: substrate_unit
+      propagule_batch:
+        text: propagule_batch
+      sample:
+        text: sample
+      unknown:
+        text: unknown
+  DevelopmentalStage:
+    name: DevelopmentalStage
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/DevelopmentalStage
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    permissible_values:
+      gamete:
+        text: gamete
+      embryo:
+        text: embryo
+      larva:
+        text: larva
+      recruit:
+        text: recruit
+      juvenile:
+        text: juvenile
+      adult:
+        text: adult
+      unknown:
+        text: unknown
+  HealthStatus:
+    name: HealthStatus
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/HealthStatus
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    permissible_values:
+      healthy:
+        text: healthy
+      stressed:
+        text: stressed
+      bleached:
+        text: bleached
+      diseased:
+        text: diseased
+      dead:
+        text: dead
+      unknown:
+        text: unknown
+  DispositionStatus:
+    name: DispositionStatus
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/DispositionStatus
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    permissible_values:
+      available:
+        text: available
+      reserved:
+        text: reserved
+      quarantine:
+        text: quarantine
+      grow_out:
+        text: grow_out
+      broodstock:
+        text: broodstock
+      research_only:
+        text: research_only
+      unknown:
+        text: unknown
+  EventType:
+    name: EventType
+    definition_uri: https://opencoral.tools/oct-schema/core/event/EventType
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    permissible_values:
+      create:
+        text: create
+      transfer:
+        text: transfer
+      split:
+        text: split
+      merge:
+        text: merge
+      measurement:
+        text: measurement
+      state:
+        text: state
+  RecordTypeEnum:
+    name: RecordTypeEnum
+    definition_uri: https://opencoral.tools/oct-schema/core/event/RecordTypeEnum
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    permissible_values:
+      Specimen:
+        text: Specimen
+      Location:
+        text: Location
+      Genet:
+        text: Genet
+      Other:
+        text: Other
+slots:
+  coralTaxonRef__speciesCode:
+    name: coralTaxonRef__speciesCode
+    description: Registry-backed 4-char species code (e.g., 'apal')
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/speciesCode
+    alias: speciesCode
+    owner: CoralTaxonRef
+    domain_of:
+    - CoralTaxonRef
+    range: string
+    required: true
+    pattern: ^[a-z0-9]{4}$
+  coralTaxonRef__scientificName:
+    name: coralTaxonRef__scientificName
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/scientificName
+    alias: scientificName
+    owner: CoralTaxonRef
+    domain_of:
+    - CoralTaxonRef
+    range: string
+  coralTaxonRef__taxonId:
+    name: coralTaxonRef__taxonId
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/taxonId
+    alias: taxonId
+    owner: CoralTaxonRef
+    domain_of:
+    - CoralTaxonRef
+    range: string
+  genetOrigin__originType:
+    name: genetOrigin__originType
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/originType
+    alias: originType
+    owner: GenetOrigin
+    domain_of:
+    - GenetOrigin
+    range: GenetOriginType
+  genetOrigin__collectedAt:
+    name: genetOrigin__collectedAt
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/collectedAt
+    alias: collectedAt
+    owner: GenetOrigin
+    domain_of:
+    - GenetOrigin
+    range: DateTime
+  genetOrigin__collectionLocationRef:
+    name: genetOrigin__collectionLocationRef
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/collectionLocationRef
+    alias: collectionLocationRef
+    owner: GenetOrigin
+    domain_of:
+    - GenetOrigin
+    range: LocationRef
+    inlined: true
+    inlined_as_list: true
+  genetOrigin__notes:
+    name: genetOrigin__notes
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/notes
+    alias: notes
+    owner: GenetOrigin
+    domain_of:
+    - GenetOrigin
+    range: string
+  genotypingMetadata__method:
+    name: genotypingMetadata__method
+    description: e.g. SNP panel name, microsatellites
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/method
+    alias: method
+    owner: GenotypingMetadata
+    domain_of:
+    - GenotypingMetadata
+    range: string
+  genotypingMetadata__lab:
+    name: genotypingMetadata__lab
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/lab
+    alias: lab
+    owner: GenotypingMetadata
+    domain_of:
+    - GenotypingMetadata
+    range: string
+  genotypingMetadata__assayDate:
+    name: genotypingMetadata__assayDate
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/assayDate
+    alias: assayDate
+    owner: GenotypingMetadata
+    domain_of:
+    - GenotypingMetadata
+    range: DateTime
+  genotypingMetadata__associatedSequences:
+    name: genotypingMetadata__associatedSequences
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/associatedSequences
+    alias: associatedSequences
+    owner: GenotypingMetadata
+    domain_of:
+    - GenotypingMetadata
+    range: string
+    multivalued: true
+  genetPedigree__damGenetId:
+    name: genetPedigree__damGenetId
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/damGenetId
+    alias: damGenetId
+    owner: GenetPedigree
+    domain_of:
+    - GenetPedigree
+    range: string
+  genetPedigree__sireGenetId:
+    name: genetPedigree__sireGenetId
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/sireGenetId
+    alias: sireGenetId
+    owner: GenetPedigree
+    domain_of:
+    - GenetPedigree
+    range: string
+  genetPedigree__cohortId:
+    name: genetPedigree__cohortId
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/cohortId
+    alias: cohortId
+    owner: GenetPedigree
+    domain_of:
+    - GenetPedigree
+    range: string
+  genetRecordSource__datasetId:
+    name: genetRecordSource__datasetId
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/datasetId
+    alias: datasetId
+    owner: GenetRecordSource
+    domain_of:
+    - GenetRecordSource
+    range: string
+  genetRecordSource__externalRecordId:
+    name: genetRecordSource__externalRecordId
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/externalRecordId
+    alias: externalRecordId
+    owner: GenetRecordSource
+    domain_of:
+    - GenetRecordSource
+    range: string
+  genetRecordSource__ingestedAt:
+    name: genetRecordSource__ingestedAt
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/ingestedAt
+    alias: ingestedAt
+    owner: GenetRecordSource
+    domain_of:
+    - GenetRecordSource
+    range: DateTime
+  genetRecord__recordType:
+    name: genetRecord__recordType
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    alias: recordType
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: string
+    required: true
+    pattern: ^Genet$
+  genetRecord__createdAt:
+    name: genetRecord__createdAt
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/createdAt
+    alias: createdAt
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: DateTime
+    required: true
+  genetRecord__updatedAt:
+    name: genetRecord__updatedAt
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/updatedAt
+    alias: updatedAt
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: DateTime
+  genetRecord__taxon:
+    name: genetRecord__taxon
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/taxon
+    alias: taxon
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: CoralTaxonRef
+    required: true
+    inlined: true
+    inlined_as_list: true
+  genetRecord__genetCode:
+    name: genetRecord__genetCode
+    description: Program-level genet identifier
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/genetCode
+    alias: genetCode
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: string
+    required: true
+  genetRecord__origin:
+    name: genetRecord__origin
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/origin
+    alias: origin
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: GenetOrigin
+    inlined: true
+    inlined_as_list: true
+  genetRecord__genotyping:
+    name: genetRecord__genotyping
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/genotyping
+    alias: genotyping
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: GenotypingMetadata
+    inlined: true
+    inlined_as_list: true
+  genetRecord__pedigree:
+    name: genetRecord__pedigree
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/pedigree
+    alias: pedigree
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: GenetPedigree
+    inlined: true
+    inlined_as_list: true
+  genetRecord__notes:
+    name: genetRecord__notes
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/notes
+    alias: notes
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: string
+  genetRecord__source:
+    name: genetRecord__source
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slot_uri: https://opencoral.tools/oct-schema/coral/genet/source
+    alias: source
+    owner: GenetRecord
+    domain_of:
+    - GenetRecord
+    range: GenetRecordSource
+    inlined: true
+    inlined_as_list: true
+  geoPoint__decimalLatitude:
+    name: geoPoint__decimalLatitude
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/decimalLatitude
+    alias: decimalLatitude
+    owner: GeoPoint
+    domain_of:
+    - GeoPoint
+    range: float
+    required: true
+    minimum_value: -90
+    maximum_value: 90
+  geoPoint__decimalLongitude:
+    name: geoPoint__decimalLongitude
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/decimalLongitude
+    alias: decimalLongitude
+    owner: GeoPoint
+    domain_of:
+    - GeoPoint
+    range: float
+    required: true
+    minimum_value: -180
+    maximum_value: 180
+  geoPoint__geodeticDatum:
+    name: geoPoint__geodeticDatum
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/geodeticDatum
+    ifabsent: string(WGS84)
+    alias: geodeticDatum
+    owner: GeoPoint
+    domain_of:
+    - GeoPoint
+    range: string
+  geoPoint__coordinateUncertaintyMeters:
+    name: geoPoint__coordinateUncertaintyMeters
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/coordinateUncertaintyMeters
+    alias: coordinateUncertaintyMeters
+    owner: GeoPoint
+    domain_of:
+    - GeoPoint
+    range: float
+    minimum_value: 0
+  measureValue__value:
+    name: measureValue__value
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/value
+    alias: value
+    owner: MeasureValue
+    domain_of:
+    - MeasureValue
+    range: float
+    required: true
+  measureValue__unit:
+    name: measureValue__unit
+    description: UCUM unit code recommended
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/unit
+    alias: unit
+    owner: MeasureValue
+    domain_of:
+    - MeasureValue
+    range: string
+    required: true
+  measureValue__method:
+    name: measureValue__method
+    description: Method used to obtain the measurement
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/method
+    alias: method
+    owner: MeasureValue
+    domain_of:
+    - MeasureValue
+    range: string
+  entityRef__id:
+    name: entityRef__id
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/id
+    alias: id
+    owner: EntityRef
+    domain_of:
+    - EntityRef
+    range: string
+    required: true
+  entityRef__type:
+    name: entityRef__type
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/type
+    alias: type
+    owner: EntityRef
+    domain_of:
+    - EntityRef
+    range: string
+  entityRef__label:
+    name: entityRef__label
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/label
+    alias: label
+    owner: EntityRef
+    domain_of:
+    - EntityRef
+    range: string
+  taxonRef__name:
+    name: taxonRef__name
+    description: Scientific name or label
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/name
+    alias: name
+    owner: TaxonRef
+    domain_of:
+    - TaxonRef
+    range: string
+    required: true
+  taxonRef__taxonId:
+    name: taxonRef__taxonId
+    description: External identifier (e.g. LSID)
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/taxonId
+    alias: taxonId
+    owner: TaxonRef
+    domain_of:
+    - TaxonRef
+    range: string
+  taxonRef__rank:
+    name: taxonRef__rank
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slot_uri: https://opencoral.tools/oct-schema/core/types/rank
+    alias: rank
+    owner: TaxonRef
+    domain_of:
+    - TaxonRef
+    range: string
+  record__recordId:
+    name: record__recordId
+    from_schema: https://opencoral.tools/oct-schema/core/record
+    slot_uri: https://opencoral.tools/oct-schema/core/record/recordId
+    identifier: true
+    alias: recordId
+    owner: Record
+    domain_of:
+    - Record
+    range: Identifier
+    required: true
+  record__recordType:
+    name: record__recordType
+    from_schema: https://opencoral.tools/oct-schema/core/record
+    slot_uri: https://opencoral.tools/oct-schema/core/record/recordType
+    designates_type: true
+    alias: recordType
+    owner: Record
+    domain_of:
+    - Record
+    range: string
+    required: true
+  record__orgId:
+    name: record__orgId
+    description: The organization that owns/issued this record
+    from_schema: https://opencoral.tools/oct-schema/core/record
+    slot_uri: https://opencoral.tools/oct-schema/core/record/orgId
+    alias: orgId
+    owner: Record
+    domain_of:
+    - Record
+    range: Identifier
+    required: true
+  record__createdAt:
+    name: record__createdAt
+    from_schema: https://opencoral.tools/oct-schema/core/record
+    slot_uri: https://opencoral.tools/oct-schema/core/record/createdAt
+    alias: createdAt
+    owner: Record
+    domain_of:
+    - Record
+    range: DateTime
+  record__createdBy:
+    name: record__createdBy
+    description: ID of the Agent (Person/Service) who created this
+    from_schema: https://opencoral.tools/oct-schema/core/record
+    slot_uri: https://opencoral.tools/oct-schema/core/record/createdBy
+    alias: createdBy
+    owner: Record
+    domain_of:
+    - Record
+    range: Identifier
+  record__updatedAt:
+    name: record__updatedAt
+    from_schema: https://opencoral.tools/oct-schema/core/record
+    slot_uri: https://opencoral.tools/oct-schema/core/record/updatedAt
+    alias: updatedAt
+    owner: Record
+    domain_of:
+    - Record
+    range: DateTime
+  record__updatedBy:
+    name: record__updatedBy
+    from_schema: https://opencoral.tools/oct-schema/core/record
+    slot_uri: https://opencoral.tools/oct-schema/core/record/updatedBy
+    alias: updatedBy
+    owner: Record
+    domain_of:
+    - Record
+    range: Identifier
+  person__recordType:
+    name: person__recordType
+    from_schema: https://opencoral.tools/oct-schema/core/person
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    alias: recordType
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    pattern: ^Person$
+  person__name:
+    name: person__name
+    from_schema: https://opencoral.tools/oct-schema/core/person
+    slot_uri: https://opencoral.tools/oct-schema/core/person/name
+    alias: name
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    required: true
+  person__email:
+    name: person__email
+    from_schema: https://opencoral.tools/oct-schema/core/person
+    slot_uri: https://opencoral.tools/oct-schema/core/person/email
+    alias: email
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    required: true
+  person__imageUrl:
+    name: person__imageUrl
+    from_schema: https://opencoral.tools/oct-schema/core/person
+    slot_uri: https://opencoral.tools/oct-schema/core/person/imageUrl
+    alias: imageUrl
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+  organization__recordType:
+    name: organization__recordType
+    from_schema: https://opencoral.tools/oct-schema/core/organization
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    alias: recordType
+    owner: Organization
+    domain_of:
+    - Organization
+    range: string
+    pattern: ^Organization$
+  organization__name:
+    name: organization__name
+    from_schema: https://opencoral.tools/oct-schema/core/organization
+    slot_uri: https://opencoral.tools/oct-schema/core/organization/name
+    alias: name
+    owner: Organization
+    domain_of:
+    - Organization
+    range: string
+    required: true
+  organization__domain:
+    name: organization__domain
+    description: Domain name associated with the organization
+    from_schema: https://opencoral.tools/oct-schema/core/organization
+    slot_uri: https://opencoral.tools/oct-schema/core/organization/domain
+    alias: domain
+    owner: Organization
+    domain_of:
+    - Organization
+    range: string
+  organization__supportedSiteTypes:
+    name: organization__supportedSiteTypes
+    from_schema: https://opencoral.tools/oct-schema/core/organization
+    slot_uri: https://opencoral.tools/oct-schema/core/organization/supportedSiteTypes
+    alias: supportedSiteTypes
+    owner: Organization
+    domain_of:
+    - Organization
+    range: SiteType
+    multivalued: true
+  organization__supportedSpecies:
+    name: organization__supportedSpecies
+    from_schema: https://opencoral.tools/oct-schema/core/organization
+    slot_uri: https://opencoral.tools/oct-schema/core/organization/supportedSpecies
+    alias: supportedSpecies
+    owner: Organization
+    domain_of:
+    - Organization
+    range: string
+    multivalued: true
+  locationRef__locationId:
+    name: locationRef__locationId
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/locationId
+    alias: locationId
+    owner: LocationRef
+    domain_of:
+    - LocationRef
+    range: string
+    required: true
+  locationRef__locationType:
+    name: locationRef__locationType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/locationType
+    alias: locationType
+    owner: LocationRef
+    domain_of:
+    - LocationRef
+    range: LocationType
+  locationRef__label:
+    name: locationRef__label
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/label
+    alias: label
+    owner: LocationRef
+    domain_of:
+    - LocationRef
+    range: string
+  parentLocationRef__siteType:
+    name: parentLocationRef__siteType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/siteType
+    alias: siteType
+    owner: ParentLocationRef
+    domain_of:
+    - ParentLocationRef
+    range: SiteType
+  parentLocationRef__containerType:
+    name: parentLocationRef__containerType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/containerType
+    alias: containerType
+    owner: ParentLocationRef
+    domain_of:
+    - ParentLocationRef
+    range: ContainerType
+  parentLocationRef__name:
+    name: parentLocationRef__name
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/name
+    alias: name
+    owner: ParentLocationRef
+    domain_of:
+    - ParentLocationRef
+    range: string
+  locationRecord__recordType:
+    name: locationRecord__recordType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    alias: recordType
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: string
+    required: true
+    pattern: ^Location$
+  locationRecord__locationType:
+    name: locationRecord__locationType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/locationType
+    alias: locationType
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: LocationType
+    required: true
+  locationRecord__name:
+    name: locationRecord__name
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/name
+    alias: name
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: string
+    required: true
+  locationRecord__parentLocationRef:
+    name: locationRecord__parentLocationRef
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/parentLocationRef
+    alias: parentLocationRef
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: ParentLocationRef
+    inlined: true
+    inlined_as_list: true
+  locationRecord__siteType:
+    name: locationRecord__siteType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/siteType
+    alias: siteType
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: SiteType
+  locationRecord__containerType:
+    name: locationRecord__containerType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/containerType
+    alias: containerType
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: ContainerType
+  locationRecord__positionType:
+    name: locationRecord__positionType
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/positionType
+    alias: positionType
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: PositionType
+  locationRecord__geo:
+    name: locationRecord__geo
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/geo
+    alias: geo
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: GeoPoint
+    inlined: true
+    inlined_as_list: true
+  locationRecord__depth:
+    name: locationRecord__depth
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/depth
+    alias: depth
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: MeasureValue
+    inlined: true
+    inlined_as_list: true
+  locationRecord__notes:
+    name: locationRecord__notes
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/notes
+    alias: notes
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: string
+  locationRecord__codes:
+    name: locationRecord__codes
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slot_uri: https://opencoral.tools/oct-schema/core/location/codes
+    alias: codes
+    owner: LocationRecord
+    domain_of:
+    - LocationRecord
+    range: string
+    multivalued: true
+  quantity__count:
+    name: quantity__count
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/count
+    alias: count
+    owner: Quantity
+    domain_of:
+    - Quantity
+    range: float
+    required: true
+    minimum_value: 0
+  quantity__countUncertainty:
+    name: quantity__countUncertainty
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/countUncertainty
+    alias: countUncertainty
+    owner: Quantity
+    domain_of:
+    - Quantity
+    range: float
+    minimum_value: 0
+  quantity__surfaceArea:
+    name: quantity__surfaceArea
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/surfaceArea
+    alias: surfaceArea
+    owner: Quantity
+    domain_of:
+    - Quantity
+    range: MeasureValue
+    inlined: true
+    inlined_as_list: true
+  quantity__volume:
+    name: quantity__volume
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/volume
+    alias: volume
+    owner: Quantity
+    domain_of:
+    - Quantity
+    range: MeasureValue
+    inlined: true
+    inlined_as_list: true
+  quantity__biomass:
+    name: quantity__biomass
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/biomass
+    alias: biomass
+    owner: Quantity
+    domain_of:
+    - Quantity
+    range: MeasureValue
+    inlined: true
+    inlined_as_list: true
+  quantity__linearSize:
+    name: quantity__linearSize
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/linearSize
+    alias: linearSize
+    owner: Quantity
+    domain_of:
+    - Quantity
+    range: MeasureValue
+    inlined: true
+    inlined_as_list: true
+  specimenState__disposition:
+    name: specimenState__disposition
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/disposition
+    alias: disposition
+    owner: SpecimenState
+    domain_of:
+    - SpecimenState
+    range: DispositionStatus
+  specimenState__health:
+    name: specimenState__health
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/health
+    alias: health
+    owner: SpecimenState
+    domain_of:
+    - SpecimenState
+    range: HealthStatus
+  specimenState__readyForPropagation:
+    name: specimenState__readyForPropagation
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/readyForPropagation
+    alias: readyForPropagation
+    owner: SpecimenState
+    domain_of:
+    - SpecimenState
+    range: boolean
+  specimenState__readyForOutplant:
+    name: specimenState__readyForOutplant
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/readyForOutplant
+    alias: readyForOutplant
+    owner: SpecimenState
+    domain_of:
+    - SpecimenState
+    range: boolean
+  specimenRecordSource__datasetId:
+    name: specimenRecordSource__datasetId
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/datasetId
+    alias: datasetId
+    owner: SpecimenRecordSource
+    domain_of:
+    - SpecimenRecordSource
+    range: string
+  specimenRecordSource__externalRecordId:
+    name: specimenRecordSource__externalRecordId
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/externalRecordId
+    alias: externalRecordId
+    owner: SpecimenRecordSource
+    domain_of:
+    - SpecimenRecordSource
+    range: string
+  specimenRecordSource__ingestedAt:
+    name: specimenRecordSource__ingestedAt
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/ingestedAt
+    alias: ingestedAt
+    owner: SpecimenRecordSource
+    domain_of:
+    - SpecimenRecordSource
+    range: DateTime
+  specimenRecord__recordType:
+    name: specimenRecord__recordType
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    alias: recordType
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: string
+    required: true
+    pattern: ^Specimen$
+  specimenRecord__asOf:
+    name: specimenRecord__asOf
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/asOf
+    alias: asOf
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: DateTime
+    required: true
+  specimenRecord__taxon:
+    name: specimenRecord__taxon
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/taxon
+    alias: taxon
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: TaxonRef
+    required: true
+    inlined: true
+    inlined_as_list: true
+  specimenRecord__geneticGroupRef:
+    name: specimenRecord__geneticGroupRef
+    description: Reference to a genet or other genetic grouping
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef
+    alias: geneticGroupRef
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: EntityRef
+    inlined: true
+    inlined_as_list: true
+  specimenRecord__inventoryUnitType:
+    name: specimenRecord__inventoryUnitType
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType
+    alias: inventoryUnitType
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: InventoryUnitType
+    required: true
+  specimenRecord__developmentalStage:
+    name: specimenRecord__developmentalStage
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/developmentalStage
+    alias: developmentalStage
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: DevelopmentalStage
+  specimenRecord__quantity:
+    name: specimenRecord__quantity
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/quantity
+    alias: quantity
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: Quantity
+    required: true
+    inlined: true
+    inlined_as_list: true
+  specimenRecord__locationRef:
+    name: specimenRecord__locationRef
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/locationRef
+    alias: locationRef
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: LocationRef
+    required: true
+    inlined: true
+    inlined_as_list: true
+  specimenRecord__state:
+    name: specimenRecord__state
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/state
+    alias: state
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: SpecimenState
+    inlined: true
+    inlined_as_list: true
+  specimenRecord__tags:
+    name: specimenRecord__tags
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/tags
+    alias: tags
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: string
+    multivalued: true
+  specimenRecord__notes:
+    name: specimenRecord__notes
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/notes
+    alias: notes
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: string
+  specimenRecord__source:
+    name: specimenRecord__source
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/source
+    alias: source
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: SpecimenRecordSource
+    inlined: true
+    inlined_as_list: true
+  effectiveTime__occurredAt:
+    name: effectiveTime__occurredAt
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/occurredAt
+    alias: occurredAt
+    owner: EffectiveTime
+    domain_of:
+    - EffectiveTime
+    range: DateTime
+  effectiveTime__startAt:
+    name: effectiveTime__startAt
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/startAt
+    alias: startAt
+    owner: EffectiveTime
+    domain_of:
+    - EffectiveTime
+    range: DateTime
+  effectiveTime__endAt:
+    name: effectiveTime__endAt
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/endAt
+    alias: endAt
+    owner: EffectiveTime
+    domain_of:
+    - EffectiveTime
+    range: DateTime
+  subjectRef__recordId:
+    name: subjectRef__recordId
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/recordId
+    alias: recordId
+    owner: SubjectRef
+    domain_of:
+    - SubjectRef
+    range: string
+    required: true
+  subjectRef__recordType:
+    name: subjectRef__recordType
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/recordType
+    alias: recordType
+    owner: SubjectRef
+    domain_of:
+    - SubjectRef
+    range: RecordTypeEnum
+    required: true
+  subjectRef__role:
+    name: subjectRef__role
+    description: Role in the event (source, destination, etc.)
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/role
+    alias: role
+    owner: SubjectRef
+    domain_of:
+    - SubjectRef
+    range: string
+  stateEventPayload__stateType:
+    name: stateEventPayload__stateType
+    description: e.g. health, disposition
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/stateType
+    alias: stateType
+    owner: StateEventPayload
+    domain_of:
+    - StateEventPayload
+    range: string
+    required: true
+  stateEventPayload__stateValue:
+    name: stateEventPayload__stateValue
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/stateValue
+    alias: stateValue
+    owner: StateEventPayload
+    domain_of:
+    - StateEventPayload
+    range: string
+    required: true
+  eventSource__datasetId:
+    name: eventSource__datasetId
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/datasetId
+    alias: datasetId
+    owner: EventSource
+    domain_of:
+    - EventSource
+    range: string
+  eventSource__externalEventId:
+    name: eventSource__externalEventId
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/externalEventId
+    alias: externalEventId
+    owner: EventSource
+    domain_of:
+    - EventSource
+    range: string
+  eventSource__ingestedAt:
+    name: eventSource__ingestedAt
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/ingestedAt
+    alias: ingestedAt
+    owner: EventSource
+    domain_of:
+    - EventSource
+    range: DateTime
+  event__recordType:
+    name: event__recordType
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    alias: recordType
+    owner: Event
+    domain_of:
+    - Event
+    range: string
+    required: true
+    pattern: ^Event$
+  event__eventType:
+    name: event__eventType
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/eventType
+    alias: eventType
+    owner: Event
+    domain_of:
+    - Event
+    range: EventType
+    required: true
+  event__effectiveTime:
+    name: event__effectiveTime
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/effectiveTime
+    alias: effectiveTime
+    owner: Event
+    domain_of:
+    - Event
+    range: EffectiveTime
+    required: true
+    inlined: true
+    inlined_as_list: true
+  event__subjects:
+    name: event__subjects
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/subjects
+    alias: subjects
+    owner: Event
+    domain_of:
+    - Event
+    range: SubjectRef
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    minimum_cardinality: 1
+  event__location:
+    name: event__location
+    description: Context location for the event
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/location
+    alias: location
+    owner: Event
+    domain_of:
+    - Event
+    range: LocationRef
+    inlined: true
+    inlined_as_list: true
+  event__payload:
+    name: event__payload
+    description: Type-specific event data
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/payload
+    alias: payload
+    owner: Event
+    domain_of:
+    - Event
+    range: EventPayload
+    inlined: true
+    inlined_as_list: true
+  event__notes:
+    name: event__notes
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/notes
+    alias: notes
+    owner: Event
+    domain_of:
+    - Event
+    range: string
+  event__source:
+    name: event__source
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slot_uri: https://opencoral.tools/oct-schema/core/event/source
+    alias: source
+    owner: Event
+    domain_of:
+    - Event
+    range: EventSource
+    inlined: true
+    inlined_as_list: true
+  CoralSpecimenRecord_taxon:
+    name: CoralSpecimenRecord_taxon
+    from_schema: https://opencoral.tools/oct-schema
+    is_a: specimenRecord__taxon
+    domain: CoralSpecimenRecord
+    slot_uri: oct:taxon
+    alias: taxon
+    owner: CoralSpecimenRecord
+    domain_of:
+    - CoralSpecimenRecord
+    is_usage_slot: true
+    usage_slot_name: taxon
+    range: CoralTaxonRef
+    required: true
+    inlined: true
+    inlined_as_list: true
+  CoralSpecimenRecord_geneticGroupRef:
+    name: CoralSpecimenRecord_geneticGroupRef
+    description: Reference to the coral genet
+    from_schema: https://opencoral.tools/oct-schema
+    is_a: specimenRecord__geneticGroupRef
+    domain: CoralSpecimenRecord
+    slot_uri: oct:geneticGroupRef
+    alias: geneticGroupRef
+    owner: CoralSpecimenRecord
+    domain_of:
+    - CoralSpecimenRecord
+    is_usage_slot: true
+    usage_slot_name: geneticGroupRef
+    range: GenetRecord
+  CoralSpecimenRecord_inventoryUnitType:
+    name: CoralSpecimenRecord_inventoryUnitType
+    from_schema: https://opencoral.tools/oct-schema
+    is_a: specimenRecord__inventoryUnitType
+    domain: CoralSpecimenRecord
+    slot_uri: oct:inventoryUnitType
+    alias: inventoryUnitType
+    owner: CoralSpecimenRecord
+    domain_of:
+    - CoralSpecimenRecord
+    is_usage_slot: true
+    usage_slot_name: inventoryUnitType
+    range: InventoryUnitType
+    required: true
+classes:
+  CoralTaxonRef:
+    name: CoralTaxonRef
+    definition_uri: https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef
+    description: Coral-specific taxon reference with species code
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slots:
+    - coralTaxonRef__speciesCode
+    - coralTaxonRef__scientificName
+    - coralTaxonRef__taxonId
+    attributes:
+      speciesCode:
+        name: speciesCode
+        description: Registry-backed 4-char species code (e.g., 'apal')
+        range: string
+        required: true
+        pattern: ^[a-z0-9]{4}$
+      scientificName:
+        name: scientificName
+        range: string
+      taxonId:
+        name: taxonId
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef
+  GenetOrigin:
+    name: GenetOrigin
+    definition_uri: https://opencoral.tools/oct-schema/coral/genet/GenetOrigin
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slots:
+    - genetOrigin__originType
+    - genetOrigin__collectedAt
+    - genetOrigin__collectionLocationRef
+    - genetOrigin__notes
+    attributes:
+      originType:
+        name: originType
+        range: GenetOriginType
+      collectedAt:
+        name: collectedAt
+        range: DateTime
+      collectionLocationRef:
+        name: collectionLocationRef
+        range: LocationRef
+      notes:
+        name: notes
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/coral/genet/GenetOrigin
+  GenotypingMetadata:
+    name: GenotypingMetadata
+    definition_uri: https://opencoral.tools/oct-schema/coral/genet/GenotypingMetadata
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slots:
+    - genotypingMetadata__method
+    - genotypingMetadata__lab
+    - genotypingMetadata__assayDate
+    - genotypingMetadata__associatedSequences
+    attributes:
+      method:
+        name: method
+        description: e.g. SNP panel name, microsatellites
+        range: string
+      lab:
+        name: lab
+        range: string
+      assayDate:
+        name: assayDate
+        range: DateTime
+      associatedSequences:
+        name: associatedSequences
+        range: string
+        multivalued: true
+    class_uri: https://opencoral.tools/oct-schema/coral/genet/GenotypingMetadata
+  GenetPedigree:
+    name: GenetPedigree
+    definition_uri: https://opencoral.tools/oct-schema/coral/genet/GenetPedigree
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slots:
+    - genetPedigree__damGenetId
+    - genetPedigree__sireGenetId
+    - genetPedigree__cohortId
+    attributes:
+      damGenetId:
+        name: damGenetId
+        range: string
+      sireGenetId:
+        name: sireGenetId
+        range: string
+      cohortId:
+        name: cohortId
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/coral/genet/GenetPedigree
+  GenetRecordSource:
+    name: GenetRecordSource
+    definition_uri: https://opencoral.tools/oct-schema/coral/genet/GenetRecordSource
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    slots:
+    - genetRecordSource__datasetId
+    - genetRecordSource__externalRecordId
+    - genetRecordSource__ingestedAt
+    attributes:
+      datasetId:
+        name: datasetId
+        range: string
+      externalRecordId:
+        name: externalRecordId
+        range: string
+      ingestedAt:
+        name: ingestedAt
+        range: DateTime
+    class_uri: https://opencoral.tools/oct-schema/coral/genet/GenetRecordSource
+  GenetRecord:
+    name: GenetRecord
+    definition_uri: https://opencoral.tools/oct-schema/coral/genet/GenetRecord
+    description: Coral-specific genet record (clonal lineage)
+    from_schema: https://opencoral.tools/oct-schema/coral/genet
+    is_a: Record
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdBy
+    - record__updatedBy
+    - genetRecord__recordType
+    - genetRecord__createdAt
+    - genetRecord__updatedAt
+    - genetRecord__taxon
+    - genetRecord__genetCode
+    - genetRecord__origin
+    - genetRecord__genotyping
+    - genetRecord__pedigree
+    - genetRecord__notes
+    - genetRecord__source
+    attributes:
+      recordType:
+        name: recordType
+        slot_uri: rdf:type
+        designates_type: true
+        range: string
+        required: true
+        pattern: ^Genet$
+      createdAt:
+        name: createdAt
+        range: DateTime
+        required: true
+      updatedAt:
+        name: updatedAt
+        range: DateTime
+      taxon:
+        name: taxon
+        range: CoralTaxonRef
+        required: true
+      genetCode:
+        name: genetCode
+        description: Program-level genet identifier
+        range: string
+        required: true
+      origin:
+        name: origin
+        range: GenetOrigin
+      genotyping:
+        name: genotyping
+        range: GenotypingMetadata
+      pedigree:
+        name: pedigree
+        range: GenetPedigree
+      notes:
+        name: notes
+        range: string
+      source:
+        name: source
+        range: GenetRecordSource
+    class_uri: https://opencoral.tools/oct-schema/coral/genet/GenetRecord
+  CoralLocationRecord:
+    name: CoralLocationRecord
+    definition_uri: https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord
+    description: A location record used in coral restoration (extensible placeholder)
+    from_schema: https://opencoral.tools/oct-schema/coral/location
+    is_a: LocationRecord
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    - locationRecord__recordType
+    - locationRecord__locationType
+    - locationRecord__name
+    - locationRecord__parentLocationRef
+    - locationRecord__siteType
+    - locationRecord__containerType
+    - locationRecord__positionType
+    - locationRecord__geo
+    - locationRecord__depth
+    - locationRecord__notes
+    - locationRecord__codes
+    class_uri: https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord
+  CoralSpecimenRecord:
+    name: CoralSpecimenRecord
+    definition_uri: https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord
+    description: A specimen record representing a coral
+    from_schema: https://opencoral.tools/oct-schema/coral/specimen
+    is_a: SpecimenRecord
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    - specimenRecord__recordType
+    - specimenRecord__asOf
+    - specimenRecord__developmentalStage
+    - specimenRecord__quantity
+    - specimenRecord__locationRef
+    - specimenRecord__state
+    - specimenRecord__tags
+    - specimenRecord__notes
+    - specimenRecord__source
+    - CoralSpecimenRecord_taxon
+    - CoralSpecimenRecord_geneticGroupRef
+    - CoralSpecimenRecord_inventoryUnitType
+    slot_usage:
+      taxon:
+        name: taxon
+        is_a: specimenRecord__taxon
+        range: CoralTaxonRef
+        required: true
+      geneticGroupRef:
+        name: geneticGroupRef
+        description: Reference to the coral genet
+        is_a: specimenRecord__geneticGroupRef
+        range: GenetRecord
+      inventoryUnitType:
+        name: inventoryUnitType
+        is_a: specimenRecord__inventoryUnitType
+        range: InventoryUnitType
+    class_uri: https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord
+  CoralEvent:
+    name: CoralEvent
+    definition_uri: https://opencoral.tools/oct-schema/coral/event/CoralEvent
+    description: An event in the coral domain
+    from_schema: https://opencoral.tools/oct-schema/coral/event
+    is_a: Event
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    - event__recordType
+    - event__eventType
+    - event__effectiveTime
+    - event__subjects
+    - event__location
+    - event__payload
+    - event__notes
+    - event__source
+    class_uri: https://opencoral.tools/oct-schema/coral/event/CoralEvent
+  GeoPoint:
+    name: GeoPoint
+    definition_uri: https://opencoral.tools/oct-schema/core/types/GeoPoint
+    description: A geographic coordinate
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slots:
+    - geoPoint__decimalLatitude
+    - geoPoint__decimalLongitude
+    - geoPoint__geodeticDatum
+    - geoPoint__coordinateUncertaintyMeters
+    attributes:
+      decimalLatitude:
+        name: decimalLatitude
+        range: float
+        required: true
+        minimum_value: -90
+        maximum_value: 90
+      decimalLongitude:
+        name: decimalLongitude
+        range: float
+        required: true
+        minimum_value: -180
+        maximum_value: 180
+      geodeticDatum:
+        name: geodeticDatum
+        ifabsent: string(WGS84)
+        range: string
+      coordinateUncertaintyMeters:
+        name: coordinateUncertaintyMeters
+        range: float
+        minimum_value: 0
+    class_uri: https://opencoral.tools/oct-schema/core/types/GeoPoint
+  MeasureValue:
+    name: MeasureValue
+    definition_uri: https://opencoral.tools/oct-schema/core/types/MeasureValue
+    description: A measured value with a unit
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slots:
+    - measureValue__value
+    - measureValue__unit
+    - measureValue__method
+    attributes:
+      value:
+        name: value
+        range: float
+        required: true
+      unit:
+        name: unit
+        description: UCUM unit code recommended
+        range: string
+        required: true
+      method:
+        name: method
+        description: Method used to obtain the measurement
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/core/types/MeasureValue
+  EntityRef:
+    name: EntityRef
+    definition_uri: https://opencoral.tools/oct-schema/core/types/EntityRef
+    description: A generic reference to another entity
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slots:
+    - entityRef__id
+    - entityRef__type
+    - entityRef__label
+    attributes:
+      id:
+        name: id
+        range: string
+        required: true
+      type:
+        name: type
+        range: string
+      label:
+        name: label
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/core/types/EntityRef
+  TaxonRef:
+    name: TaxonRef
+    definition_uri: https://opencoral.tools/oct-schema/core/types/TaxonRef
+    description: A reference to a taxonomic entity
+    from_schema: https://opencoral.tools/oct-schema/core/types
+    slots:
+    - taxonRef__name
+    - taxonRef__taxonId
+    - taxonRef__rank
+    attributes:
+      name:
+        name: name
+        description: Scientific name or label
+        range: string
+        required: true
+      taxonId:
+        name: taxonId
+        description: External identifier (e.g. LSID)
+        range: string
+      rank:
+        name: rank
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/core/types/TaxonRef
+  Record:
+    name: Record
+    definition_uri: https://opencoral.tools/oct-schema/core/record/Record
+    description: Base class for all authoritative records
+    from_schema: https://opencoral.tools/oct-schema/core/record
+    abstract: true
+    slots:
+    - record__recordId
+    - record__recordType
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    attributes:
+      recordId:
+        name: recordId
+        identifier: true
+        range: Identifier
+        required: true
+      recordType:
+        name: recordType
+        designates_type: true
+        range: string
+        required: true
+      orgId:
+        name: orgId
+        description: The organization that owns/issued this record
+        range: Identifier
+        required: true
+      createdAt:
+        name: createdAt
+        range: DateTime
+      createdBy:
+        name: createdBy
+        description: ID of the Agent (Person/Service) who created this
+        range: Identifier
+      updatedAt:
+        name: updatedAt
+        range: DateTime
+      updatedBy:
+        name: updatedBy
+        range: Identifier
+    class_uri: https://opencoral.tools/oct-schema/core/record/Record
+  Person:
+    name: Person
+    definition_uri: https://opencoral.tools/oct-schema/core/person/Person
+    description: Represents a human user or agent
+    from_schema: https://opencoral.tools/oct-schema/core/person
+    is_a: Record
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    - person__recordType
+    - person__name
+    - person__email
+    - person__imageUrl
+    attributes:
+      recordType:
+        name: recordType
+        slot_uri: rdf:type
+        designates_type: true
+        range: string
+        pattern: ^Person$
+      name:
+        name: name
+        range: string
+        required: true
+      email:
+        name: email
+        range: string
+        required: true
+      imageUrl:
+        name: imageUrl
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/core/person/Person
+  Organization:
+    name: Organization
+    definition_uri: https://opencoral.tools/oct-schema/core/organization/Organization
+    description: Represents an organization
+    from_schema: https://opencoral.tools/oct-schema/core/organization
+    is_a: Record
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    - organization__recordType
+    - organization__name
+    - organization__domain
+    - organization__supportedSiteTypes
+    - organization__supportedSpecies
+    attributes:
+      recordType:
+        name: recordType
+        slot_uri: rdf:type
+        designates_type: true
+        range: string
+        pattern: ^Organization$
+      name:
+        name: name
+        range: string
+        required: true
+      domain:
+        name: domain
+        description: Domain name associated with the organization
+        range: string
+      supportedSiteTypes:
+        name: supportedSiteTypes
+        range: SiteType
+        multivalued: true
+      supportedSpecies:
+        name: supportedSpecies
+        range: string
+        multivalued: true
+    class_uri: https://opencoral.tools/oct-schema/core/organization/Organization
+  LocationRef:
+    name: LocationRef
+    definition_uri: https://opencoral.tools/oct-schema/core/location/LocationRef
+    description: A lightweight reference to a location
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    slots:
+    - locationRef__locationId
+    - locationRef__locationType
+    - locationRef__label
+    attributes:
+      locationId:
+        name: locationId
+        range: string
+        required: true
+      locationType:
+        name: locationType
+        range: LocationType
+      label:
+        name: label
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/core/location/LocationRef
+  ParentLocationRef:
+    name: ParentLocationRef
+    definition_uri: https://opencoral.tools/oct-schema/core/location/ParentLocationRef
+    description: Reference to a parent location with structural type information
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    is_a: LocationRef
+    slots:
+    - locationRef__locationId
+    - locationRef__locationType
+    - locationRef__label
+    - parentLocationRef__siteType
+    - parentLocationRef__containerType
+    - parentLocationRef__name
+    attributes:
+      siteType:
+        name: siteType
+        range: SiteType
+      containerType:
+        name: containerType
+        range: ContainerType
+      name:
+        name: name
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/core/location/ParentLocationRef
+  LocationRecord:
+    name: LocationRecord
+    definition_uri: https://opencoral.tools/oct-schema/core/location/LocationRecord
+    description: A record representing a physical or logical location
+    from_schema: https://opencoral.tools/oct-schema/core/location
+    is_a: Record
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    - locationRecord__recordType
+    - locationRecord__locationType
+    - locationRecord__name
+    - locationRecord__parentLocationRef
+    - locationRecord__siteType
+    - locationRecord__containerType
+    - locationRecord__positionType
+    - locationRecord__geo
+    - locationRecord__depth
+    - locationRecord__notes
+    - locationRecord__codes
+    attributes:
+      recordType:
+        name: recordType
+        slot_uri: rdf:type
+        designates_type: true
+        range: string
+        required: true
+        pattern: ^Location$
+      locationType:
+        name: locationType
+        range: LocationType
+        required: true
+      name:
+        name: name
+        range: string
+        required: true
+      parentLocationRef:
+        name: parentLocationRef
+        range: ParentLocationRef
+      siteType:
+        name: siteType
+        range: SiteType
+      containerType:
+        name: containerType
+        range: ContainerType
+      positionType:
+        name: positionType
+        range: PositionType
+      geo:
+        name: geo
+        range: GeoPoint
+      depth:
+        name: depth
+        range: MeasureValue
+      notes:
+        name: notes
+        range: string
+      codes:
+        name: codes
+        range: string
+        multivalued: true
+    class_uri: https://opencoral.tools/oct-schema/core/location/LocationRecord
+  Quantity:
+    name: Quantity
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/Quantity
+    description: Quantification of the specimen (count, size, etc.)
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slots:
+    - quantity__count
+    - quantity__countUncertainty
+    - quantity__surfaceArea
+    - quantity__volume
+    - quantity__biomass
+    - quantity__linearSize
+    attributes:
+      count:
+        name: count
+        range: float
+        required: true
+        minimum_value: 0
+      countUncertainty:
+        name: countUncertainty
+        range: float
+        minimum_value: 0
+      surfaceArea:
+        name: surfaceArea
+        range: MeasureValue
+      volume:
+        name: volume
+        range: MeasureValue
+      biomass:
+        name: biomass
+        range: MeasureValue
+      linearSize:
+        name: linearSize
+        range: MeasureValue
+    class_uri: https://opencoral.tools/oct-schema/core/specimen/Quantity
+  SpecimenState:
+    name: SpecimenState
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/SpecimenState
+    description: Derived state of the specimen
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slots:
+    - specimenState__disposition
+    - specimenState__health
+    - specimenState__readyForPropagation
+    - specimenState__readyForOutplant
+    attributes:
+      disposition:
+        name: disposition
+        range: DispositionStatus
+      health:
+        name: health
+        range: HealthStatus
+      readyForPropagation:
+        name: readyForPropagation
+        range: boolean
+      readyForOutplant:
+        name: readyForOutplant
+        range: boolean
+    class_uri: https://opencoral.tools/oct-schema/core/specimen/SpecimenState
+  SpecimenRecordSource:
+    name: SpecimenRecordSource
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/SpecimenRecordSource
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slots:
+    - specimenRecordSource__datasetId
+    - specimenRecordSource__externalRecordId
+    - specimenRecordSource__ingestedAt
+    attributes:
+      datasetId:
+        name: datasetId
+        range: string
+      externalRecordId:
+        name: externalRecordId
+        range: string
+      ingestedAt:
+        name: ingestedAt
+        range: DateTime
+    class_uri: https://opencoral.tools/oct-schema/core/specimen/SpecimenRecordSource
+  SpecimenRecord:
+    name: SpecimenRecord
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord
+    description: A record representing a biological specimen or group
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    is_a: Record
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    - specimenRecord__recordType
+    - specimenRecord__asOf
+    - specimenRecord__taxon
+    - specimenRecord__geneticGroupRef
+    - specimenRecord__inventoryUnitType
+    - specimenRecord__developmentalStage
+    - specimenRecord__quantity
+    - specimenRecord__locationRef
+    - specimenRecord__state
+    - specimenRecord__tags
+    - specimenRecord__notes
+    - specimenRecord__source
+    attributes:
+      recordType:
+        name: recordType
+        slot_uri: rdf:type
+        designates_type: true
+        range: string
+        required: true
+        pattern: ^Specimen$
+      asOf:
+        name: asOf
+        range: DateTime
+        required: true
+      taxon:
+        name: taxon
+        range: TaxonRef
+        required: true
+      geneticGroupRef:
+        name: geneticGroupRef
+        description: Reference to a genet or other genetic grouping
+        range: EntityRef
+      inventoryUnitType:
+        name: inventoryUnitType
+        range: InventoryUnitType
+        required: true
+      developmentalStage:
+        name: developmentalStage
+        range: DevelopmentalStage
+      quantity:
+        name: quantity
+        range: Quantity
+        required: true
+      locationRef:
+        name: locationRef
+        range: LocationRef
+        required: true
+      state:
+        name: state
+        range: SpecimenState
+      tags:
+        name: tags
+        range: string
+        multivalued: true
+      notes:
+        name: notes
+        range: string
+      source:
+        name: source
+        range: SpecimenRecordSource
+    class_uri: https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord
+  EffectiveTime:
+    name: EffectiveTime
+    definition_uri: https://opencoral.tools/oct-schema/core/event/EffectiveTime
+    description: Time of the event (moment or interval)
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slots:
+    - effectiveTime__occurredAt
+    - effectiveTime__startAt
+    - effectiveTime__endAt
+    attributes:
+      occurredAt:
+        name: occurredAt
+        range: DateTime
+      startAt:
+        name: startAt
+        range: DateTime
+      endAt:
+        name: endAt
+        range: DateTime
+    class_uri: https://opencoral.tools/oct-schema/core/event/EffectiveTime
+  SubjectRef:
+    name: SubjectRef
+    definition_uri: https://opencoral.tools/oct-schema/core/event/SubjectRef
+    description: Reference to a record affected by the event
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slots:
+    - subjectRef__recordId
+    - subjectRef__recordType
+    - subjectRef__role
+    attributes:
+      recordId:
+        name: recordId
+        range: string
+        required: true
+      recordType:
+        name: recordType
+        range: RecordTypeEnum
+        required: true
+      role:
+        name: role
+        description: Role in the event (source, destination, etc.)
+        range: string
+    class_uri: https://opencoral.tools/oct-schema/core/event/SubjectRef
+  EventPayload:
+    name: EventPayload
+    definition_uri: https://opencoral.tools/oct-schema/core/event/EventPayload
+    description: Abstract base for event-specific payloads
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    abstract: true
+    class_uri: https://opencoral.tools/oct-schema/core/event/EventPayload
+  StateEventPayload:
+    name: StateEventPayload
+    definition_uri: https://opencoral.tools/oct-schema/core/event/StateEventPayload
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    is_a: EventPayload
+    slots:
+    - stateEventPayload__stateType
+    - stateEventPayload__stateValue
+    attributes:
+      stateType:
+        name: stateType
+        description: e.g. health, disposition
+        range: string
+        required: true
+      stateValue:
+        name: stateValue
+        range: string
+        required: true
+    class_uri: https://opencoral.tools/oct-schema/core/event/StateEventPayload
+  EventSource:
+    name: EventSource
+    definition_uri: https://opencoral.tools/oct-schema/core/event/EventSource
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    slots:
+    - eventSource__datasetId
+    - eventSource__externalEventId
+    - eventSource__ingestedAt
+    attributes:
+      datasetId:
+        name: datasetId
+        range: string
+      externalEventId:
+        name: externalEventId
+        range: string
+      ingestedAt:
+        name: ingestedAt
+        range: DateTime
+    class_uri: https://opencoral.tools/oct-schema/core/event/EventSource
+  Event:
+    name: Event
+    definition_uri: https://opencoral.tools/oct-schema/core/event/Event
+    description: An event modifying one or more records
+    from_schema: https://opencoral.tools/oct-schema/core/event
+    is_a: Record
+    slots:
+    - record__recordId
+    - record__orgId
+    - record__createdAt
+    - record__createdBy
+    - record__updatedAt
+    - record__updatedBy
+    - event__recordType
+    - event__eventType
+    - event__effectiveTime
+    - event__subjects
+    - event__location
+    - event__payload
+    - event__notes
+    - event__source
+    attributes:
+      recordType:
+        name: recordType
+        slot_uri: rdf:type
+        designates_type: true
+        range: string
+        required: true
+        pattern: ^Event$
+      eventType:
+        name: eventType
+        range: EventType
+        required: true
+      effectiveTime:
+        name: effectiveTime
+        range: EffectiveTime
+        required: true
+      subjects:
+        name: subjects
+        range: SubjectRef
+        required: true
+        multivalued: true
+        minimum_cardinality: 1
+      location:
+        name: location
+        description: Context location for the event
+        range: LocationRef
+      payload:
+        name: payload
+        description: Type-specific event data
+        range: EventPayload
+      notes:
+        name: notes
+        range: string
+      source:
+        name: source
+        range: EventSource
+    class_uri: https://opencoral.tools/oct-schema/core/event/Event
+metamodel_version: 1.7.0
+source_file: oct_schema.yaml
+source_file_date: '2026-01-07T14:34:27'
+source_file_size: 323
+generation_date: '2026-01-07T14:34:31'

@@ -32,7 +32,7 @@ nav:
 exclude_docs: |
   /templates-linkml/
 
-site_url: https://OpenCoralTools.github.io/oct-schema
+site_url: https://OpenCoralTools.github.io/oct-schema/docs/
 repo_url: https://github.com/OpenCoralTools/oct-schema
 
 # Uncomment this block to enable use of Google Analytics.

@@ -1,5 +1,8 @@
 # Configuration for https://github.com/adrienverge/yamllint
 
+ignore: |
+  docs/schema/
+
 extends: default
 
 rules:

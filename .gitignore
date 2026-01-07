@@ -140,7 +140,7 @@ dmypy.json
 .idea
 # Local vscode editor config
 .vscode
-/node_modules
-/.astro
+node_modules/
+.astro/
 .DS_Store
 /.copier-answers.yml
