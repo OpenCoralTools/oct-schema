@@ -1,18 +1,13 @@
 {
-  "name": "@opencoraltools/oct-schema",
-  "version": "0.0.1",
-  "description": "Data standards for coral research and conservation",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "files": [
-    "project/jsonschema",
-    "project/typescript",
-    "index.js",
-    "index.d.ts"
+  "name": "oct-schema-monorepo",
+  "private": true,
+  "description": "Data standards for coral research and conservation (Monorepo)",
+  "workspaces": [
+    "packages/*",
+    "astro"
   ],
   "scripts": {
-    "build": "just gen-project",
-    "prepack": "npm run build"
+    "build": "just gen-project"
   },
   "repository": {
     "type": "git",
@@ -21,17 +16,12 @@
   "keywords": [
     "coral",
     "schema",
-    "linkml",
-    "json-schema",
-    "typescript"
+    "linkml"
   ],
   "author": "Open Coral Tools",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/OpenCoralTools/oct-schema/issues"
   },
-  "homepage": "https://github.com/OpenCoralTools/oct-schema#readme",
-  "dependencies": {
-    "zod-from-json-schema": "^0.5.2"
-  }
+  "homepage": "https://github.com/OpenCoralTools/oct-schema#readme"
 }

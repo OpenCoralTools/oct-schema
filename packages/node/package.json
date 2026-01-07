@@ -1,0 +1,30 @@
+{
+    "name": "@opencoraltools/oct-schema-node",
+    "version": "0.0.1",
+    "description": "Data standards for coral research and conservation (Node.js SDK)",
+    "main": "src/oct_schema.ts",
+    "types": "src/oct_schema.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/OpenCoralTools/oct-schema.git"
+    },
+    "keywords": [
+        "coral",
+        "schema",
+        "linkml",
+        "json-schema",
+        "typescript"
+    ],
+    "author": "Open Coral Tools",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/OpenCoralTools/oct-schema/issues"
+    },
+    "homepage": "https://github.com/OpenCoralTools/oct-schema#readme",
+    "dependencies": {
+        "zod-from-json-schema": "^0.5.2"
+    }
+}

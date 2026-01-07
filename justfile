@@ -117,8 +117,10 @@ gen-project:
     mkdir -p {{dest}}/owl && \
     uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
   fi
-  # uv run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ;
-  uv run python scripts/gen_ts_camel.py {{source_schema_path}} -o {{dest}}/typescript/{{schema_name}}.ts
+  # Generate TypeScript to packages/node
+  uv run python scripts/gen_ts_camel.py {{source_schema_path}} -o packages/node/src/{{schema_name}}.ts
+  # Generate Dart (placeholder - requires linkml-runtime with dart generator)
+  # uv run gen-dart {{source_schema_path}} > packages/dart/lib/{{schema_name}}.dart || true
 
 # ============== Migrations recipes for Copier ==============
 
