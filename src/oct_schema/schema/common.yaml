@@ -20,27 +20,27 @@ slots:
     identifier: true
     range: uriorcurie
     description: Unique identifier for the record
-  createdAt:
+  created_at:
     range: datetime
     description: Timestamp when the record was created
-  createdById:
+  created_by_id:
     range: string
     description: ID of the user who created the record
-  updatedAt:
+  updated_at:
     range: datetime
     description: Timestamp when the record was last updated
-  updatedById:
+  updated_by_id:
     range: string
     description: ID of the user who last updated the record
-  organizationId:
+  organization_id:
     range: string
     description: ID of the organization this record belongs to
 
   # InventoryRecord slots
-  urlPath:
+  url_path:
     range: string
     description: URL friendly path to this resource
-  internalPath:
+  internal_path:
     range: string
     description: Internal path structure
   slug:

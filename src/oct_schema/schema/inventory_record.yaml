@@ -11,7 +11,7 @@ default_prefix: oct_schema
 default_range: string
 
 imports:
-  - Record
+  - record
 
 classes:
   InventoryRecord:
@@ -19,6 +19,6 @@ classes:
     abstract: true
     description: Base class for inventory items that have URL paths
     slots:
-      - urlPath
-      - internalPath
+      - url_path
+      - internal_path
       - slug

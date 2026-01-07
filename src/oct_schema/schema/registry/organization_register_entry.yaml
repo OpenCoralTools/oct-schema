@@ -1,0 +1,57 @@
+id: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
+name: OrganizationRegisterEntry
+title: OrganizationRegisterEntry Class
+description: Represents an entry in the organization registry
+
+prefixes:
+  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
+  linkml: https://w3id.org/linkml/
+
+default_prefix: oct_schema
+default_range: string
+
+imports:
+  - ../common
+
+classes:
+  OrganizationRegisterEntry:
+    description: Represents an entry in the organization registry
+    slots:
+      - id
+      - created_at
+      - updated_at
+      - name
+      - description
+      - region
+      - website_url
+      - contact_email
+      - logo_url
+      - is_active
+    slot_usage:
+      id:
+        identifier: true
+      created_at:
+        required: true
+      updated_at:
+        required: true
+      name:
+        required: true
+      region:
+        required: true
+
+slots:
+  region:
+    range: string
+    description: Geographical region of the organization
+  website_url:
+    range: string
+    description: Website URL of the organization
+  contact_email:
+    range: string
+    description: Contact email for the organization
+  logo_url:
+    range: string
+    description: URL to the organization's logo
+  is_active:
+    range: boolean
+    description: Whether the organization is active

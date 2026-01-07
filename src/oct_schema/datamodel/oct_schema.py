@@ -1,5 +1,5 @@
 # Auto generated from oct_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-06T17:03:56
+# Generation date: 2026-01-06T17:57:47
 # Schema: oct-schema
 #
 # id: https://w3id.org/OpenCoralTools/oct-schema
@@ -14,10 +14,10 @@ from linkml_runtime.utils.curienamespace import CurieNamespace
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from linkml_runtime.utils.metamodelcore import empty_list
 from linkml_runtime.utils.slot import Slot
-from linkml_runtime.utils.yamlutils import YAMLRoot, extended_str
+from linkml_runtime.utils.yamlutils import YAMLRoot
 from rdflib import URIRef
 
-from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDateTime
+from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE, XSDDateTime
 
 metamodel_version = "1.7.0"
 version = None
@@ -73,11 +73,11 @@ class EventId(InventoryRecordId):
     pass
 
 
-class SpeciesRegisterEntryCode(extended_str):
+class SpeciesRegisterEntryId(URIorCURIE):
     pass
 
 
-class OrganizationRegisterEntryOrgId(extended_str):
+class OrganizationRegisterEntryId(URIorCURIE):
     pass
 
 
@@ -95,11 +95,11 @@ class Record(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OCT_SCHEMA.Record
 
     id: Union[str, RecordId] = None
-    createdAt: Optional[Union[str, XSDDateTime]] = None
-    createdById: Optional[str] = None
-    updatedAt: Optional[Union[str, XSDDateTime]] = None
-    updatedById: Optional[str] = None
-    organizationId: Optional[str] = None
+    created_at: Optional[Union[str, XSDDateTime]] = None
+    created_by_id: Optional[str] = None
+    updated_at: Optional[Union[str, XSDDateTime]] = None
+    updated_by_id: Optional[str] = None
+    organization_id: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -107,20 +107,22 @@ class Record(YAMLRoot):
         if not isinstance(self.id, RecordId):
             self.id = RecordId(self.id)
 
-        if self.createdAt is not None and not isinstance(self.createdAt, XSDDateTime):
-            self.createdAt = XSDDateTime(self.createdAt)
+        if self.created_at is not None and not isinstance(self.created_at, XSDDateTime):
+            self.created_at = XSDDateTime(self.created_at)
 
-        if self.createdById is not None and not isinstance(self.createdById, str):
-            self.createdById = str(self.createdById)
+        if self.created_by_id is not None and not isinstance(self.created_by_id, str):
+            self.created_by_id = str(self.created_by_id)
 
-        if self.updatedAt is not None and not isinstance(self.updatedAt, XSDDateTime):
-            self.updatedAt = XSDDateTime(self.updatedAt)
+        if self.updated_at is not None and not isinstance(self.updated_at, XSDDateTime):
+            self.updated_at = XSDDateTime(self.updated_at)
 
-        if self.updatedById is not None and not isinstance(self.updatedById, str):
-            self.updatedById = str(self.updatedById)
+        if self.updated_by_id is not None and not isinstance(self.updated_by_id, str):
+            self.updated_by_id = str(self.updated_by_id)
 
-        if self.organizationId is not None and not isinstance(self.organizationId, str):
-            self.organizationId = str(self.organizationId)
+        if self.organization_id is not None and not isinstance(
+            self.organization_id, str
+        ):
+            self.organization_id = str(self.organization_id)
 
         super().__post_init__(**kwargs)
 
@@ -139,16 +141,16 @@ class InventoryRecord(Record):
     class_model_uri: ClassVar[URIRef] = OCT_SCHEMA.InventoryRecord
 
     id: Union[str, InventoryRecordId] = None
-    urlPath: Optional[str] = None
-    internalPath: Optional[str] = None
+    url_path: Optional[str] = None
+    internal_path: Optional[str] = None
     slug: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self.urlPath is not None and not isinstance(self.urlPath, str):
-            self.urlPath = str(self.urlPath)
+        if self.url_path is not None and not isinstance(self.url_path, str):
+            self.url_path = str(self.url_path)
 
-        if self.internalPath is not None and not isinstance(self.internalPath, str):
-            self.internalPath = str(self.internalPath)
+        if self.internal_path is not None and not isinstance(self.internal_path, str):
+            self.internal_path = str(self.internal_path)
 
         if self.slug is not None and not isinstance(self.slug, str):
             self.slug = str(self.slug)
@@ -172,8 +174,8 @@ class Organization(InventoryRecord):
     id: Union[str, OrganizationId] = None
     name: str = None
     domain: str = None
-    siteTypeIds: Optional[Union[str, list[str]]] = empty_list()
-    speciesIds: Optional[Union[str, list[str]]] = empty_list()
+    site_type_ids: Optional[Union[str, list[str]]] = empty_list()
+    species_ids: Optional[Union[str, list[str]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -191,17 +193,21 @@ class Organization(InventoryRecord):
         if not isinstance(self.domain, str):
             self.domain = str(self.domain)
 
-        if not isinstance(self.siteTypeIds, list):
-            self.siteTypeIds = (
-                [self.siteTypeIds] if self.siteTypeIds is not None else []
+        if not isinstance(self.site_type_ids, list):
+            self.site_type_ids = (
+                [self.site_type_ids] if self.site_type_ids is not None else []
             )
-        self.siteTypeIds = [
-            v if isinstance(v, str) else str(v) for v in self.siteTypeIds
+        self.site_type_ids = [
+            v if isinstance(v, str) else str(v) for v in self.site_type_ids
         ]
 
-        if not isinstance(self.speciesIds, list):
-            self.speciesIds = [self.speciesIds] if self.speciesIds is not None else []
-        self.speciesIds = [v if isinstance(v, str) else str(v) for v in self.speciesIds]
+        if not isinstance(self.species_ids, list):
+            self.species_ids = (
+                [self.species_ids] if self.species_ids is not None else []
+            )
+        self.species_ids = [
+            v if isinstance(v, str) else str(v) for v in self.species_ids
+        ]
 
         super().__post_init__(**kwargs)
 
@@ -220,9 +226,9 @@ class Site(InventoryRecord):
     class_model_uri: ClassVar[URIRef] = OCT_SCHEMA.Site
 
     id: Union[str, SiteId] = None
-    siteTypeId: str = None
+    site_type_id: str = None
     name: str = None
-    groupIdHierarchy: Optional[Union[str, list[str]]] = empty_list()
+    group_id_hierarchy: Optional[Union[str, list[str]]] = empty_list()
     description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -231,22 +237,22 @@ class Site(InventoryRecord):
         if not isinstance(self.id, SiteId):
             self.id = SiteId(self.id)
 
-        if self._is_empty(self.siteTypeId):
-            self.MissingRequiredField("siteTypeId")
-        if not isinstance(self.siteTypeId, str):
-            self.siteTypeId = str(self.siteTypeId)
+        if self._is_empty(self.site_type_id):
+            self.MissingRequiredField("site_type_id")
+        if not isinstance(self.site_type_id, str):
+            self.site_type_id = str(self.site_type_id)
 
         if self._is_empty(self.name):
             self.MissingRequiredField("name")
         if not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if not isinstance(self.groupIdHierarchy, list):
-            self.groupIdHierarchy = (
-                [self.groupIdHierarchy] if self.groupIdHierarchy is not None else []
+        if not isinstance(self.group_id_hierarchy, list):
+            self.group_id_hierarchy = (
+                [self.group_id_hierarchy] if self.group_id_hierarchy is not None else []
             )
-        self.groupIdHierarchy = [
-            v if isinstance(v, str) else str(v) for v in self.groupIdHierarchy
+        self.group_id_hierarchy = [
+            v if isinstance(v, str) else str(v) for v in self.group_id_hierarchy
         ]
 
         if self.description is not None and not isinstance(self.description, str):
@@ -269,10 +275,10 @@ class Location(InventoryRecord):
     class_model_uri: ClassVar[URIRef] = OCT_SCHEMA.Location
 
     id: Union[str, LocationId] = None
-    groupTypeId: str = None
+    group_type_id: str = None
     name: str = None
-    siteId: str = None
-    parentId: str = None
+    site_id: str = None
+    parent_id: str = None
     description: Optional[str] = None
     capacity: Optional[int] = None
 
@@ -282,25 +288,25 @@ class Location(InventoryRecord):
         if not isinstance(self.id, LocationId):
             self.id = LocationId(self.id)
 
-        if self._is_empty(self.groupTypeId):
-            self.MissingRequiredField("groupTypeId")
-        if not isinstance(self.groupTypeId, str):
-            self.groupTypeId = str(self.groupTypeId)
+        if self._is_empty(self.group_type_id):
+            self.MissingRequiredField("group_type_id")
+        if not isinstance(self.group_type_id, str):
+            self.group_type_id = str(self.group_type_id)
 
         if self._is_empty(self.name):
             self.MissingRequiredField("name")
         if not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if self._is_empty(self.siteId):
-            self.MissingRequiredField("siteId")
-        if not isinstance(self.siteId, str):
-            self.siteId = str(self.siteId)
+        if self._is_empty(self.site_id):
+            self.MissingRequiredField("site_id")
+        if not isinstance(self.site_id, str):
+            self.site_id = str(self.site_id)
 
-        if self._is_empty(self.parentId):
-            self.MissingRequiredField("parentId")
-        if not isinstance(self.parentId, str):
-            self.parentId = str(self.parentId)
+        if self._is_empty(self.parent_id):
+            self.MissingRequiredField("parent_id")
+        if not isinstance(self.parent_id, str):
+            self.parent_id = str(self.parent_id)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -326,11 +332,11 @@ class Genet(InventoryRecord):
 
     id: Union[str, GenetId] = None
     name: str = None
-    speciesId: str = None
-    genetTypeId: str = None
-    sfId: str = None
-    clonalId: Optional[str] = None
-    accessionNumber: Optional[str] = None
+    species_id: str = None
+    genet_type_id: str = None
+    sf_id: str = None
+    clonal_id: Optional[str] = None
+    accession_number: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -343,28 +349,28 @@ class Genet(InventoryRecord):
         if not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if self._is_empty(self.speciesId):
-            self.MissingRequiredField("speciesId")
-        if not isinstance(self.speciesId, str):
-            self.speciesId = str(self.speciesId)
+        if self._is_empty(self.species_id):
+            self.MissingRequiredField("species_id")
+        if not isinstance(self.species_id, str):
+            self.species_id = str(self.species_id)
 
-        if self._is_empty(self.genetTypeId):
-            self.MissingRequiredField("genetTypeId")
-        if not isinstance(self.genetTypeId, str):
-            self.genetTypeId = str(self.genetTypeId)
+        if self._is_empty(self.genet_type_id):
+            self.MissingRequiredField("genet_type_id")
+        if not isinstance(self.genet_type_id, str):
+            self.genet_type_id = str(self.genet_type_id)
 
-        if self._is_empty(self.sfId):
-            self.MissingRequiredField("sfId")
-        if not isinstance(self.sfId, str):
-            self.sfId = str(self.sfId)
+        if self._is_empty(self.sf_id):
+            self.MissingRequiredField("sf_id")
+        if not isinstance(self.sf_id, str):
+            self.sf_id = str(self.sf_id)
 
-        if self.clonalId is not None and not isinstance(self.clonalId, str):
-            self.clonalId = str(self.clonalId)
+        if self.clonal_id is not None and not isinstance(self.clonal_id, str):
+            self.clonal_id = str(self.clonal_id)
 
-        if self.accessionNumber is not None and not isinstance(
-            self.accessionNumber, str
+        if self.accession_number is not None and not isinstance(
+            self.accession_number, str
         ):
-            self.accessionNumber = str(self.accessionNumber)
+            self.accession_number = str(self.accession_number)
 
         super().__post_init__(**kwargs)
 
@@ -384,11 +390,11 @@ class Coral(InventoryRecord):
 
     id: Union[str, CoralId] = None
     name: str = None
-    genetId: str = None
-    speciesId: str = None
-    siteId: str = None
-    groupId: str = None
-    coralTypeId: str = None
+    genet_id: str = None
+    species_id: str = None
+    site_id: str = None
+    group_id: str = None
+    coral_type_id: str = None
     quantity: int = None
     coral_size: Optional[Union[str, "CoralSize"]] = None
 
@@ -403,30 +409,30 @@ class Coral(InventoryRecord):
         if not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if self._is_empty(self.genetId):
-            self.MissingRequiredField("genetId")
-        if not isinstance(self.genetId, str):
-            self.genetId = str(self.genetId)
+        if self._is_empty(self.genet_id):
+            self.MissingRequiredField("genet_id")
+        if not isinstance(self.genet_id, str):
+            self.genet_id = str(self.genet_id)
 
-        if self._is_empty(self.speciesId):
-            self.MissingRequiredField("speciesId")
-        if not isinstance(self.speciesId, str):
-            self.speciesId = str(self.speciesId)
+        if self._is_empty(self.species_id):
+            self.MissingRequiredField("species_id")
+        if not isinstance(self.species_id, str):
+            self.species_id = str(self.species_id)
 
-        if self._is_empty(self.siteId):
-            self.MissingRequiredField("siteId")
-        if not isinstance(self.siteId, str):
-            self.siteId = str(self.siteId)
+        if self._is_empty(self.site_id):
+            self.MissingRequiredField("site_id")
+        if not isinstance(self.site_id, str):
+            self.site_id = str(self.site_id)
 
-        if self._is_empty(self.groupId):
-            self.MissingRequiredField("groupId")
-        if not isinstance(self.groupId, str):
-            self.groupId = str(self.groupId)
+        if self._is_empty(self.group_id):
+            self.MissingRequiredField("group_id")
+        if not isinstance(self.group_id, str):
+            self.group_id = str(self.group_id)
 
-        if self._is_empty(self.coralTypeId):
-            self.MissingRequiredField("coralTypeId")
-        if not isinstance(self.coralTypeId, str):
-            self.coralTypeId = str(self.coralTypeId)
+        if self._is_empty(self.coral_type_id):
+            self.MissingRequiredField("coral_type_id")
+        if not isinstance(self.coral_type_id, str):
+            self.coral_type_id = str(self.coral_type_id)
 
         if self._is_empty(self.quantity):
             self.MissingRequiredField("quantity")
@@ -495,7 +501,7 @@ class Person(Record):
     id: Union[str, PersonId] = None
     name: str = None
     email: str = None
-    imageUrl: Optional[str] = None
+    image_url: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -513,8 +519,8 @@ class Person(Record):
         if not isinstance(self.email, str):
             self.email = str(self.email)
 
-        if self.imageUrl is not None and not isinstance(self.imageUrl, str):
-            self.imageUrl = str(self.imageUrl)
+        if self.image_url is not None and not isinstance(self.image_url, str):
+            self.image_url = str(self.image_url)
 
         super().__post_init__(**kwargs)
 
@@ -533,9 +539,9 @@ class Event(InventoryRecord):
     class_model_uri: ClassVar[URIRef] = OCT_SCHEMA.Event
 
     id: Union[str, EventId] = None
-    eventTypeId: str = None
-    recordId: str = None
-    recordModelType: Union[str, "ModelType"] = None
+    event_type_id: str = None
+    record_id: str = None
+    record_model_type: Union[str, "ModelType"] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -543,20 +549,20 @@ class Event(InventoryRecord):
         if not isinstance(self.id, EventId):
             self.id = EventId(self.id)
 
-        if self._is_empty(self.eventTypeId):
-            self.MissingRequiredField("eventTypeId")
-        if not isinstance(self.eventTypeId, str):
-            self.eventTypeId = str(self.eventTypeId)
+        if self._is_empty(self.event_type_id):
+            self.MissingRequiredField("event_type_id")
+        if not isinstance(self.event_type_id, str):
+            self.event_type_id = str(self.event_type_id)
 
-        if self._is_empty(self.recordId):
-            self.MissingRequiredField("recordId")
-        if not isinstance(self.recordId, str):
-            self.recordId = str(self.recordId)
+        if self._is_empty(self.record_id):
+            self.MissingRequiredField("record_id")
+        if not isinstance(self.record_id, str):
+            self.record_id = str(self.record_id)
 
-        if self._is_empty(self.recordModelType):
-            self.MissingRequiredField("recordModelType")
-        if not isinstance(self.recordModelType, ModelType):
-            self.recordModelType = ModelType(self.recordModelType)
+        if self._is_empty(self.record_model_type):
+            self.MissingRequiredField("record_model_type")
+        if not isinstance(self.record_model_type, ModelType):
+            self.record_model_type = ModelType(self.record_model_type)
 
         super().__post_init__(**kwargs)
 
@@ -564,7 +570,7 @@ class Event(InventoryRecord):
 @dataclass(repr=False)
 class SpeciesRegisterEntry(YAMLRoot):
     """
-    A canonical species record in the registry
+    Represents an entry in the species registry
     """
 
     _inherited_slots: ClassVar[list[str]] = []
@@ -574,20 +580,31 @@ class SpeciesRegisterEntry(YAMLRoot):
     class_name: ClassVar[str] = "SpeciesRegisterEntry"
     class_model_uri: ClassVar[URIRef] = OCT_SCHEMA.SpeciesRegisterEntry
 
-    code: Union[str, SpeciesRegisterEntryCode] = None
+    id: Union[str, SpeciesRegisterEntryId] = None
+    created_at: Union[str, XSDDateTime] = None
+    updated_at: Union[str, XSDDateTime] = None
     genus: str = None
     specific_epithet: str = None
+    common_name: Optional[str] = None
     scientific_name: Optional[str] = None
-    scientific_name_authorship: Optional[str] = None
-    external_references: Optional[Union[str, list[str]]] = empty_list()
-    synonyms: Optional[Union[str, list[str]]] = empty_list()
-    deprecated_codes: Optional[Union[str, list[str]]] = empty_list()
+    photo_url: Optional[str] = None
+    tags: Optional[Union[str, list[str]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.code):
-            self.MissingRequiredField("code")
-        if not isinstance(self.code, SpeciesRegisterEntryCode):
-            self.code = SpeciesRegisterEntryCode(self.code)
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, SpeciesRegisterEntryId):
+            self.id = SpeciesRegisterEntryId(self.id)
+
+        if self._is_empty(self.created_at):
+            self.MissingRequiredField("created_at")
+        if not isinstance(self.created_at, XSDDateTime):
+            self.created_at = XSDDateTime(self.created_at)
+
+        if self._is_empty(self.updated_at):
+            self.MissingRequiredField("updated_at")
+        if not isinstance(self.updated_at, XSDDateTime):
+            self.updated_at = XSDDateTime(self.updated_at)
 
         if self._is_empty(self.genus):
             self.MissingRequiredField("genus")
@@ -599,37 +616,20 @@ class SpeciesRegisterEntry(YAMLRoot):
         if not isinstance(self.specific_epithet, str):
             self.specific_epithet = str(self.specific_epithet)
 
+        if self.common_name is not None and not isinstance(self.common_name, str):
+            self.common_name = str(self.common_name)
+
         if self.scientific_name is not None and not isinstance(
             self.scientific_name, str
         ):
             self.scientific_name = str(self.scientific_name)
 
-        if self.scientific_name_authorship is not None and not isinstance(
-            self.scientific_name_authorship, str
-        ):
-            self.scientific_name_authorship = str(self.scientific_name_authorship)
+        if self.photo_url is not None and not isinstance(self.photo_url, str):
+            self.photo_url = str(self.photo_url)
 
-        if not isinstance(self.external_references, list):
-            self.external_references = (
-                [self.external_references]
-                if self.external_references is not None
-                else []
-            )
-        self.external_references = [
-            v if isinstance(v, str) else str(v) for v in self.external_references
-        ]
-
-        if not isinstance(self.synonyms, list):
-            self.synonyms = [self.synonyms] if self.synonyms is not None else []
-        self.synonyms = [v if isinstance(v, str) else str(v) for v in self.synonyms]
-
-        if not isinstance(self.deprecated_codes, list):
-            self.deprecated_codes = (
-                [self.deprecated_codes] if self.deprecated_codes is not None else []
-            )
-        self.deprecated_codes = [
-            v if isinstance(v, str) else str(v) for v in self.deprecated_codes
-        ]
+        if not isinstance(self.tags, list):
+            self.tags = [self.tags] if self.tags is not None else []
+        self.tags = [v if isinstance(v, str) else str(v) for v in self.tags]
 
         super().__post_init__(**kwargs)
 
@@ -637,7 +637,7 @@ class SpeciesRegisterEntry(YAMLRoot):
 @dataclass(repr=False)
 class OrganizationRegisterEntry(YAMLRoot):
     """
-    A canonical organization record in the registry
+    Represents an entry in the organization registry
     """
 
     _inherited_slots: ClassVar[list[str]] = []
@@ -647,31 +647,57 @@ class OrganizationRegisterEntry(YAMLRoot):
     class_name: ClassVar[str] = "OrganizationRegisterEntry"
     class_model_uri: ClassVar[URIRef] = OCT_SCHEMA.OrganizationRegisterEntry
 
-    org_id: Union[str, OrganizationRegisterEntryOrgId] = None
+    id: Union[str, OrganizationRegisterEntryId] = None
+    created_at: Union[str, XSDDateTime] = None
+    updated_at: Union[str, XSDDateTime] = None
     name: str = None
-    url: Optional[str] = None
-    country: Optional[str] = None
-    metadata: Optional[str] = None
+    region: str = None
+    description: Optional[str] = None
+    website_url: Optional[str] = None
+    contact_email: Optional[str] = None
+    logo_url: Optional[str] = None
+    is_active: Optional[Union[bool, Bool]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.org_id):
-            self.MissingRequiredField("org_id")
-        if not isinstance(self.org_id, OrganizationRegisterEntryOrgId):
-            self.org_id = OrganizationRegisterEntryOrgId(self.org_id)
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, OrganizationRegisterEntryId):
+            self.id = OrganizationRegisterEntryId(self.id)
+
+        if self._is_empty(self.created_at):
+            self.MissingRequiredField("created_at")
+        if not isinstance(self.created_at, XSDDateTime):
+            self.created_at = XSDDateTime(self.created_at)
+
+        if self._is_empty(self.updated_at):
+            self.MissingRequiredField("updated_at")
+        if not isinstance(self.updated_at, XSDDateTime):
+            self.updated_at = XSDDateTime(self.updated_at)
 
         if self._is_empty(self.name):
             self.MissingRequiredField("name")
         if not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if self.url is not None and not isinstance(self.url, str):
-            self.url = str(self.url)
+        if self._is_empty(self.region):
+            self.MissingRequiredField("region")
+        if not isinstance(self.region, str):
+            self.region = str(self.region)
 
-        if self.country is not None and not isinstance(self.country, str):
-            self.country = str(self.country)
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
-        if self.metadata is not None and not isinstance(self.metadata, str):
-            self.metadata = str(self.metadata)
+        if self.website_url is not None and not isinstance(self.website_url, str):
+            self.website_url = str(self.website_url)
+
+        if self.contact_email is not None and not isinstance(self.contact_email, str):
+            self.contact_email = str(self.contact_email)
+
+        if self.logo_url is not None and not isinstance(self.logo_url, str):
+            self.logo_url = str(self.logo_url)
+
+        if self.is_active is not None and not isinstance(self.is_active, Bool):
+            self.is_active = Bool(self.is_active)
 
         super().__post_init__(**kwargs)
 
@@ -739,65 +765,65 @@ slots.id = Slot(
     range=URIRef,
 )
 
-slots.createdAt = Slot(
-    uri=OCT_SCHEMA.createdAt,
-    name="createdAt",
-    curie=OCT_SCHEMA.curie("createdAt"),
-    model_uri=OCT_SCHEMA.createdAt,
+slots.created_at = Slot(
+    uri=OCT_SCHEMA.created_at,
+    name="created_at",
+    curie=OCT_SCHEMA.curie("created_at"),
+    model_uri=OCT_SCHEMA.created_at,
     domain=None,
     range=Optional[Union[str, XSDDateTime]],
 )
 
-slots.createdById = Slot(
-    uri=OCT_SCHEMA.createdById,
-    name="createdById",
-    curie=OCT_SCHEMA.curie("createdById"),
-    model_uri=OCT_SCHEMA.createdById,
+slots.created_by_id = Slot(
+    uri=OCT_SCHEMA.created_by_id,
+    name="created_by_id",
+    curie=OCT_SCHEMA.curie("created_by_id"),
+    model_uri=OCT_SCHEMA.created_by_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.updatedAt = Slot(
-    uri=OCT_SCHEMA.updatedAt,
-    name="updatedAt",
-    curie=OCT_SCHEMA.curie("updatedAt"),
-    model_uri=OCT_SCHEMA.updatedAt,
+slots.updated_at = Slot(
+    uri=OCT_SCHEMA.updated_at,
+    name="updated_at",
+    curie=OCT_SCHEMA.curie("updated_at"),
+    model_uri=OCT_SCHEMA.updated_at,
     domain=None,
     range=Optional[Union[str, XSDDateTime]],
 )
 
-slots.updatedById = Slot(
-    uri=OCT_SCHEMA.updatedById,
-    name="updatedById",
-    curie=OCT_SCHEMA.curie("updatedById"),
-    model_uri=OCT_SCHEMA.updatedById,
+slots.updated_by_id = Slot(
+    uri=OCT_SCHEMA.updated_by_id,
+    name="updated_by_id",
+    curie=OCT_SCHEMA.curie("updated_by_id"),
+    model_uri=OCT_SCHEMA.updated_by_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.organizationId = Slot(
-    uri=OCT_SCHEMA.organizationId,
-    name="organizationId",
-    curie=OCT_SCHEMA.curie("organizationId"),
-    model_uri=OCT_SCHEMA.organizationId,
+slots.organization_id = Slot(
+    uri=OCT_SCHEMA.organization_id,
+    name="organization_id",
+    curie=OCT_SCHEMA.curie("organization_id"),
+    model_uri=OCT_SCHEMA.organization_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.urlPath = Slot(
-    uri=OCT_SCHEMA.urlPath,
-    name="urlPath",
-    curie=OCT_SCHEMA.curie("urlPath"),
-    model_uri=OCT_SCHEMA.urlPath,
+slots.url_path = Slot(
+    uri=OCT_SCHEMA.url_path,
+    name="url_path",
+    curie=OCT_SCHEMA.curie("url_path"),
+    model_uri=OCT_SCHEMA.url_path,
     domain=None,
     range=Optional[str],
 )
 
-slots.internalPath = Slot(
-    uri=OCT_SCHEMA.internalPath,
-    name="internalPath",
-    curie=OCT_SCHEMA.curie("internalPath"),
-    model_uri=OCT_SCHEMA.internalPath,
+slots.internal_path = Slot(
+    uri=OCT_SCHEMA.internal_path,
+    name="internal_path",
+    curie=OCT_SCHEMA.curie("internal_path"),
+    model_uri=OCT_SCHEMA.internal_path,
     domain=None,
     range=Optional[str],
 )
@@ -865,65 +891,65 @@ slots.domain = Slot(
     range=Optional[str],
 )
 
-slots.siteTypeIds = Slot(
-    uri=OCT_SCHEMA.siteTypeIds,
-    name="siteTypeIds",
-    curie=OCT_SCHEMA.curie("siteTypeIds"),
-    model_uri=OCT_SCHEMA.siteTypeIds,
+slots.site_type_ids = Slot(
+    uri=OCT_SCHEMA.site_type_ids,
+    name="site_type_ids",
+    curie=OCT_SCHEMA.curie("site_type_ids"),
+    model_uri=OCT_SCHEMA.site_type_ids,
     domain=None,
     range=Optional[Union[str, list[str]]],
 )
 
-slots.speciesIds = Slot(
-    uri=OCT_SCHEMA.speciesIds,
-    name="speciesIds",
-    curie=OCT_SCHEMA.curie("speciesIds"),
-    model_uri=OCT_SCHEMA.speciesIds,
+slots.species_ids = Slot(
+    uri=OCT_SCHEMA.species_ids,
+    name="species_ids",
+    curie=OCT_SCHEMA.curie("species_ids"),
+    model_uri=OCT_SCHEMA.species_ids,
     domain=None,
     range=Optional[Union[str, list[str]]],
 )
 
-slots.siteTypeId = Slot(
-    uri=OCT_SCHEMA.siteTypeId,
-    name="siteTypeId",
-    curie=OCT_SCHEMA.curie("siteTypeId"),
-    model_uri=OCT_SCHEMA.siteTypeId,
+slots.site_type_id = Slot(
+    uri=OCT_SCHEMA.site_type_id,
+    name="site_type_id",
+    curie=OCT_SCHEMA.curie("site_type_id"),
+    model_uri=OCT_SCHEMA.site_type_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.groupIdHierarchy = Slot(
-    uri=OCT_SCHEMA.groupIdHierarchy,
-    name="groupIdHierarchy",
-    curie=OCT_SCHEMA.curie("groupIdHierarchy"),
-    model_uri=OCT_SCHEMA.groupIdHierarchy,
+slots.group_id_hierarchy = Slot(
+    uri=OCT_SCHEMA.group_id_hierarchy,
+    name="group_id_hierarchy",
+    curie=OCT_SCHEMA.curie("group_id_hierarchy"),
+    model_uri=OCT_SCHEMA.group_id_hierarchy,
     domain=None,
     range=Optional[Union[str, list[str]]],
 )
 
-slots.groupTypeId = Slot(
-    uri=OCT_SCHEMA.groupTypeId,
-    name="groupTypeId",
-    curie=OCT_SCHEMA.curie("groupTypeId"),
-    model_uri=OCT_SCHEMA.groupTypeId,
+slots.group_type_id = Slot(
+    uri=OCT_SCHEMA.group_type_id,
+    name="group_type_id",
+    curie=OCT_SCHEMA.curie("group_type_id"),
+    model_uri=OCT_SCHEMA.group_type_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.siteId = Slot(
-    uri=OCT_SCHEMA.siteId,
-    name="siteId",
-    curie=OCT_SCHEMA.curie("siteId"),
-    model_uri=OCT_SCHEMA.siteId,
+slots.site_id = Slot(
+    uri=OCT_SCHEMA.site_id,
+    name="site_id",
+    curie=OCT_SCHEMA.curie("site_id"),
+    model_uri=OCT_SCHEMA.site_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.parentId = Slot(
-    uri=OCT_SCHEMA.parentId,
-    name="parentId",
-    curie=OCT_SCHEMA.curie("parentId"),
-    model_uri=OCT_SCHEMA.parentId,
+slots.parent_id = Slot(
+    uri=OCT_SCHEMA.parent_id,
+    name="parent_id",
+    curie=OCT_SCHEMA.curie("parent_id"),
+    model_uri=OCT_SCHEMA.parent_id,
     domain=None,
     range=Optional[str],
 )
@@ -937,74 +963,74 @@ slots.capacity = Slot(
     range=Optional[int],
 )
 
-slots.genetTypeId = Slot(
-    uri=OCT_SCHEMA.genetTypeId,
-    name="genetTypeId",
-    curie=OCT_SCHEMA.curie("genetTypeId"),
-    model_uri=OCT_SCHEMA.genetTypeId,
+slots.genet_type_id = Slot(
+    uri=OCT_SCHEMA.genet_type_id,
+    name="genet_type_id",
+    curie=OCT_SCHEMA.curie("genet_type_id"),
+    model_uri=OCT_SCHEMA.genet_type_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.sfId = Slot(
-    uri=OCT_SCHEMA.sfId,
-    name="sfId",
-    curie=OCT_SCHEMA.curie("sfId"),
-    model_uri=OCT_SCHEMA.sfId,
+slots.sf_id = Slot(
+    uri=OCT_SCHEMA.sf_id,
+    name="sf_id",
+    curie=OCT_SCHEMA.curie("sf_id"),
+    model_uri=OCT_SCHEMA.sf_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.clonalId = Slot(
-    uri=OCT_SCHEMA.clonalId,
-    name="clonalId",
-    curie=OCT_SCHEMA.curie("clonalId"),
-    model_uri=OCT_SCHEMA.clonalId,
+slots.clonal_id = Slot(
+    uri=OCT_SCHEMA.clonal_id,
+    name="clonal_id",
+    curie=OCT_SCHEMA.curie("clonal_id"),
+    model_uri=OCT_SCHEMA.clonal_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.accessionNumber = Slot(
-    uri=OCT_SCHEMA.accessionNumber,
-    name="accessionNumber",
-    curie=OCT_SCHEMA.curie("accessionNumber"),
-    model_uri=OCT_SCHEMA.accessionNumber,
+slots.accession_number = Slot(
+    uri=OCT_SCHEMA.accession_number,
+    name="accession_number",
+    curie=OCT_SCHEMA.curie("accession_number"),
+    model_uri=OCT_SCHEMA.accession_number,
     domain=None,
     range=Optional[str],
 )
 
-slots.genetId = Slot(
-    uri=OCT_SCHEMA.genetId,
-    name="genetId",
-    curie=OCT_SCHEMA.curie("genetId"),
-    model_uri=OCT_SCHEMA.genetId,
+slots.genet_id = Slot(
+    uri=OCT_SCHEMA.genet_id,
+    name="genet_id",
+    curie=OCT_SCHEMA.curie("genet_id"),
+    model_uri=OCT_SCHEMA.genet_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.speciesId = Slot(
-    uri=OCT_SCHEMA.speciesId,
-    name="speciesId",
-    curie=OCT_SCHEMA.curie("speciesId"),
-    model_uri=OCT_SCHEMA.speciesId,
+slots.species_id = Slot(
+    uri=OCT_SCHEMA.species_id,
+    name="species_id",
+    curie=OCT_SCHEMA.curie("species_id"),
+    model_uri=OCT_SCHEMA.species_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.groupId = Slot(
-    uri=OCT_SCHEMA.groupId,
-    name="groupId",
-    curie=OCT_SCHEMA.curie("groupId"),
-    model_uri=OCT_SCHEMA.groupId,
+slots.group_id = Slot(
+    uri=OCT_SCHEMA.group_id,
+    name="group_id",
+    curie=OCT_SCHEMA.curie("group_id"),
+    model_uri=OCT_SCHEMA.group_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.coralTypeId = Slot(
-    uri=OCT_SCHEMA.coralTypeId,
-    name="coralTypeId",
-    curie=OCT_SCHEMA.curie("coralTypeId"),
-    model_uri=OCT_SCHEMA.coralTypeId,
+slots.coral_type_id = Slot(
+    uri=OCT_SCHEMA.coral_type_id,
+    name="coral_type_id",
+    curie=OCT_SCHEMA.curie("coral_type_id"),
+    model_uri=OCT_SCHEMA.coral_type_id,
     domain=None,
     range=Optional[str],
 )
@@ -1036,49 +1062,40 @@ slots.email = Slot(
     range=Optional[str],
 )
 
-slots.imageUrl = Slot(
-    uri=OCT_SCHEMA.imageUrl,
-    name="imageUrl",
-    curie=OCT_SCHEMA.curie("imageUrl"),
-    model_uri=OCT_SCHEMA.imageUrl,
+slots.image_url = Slot(
+    uri=OCT_SCHEMA.image_url,
+    name="image_url",
+    curie=OCT_SCHEMA.curie("image_url"),
+    model_uri=OCT_SCHEMA.image_url,
     domain=None,
     range=Optional[str],
 )
 
-slots.eventTypeId = Slot(
-    uri=OCT_SCHEMA.eventTypeId,
-    name="eventTypeId",
-    curie=OCT_SCHEMA.curie("eventTypeId"),
-    model_uri=OCT_SCHEMA.eventTypeId,
+slots.event_type_id = Slot(
+    uri=OCT_SCHEMA.event_type_id,
+    name="event_type_id",
+    curie=OCT_SCHEMA.curie("event_type_id"),
+    model_uri=OCT_SCHEMA.event_type_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.recordId = Slot(
-    uri=OCT_SCHEMA.recordId,
-    name="recordId",
-    curie=OCT_SCHEMA.curie("recordId"),
-    model_uri=OCT_SCHEMA.recordId,
+slots.record_id = Slot(
+    uri=OCT_SCHEMA.record_id,
+    name="record_id",
+    curie=OCT_SCHEMA.curie("record_id"),
+    model_uri=OCT_SCHEMA.record_id,
     domain=None,
     range=Optional[str],
 )
 
-slots.recordModelType = Slot(
-    uri=OCT_SCHEMA.recordModelType,
-    name="recordModelType",
-    curie=OCT_SCHEMA.curie("recordModelType"),
-    model_uri=OCT_SCHEMA.recordModelType,
+slots.record_model_type = Slot(
+    uri=OCT_SCHEMA.record_model_type,
+    name="record_model_type",
+    curie=OCT_SCHEMA.curie("record_model_type"),
+    model_uri=OCT_SCHEMA.record_model_type,
     domain=None,
     range=Optional[Union[str, "ModelType"]],
-)
-
-slots.code = Slot(
-    uri=OCT_SCHEMA.code,
-    name="code",
-    curie=OCT_SCHEMA.curie("code"),
-    model_uri=OCT_SCHEMA.code,
-    domain=None,
-    range=Optional[str],
 )
 
 slots.scientific_name = Slot(
@@ -1090,76 +1107,67 @@ slots.scientific_name = Slot(
     range=Optional[str],
 )
 
-slots.scientific_name_authorship = Slot(
-    uri=OCT_SCHEMA.scientific_name_authorship,
-    name="scientific_name_authorship",
-    curie=OCT_SCHEMA.curie("scientific_name_authorship"),
-    model_uri=OCT_SCHEMA.scientific_name_authorship,
+slots.photo_url = Slot(
+    uri=OCT_SCHEMA.photo_url,
+    name="photo_url",
+    curie=OCT_SCHEMA.curie("photo_url"),
+    model_uri=OCT_SCHEMA.photo_url,
     domain=None,
     range=Optional[str],
 )
 
-slots.external_references = Slot(
-    uri=OCT_SCHEMA.external_references,
-    name="external_references",
-    curie=OCT_SCHEMA.curie("external_references"),
-    model_uri=OCT_SCHEMA.external_references,
+slots.tags = Slot(
+    uri=OCT_SCHEMA.tags,
+    name="tags",
+    curie=OCT_SCHEMA.curie("tags"),
+    model_uri=OCT_SCHEMA.tags,
     domain=None,
     range=Optional[Union[str, list[str]]],
 )
 
-slots.synonyms = Slot(
-    uri=OCT_SCHEMA.synonyms,
-    name="synonyms",
-    curie=OCT_SCHEMA.curie("synonyms"),
-    model_uri=OCT_SCHEMA.synonyms,
-    domain=None,
-    range=Optional[Union[str, list[str]]],
-)
-
-slots.deprecated_codes = Slot(
-    uri=OCT_SCHEMA.deprecated_codes,
-    name="deprecated_codes",
-    curie=OCT_SCHEMA.curie("deprecated_codes"),
-    model_uri=OCT_SCHEMA.deprecated_codes,
-    domain=None,
-    range=Optional[Union[str, list[str]]],
-)
-
-slots.org_id = Slot(
-    uri=OCT_SCHEMA.org_id,
-    name="org_id",
-    curie=OCT_SCHEMA.curie("org_id"),
-    model_uri=OCT_SCHEMA.org_id,
+slots.region = Slot(
+    uri=OCT_SCHEMA.region,
+    name="region",
+    curie=OCT_SCHEMA.curie("region"),
+    model_uri=OCT_SCHEMA.region,
     domain=None,
     range=Optional[str],
 )
 
-slots.url = Slot(
-    uri=OCT_SCHEMA.url,
-    name="url",
-    curie=OCT_SCHEMA.curie("url"),
-    model_uri=OCT_SCHEMA.url,
+slots.website_url = Slot(
+    uri=OCT_SCHEMA.website_url,
+    name="website_url",
+    curie=OCT_SCHEMA.curie("website_url"),
+    model_uri=OCT_SCHEMA.website_url,
     domain=None,
     range=Optional[str],
 )
 
-slots.country = Slot(
-    uri=OCT_SCHEMA.country,
-    name="country",
-    curie=OCT_SCHEMA.curie("country"),
-    model_uri=OCT_SCHEMA.country,
+slots.contact_email = Slot(
+    uri=OCT_SCHEMA.contact_email,
+    name="contact_email",
+    curie=OCT_SCHEMA.curie("contact_email"),
+    model_uri=OCT_SCHEMA.contact_email,
     domain=None,
     range=Optional[str],
 )
 
-slots.metadata = Slot(
-    uri=OCT_SCHEMA.metadata,
-    name="metadata",
-    curie=OCT_SCHEMA.curie("metadata"),
-    model_uri=OCT_SCHEMA.metadata,
+slots.logo_url = Slot(
+    uri=OCT_SCHEMA.logo_url,
+    name="logo_url",
+    curie=OCT_SCHEMA.curie("logo_url"),
+    model_uri=OCT_SCHEMA.logo_url,
     domain=None,
     range=Optional[str],
+)
+
+slots.is_active = Slot(
+    uri=OCT_SCHEMA.is_active,
+    name="is_active",
+    curie=OCT_SCHEMA.curie("is_active"),
+    model_uri=OCT_SCHEMA.is_active,
+    domain=None,
+    range=Optional[Union[bool, Bool]],
 )
 
 slots.Organization_name = Slot(
@@ -1180,11 +1188,11 @@ slots.Organization_domain = Slot(
     range=str,
 )
 
-slots.Site_siteTypeId = Slot(
-    uri=OCT_SCHEMA.siteTypeId,
-    name="Site_siteTypeId",
-    curie=OCT_SCHEMA.curie("siteTypeId"),
-    model_uri=OCT_SCHEMA.Site_siteTypeId,
+slots.Site_site_type_id = Slot(
+    uri=OCT_SCHEMA.site_type_id,
+    name="Site_site_type_id",
+    curie=OCT_SCHEMA.curie("site_type_id"),
+    model_uri=OCT_SCHEMA.Site_site_type_id,
     domain=Site,
     range=str,
 )
@@ -1198,11 +1206,11 @@ slots.Site_name = Slot(
     range=str,
 )
 
-slots.Location_groupTypeId = Slot(
-    uri=OCT_SCHEMA.groupTypeId,
-    name="Location_groupTypeId",
-    curie=OCT_SCHEMA.curie("groupTypeId"),
-    model_uri=OCT_SCHEMA.Location_groupTypeId,
+slots.Location_group_type_id = Slot(
+    uri=OCT_SCHEMA.group_type_id,
+    name="Location_group_type_id",
+    curie=OCT_SCHEMA.curie("group_type_id"),
+    model_uri=OCT_SCHEMA.Location_group_type_id,
     domain=Location,
     range=str,
 )
@@ -1216,20 +1224,20 @@ slots.Location_name = Slot(
     range=str,
 )
 
-slots.Location_siteId = Slot(
-    uri=OCT_SCHEMA.siteId,
-    name="Location_siteId",
-    curie=OCT_SCHEMA.curie("siteId"),
-    model_uri=OCT_SCHEMA.Location_siteId,
+slots.Location_site_id = Slot(
+    uri=OCT_SCHEMA.site_id,
+    name="Location_site_id",
+    curie=OCT_SCHEMA.curie("site_id"),
+    model_uri=OCT_SCHEMA.Location_site_id,
     domain=Location,
     range=str,
 )
 
-slots.Location_parentId = Slot(
-    uri=OCT_SCHEMA.parentId,
-    name="Location_parentId",
-    curie=OCT_SCHEMA.curie("parentId"),
-    model_uri=OCT_SCHEMA.Location_parentId,
+slots.Location_parent_id = Slot(
+    uri=OCT_SCHEMA.parent_id,
+    name="Location_parent_id",
+    curie=OCT_SCHEMA.curie("parent_id"),
+    model_uri=OCT_SCHEMA.Location_parent_id,
     domain=Location,
     range=str,
 )
@@ -1243,29 +1251,29 @@ slots.Genet_name = Slot(
     range=str,
 )
 
-slots.Genet_speciesId = Slot(
-    uri=OCT_SCHEMA.speciesId,
-    name="Genet_speciesId",
-    curie=OCT_SCHEMA.curie("speciesId"),
-    model_uri=OCT_SCHEMA.Genet_speciesId,
+slots.Genet_species_id = Slot(
+    uri=OCT_SCHEMA.species_id,
+    name="Genet_species_id",
+    curie=OCT_SCHEMA.curie("species_id"),
+    model_uri=OCT_SCHEMA.Genet_species_id,
     domain=Genet,
     range=str,
 )
 
-slots.Genet_genetTypeId = Slot(
-    uri=OCT_SCHEMA.genetTypeId,
-    name="Genet_genetTypeId",
-    curie=OCT_SCHEMA.curie("genetTypeId"),
-    model_uri=OCT_SCHEMA.Genet_genetTypeId,
+slots.Genet_genet_type_id = Slot(
+    uri=OCT_SCHEMA.genet_type_id,
+    name="Genet_genet_type_id",
+    curie=OCT_SCHEMA.curie("genet_type_id"),
+    model_uri=OCT_SCHEMA.Genet_genet_type_id,
     domain=Genet,
     range=str,
 )
 
-slots.Genet_sfId = Slot(
-    uri=OCT_SCHEMA.sfId,
-    name="Genet_sfId",
-    curie=OCT_SCHEMA.curie("sfId"),
-    model_uri=OCT_SCHEMA.Genet_sfId,
+slots.Genet_sf_id = Slot(
+    uri=OCT_SCHEMA.sf_id,
+    name="Genet_sf_id",
+    curie=OCT_SCHEMA.curie("sf_id"),
+    model_uri=OCT_SCHEMA.Genet_sf_id,
     domain=Genet,
     range=str,
 )
@@ -1279,47 +1287,47 @@ slots.Coral_name = Slot(
     range=str,
 )
 
-slots.Coral_genetId = Slot(
-    uri=OCT_SCHEMA.genetId,
-    name="Coral_genetId",
-    curie=OCT_SCHEMA.curie("genetId"),
-    model_uri=OCT_SCHEMA.Coral_genetId,
+slots.Coral_genet_id = Slot(
+    uri=OCT_SCHEMA.genet_id,
+    name="Coral_genet_id",
+    curie=OCT_SCHEMA.curie("genet_id"),
+    model_uri=OCT_SCHEMA.Coral_genet_id,
     domain=Coral,
     range=str,
 )
 
-slots.Coral_speciesId = Slot(
-    uri=OCT_SCHEMA.speciesId,
-    name="Coral_speciesId",
-    curie=OCT_SCHEMA.curie("speciesId"),
-    model_uri=OCT_SCHEMA.Coral_speciesId,
+slots.Coral_species_id = Slot(
+    uri=OCT_SCHEMA.species_id,
+    name="Coral_species_id",
+    curie=OCT_SCHEMA.curie("species_id"),
+    model_uri=OCT_SCHEMA.Coral_species_id,
     domain=Coral,
     range=str,
 )
 
-slots.Coral_siteId = Slot(
-    uri=OCT_SCHEMA.siteId,
-    name="Coral_siteId",
-    curie=OCT_SCHEMA.curie("siteId"),
-    model_uri=OCT_SCHEMA.Coral_siteId,
+slots.Coral_site_id = Slot(
+    uri=OCT_SCHEMA.site_id,
+    name="Coral_site_id",
+    curie=OCT_SCHEMA.curie("site_id"),
+    model_uri=OCT_SCHEMA.Coral_site_id,
     domain=Coral,
     range=str,
 )
 
-slots.Coral_groupId = Slot(
-    uri=OCT_SCHEMA.groupId,
-    name="Coral_groupId",
-    curie=OCT_SCHEMA.curie("groupId"),
-    model_uri=OCT_SCHEMA.Coral_groupId,
+slots.Coral_group_id = Slot(
+    uri=OCT_SCHEMA.group_id,
+    name="Coral_group_id",
+    curie=OCT_SCHEMA.curie("group_id"),
+    model_uri=OCT_SCHEMA.Coral_group_id,
     domain=Coral,
     range=str,
 )
 
-slots.Coral_coralTypeId = Slot(
-    uri=OCT_SCHEMA.coralTypeId,
-    name="Coral_coralTypeId",
-    curie=OCT_SCHEMA.curie("coralTypeId"),
-    model_uri=OCT_SCHEMA.Coral_coralTypeId,
+slots.Coral_coral_type_id = Slot(
+    uri=OCT_SCHEMA.coral_type_id,
+    name="Coral_coral_type_id",
+    curie=OCT_SCHEMA.curie("coral_type_id"),
+    model_uri=OCT_SCHEMA.Coral_coral_type_id,
     domain=Coral,
     range=str,
 )
@@ -1387,40 +1395,67 @@ slots.Person_email = Slot(
     range=str,
 )
 
-slots.Event_eventTypeId = Slot(
-    uri=OCT_SCHEMA.eventTypeId,
-    name="Event_eventTypeId",
-    curie=OCT_SCHEMA.curie("eventTypeId"),
-    model_uri=OCT_SCHEMA.Event_eventTypeId,
+slots.Event_event_type_id = Slot(
+    uri=OCT_SCHEMA.event_type_id,
+    name="Event_event_type_id",
+    curie=OCT_SCHEMA.curie("event_type_id"),
+    model_uri=OCT_SCHEMA.Event_event_type_id,
     domain=Event,
     range=str,
 )
 
-slots.Event_recordId = Slot(
-    uri=OCT_SCHEMA.recordId,
-    name="Event_recordId",
-    curie=OCT_SCHEMA.curie("recordId"),
-    model_uri=OCT_SCHEMA.Event_recordId,
+slots.Event_record_id = Slot(
+    uri=OCT_SCHEMA.record_id,
+    name="Event_record_id",
+    curie=OCT_SCHEMA.curie("record_id"),
+    model_uri=OCT_SCHEMA.Event_record_id,
     domain=Event,
     range=str,
 )
 
-slots.Event_recordModelType = Slot(
-    uri=OCT_SCHEMA.recordModelType,
-    name="Event_recordModelType",
-    curie=OCT_SCHEMA.curie("recordModelType"),
-    model_uri=OCT_SCHEMA.Event_recordModelType,
+slots.Event_record_model_type = Slot(
+    uri=OCT_SCHEMA.record_model_type,
+    name="Event_record_model_type",
+    curie=OCT_SCHEMA.curie("record_model_type"),
+    model_uri=OCT_SCHEMA.Event_record_model_type,
     domain=Event,
     range=Union[str, "ModelType"],
 )
 
-slots.SpeciesRegisterEntry_code = Slot(
-    uri=OCT_SCHEMA.code,
-    name="SpeciesRegisterEntry_code",
-    curie=OCT_SCHEMA.curie("code"),
-    model_uri=OCT_SCHEMA.SpeciesRegisterEntry_code,
+slots.SpeciesRegisterEntry_id = Slot(
+    uri=OCT_SCHEMA.id,
+    name="SpeciesRegisterEntry_id",
+    curie=OCT_SCHEMA.curie("id"),
+    model_uri=OCT_SCHEMA.SpeciesRegisterEntry_id,
     domain=SpeciesRegisterEntry,
-    range=Union[str, SpeciesRegisterEntryCode],
+    range=Union[str, SpeciesRegisterEntryId],
+)
+
+slots.SpeciesRegisterEntry_created_at = Slot(
+    uri=OCT_SCHEMA.created_at,
+    name="SpeciesRegisterEntry_created_at",
+    curie=OCT_SCHEMA.curie("created_at"),
+    model_uri=OCT_SCHEMA.SpeciesRegisterEntry_created_at,
+    domain=SpeciesRegisterEntry,
+    range=Union[str, XSDDateTime],
+)
+
+slots.SpeciesRegisterEntry_updated_at = Slot(
+    uri=OCT_SCHEMA.updated_at,
+    name="SpeciesRegisterEntry_updated_at",
+    curie=OCT_SCHEMA.curie("updated_at"),
+    model_uri=OCT_SCHEMA.SpeciesRegisterEntry_updated_at,
+    domain=SpeciesRegisterEntry,
+    range=Union[str, XSDDateTime],
+)
+
+slots.SpeciesRegisterEntry_common_name = Slot(
+    uri=OCT_SCHEMA.common_name,
+    name="SpeciesRegisterEntry_common_name",
+    curie=OCT_SCHEMA.curie("common_name"),
+    model_uri=OCT_SCHEMA.SpeciesRegisterEntry_common_name,
+    domain=SpeciesRegisterEntry,
+    range=Optional[str],
 )
 
 slots.SpeciesRegisterEntry_genus = Slot(
@@ -1441,13 +1476,31 @@ slots.SpeciesRegisterEntry_specific_epithet = Slot(
     range=str,
 )
 
-slots.OrganizationRegisterEntry_org_id = Slot(
-    uri=OCT_SCHEMA.org_id,
-    name="OrganizationRegisterEntry_org_id",
-    curie=OCT_SCHEMA.curie("org_id"),
-    model_uri=OCT_SCHEMA.OrganizationRegisterEntry_org_id,
+slots.OrganizationRegisterEntry_id = Slot(
+    uri=OCT_SCHEMA.id,
+    name="OrganizationRegisterEntry_id",
+    curie=OCT_SCHEMA.curie("id"),
+    model_uri=OCT_SCHEMA.OrganizationRegisterEntry_id,
     domain=OrganizationRegisterEntry,
-    range=Union[str, OrganizationRegisterEntryOrgId],
+    range=Union[str, OrganizationRegisterEntryId],
+)
+
+slots.OrganizationRegisterEntry_created_at = Slot(
+    uri=OCT_SCHEMA.created_at,
+    name="OrganizationRegisterEntry_created_at",
+    curie=OCT_SCHEMA.curie("created_at"),
+    model_uri=OCT_SCHEMA.OrganizationRegisterEntry_created_at,
+    domain=OrganizationRegisterEntry,
+    range=Union[str, XSDDateTime],
+)
+
+slots.OrganizationRegisterEntry_updated_at = Slot(
+    uri=OCT_SCHEMA.updated_at,
+    name="OrganizationRegisterEntry_updated_at",
+    curie=OCT_SCHEMA.curie("updated_at"),
+    model_uri=OCT_SCHEMA.OrganizationRegisterEntry_updated_at,
+    domain=OrganizationRegisterEntry,
+    range=Union[str, XSDDateTime],
 )
 
 slots.OrganizationRegisterEntry_name = Slot(
@@ -1455,6 +1508,15 @@ slots.OrganizationRegisterEntry_name = Slot(
     name="OrganizationRegisterEntry_name",
     curie=OCT_SCHEMA.curie("name"),
     model_uri=OCT_SCHEMA.OrganizationRegisterEntry_name,
+    domain=OrganizationRegisterEntry,
+    range=str,
+)
+
+slots.OrganizationRegisterEntry_region = Slot(
+    uri=OCT_SCHEMA.region,
+    name="OrganizationRegisterEntry_region",
+    curie=OCT_SCHEMA.curie("region"),
+    model_uri=OCT_SCHEMA.OrganizationRegisterEntry_region,
     domain=OrganizationRegisterEntry,
     range=str,
 )

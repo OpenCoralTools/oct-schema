@@ -1,95 +1,95 @@
 -- # Abstract Class: Record Description: Base class for all records
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
 -- # Abstract Class: InventoryRecord Description: Base class for inventory items that have URL paths
---     * Slot: urlPath Description: URL friendly path to this resource
---     * Slot: internalPath Description: Internal path structure
+--     * Slot: url_path Description: URL friendly path to this resource
+--     * Slot: internal_path Description: Internal path structure
 --     * Slot: slug Description: URL friendly identifier part
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
 -- # Class: Organization Description: Represents an organization
 --     * Slot: name Description: Name of the entity
 --     * Slot: domain Description: Domain name associated with the organization
---     * Slot: urlPath Description: URL friendly path to this resource
---     * Slot: internalPath Description: Internal path structure
+--     * Slot: url_path Description: URL friendly path to this resource
+--     * Slot: internal_path Description: Internal path structure
 --     * Slot: slug Description: URL friendly identifier part
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
 -- # Class: Site Description: Represents a physical site
---     * Slot: siteTypeId Description: ID of the site type
+--     * Slot: site_type_id Description: ID of the site type
 --     * Slot: name Description: Name of the entity
 --     * Slot: description Description: Description of the entity
---     * Slot: urlPath Description: URL friendly path to this resource
---     * Slot: internalPath Description: Internal path structure
+--     * Slot: url_path Description: URL friendly path to this resource
+--     * Slot: internal_path Description: Internal path structure
 --     * Slot: slug Description: URL friendly identifier part
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
 -- # Class: Location Description: Represents a group of items or a container within a site
---     * Slot: groupTypeId Description: ID of the group type
+--     * Slot: group_type_id Description: ID of the group type
 --     * Slot: name Description: Name of the entity
---     * Slot: siteId Description: ID of the site this entity belongs to
---     * Slot: parentId Description: ID of the parent entity
+--     * Slot: site_id Description: ID of the site this entity belongs to
+--     * Slot: parent_id Description: ID of the parent entity
 --     * Slot: description Description: Description of the entity
 --     * Slot: capacity Description: Capacity of the group
---     * Slot: urlPath Description: URL friendly path to this resource
---     * Slot: internalPath Description: Internal path structure
+--     * Slot: url_path Description: URL friendly path to this resource
+--     * Slot: internal_path Description: Internal path structure
 --     * Slot: slug Description: URL friendly identifier part
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
 -- # Class: Genet Description: Represents a genetic individual
 --     * Slot: name Description: Name of the entity
---     * Slot: speciesId Description: ID of the species
---     * Slot: genetTypeId Description: ID of the genet type
---     * Slot: sfId Description: SeaFoundry ID
---     * Slot: clonalId Description: Clonal ID if applicable
---     * Slot: accessionNumber Description: Accession number if applicable
---     * Slot: urlPath Description: URL friendly path to this resource
---     * Slot: internalPath Description: Internal path structure
+--     * Slot: species_id Description: ID of the species
+--     * Slot: genet_type_id Description: ID of the genet type
+--     * Slot: sf_id Description: SeaFoundry ID
+--     * Slot: clonal_id Description: Clonal ID if applicable
+--     * Slot: accession_number Description: Accession number if applicable
+--     * Slot: url_path Description: URL friendly path to this resource
+--     * Slot: internal_path Description: Internal path structure
 --     * Slot: slug Description: URL friendly identifier part
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
 -- # Class: Coral Description: Represents a specific coral instance
 --     * Slot: name Description: Name of the entity
---     * Slot: genetId Description: ID of the genet
---     * Slot: speciesId Description: ID of the species
---     * Slot: siteId Description: ID of the site this entity belongs to
---     * Slot: groupId Description: ID of the group/location
---     * Slot: coralTypeId Description: ID of the coral type
+--     * Slot: genet_id Description: ID of the genet
+--     * Slot: species_id Description: ID of the species
+--     * Slot: site_id Description: ID of the site this entity belongs to
+--     * Slot: group_id Description: ID of the group/location
+--     * Slot: coral_type_id Description: ID of the coral type
 --     * Slot: quantity Description: Quantity of items
 --     * Slot: coral_size Description: Size of the coral
---     * Slot: urlPath Description: URL friendly path to this resource
---     * Slot: internalPath Description: Internal path structure
+--     * Slot: url_path Description: URL friendly path to this resource
+--     * Slot: internal_path Description: Internal path structure
 --     * Slot: slug Description: URL friendly identifier part
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
 -- # Class: Species Description: Represents a species
 --     * Slot: id Description: Unique identifier for the record
 --     * Slot: common_name Description: Common name of the species
@@ -98,161 +98,163 @@
 -- # Class: Person Description: Represents a person (user)
 --     * Slot: name Description: Name of the entity
 --     * Slot: email Description: Email address of the user
---     * Slot: imageUrl Description: URL to the user's image
+--     * Slot: image_url Description: URL to the user's image
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
 -- # Class: Event Description: Represents an event in the system history
---     * Slot: eventTypeId Description: ID of the event type
---     * Slot: recordId Description: ID of the record associated with the event
---     * Slot: recordModelType Description: Type of the record model
---     * Slot: urlPath Description: URL friendly path to this resource
---     * Slot: internalPath Description: Internal path structure
+--     * Slot: event_type_id Description: ID of the event type
+--     * Slot: record_id Description: ID of the record associated with the event
+--     * Slot: record_model_type Description: Type of the record model
+--     * Slot: url_path Description: URL friendly path to this resource
+--     * Slot: internal_path Description: Internal path structure
 --     * Slot: slug Description: URL friendly identifier part
 --     * Slot: id Description: Unique identifier for the record
---     * Slot: createdAt Description: Timestamp when the record was created
---     * Slot: createdById Description: ID of the user who created the record
---     * Slot: updatedAt Description: Timestamp when the record was last updated
---     * Slot: updatedById Description: ID of the user who last updated the record
---     * Slot: organizationId Description: ID of the organization this record belongs to
--- # Class: SpeciesRegisterEntry Description: A canonical species record in the registry
---     * Slot: code Description: Unique 4-character species code (e.g. apal)
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: created_by_id Description: ID of the user who created the record
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: updated_by_id Description: ID of the user who last updated the record
+--     * Slot: organization_id Description: ID of the organization this record belongs to
+-- # Class: SpeciesRegisterEntry Description: Represents an entry in the species registry
+--     * Slot: id Description: Unique identifier for the record
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: updated_at Description: Timestamp when the record was last updated
+--     * Slot: common_name Description: Common name of the species
 --     * Slot: genus Description: The genus name
 --     * Slot: specific_epithet Description: The specific name (second part of the binomial name)
---     * Slot: scientific_name Description: Full scientific name (genus + specific_epithet)
---     * Slot: scientific_name_authorship Description: Author and year of the species description
--- # Class: OrganizationRegisterEntry Description: A canonical organization record in the registry
---     * Slot: org_id Description: Unique identifier for the organization
+--     * Slot: scientific_name Description: Full scientific name (genus + specific epithet)
+--     * Slot: photo_url Description: URL to a photo of the species
+-- # Class: OrganizationRegisterEntry Description: Represents an entry in the organization registry
+--     * Slot: id Description: Unique identifier for the record
+--     * Slot: created_at Description: Timestamp when the record was created
+--     * Slot: updated_at Description: Timestamp when the record was last updated
 --     * Slot: name Description: Name of the entity
---     * Slot: url Description: Website URL of the organization
---     * Slot: country Description: Country where the organization is based
---     * Slot: metadata Description: Additional metadata as a JSON string or key-value pair
--- # Class: Organization_siteTypeIds
+--     * Slot: description Description: Description of the entity
+--     * Slot: region Description: Geographical region of the organization
+--     * Slot: website_url Description: Website URL of the organization
+--     * Slot: contact_email Description: Contact email for the organization
+--     * Slot: logo_url Description: URL to the organization's logo
+--     * Slot: is_active Description: Whether the organization is active
+-- # Class: Organization_site_type_ids
 --     * Slot: Organization_id Description: Autocreated FK slot
---     * Slot: siteTypeIds Description: List of site type IDs supported by the organization
--- # Class: Organization_speciesIds
+--     * Slot: site_type_ids Description: List of site type IDs supported by the organization
+-- # Class: Organization_species_ids
 --     * Slot: Organization_id Description: Autocreated FK slot
---     * Slot: speciesIds Description: List of species IDs supported by the organization
--- # Class: Site_groupIdHierarchy
+--     * Slot: species_ids Description: List of species IDs supported by the organization
+-- # Class: Site_group_id_hierarchy
 --     * Slot: Site_id Description: Autocreated FK slot
---     * Slot: groupIdHierarchy Description: Hierarchy of group IDs
--- # Class: SpeciesRegisterEntry_external_references
---     * Slot: SpeciesRegisterEntry_code Description: Autocreated FK slot
---     * Slot: external_references Description: External identifiers (e.g. worms:12345)
--- # Class: SpeciesRegisterEntry_synonyms
---     * Slot: SpeciesRegisterEntry_code Description: Autocreated FK slot
---     * Slot: synonyms Description: List of synonymous scientific names
--- # Class: SpeciesRegisterEntry_deprecated_codes
---     * Slot: SpeciesRegisterEntry_code Description: Autocreated FK slot
---     * Slot: deprecated_codes Description: Previous or deprecated codes for this species
+--     * Slot: group_id_hierarchy Description: Hierarchy of group IDs
+-- # Class: SpeciesRegisterEntry_tags
+--     * Slot: SpeciesRegisterEntry_id Description: Autocreated FK slot
+--     * Slot: tags Description: Tags associated with the species
 
 CREATE TABLE "Record" (
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Record_id" ON "Record" (id);
 CREATE TABLE "InventoryRecord" (
-	"urlPath" TEXT,
-	"internalPath" TEXT,
+	url_path TEXT,
+	internal_path TEXT,
 	slug TEXT,
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_InventoryRecord_id" ON "InventoryRecord" (id);
 CREATE TABLE "Organization" (
 	name TEXT NOT NULL,
 	domain TEXT NOT NULL,
-	"urlPath" TEXT,
-	"internalPath" TEXT,
+	url_path TEXT,
+	internal_path TEXT,
 	slug TEXT,
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Organization_id" ON "Organization" (id);
 CREATE TABLE "Site" (
-	"siteTypeId" TEXT NOT NULL,
+	site_type_id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
-	"urlPath" TEXT,
-	"internalPath" TEXT,
+	url_path TEXT,
+	internal_path TEXT,
 	slug TEXT,
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Site_id" ON "Site" (id);
 CREATE TABLE "Location" (
-	"groupTypeId" TEXT NOT NULL,
+	group_type_id TEXT NOT NULL,
 	name TEXT NOT NULL,
-	"siteId" TEXT NOT NULL,
-	"parentId" TEXT NOT NULL,
+	site_id TEXT NOT NULL,
+	parent_id TEXT NOT NULL,
 	description TEXT,
 	capacity INTEGER,
-	"urlPath" TEXT,
-	"internalPath" TEXT,
+	url_path TEXT,
+	internal_path TEXT,
 	slug TEXT,
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Location_id" ON "Location" (id);
 CREATE TABLE "Genet" (
 	name TEXT NOT NULL,
-	"speciesId" TEXT NOT NULL,
-	"genetTypeId" TEXT NOT NULL,
-	"sfId" TEXT NOT NULL,
-	"clonalId" TEXT,
-	"accessionNumber" TEXT,
-	"urlPath" TEXT,
-	"internalPath" TEXT,
+	species_id TEXT NOT NULL,
+	genet_type_id TEXT NOT NULL,
+	sf_id TEXT NOT NULL,
+	clonal_id TEXT,
+	accession_number TEXT,
+	url_path TEXT,
+	internal_path TEXT,
 	slug TEXT,
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Genet_id" ON "Genet" (id);
 CREATE TABLE "Coral" (
 	name TEXT NOT NULL,
-	"genetId" TEXT NOT NULL,
-	"speciesId" TEXT NOT NULL,
-	"siteId" TEXT NOT NULL,
-	"groupId" TEXT NOT NULL,
-	"coralTypeId" TEXT NOT NULL,
+	genet_id TEXT NOT NULL,
+	species_id TEXT NOT NULL,
+	site_id TEXT NOT NULL,
+	group_id TEXT NOT NULL,
+	coral_type_id TEXT NOT NULL,
 	quantity INTEGER NOT NULL,
 	coral_size VARCHAR(2),
-	"urlPath" TEXT,
-	"internalPath" TEXT,
+	url_path TEXT,
+	internal_path TEXT,
 	slug TEXT,
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Coral_id" ON "Coral" (id);
 CREATE TABLE "Species" (
@@ -265,79 +267,75 @@ CREATE TABLE "Species" (
 CREATE TABLE "Person" (
 	name TEXT NOT NULL,
 	email TEXT NOT NULL,
-	"imageUrl" TEXT,
+	image_url TEXT,
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Person_id" ON "Person" (id);
 CREATE TABLE "Event" (
-	"eventTypeId" TEXT NOT NULL,
-	"recordId" TEXT NOT NULL,
-	"recordModelType" VARCHAR(12) NOT NULL,
-	"urlPath" TEXT,
-	"internalPath" TEXT,
+	event_type_id TEXT NOT NULL,
+	record_id TEXT NOT NULL,
+	record_model_type VARCHAR(12) NOT NULL,
+	url_path TEXT,
+	internal_path TEXT,
 	slug TEXT,
 	id TEXT NOT NULL,
-	"createdAt" DATETIME,
-	"createdById" TEXT,
-	"updatedAt" DATETIME,
-	"updatedById" TEXT,
-	"organizationId" TEXT,
+	created_at DATETIME,
+	created_by_id TEXT,
+	updated_at DATETIME,
+	updated_by_id TEXT,
+	organization_id TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Event_id" ON "Event" (id);
 CREATE TABLE "SpeciesRegisterEntry" (
-	code TEXT NOT NULL,
+	id TEXT NOT NULL,
+	created_at DATETIME NOT NULL,
+	updated_at DATETIME NOT NULL,
+	common_name TEXT,
 	genus TEXT NOT NULL,
 	specific_epithet TEXT NOT NULL,
 	scientific_name TEXT,
-	scientific_name_authorship TEXT,
-	PRIMARY KEY (code)
-);CREATE INDEX "ix_SpeciesRegisterEntry_code" ON "SpeciesRegisterEntry" (code);
+	photo_url TEXT,
+	PRIMARY KEY (id)
+);CREATE INDEX "ix_SpeciesRegisterEntry_id" ON "SpeciesRegisterEntry" (id);
 CREATE TABLE "OrganizationRegisterEntry" (
-	org_id TEXT NOT NULL,
+	id TEXT NOT NULL,
+	created_at DATETIME NOT NULL,
+	updated_at DATETIME NOT NULL,
 	name TEXT NOT NULL,
-	url TEXT,
-	country TEXT,
-	metadata TEXT,
-	PRIMARY KEY (org_id)
-);CREATE INDEX "ix_OrganizationRegisterEntry_org_id" ON "OrganizationRegisterEntry" (org_id);
-CREATE TABLE "Organization_siteTypeIds" (
+	description TEXT,
+	region TEXT NOT NULL,
+	website_url TEXT,
+	contact_email TEXT,
+	logo_url TEXT,
+	is_active BOOLEAN,
+	PRIMARY KEY (id)
+);CREATE INDEX "ix_OrganizationRegisterEntry_id" ON "OrganizationRegisterEntry" (id);
+CREATE TABLE "Organization_site_type_ids" (
 	"Organization_id" TEXT,
-	"siteTypeIds" TEXT,
-	PRIMARY KEY ("Organization_id", "siteTypeIds"),
+	site_type_ids TEXT,
+	PRIMARY KEY ("Organization_id", site_type_ids),
 	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
-);CREATE INDEX "ix_Organization_siteTypeIds_siteTypeIds" ON "Organization_siteTypeIds" ("siteTypeIds");CREATE INDEX "ix_Organization_siteTypeIds_Organization_id" ON "Organization_siteTypeIds" ("Organization_id");
-CREATE TABLE "Organization_speciesIds" (
+);CREATE INDEX "ix_Organization_site_type_ids_site_type_ids" ON "Organization_site_type_ids" (site_type_ids);CREATE INDEX "ix_Organization_site_type_ids_Organization_id" ON "Organization_site_type_ids" ("Organization_id");
+CREATE TABLE "Organization_species_ids" (
 	"Organization_id" TEXT,
-	"speciesIds" TEXT,
-	PRIMARY KEY ("Organization_id", "speciesIds"),
+	species_ids TEXT,
+	PRIMARY KEY ("Organization_id", species_ids),
 	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
-);CREATE INDEX "ix_Organization_speciesIds_Organization_id" ON "Organization_speciesIds" ("Organization_id");CREATE INDEX "ix_Organization_speciesIds_speciesIds" ON "Organization_speciesIds" ("speciesIds");
-CREATE TABLE "Site_groupIdHierarchy" (
+);CREATE INDEX "ix_Organization_species_ids_species_ids" ON "Organization_species_ids" (species_ids);CREATE INDEX "ix_Organization_species_ids_Organization_id" ON "Organization_species_ids" ("Organization_id");
+CREATE TABLE "Site_group_id_hierarchy" (
 	"Site_id" TEXT,
-	"groupIdHierarchy" TEXT,
-	PRIMARY KEY ("Site_id", "groupIdHierarchy"),
+	group_id_hierarchy TEXT,
+	PRIMARY KEY ("Site_id", group_id_hierarchy),
 	FOREIGN KEY("Site_id") REFERENCES "Site" (id)
-);CREATE INDEX "ix_Site_groupIdHierarchy_Site_id" ON "Site_groupIdHierarchy" ("Site_id");CREATE INDEX "ix_Site_groupIdHierarchy_groupIdHierarchy" ON "Site_groupIdHierarchy" ("groupIdHierarchy");
-CREATE TABLE "SpeciesRegisterEntry_external_references" (
-	"SpeciesRegisterEntry_code" TEXT,
-	external_references TEXT,
-	PRIMARY KEY ("SpeciesRegisterEntry_code", external_references),
-	FOREIGN KEY("SpeciesRegisterEntry_code") REFERENCES "SpeciesRegisterEntry" (code)
-);CREATE INDEX "ix_SpeciesRegisterEntry_external_references_SpeciesRegisterEntry_code" ON "SpeciesRegisterEntry_external_references" ("SpeciesRegisterEntry_code");CREATE INDEX "ix_SpeciesRegisterEntry_external_references_external_references" ON "SpeciesRegisterEntry_external_references" (external_references);
-CREATE TABLE "SpeciesRegisterEntry_synonyms" (
-	"SpeciesRegisterEntry_code" TEXT,
-	synonyms TEXT,
-	PRIMARY KEY ("SpeciesRegisterEntry_code", synonyms),
-	FOREIGN KEY("SpeciesRegisterEntry_code") REFERENCES "SpeciesRegisterEntry" (code)
-);CREATE INDEX "ix_SpeciesRegisterEntry_synonyms_SpeciesRegisterEntry_code" ON "SpeciesRegisterEntry_synonyms" ("SpeciesRegisterEntry_code");CREATE INDEX "ix_SpeciesRegisterEntry_synonyms_synonyms" ON "SpeciesRegisterEntry_synonyms" (synonyms);
-CREATE TABLE "SpeciesRegisterEntry_deprecated_codes" (
-	"SpeciesRegisterEntry_code" TEXT,
-	deprecated_codes TEXT,
-	PRIMARY KEY ("SpeciesRegisterEntry_code", deprecated_codes),
-	FOREIGN KEY("SpeciesRegisterEntry_code") REFERENCES "SpeciesRegisterEntry" (code)
-);CREATE INDEX "ix_SpeciesRegisterEntry_deprecated_codes_deprecated_codes" ON "SpeciesRegisterEntry_deprecated_codes" (deprecated_codes);CREATE INDEX "ix_SpeciesRegisterEntry_deprecated_codes_SpeciesRegisterEntry_code" ON "SpeciesRegisterEntry_deprecated_codes" ("SpeciesRegisterEntry_code");
+);CREATE INDEX "ix_Site_group_id_hierarchy_Site_id" ON "Site_group_id_hierarchy" ("Site_id");CREATE INDEX "ix_Site_group_id_hierarchy_group_id_hierarchy" ON "Site_group_id_hierarchy" (group_id_hierarchy);
+CREATE TABLE "SpeciesRegisterEntry_tags" (
+	"SpeciesRegisterEntry_id" TEXT,
+	tags TEXT,
+	PRIMARY KEY ("SpeciesRegisterEntry_id", tags),
+	FOREIGN KEY("SpeciesRegisterEntry_id") REFERENCES "SpeciesRegisterEntry" (id)
+);CREATE INDEX "ix_SpeciesRegisterEntry_tags_SpeciesRegisterEntry_id" ON "SpeciesRegisterEntry_tags" ("SpeciesRegisterEntry_id");CREATE INDEX "ix_SpeciesRegisterEntry_tags_tags" ON "SpeciesRegisterEntry_tags" (tags);

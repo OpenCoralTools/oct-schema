@@ -11,7 +11,7 @@ default_prefix: oct_schema
 default_range: string
 
 imports:
-  - Record
+  - record
 
 classes:
   Person:
@@ -20,7 +20,7 @@ classes:
     slots:
       - name
       - email
-      - imageUrl
+      - image_url
     slot_usage:
       name:
         required: true
@@ -31,6 +31,6 @@ slots:
   email:
     range: string
     description: Email address of the user
-  imageUrl:
+  image_url:
     range: string
     description: URL to the user's image

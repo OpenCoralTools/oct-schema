@@ -11,7 +11,7 @@ default_prefix: oct_schema
 default_range: string
 
 imports:
-  - InventoryRecord
+  - inventory_record
 
 classes:
   Genet:
@@ -19,31 +19,31 @@ classes:
     description: Represents a genetic individual
     slots:
       - name
-      - speciesId
-      - genetTypeId
-      - sfId
-      - clonalId
-      - accessionNumber
+      - species_id
+      - genet_type_id
+      - sf_id
+      - clonal_id
+      - accession_number
     slot_usage:
       name:
         required: true
-      speciesId:
+      species_id:
         required: true
-      genetTypeId:
+      genet_type_id:
         required: true
-      sfId:
+      sf_id:
         required: true
 
 slots:
-  genetTypeId:
+  genet_type_id:
     range: string
     description: ID of the genet type
-  sfId:
+  sf_id:
     range: string
     description: SeaFoundry ID
-  clonalId:
+  clonal_id:
     range: string
     description: Clonal ID if applicable
-  accessionNumber:
+  accession_number:
     range: string
     description: Accession number if applicable

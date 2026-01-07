@@ -71,18 +71,18 @@ linkml_meta = LinkMLMeta(
         "imports": [
             "linkml:types",
             "common",
-            "Record",
-            "InventoryRecord",
-            "Organization",
-            "Site",
-            "Location",
-            "Genet",
-            "Coral",
-            "Species",
-            "Person",
-            "Event",
-            "registry/SpeciesRegisterEntry",
-            "registry/OrganizationRegisterEntry",
+            "record",
+            "inventory_record",
+            "organization",
+            "site",
+            "location",
+            "genet",
+            "coral",
+            "species",
+            "person",
+            "event",
+            "registry/species_register_entry",
+            "registry/organization_register_entry",
         ],
         "license": "MIT",
         "name": "oct-schema",
@@ -162,29 +162,54 @@ class Record(ConfiguredBaseModel):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -203,12 +228,12 @@ class InventoryRecord(Record):
         }
     )
 
-    urlPath: Optional[str] = Field(
+    url_path: Optional[str] = Field(
         default=None,
         description="""URL friendly path to this resource""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
     )
-    internalPath: Optional[str] = Field(
+    internal_path: Optional[str] = Field(
         default=None,
         description="""Internal path structure""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
@@ -221,29 +246,54 @@ class InventoryRecord(Record):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -287,22 +337,22 @@ class Organization(InventoryRecord):
         description="""Domain name associated with the organization""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Organization"]}},
     )
-    siteTypeIds: Optional[list[str]] = Field(
+    site_type_ids: Optional[list[str]] = Field(
         default=[],
         description="""List of site type IDs supported by the organization""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Organization"]}},
     )
-    speciesIds: Optional[list[str]] = Field(
+    species_ids: Optional[list[str]] = Field(
         default=[],
         description="""List of species IDs supported by the organization""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Organization"]}},
     )
-    urlPath: Optional[str] = Field(
+    url_path: Optional[str] = Field(
         default=None,
         description="""URL friendly path to this resource""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
     )
-    internalPath: Optional[str] = Field(
+    internal_path: Optional[str] = Field(
         default=None,
         description="""Internal path structure""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
@@ -315,29 +365,54 @@ class Organization(InventoryRecord):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -354,12 +429,12 @@ class Site(InventoryRecord):
             "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Site",
             "slot_usage": {
                 "name": {"name": "name", "required": True},
-                "siteTypeId": {"name": "siteTypeId", "required": True},
+                "site_type_id": {"name": "site_type_id", "required": True},
             },
         }
     )
 
-    siteTypeId: str = Field(
+    site_type_id: str = Field(
         default=...,
         description="""ID of the site type""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Site"]}},
@@ -381,7 +456,7 @@ class Site(InventoryRecord):
             }
         },
     )
-    groupIdHierarchy: Optional[list[str]] = Field(
+    group_id_hierarchy: Optional[list[str]] = Field(
         default=[],
         description="""Hierarchy of group IDs""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Site"]}},
@@ -389,14 +464,18 @@ class Site(InventoryRecord):
     description: Optional[str] = Field(
         default=None,
         description="""Description of the entity""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Site", "Location"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": ["Site", "Location", "OrganizationRegisterEntry"]
+            }
+        },
     )
-    urlPath: Optional[str] = Field(
+    url_path: Optional[str] = Field(
         default=None,
         description="""URL friendly path to this resource""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
     )
-    internalPath: Optional[str] = Field(
+    internal_path: Optional[str] = Field(
         default=None,
         description="""Internal path structure""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
@@ -409,29 +488,54 @@ class Site(InventoryRecord):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -447,15 +551,15 @@ class Location(InventoryRecord):
         {
             "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Location",
             "slot_usage": {
-                "groupTypeId": {"name": "groupTypeId", "required": True},
+                "group_type_id": {"name": "group_type_id", "required": True},
                 "name": {"name": "name", "required": True},
-                "parentId": {"name": "parentId", "required": True},
-                "siteId": {"name": "siteId", "required": True},
+                "parent_id": {"name": "parent_id", "required": True},
+                "site_id": {"name": "site_id", "required": True},
             },
         }
     )
 
-    groupTypeId: str = Field(
+    group_type_id: str = Field(
         default=...,
         description="""ID of the group type""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Location"]}},
@@ -477,12 +581,12 @@ class Location(InventoryRecord):
             }
         },
     )
-    siteId: str = Field(
+    site_id: str = Field(
         default=...,
         description="""ID of the site this entity belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Location", "Coral"]}},
     )
-    parentId: str = Field(
+    parent_id: str = Field(
         default=...,
         description="""ID of the parent entity""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Location"]}},
@@ -490,19 +594,23 @@ class Location(InventoryRecord):
     description: Optional[str] = Field(
         default=None,
         description="""Description of the entity""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Site", "Location"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": ["Site", "Location", "OrganizationRegisterEntry"]
+            }
+        },
     )
     capacity: Optional[int] = Field(
         default=None,
         description="""Capacity of the group""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Location"]}},
     )
-    urlPath: Optional[str] = Field(
+    url_path: Optional[str] = Field(
         default=None,
         description="""URL friendly path to this resource""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
     )
-    internalPath: Optional[str] = Field(
+    internal_path: Optional[str] = Field(
         default=None,
         description="""Internal path structure""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
@@ -515,29 +623,54 @@ class Location(InventoryRecord):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -553,10 +686,10 @@ class Genet(InventoryRecord):
         {
             "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Genet",
             "slot_usage": {
-                "genetTypeId": {"name": "genetTypeId", "required": True},
+                "genet_type_id": {"name": "genet_type_id", "required": True},
                 "name": {"name": "name", "required": True},
-                "sfId": {"name": "sfId", "required": True},
-                "speciesId": {"name": "speciesId", "required": True},
+                "sf_id": {"name": "sf_id", "required": True},
+                "species_id": {"name": "species_id", "required": True},
             },
         }
     )
@@ -578,37 +711,37 @@ class Genet(InventoryRecord):
             }
         },
     )
-    speciesId: str = Field(
+    species_id: str = Field(
         default=...,
         description="""ID of the species""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Genet", "Coral"]}},
     )
-    genetTypeId: str = Field(
+    genet_type_id: str = Field(
         default=...,
         description="""ID of the genet type""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Genet"]}},
     )
-    sfId: str = Field(
+    sf_id: str = Field(
         default=...,
         description="""SeaFoundry ID""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Genet"]}},
     )
-    clonalId: Optional[str] = Field(
+    clonal_id: Optional[str] = Field(
         default=None,
         description="""Clonal ID if applicable""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Genet"]}},
     )
-    accessionNumber: Optional[str] = Field(
+    accession_number: Optional[str] = Field(
         default=None,
         description="""Accession number if applicable""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Genet"]}},
     )
-    urlPath: Optional[str] = Field(
+    url_path: Optional[str] = Field(
         default=None,
         description="""URL friendly path to this resource""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
     )
-    internalPath: Optional[str] = Field(
+    internal_path: Optional[str] = Field(
         default=None,
         description="""Internal path structure""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
@@ -621,29 +754,54 @@ class Genet(InventoryRecord):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -659,13 +817,13 @@ class Coral(InventoryRecord):
         {
             "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Coral",
             "slot_usage": {
-                "coralTypeId": {"name": "coralTypeId", "required": True},
-                "genetId": {"name": "genetId", "required": True},
-                "groupId": {"name": "groupId", "required": True},
+                "coral_type_id": {"name": "coral_type_id", "required": True},
+                "genet_id": {"name": "genet_id", "required": True},
+                "group_id": {"name": "group_id", "required": True},
                 "name": {"name": "name", "required": True},
                 "quantity": {"name": "quantity", "required": True},
-                "siteId": {"name": "siteId", "required": True},
-                "speciesId": {"name": "speciesId", "required": True},
+                "site_id": {"name": "site_id", "required": True},
+                "species_id": {"name": "species_id", "required": True},
             },
         }
     )
@@ -687,27 +845,27 @@ class Coral(InventoryRecord):
             }
         },
     )
-    genetId: str = Field(
+    genet_id: str = Field(
         default=...,
         description="""ID of the genet""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Coral"]}},
     )
-    speciesId: str = Field(
+    species_id: str = Field(
         default=...,
         description="""ID of the species""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Genet", "Coral"]}},
     )
-    siteId: str = Field(
+    site_id: str = Field(
         default=...,
         description="""ID of the site this entity belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Location", "Coral"]}},
     )
-    groupId: str = Field(
+    group_id: str = Field(
         default=...,
         description="""ID of the group/location""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Coral"]}},
     )
-    coralTypeId: str = Field(
+    coral_type_id: str = Field(
         default=...,
         description="""ID of the coral type""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Coral"]}},
@@ -722,12 +880,12 @@ class Coral(InventoryRecord):
         description="""Size of the coral""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Coral"]}},
     )
-    urlPath: Optional[str] = Field(
+    url_path: Optional[str] = Field(
         default=None,
         description="""URL friendly path to this resource""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
     )
-    internalPath: Optional[str] = Field(
+    internal_path: Optional[str] = Field(
         default=None,
         description="""Internal path structure""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
@@ -740,29 +898,54 @@ class Coral(InventoryRecord):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -789,12 +972,23 @@ class Species(ConfiguredBaseModel):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
     common_name: Optional[str] = Field(
         default=None,
         description="""Common name of the species""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Species"]}},
+        json_schema_extra={
+            "linkml_meta": {"domain_of": ["Species", "SpeciesRegisterEntry"]}
+        },
     )
     genus: str = Field(
         default=...,
@@ -849,7 +1043,7 @@ class Person(Record):
         description="""Email address of the user""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Person"]}},
     )
-    imageUrl: Optional[str] = Field(
+    image_url: Optional[str] = Field(
         default=None,
         description="""URL to the user's image""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Person"]}},
@@ -857,29 +1051,54 @@ class Person(Record):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -895,34 +1114,34 @@ class Event(InventoryRecord):
         {
             "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/Event",
             "slot_usage": {
-                "eventTypeId": {"name": "eventTypeId", "required": True},
-                "recordId": {"name": "recordId", "required": True},
-                "recordModelType": {"name": "recordModelType", "required": True},
+                "event_type_id": {"name": "event_type_id", "required": True},
+                "record_id": {"name": "record_id", "required": True},
+                "record_model_type": {"name": "record_model_type", "required": True},
             },
         }
     )
 
-    eventTypeId: str = Field(
+    event_type_id: str = Field(
         default=...,
         description="""ID of the event type""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Event"]}},
     )
-    recordId: str = Field(
+    record_id: str = Field(
         default=...,
         description="""ID of the record associated with the event""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Event"]}},
     )
-    recordModelType: ModelType = Field(
+    record_model_type: ModelType = Field(
         default=...,
         description="""Type of the record model""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Event"]}},
     )
-    urlPath: Optional[str] = Field(
+    url_path: Optional[str] = Field(
         default=None,
         description="""URL friendly path to this resource""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
     )
-    internalPath: Optional[str] = Field(
+    internal_path: Optional[str] = Field(
         default=None,
         description="""Internal path structure""",
         json_schema_extra={"linkml_meta": {"domain_of": ["InventoryRecord"]}},
@@ -935,29 +1154,54 @@ class Event(InventoryRecord):
     id: str = Field(
         default=...,
         description="""Unique identifier for the record""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record", "Species"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdAt: Optional[datetime] = Field(
+    created_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was created""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    createdById: Optional[str] = Field(
+    created_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who created the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    updatedAt: Optional[datetime] = Field(
+    updated_at: Optional[datetime] = Field(
         default=None,
         description="""Timestamp when the record was last updated""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
-    updatedById: Optional[str] = Field(
+    updated_by_id: Optional[str] = Field(
         default=None,
         description="""ID of the user who last updated the record""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
     )
-    organizationId: Optional[str] = Field(
+    organization_id: Optional[str] = Field(
         default=None,
         description="""ID of the organization this record belongs to""",
         json_schema_extra={"linkml_meta": {"domain_of": ["Record"]}},
@@ -966,24 +1210,69 @@ class Event(InventoryRecord):
 
 class SpeciesRegisterEntry(ConfiguredBaseModel):
     """
-    A canonical species record in the registry
+    Represents an entry in the species registry
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry",
             "slot_usage": {
-                "code": {"identifier": True, "name": "code", "required": True},
+                "common_name": {"name": "common_name", "required": False},
+                "created_at": {"name": "created_at", "required": True},
                 "genus": {"name": "genus", "required": True},
+                "id": {"identifier": True, "name": "id"},
                 "specific_epithet": {"name": "specific_epithet", "required": True},
+                "updated_at": {"name": "updated_at", "required": True},
             },
         }
     )
 
-    code: str = Field(
+    id: str = Field(
         default=...,
-        description="""Unique 4-character species code (e.g. apal)""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["SpeciesRegisterEntry"]}},
+        description="""Unique identifier for the record""",
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
+    )
+    created_at: datetime = Field(
+        default=...,
+        description="""Timestamp when the record was created""",
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
+    )
+    updated_at: datetime = Field(
+        default=...,
+        description="""Timestamp when the record was last updated""",
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
+    )
+    common_name: Optional[str] = Field(
+        default=None,
+        description="""Common name of the species""",
+        json_schema_extra={
+            "linkml_meta": {"domain_of": ["Species", "SpeciesRegisterEntry"]}
+        },
     )
     genus: str = Field(
         default=...,
@@ -1001,50 +1290,78 @@ class SpeciesRegisterEntry(ConfiguredBaseModel):
     )
     scientific_name: Optional[str] = Field(
         default=None,
-        description="""Full scientific name (genus + specific_epithet)""",
+        description="""Full scientific name (genus + specific epithet)""",
         json_schema_extra={"linkml_meta": {"domain_of": ["SpeciesRegisterEntry"]}},
     )
-    scientific_name_authorship: Optional[str] = Field(
+    photo_url: Optional[str] = Field(
         default=None,
-        description="""Author and year of the species description""",
+        description="""URL to a photo of the species""",
         json_schema_extra={"linkml_meta": {"domain_of": ["SpeciesRegisterEntry"]}},
     )
-    external_references: Optional[list[str]] = Field(
+    tags: Optional[list[str]] = Field(
         default=[],
-        description="""External identifiers (e.g. worms:12345)""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["SpeciesRegisterEntry"]}},
-    )
-    synonyms: Optional[list[str]] = Field(
-        default=[],
-        description="""List of synonymous scientific names""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["SpeciesRegisterEntry"]}},
-    )
-    deprecated_codes: Optional[list[str]] = Field(
-        default=[],
-        description="""Previous or deprecated codes for this species""",
+        description="""Tags associated with the species""",
         json_schema_extra={"linkml_meta": {"domain_of": ["SpeciesRegisterEntry"]}},
     )
 
 
 class OrganizationRegisterEntry(ConfiguredBaseModel):
     """
-    A canonical organization record in the registry
+    Represents an entry in the organization registry
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry",
             "slot_usage": {
+                "created_at": {"name": "created_at", "required": True},
+                "id": {"identifier": True, "name": "id"},
                 "name": {"name": "name", "required": True},
-                "org_id": {"identifier": True, "name": "org_id", "required": True},
+                "region": {"name": "region", "required": True},
+                "updated_at": {"name": "updated_at", "required": True},
             },
         }
     )
 
-    org_id: str = Field(
+    id: str = Field(
         default=...,
-        description="""Unique identifier for the organization""",
-        json_schema_extra={"linkml_meta": {"domain_of": ["OrganizationRegisterEntry"]}},
+        description="""Unique identifier for the record""",
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "Species",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
+    )
+    created_at: datetime = Field(
+        default=...,
+        description="""Timestamp when the record was created""",
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
+    )
+    updated_at: datetime = Field(
+        default=...,
+        description="""Timestamp when the record was last updated""",
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": [
+                    "Record",
+                    "SpeciesRegisterEntry",
+                    "OrganizationRegisterEntry",
+                ]
+            }
+        },
     )
     name: str = Field(
         default=...,
@@ -1063,19 +1380,38 @@ class OrganizationRegisterEntry(ConfiguredBaseModel):
             }
         },
     )
-    url: Optional[str] = Field(
+    description: Optional[str] = Field(
+        default=None,
+        description="""Description of the entity""",
+        json_schema_extra={
+            "linkml_meta": {
+                "domain_of": ["Site", "Location", "OrganizationRegisterEntry"]
+            }
+        },
+    )
+    region: str = Field(
+        default=...,
+        description="""Geographical region of the organization""",
+        json_schema_extra={"linkml_meta": {"domain_of": ["OrganizationRegisterEntry"]}},
+    )
+    website_url: Optional[str] = Field(
         default=None,
         description="""Website URL of the organization""",
         json_schema_extra={"linkml_meta": {"domain_of": ["OrganizationRegisterEntry"]}},
     )
-    country: Optional[str] = Field(
+    contact_email: Optional[str] = Field(
         default=None,
-        description="""Country where the organization is based""",
+        description="""Contact email for the organization""",
         json_schema_extra={"linkml_meta": {"domain_of": ["OrganizationRegisterEntry"]}},
     )
-    metadata: Optional[str] = Field(
+    logo_url: Optional[str] = Field(
         default=None,
-        description="""Additional metadata as a JSON string or key-value pair""",
+        description="""URL to the organization's logo""",
+        json_schema_extra={"linkml_meta": {"domain_of": ["OrganizationRegisterEntry"]}},
+    )
+    is_active: Optional[bool] = Field(
+        default=None,
+        description="""Whether the organization is active""",
         json_schema_extra={"linkml_meta": {"domain_of": ["OrganizationRegisterEntry"]}},
     )
 

@@ -8,8 +8,8 @@ export type CoralId = string;
 export type SpeciesId = string;
 export type PersonId = string;
 export type EventId = string;
-export type SpeciesRegisterEntryCode = string;
-export type OrganizationRegisterEntryOrgId = string;
+export type SpeciesRegisterEntryId = string;
+export type OrganizationRegisterEntryId = string;
 
 export enum CoralSize {
 
@@ -166,7 +166,7 @@ export interface Coral extends InventoryRecord {
     /** Quantity of items */
     quantity: number,
     /** Size of the coral */
-    coral_size?: string,
+    coralSize?: string,
 }
 
 
@@ -177,11 +177,11 @@ export interface Species {
     /** Unique identifier for the record */
     id: string,
     /** Common name of the species */
-    common_name?: string,
+    commonName?: string,
     /** The genus name */
     genus: string,
     /** The specific name (second part of the binomial name) */
-    specific_epithet: string,
+    specificEpithet: string,
 }
 
 
@@ -212,40 +212,52 @@ export interface Event extends InventoryRecord {
 
 
 /**
- * A canonical species record in the registry
+ * Represents an entry in the species registry
  */
 export interface SpeciesRegisterEntry {
-    /** Unique 4-character species code (e.g. apal) */
-    code: string,
+    /** Unique identifier for the record */
+    id: string,
+    /** Timestamp when the record was created */
+    createdAt: string,
+    /** Timestamp when the record was last updated */
+    updatedAt: string,
+    /** Common name of the species */
+    commonName?: string,
     /** The genus name */
     genus: string,
     /** The specific name (second part of the binomial name) */
-    specific_epithet: string,
-    /** Full scientific name (genus + specific_epithet) */
-    scientific_name?: string,
-    /** Author and year of the species description */
-    scientific_name_authorship?: string,
-    /** External identifiers (e.g. worms:12345) */
-    external_references?: string[],
-    /** List of synonymous scientific names */
-    synonyms?: string[],
-    /** Previous or deprecated codes for this species */
-    deprecated_codes?: string[],
+    specificEpithet: string,
+    /** Full scientific name (genus + specific epithet) */
+    scientificName?: string,
+    /** URL to a photo of the species */
+    photoUrl?: string,
+    /** Tags associated with the species */
+    tags?: string[],
 }
 
 
 /**
- * A canonical organization record in the registry
+ * Represents an entry in the organization registry
  */
 export interface OrganizationRegisterEntry {
-    /** Unique identifier for the organization */
-    org_id: string,
+    /** Unique identifier for the record */
+    id: string,
+    /** Timestamp when the record was created */
+    createdAt: string,
+    /** Timestamp when the record was last updated */
+    updatedAt: string,
     /** Name of the entity */
     name: string,
+    /** Description of the entity */
+    description?: string,
+    /** Geographical region of the organization */
+    region: string,
     /** Website URL of the organization */
-    url?: string,
-    /** Country where the organization is based */
-    country?: string,
-    /** Additional metadata as a JSON string or key-value pair */
-    metadata?: string,
+    websiteUrl?: string,
+    /** Contact email for the organization */
+    contactEmail?: string,
+    /** URL to the organization's logo */
+    logoUrl?: string,
+    /** Whether the organization is active */
+    isActive?: boolean,
 }

@@ -19,8 +19,8 @@ classes:
     description: Base class for all records
     slots:
       - id
-      - createdAt
-      - createdById
-      - updatedAt
-      - updatedById
-      - organizationId
+      - created_at
+      - created_by_id
+      - updated_at
+      - updated_by_id
+      - organization_id

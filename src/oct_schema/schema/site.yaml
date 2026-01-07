@@ -11,28 +11,28 @@ default_prefix: oct_schema
 default_range: string
 
 imports:
-  - InventoryRecord
+  - inventory_record
 
 classes:
   Site:
     is_a: InventoryRecord
     description: Represents a physical site
     slots:
-      - siteTypeId
+      - site_type_id
       - name
-      - groupIdHierarchy
+      - group_id_hierarchy
       - description
     slot_usage:
-      siteTypeId:
+      site_type_id:
         required: true
       name:
         required: true
 
 slots:
-  siteTypeId:
+  site_type_id:
     range: string
     description: ID of the site type
-  groupIdHierarchy:
+  group_id_hierarchy:
     range: string
     multivalued: true
     description: Hierarchy of group IDs

@@ -11,7 +11,7 @@ default_prefix: oct_schema
 default_range: string
 
 imports:
-  - InventoryRecord
+  - inventory_record
 
 classes:
   Organization:
@@ -20,8 +20,8 @@ classes:
     slots:
       - name
       - domain
-      - siteTypeIds
-      - speciesIds
+      - site_type_ids
+      - species_ids
     slot_usage:
       name:
         required: true
@@ -32,11 +32,11 @@ slots:
   domain:
     range: string
     description: Domain name associated with the organization
-  siteTypeIds:
+  site_type_ids:
     range: string
     multivalued: true
     description: List of site type IDs supported by the organization
-  speciesIds:
+  species_ids:
     range: string
     multivalued: true
     description: List of species IDs supported by the organization

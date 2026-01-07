@@ -1,0 +1,53 @@
+id: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
+name: SpeciesRegisterEntry
+title: SpeciesRegisterEntry Class
+description: Represents an entry in the species registry
+
+prefixes:
+  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
+  linkml: https://w3id.org/linkml/
+
+default_prefix: oct_schema
+default_range: string
+
+imports:
+  - ../common
+
+classes:
+  SpeciesRegisterEntry:
+    description: Represents an entry in the species registry
+    slots:
+      - id
+      - created_at
+      - updated_at
+      - common_name
+      - genus
+      - specific_epithet
+      - scientific_name
+      - photo_url
+      - tags
+    slot_usage:
+      id:
+        identifier: true
+      created_at:
+        required: true
+      updated_at:
+        required: true
+      common_name:
+        required: false
+      genus:
+        required: true
+      specific_epithet:
+        required: true
+
+slots:
+  scientific_name:
+    range: string
+    description: Full scientific name (genus + specific epithet)
+  photo_url:
+    range: string
+    description: URL to a photo of the species
+  tags:
+    range: string
+    multivalued: true
+    description: Tags associated with the species

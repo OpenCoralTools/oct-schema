@@ -93,14 +93,19 @@ message Organization
  repeated  string siteTypeIds = 0
  repeated  string speciesIds = 0
  }
-// A canonical organization record in the registry
+// Represents an entry in the organization registry
 message OrganizationRegisterEntry
  {
-  string orgId = 0
+  uriorcurie id = 0
+  datetime createdAt = 0
+  datetime updatedAt = 0
   string name = 0
-  string url = 0
-  string country = 0
-  string metadata = 0
+  string description = 0
+  string region = 0
+  string websiteUrl = 0
+  string contactEmail = 0
+  string logoUrl = 0
+  boolean isActive = 0
  }
 // Represents a person (user)
 message Person
@@ -140,15 +145,16 @@ message Species
   string genus = 0
   string specificEpithet = 0
  }
-// A canonical species record in the registry
+// Represents an entry in the species registry
 message SpeciesRegisterEntry
  {
-  string code = 0
+  uriorcurie id = 0
+  datetime createdAt = 0
+  datetime updatedAt = 0
+  string commonName = 0
   string genus = 0
   string specificEpithet = 0
   string scientificName = 0
-  string scientificNameAuthorship = 0
- repeated  string externalReferences = 0
- repeated  string synonyms = 0
- repeated  string deprecatedCodes = 0
+  string photoUrl = 0
+ repeated  string tags = 0
  }

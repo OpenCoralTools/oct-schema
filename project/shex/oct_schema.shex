@@ -47,11 +47,11 @@ linkml:Sparqlpath xsd:string
     (  $<Coral_tes> (  &<InventoryRecord_tes> ;
           rdf:type [ <InventoryRecord> ] ? ;
           <name> @linkml:String ;
-          <genetId> @linkml:String ;
-          <speciesId> @linkml:String ;
-          <siteId> @linkml:String ;
-          <groupId> @linkml:String ;
-          <coralTypeId> @linkml:String ;
+          <genet_id> @linkml:String ;
+          <species_id> @linkml:String ;
+          <site_id> @linkml:String ;
+          <group_id> @linkml:String ;
+          <coral_type_id> @linkml:String ;
           <quantity> @linkml:Integer ;
           <coral_size> [ <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xs>
              <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#s> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#m>
@@ -64,9 +64,9 @@ linkml:Sparqlpath xsd:string
 <Event> CLOSED {
     (  $<Event_tes> (  &<InventoryRecord_tes> ;
           rdf:type [ <InventoryRecord> ] ? ;
-          <eventTypeId> @linkml:String ;
-          <recordId> @linkml:String ;
-          <recordModelType> [ <https://w3id.org/OpenCoralTools/oct-schema/ModelType#user>
+          <event_type_id> @linkml:String ;
+          <record_id> @linkml:String ;
+          <record_model_type> [ <https://w3id.org/OpenCoralTools/oct-schema/ModelType#user>
              <https://w3id.org/OpenCoralTools/oct-schema/ModelType#organization>
              <https://w3id.org/OpenCoralTools/oct-schema/ModelType#site>
              <https://w3id.org/OpenCoralTools/oct-schema/ModelType#group>
@@ -85,11 +85,11 @@ linkml:Sparqlpath xsd:string
     (  $<Genet_tes> (  &<InventoryRecord_tes> ;
           rdf:type [ <InventoryRecord> ] ? ;
           <name> @linkml:String ;
-          <speciesId> @linkml:String ;
-          <genetTypeId> @linkml:String ;
-          <sfId> @linkml:String ;
-          <clonalId> @linkml:String ? ;
-          <accessionNumber> @linkml:String ?
+          <species_id> @linkml:String ;
+          <genet_type_id> @linkml:String ;
+          <sf_id> @linkml:String ;
+          <clonal_id> @linkml:String ? ;
+          <accession_number> @linkml:String ?
        ) ;
        rdf:type [ <Genet> ]
     )
@@ -102,8 +102,8 @@ linkml:Sparqlpath xsd:string
 <InventoryRecord_struct> {
     (  $<InventoryRecord_tes> (  &<Record_tes> ;
           rdf:type [ <Record> ] ? ;
-          <urlPath> @linkml:String ? ;
-          <internalPath> @linkml:String ? ;
+          <url_path> @linkml:String ? ;
+          <internal_path> @linkml:String ? ;
           <slug> @linkml:String ?
        ) ;
        rdf:type [ <InventoryRecord> ]
@@ -113,10 +113,10 @@ linkml:Sparqlpath xsd:string
 <Location> CLOSED {
     (  $<Location_tes> (  &<InventoryRecord_tes> ;
           rdf:type [ <InventoryRecord> ] ? ;
-          <groupTypeId> @linkml:String ;
+          <group_type_id> @linkml:String ;
           <name> @linkml:String ;
-          <siteId> @linkml:String ;
-          <parentId> @linkml:String ;
+          <site_id> @linkml:String ;
+          <parent_id> @linkml:String ;
           <description> @linkml:String ? ;
           <capacity> @linkml:Integer ?
        ) ;
@@ -129,18 +129,23 @@ linkml:Sparqlpath xsd:string
           rdf:type [ <InventoryRecord> ] ? ;
           <name> @linkml:String ;
           <domain> @linkml:String ;
-          <siteTypeIds> @linkml:String * ;
-          <speciesIds> @linkml:String *
+          <site_type_ids> @linkml:String * ;
+          <species_ids> @linkml:String *
        ) ;
        rdf:type [ <Organization> ]
     )
 }
 
 <OrganizationRegisterEntry> CLOSED {
-    (  $<OrganizationRegisterEntry_tes> (  <name> @linkml:String ;
-          <url> @linkml:String ? ;
-          <country> @linkml:String ? ;
-          <metadata> @linkml:String ?
+    (  $<OrganizationRegisterEntry_tes> (  <created_at> @linkml:Datetime ;
+          <updated_at> @linkml:Datetime ;
+          <name> @linkml:String ;
+          <description> @linkml:String ? ;
+          <region> @linkml:String ;
+          <website_url> @linkml:String ? ;
+          <contact_email> @linkml:String ? ;
+          <logo_url> @linkml:String ? ;
+          <is_active> @linkml:Boolean ?
        ) ;
        rdf:type [ <OrganizationRegisterEntry> ]
     )
@@ -151,7 +156,7 @@ linkml:Sparqlpath xsd:string
           rdf:type [ <Record> ] ? ;
           <name> @linkml:String ;
           <email> @linkml:String ;
-          <imageUrl> @linkml:String ?
+          <image_url> @linkml:String ?
        ) ;
        rdf:type [ <Person> ]
     )
@@ -162,11 +167,11 @@ linkml:Sparqlpath xsd:string
 )
 
 <Record_struct> {
-    (  $<Record_tes> (  <createdAt> @linkml:Datetime ? ;
-          <createdById> @linkml:String ? ;
-          <updatedAt> @linkml:Datetime ? ;
-          <updatedById> @linkml:String ? ;
-          <organizationId> @linkml:String ?
+    (  $<Record_tes> (  <created_at> @linkml:Datetime ? ;
+          <created_by_id> @linkml:String ? ;
+          <updated_at> @linkml:Datetime ? ;
+          <updated_by_id> @linkml:String ? ;
+          <organization_id> @linkml:String ?
        ) ;
        rdf:type [ <Record> ]
     )
@@ -175,9 +180,9 @@ linkml:Sparqlpath xsd:string
 <Site> CLOSED {
     (  $<Site_tes> (  &<InventoryRecord_tes> ;
           rdf:type [ <InventoryRecord> ] ? ;
-          <siteTypeId> @linkml:String ;
+          <site_type_id> @linkml:String ;
           <name> @linkml:String ;
-          <groupIdHierarchy> @linkml:String * ;
+          <group_id_hierarchy> @linkml:String * ;
           <description> @linkml:String ?
        ) ;
        rdf:type [ <Site> ]
@@ -194,13 +199,14 @@ linkml:Sparqlpath xsd:string
 }
 
 <SpeciesRegisterEntry> CLOSED {
-    (  $<SpeciesRegisterEntry_tes> (  <genus> @linkml:String ;
+    (  $<SpeciesRegisterEntry_tes> (  <created_at> @linkml:Datetime ;
+          <updated_at> @linkml:Datetime ;
+          <common_name> @linkml:String ? ;
+          <genus> @linkml:String ;
           <specific_epithet> @linkml:String ;
           <scientific_name> @linkml:String ? ;
-          <scientific_name_authorship> @linkml:String ? ;
-          <external_references> @linkml:String * ;
-          <synonyms> @linkml:String * ;
-          <deprecated_codes> @linkml:String *
+          <photo_url> @linkml:String ? ;
+          <tags> @linkml:String *
        ) ;
        rdf:type [ <SpeciesRegisterEntry> ]
     )

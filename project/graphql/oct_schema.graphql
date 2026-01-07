@@ -137,11 +137,16 @@ type Organization
 
 type OrganizationRegisterEntry
   {
-    orgId: String!
+    id: String!
+    createdAt: String!
+    updatedAt: String!
     name: String!
-    url: String
-    country: String
-    metadata: String
+    description: String
+    region: String!
+    websiteUrl: String
+    contactEmail: String
+    logoUrl: String
+    isActive: Boolean
   }
 
 type Person
@@ -194,12 +199,13 @@ type Species
 
 type SpeciesRegisterEntry
   {
-    code: String!
+    id: String!
+    createdAt: String!
+    updatedAt: String!
+    commonName: String
     genus: String!
     specificEpithet: String!
     scientificName: String
-    scientificNameAuthorship: String
-    externalReferences: [String]
-    synonyms: [String]
-    deprecatedCodes: [String]
+    photoUrl: String
+    tags: [String]
   }

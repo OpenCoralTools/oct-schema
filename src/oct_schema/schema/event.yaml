@@ -11,31 +11,31 @@ default_prefix: oct_schema
 default_range: string
 
 imports:
-  - InventoryRecord
+  - inventory_record
 
 classes:
   Event:
     is_a: InventoryRecord
     description: Represents an event in the system history
     slots:
-      - eventTypeId
-      - recordId
-      - recordModelType
+      - event_type_id
+      - record_id
+      - record_model_type
     slot_usage:
-      eventTypeId:
+      event_type_id:
         required: true
-      recordId:
+      record_id:
         required: true
-      recordModelType:
+      record_model_type:
         required: true
 
 slots:
-  eventTypeId:
+  event_type_id:
     range: string
     description: ID of the event type
-  recordId:
+  record_id:
     range: string
     description: ID of the record associated with the event
-  recordModelType:
+  record_model_type:
     range: ModelType
     description: Type of the record model
