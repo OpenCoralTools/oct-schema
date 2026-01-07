@@ -1727,7 +1727,7 @@ classes:
     class_uri: oct_schema:OrganizationRegisterEntry
 metamodel_version: 1.7.0
 source_file: oct_schema.yaml
-source_file_date: '2026-01-06T23:36:22'
+source_file_date: '2026-01-07T01:04:38'
 source_file_size: 634
-generation_date: '2026-01-06T23:36:31'
+generation_date: '2026-01-07T01:04:46'
 
