@@ -2,6 +2,7 @@
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix oct_schema: <https://w3id.org/OpenCoralTools/oct-schema/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -11,6 +12,7 @@
     rdfs:label "oct-schema" ;
     dcterms:license "MIT" ;
     dcterms:title "oct-schema" ;
+    pav:version "0.0.1" ;
     rdfs:seeAlso <https://OpenCoralTools.github.io/oct-schema> ;
     skos:definition "Data standards for coral research and conservation" .
 
@@ -18,77 +20,77 @@ oct_schema:Coral a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Coral" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:quantity ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:genet_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:genet_id ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:quantity ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
-            owl:onProperty oct_schema:quantity ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:group_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:coral_type_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:species_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:genet_id ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom oct_schema:CoralSize ;
-            owl:onProperty oct_schema:coral_size ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:group_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:species_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:species_id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:coral_size ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:site_id ],
+            owl:onProperty oct_schema:group_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:genet_id ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:group_id ],
+            owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:coral_type_id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:coral_size ],
+            owl:onProperty oct_schema:species_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:group_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:site_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty oct_schema:quantity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:site_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:quantity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:coral_type_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty oct_schema:coral_type_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:genet_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:genet_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:group_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:species_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:site_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oct_schema:CoralSize ;
+            owl:onProperty oct_schema:coral_size ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:species_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:coral_size ],
         oct_schema:InventoryRecord ;
     skos:definition "Represents a specific coral instance" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Coral> .
@@ -97,23 +99,23 @@ oct_schema:Event a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Event" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:event_type_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:record_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:record_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:record_model_type ],
+        [ a owl:Restriction ;
             owl:allValuesFrom oct_schema:ModelType ;
             owl:onProperty oct_schema:record_model_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:event_type_id ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty oct_schema:event_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:event_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:record_model_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:record_id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:record_id ],
@@ -121,8 +123,8 @@ oct_schema:Event a owl:Class,
             owl:minCardinality 1 ;
             owl:onProperty oct_schema:record_model_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:record_id ],
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:event_type_id ],
         oct_schema:InventoryRecord ;
     skos:definition "Represents an event in the system history" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Event> .
@@ -132,34 +134,34 @@ oct_schema:Genet a owl:Class,
     rdfs:label "Genet" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:genet_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:sf_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:clonal_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:sf_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:sf_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:clonal_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:accession_number ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:species_id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:genet_type_id ],
+            owl:onProperty oct_schema:sf_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:clonal_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:clonal_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:sf_id ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty oct_schema:genet_type_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:sf_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:accession_number ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:clonal_id ],
@@ -170,20 +172,20 @@ oct_schema:Genet a owl:Class,
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:species_id ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:species_id ],
+            owl:onProperty oct_schema:genet_type_id ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:accession_number ],
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:accession_number ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:genet_type_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:species_id ],
         oct_schema:InventoryRecord ;
     skos:definition "Represents a genetic individual" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Genet> .
@@ -192,59 +194,59 @@ oct_schema:Location a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Location" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:group_type_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:site_id ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:parent_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:capacity ],
+            owl:onProperty oct_schema:parent_id ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:site_id ],
+            owl:onProperty oct_schema:parent_id ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:site_id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:capacity ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:group_type_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty oct_schema:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:capacity ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Integer ;
             owl:onProperty oct_schema:capacity ],
         [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:site_id ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:group_type_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:group_type_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:parent_id ],
+            owl:onProperty oct_schema:site_id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:description ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:parent_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty oct_schema:group_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:parent_id ],
         oct_schema:InventoryRecord ;
     skos:definition "Represents a group of items or a container within a site" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Location> .
@@ -253,13 +255,22 @@ oct_schema:Organization a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Organization" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:domain ],
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:site_type_ids ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:site_type_ids ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty oct_schema:domain ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:domain ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
@@ -268,19 +279,10 @@ oct_schema:Organization a owl:Class,
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:species_ids ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:site_type_ids ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:site_type_ids ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
+            owl:maxCardinality 1 ;
             owl:onProperty oct_schema:domain ],
         oct_schema:InventoryRecord ;
     skos:definition "Represents an organization" ;
@@ -290,95 +292,95 @@ oct_schema:OrganizationRegisterEntry a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "OrganizationRegisterEntry" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:website_url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:contact_email ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:logo_url ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:contact_email ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:contact_email ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:website_url ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:region ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:region ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:logo_url ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:logo_url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:is_active ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:region ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:is_active ],
+            owl:onProperty oct_schema:website_url ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Boolean ;
             owl:onProperty oct_schema:is_active ],
         [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:name ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:website_url ] ;
+            owl:onProperty oct_schema:logo_url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:region ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:website_url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uriorcurie ;
+            owl:onProperty oct_schema:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:created_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:region ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:contact_email ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oct_schema:created_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:logo_url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oct_schema:updated_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:is_active ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:is_active ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:logo_url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:updated_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:updated_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:contact_email ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:region ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:created_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:contact_email ] ;
     skos:definition "Represents an entry in the organization registry" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry> .
 
@@ -386,31 +388,31 @@ oct_schema:Person a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Person" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:image_url ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:image_url ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:name ],
+        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty oct_schema:email ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:image_url ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:image_url ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:email ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:email ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:email ],
         oct_schema:Record ;
     skos:definition "Represents a person (user)" ;
@@ -420,38 +422,38 @@ oct_schema:Site a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Site" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:site_type_id ],
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:site_type_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:group_id_hierarchy ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:description ],
+            owl:onProperty oct_schema:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:site_type_id ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:group_id_hierarchy ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
+            owl:onProperty oct_schema:site_type_id ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty oct_schema:site_type_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty oct_schema:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:site_type_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:group_id_hierarchy ],
         oct_schema:InventoryRecord ;
     skos:definition "Represents a physical site" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Site> .
@@ -460,41 +462,41 @@ oct_schema:Species a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Species" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:common_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:common_name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:genus ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:specific_epithet ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:genus ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:specific_epithet ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:genus ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:common_name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:id ],
+        [ a owl:Restriction ;
             owl:allValuesFrom linkml:Uriorcurie ;
             owl:onProperty oct_schema:id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:specific_epithet ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:specific_epithet ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:common_name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty oct_schema:id ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:specific_epithet ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:common_name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:common_name ] ;
+            owl:onProperty oct_schema:specific_epithet ] ;
     skos:definition "Represents a species" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Species> .
 
@@ -502,83 +504,83 @@ oct_schema:SpeciesRegisterEntry a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "SpeciesRegisterEntry" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:specific_epithet ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty oct_schema:scientific_name ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:common_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:tags ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:updated_at ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty oct_schema:specific_epithet ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty oct_schema:photo_url ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:tags ],
+            owl:onProperty oct_schema:id ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:tags ],
+            owl:onProperty oct_schema:genus ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:minCardinality 1 ;
+            owl:onProperty oct_schema:created_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:photo_url ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:specific_epithet ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:common_name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:updated_at ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Uriorcurie ;
             owl:onProperty oct_schema:id ],
         [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oct_schema:updated_at ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:id ],
+            owl:onProperty oct_schema:created_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:tags ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:genus ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:specific_epithet ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ],
+            owl:onProperty oct_schema:genus ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:common_name ],
+            owl:onProperty oct_schema:id ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty oct_schema:scientific_name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:scientific_name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
+            owl:maxCardinality 1 ;
             owl:onProperty oct_schema:photo_url ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:common_name ],
+            owl:onProperty oct_schema:scientific_name ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ] ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oct_schema:created_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:common_name ] ;
     skos:definition "Represents an entry in the species registry" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry> .
 
@@ -661,32 +663,29 @@ oct_schema:Record a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Record" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:updated_by_id ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:updated_by_id ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
+            owl:minCardinality 0 ;
             owl:onProperty oct_schema:created_by_id ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:updated_by_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:created_by_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty oct_schema:id ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty oct_schema:created_by_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:organization_id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:updated_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:organization_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oct_schema:created_at ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:organization_id ],
@@ -694,23 +693,26 @@ oct_schema:Record a owl:Class,
             owl:allValuesFrom linkml:Uriorcurie ;
             owl:onProperty oct_schema:id ],
         [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oct_schema:created_by_id ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:created_at ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:organization_id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:updated_by_id ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:created_at ],
+            owl:onProperty oct_schema:updated_at ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:created_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oct_schema:updated_at ] ;
@@ -997,32 +999,32 @@ oct_schema:InventoryRecord a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "InventoryRecord" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:url_path ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:internal_path ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:slug ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:internal_path ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty oct_schema:url_path ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oct_schema:slug ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:internal_path ],
+        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:slug ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oct_schema:internal_path ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oct_schema:url_path ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oct_schema:slug ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:internal_path ],
+            owl:onProperty oct_schema:url_path ],
         oct_schema:Record ;
     skos:definition "Base class for inventory items that have URL paths" ;
     skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/InventoryRecord> .

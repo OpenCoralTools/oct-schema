@@ -6,6 +6,7 @@
     "https://OpenCoralTools.github.io/oct-schema"
   ],
   "id": "https://w3id.org/OpenCoralTools/oct-schema",
+  "version": "0.0.1",
   "imports": [
     "linkml:types",
     "common",
@@ -21,7 +22,6 @@
     "event",
     "registry/species_register_entry",
     "registry/organization_register_entry",
-    "Record",
     "common",
     "common"
   ],
@@ -2082,9 +2082,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "oct_schema.yaml",
-  "source_file_date": "2026-01-06T17:50:30",
-  "source_file_size": 639,
-  "generation_date": "2026-01-06T17:57:46",
+  "source_file_date": "2026-01-07T12:54:38",
+  "source_file_size": 654,
+  "generation_date": "2026-01-07T12:55:15",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/oct_schema.context.jsonld",

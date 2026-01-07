@@ -320,7 +320,7 @@ CREATE TABLE "Organization_site_type_ids" (
 	site_type_ids TEXT,
 	PRIMARY KEY ("Organization_id", site_type_ids),
 	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
-);CREATE INDEX "ix_Organization_site_type_ids_site_type_ids" ON "Organization_site_type_ids" (site_type_ids);CREATE INDEX "ix_Organization_site_type_ids_Organization_id" ON "Organization_site_type_ids" ("Organization_id");
+);CREATE INDEX "ix_Organization_site_type_ids_Organization_id" ON "Organization_site_type_ids" ("Organization_id");CREATE INDEX "ix_Organization_site_type_ids_site_type_ids" ON "Organization_site_type_ids" (site_type_ids);
 CREATE TABLE "Organization_species_ids" (
 	"Organization_id" TEXT,
 	species_ids TEXT,

@@ -1,5 +1,5 @@
 # Auto generated from oct_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-06T17:57:47
+# Generation date: 2026-01-07T12:55:15
 # Schema: oct-schema
 #
 # id: https://w3id.org/OpenCoralTools/oct-schema
@@ -20,7 +20,7 @@ from rdflib import URIRef
 from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE, XSDDateTime
 
 metamodel_version = "1.7.0"
-version = None
+version = "0.0.1"
 
 # Namespaces
 LINKML = CurieNamespace("linkml", "https://w3id.org/linkml/")

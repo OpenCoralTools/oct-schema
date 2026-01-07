@@ -1,6 +1,7 @@
 id: https://w3id.org/OpenCoralTools/oct-schema
 name: oct-schema
 title: oct-schema
+version: 0.0.1
 description: Data standards for coral research and conservation
 license: MIT
 see_also:

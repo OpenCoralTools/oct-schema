@@ -908,5 +908,5 @@
     "metamodel_version": "1.7.0",
     "title": "oct-schema",
     "type": "object",
-    "version": null
+    "version": "0.0.1"
 }
