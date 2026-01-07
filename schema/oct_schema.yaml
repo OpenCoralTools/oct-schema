@@ -375,72 +375,72 @@ slots:
     - Species
     range: uriorcurie
     required: true
-  createdAt:
-    name: createdAt
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/createdAt
+  created_at:
+    name: created_at
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/created_at
     description: Timestamp when the record was created
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
-    slot_uri: oct_schema:createdAt
+    slot_uri: oct_schema:created_at
     owner: Record
     domain_of:
     - Record
     range: datetime
-  createdById:
-    name: createdById
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/createdById
+  created_by_id:
+    name: created_by_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/created_by_id
     description: ID of the user who created the record
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
-    slot_uri: oct_schema:createdById
+    slot_uri: oct_schema:created_by_id
     owner: Record
     domain_of:
     - Record
     range: string
-  updatedAt:
-    name: updatedAt
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/updatedAt
+  updated_at:
+    name: updated_at
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/updated_at
     description: Timestamp when the record was last updated
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
-    slot_uri: oct_schema:updatedAt
+    slot_uri: oct_schema:updated_at
     owner: Record
     domain_of:
     - Record
     range: datetime
-  updatedById:
-    name: updatedById
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/updatedById
+  updated_by_id:
+    name: updated_by_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/updated_by_id
     description: ID of the user who last updated the record
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
-    slot_uri: oct_schema:updatedById
+    slot_uri: oct_schema:updated_by_id
     owner: Record
     domain_of:
     - Record
     range: string
-  organizationId:
-    name: organizationId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/organizationId
+  organization_id:
+    name: organization_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/organization_id
     description: ID of the organization this record belongs to
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
-    slot_uri: oct_schema:organizationId
+    slot_uri: oct_schema:organization_id
     owner: Record
     domain_of:
     - Record
     range: string
-  urlPath:
-    name: urlPath
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/urlPath
+  url_path:
+    name: url_path
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/url_path
     description: URL friendly path to this resource
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
-    slot_uri: oct_schema:urlPath
+    slot_uri: oct_schema:url_path
     owner: InventoryRecord
     domain_of:
     - InventoryRecord
     range: string
-  internalPath:
-    name: internalPath
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/internalPath
+  internal_path:
+    name: internal_path
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/internal_path
     description: Internal path structure
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
-    slot_uri: oct_schema:internalPath
+    slot_uri: oct_schema:internal_path
     owner: InventoryRecord
     domain_of:
     - InventoryRecord
@@ -524,76 +524,76 @@ slots:
     domain_of:
     - Organization
     range: string
-  siteTypeIds:
-    name: siteTypeIds
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/siteTypeIds
+  site_type_ids:
+    name: site_type_ids
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/site_type_ids
     description: List of site type IDs supported by the organization
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Organization
-    slot_uri: oct_schema:siteTypeIds
+    slot_uri: oct_schema:site_type_ids
     owner: Organization
     domain_of:
     - Organization
     range: string
     multivalued: true
-  speciesIds:
-    name: speciesIds
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/speciesIds
+  species_ids:
+    name: species_ids
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/species_ids
     description: List of species IDs supported by the organization
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Organization
-    slot_uri: oct_schema:speciesIds
+    slot_uri: oct_schema:species_ids
     owner: Organization
     domain_of:
     - Organization
     range: string
     multivalued: true
-  siteTypeId:
-    name: siteTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/siteTypeId
+  site_type_id:
+    name: site_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/site_type_id
     description: ID of the site type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Site
-    slot_uri: oct_schema:siteTypeId
+    slot_uri: oct_schema:site_type_id
     owner: Site
     domain_of:
     - Site
     range: string
-  groupIdHierarchy:
-    name: groupIdHierarchy
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/groupIdHierarchy
+  group_id_hierarchy:
+    name: group_id_hierarchy
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/group_id_hierarchy
     description: Hierarchy of group IDs
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Site
-    slot_uri: oct_schema:groupIdHierarchy
+    slot_uri: oct_schema:group_id_hierarchy
     owner: Site
     domain_of:
     - Site
     range: string
     multivalued: true
-  groupTypeId:
-    name: groupTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/groupTypeId
+  group_type_id:
+    name: group_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/group_type_id
     description: ID of the group type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Location
-    slot_uri: oct_schema:groupTypeId
+    slot_uri: oct_schema:group_type_id
     owner: Location
     domain_of:
     - Location
     range: string
-  siteId:
-    name: siteId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/siteId
+  site_id:
+    name: site_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/site_id
     description: ID of the site this entity belongs to
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Location
-    slot_uri: oct_schema:siteId
+    slot_uri: oct_schema:site_id
     owner: Coral
     domain_of:
     - Location
     - Coral
     range: string
-  parentId:
-    name: parentId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/parentId
+  parent_id:
+    name: parent_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/parent_id
     description: ID of the parent entity
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Location
-    slot_uri: oct_schema:parentId
+    slot_uri: oct_schema:parent_id
     owner: Location
     domain_of:
     - Location
@@ -608,83 +608,83 @@ slots:
     domain_of:
     - Location
     range: integer
-  genetTypeId:
-    name: genetTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genetTypeId
+  genet_type_id:
+    name: genet_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genet_type_id
     description: ID of the genet type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Genet
-    slot_uri: oct_schema:genetTypeId
+    slot_uri: oct_schema:genet_type_id
     owner: Genet
     domain_of:
     - Genet
     range: string
-  sfId:
-    name: sfId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/sfId
+  sf_id:
+    name: sf_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/sf_id
     description: SeaFoundry ID
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Genet
-    slot_uri: oct_schema:sfId
+    slot_uri: oct_schema:sf_id
     owner: Genet
     domain_of:
     - Genet
     range: string
-  clonalId:
-    name: clonalId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/clonalId
+  clonal_id:
+    name: clonal_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/clonal_id
     description: Clonal ID if applicable
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Genet
-    slot_uri: oct_schema:clonalId
+    slot_uri: oct_schema:clonal_id
     owner: Genet
     domain_of:
     - Genet
     range: string
-  accessionNumber:
-    name: accessionNumber
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/accessionNumber
+  accession_number:
+    name: accession_number
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/accession_number
     description: Accession number if applicable
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Genet
-    slot_uri: oct_schema:accessionNumber
+    slot_uri: oct_schema:accession_number
     owner: Genet
     domain_of:
     - Genet
     range: string
-  genetId:
-    name: genetId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genetId
+  genet_id:
+    name: genet_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genet_id
     description: ID of the genet
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    slot_uri: oct_schema:genetId
+    slot_uri: oct_schema:genet_id
     owner: Coral
     domain_of:
     - Coral
     range: string
-  speciesId:
-    name: speciesId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/speciesId
+  species_id:
+    name: species_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/species_id
     description: ID of the species
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    slot_uri: oct_schema:speciesId
+    slot_uri: oct_schema:species_id
     owner: Coral
     domain_of:
     - Genet
     - Coral
     range: string
-  groupId:
-    name: groupId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/groupId
+  group_id:
+    name: group_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/group_id
     description: ID of the group/location
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    slot_uri: oct_schema:groupId
+    slot_uri: oct_schema:group_id
     owner: Coral
     domain_of:
     - Coral
     range: string
-  coralTypeId:
-    name: coralTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/coralTypeId
+  coral_type_id:
+    name: coral_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/coral_type_id
     description: ID of the coral type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    slot_uri: oct_schema:coralTypeId
+    slot_uri: oct_schema:coral_type_id
     owner: Coral
     domain_of:
     - Coral
@@ -719,42 +719,42 @@ slots:
     domain_of:
     - Person
     range: string
-  imageUrl:
-    name: imageUrl
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/imageUrl
+  image_url:
+    name: image_url
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/image_url
     description: URL to the user's image
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Person
-    slot_uri: oct_schema:imageUrl
+    slot_uri: oct_schema:image_url
     owner: Person
     domain_of:
     - Person
     range: string
-  eventTypeId:
-    name: eventTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/eventTypeId
+  event_type_id:
+    name: event_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/event_type_id
     description: ID of the event type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Event
-    slot_uri: oct_schema:eventTypeId
+    slot_uri: oct_schema:event_type_id
     owner: Event
     domain_of:
     - Event
     range: string
-  recordId:
-    name: recordId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/recordId
+  record_id:
+    name: record_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/record_id
     description: ID of the record associated with the event
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Event
-    slot_uri: oct_schema:recordId
+    slot_uri: oct_schema:record_id
     owner: Event
     domain_of:
     - Event
     range: string
-  recordModelType:
-    name: recordModelType
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/recordModelType
+  record_model_type:
+    name: record_model_type
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/record_model_type
     description: Type of the record model
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Event
-    slot_uri: oct_schema:recordModelType
+    slot_uri: oct_schema:record_model_type
     owner: Event
     domain_of:
     - Event
@@ -894,20 +894,20 @@ slots:
     usage_slot_name: domain
     range: string
     required: true
-  Site_siteTypeId:
-    name: Site_siteTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/siteTypeId
+  Site_site_type_id:
+    name: Site_site_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/site_type_id
     description: ID of the site type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Site
-    is_a: siteTypeId
+    is_a: site_type_id
     domain: Site
-    slot_uri: oct_schema:siteTypeId
-    alias: siteTypeId
+    slot_uri: oct_schema:site_type_id
+    alias: site_type_id
     owner: Site
     domain_of:
     - Site
     is_usage_slot: true
-    usage_slot_name: siteTypeId
+    usage_slot_name: site_type_id
     range: string
     required: true
   Site_name:
@@ -926,20 +926,20 @@ slots:
     usage_slot_name: name
     range: string
     required: true
-  Location_groupTypeId:
-    name: Location_groupTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/groupTypeId
+  Location_group_type_id:
+    name: Location_group_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/group_type_id
     description: ID of the group type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Location
-    is_a: groupTypeId
+    is_a: group_type_id
     domain: Location
-    slot_uri: oct_schema:groupTypeId
-    alias: groupTypeId
+    slot_uri: oct_schema:group_type_id
+    alias: group_type_id
     owner: Location
     domain_of:
     - Location
     is_usage_slot: true
-    usage_slot_name: groupTypeId
+    usage_slot_name: group_type_id
     range: string
     required: true
   Location_name:
@@ -958,36 +958,36 @@ slots:
     usage_slot_name: name
     range: string
     required: true
-  Location_siteId:
-    name: Location_siteId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/siteId
+  Location_site_id:
+    name: Location_site_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/site_id
     description: ID of the site this entity belongs to
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Location
-    is_a: siteId
+    is_a: site_id
     domain: Location
-    slot_uri: oct_schema:siteId
-    alias: siteId
+    slot_uri: oct_schema:site_id
+    alias: site_id
     owner: Location
     domain_of:
     - Location
     is_usage_slot: true
-    usage_slot_name: siteId
+    usage_slot_name: site_id
     range: string
     required: true
-  Location_parentId:
-    name: Location_parentId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/parentId
+  Location_parent_id:
+    name: Location_parent_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/parent_id
     description: ID of the parent entity
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Location
-    is_a: parentId
+    is_a: parent_id
     domain: Location
-    slot_uri: oct_schema:parentId
-    alias: parentId
+    slot_uri: oct_schema:parent_id
+    alias: parent_id
     owner: Location
     domain_of:
     - Location
     is_usage_slot: true
-    usage_slot_name: parentId
+    usage_slot_name: parent_id
     range: string
     required: true
   Genet_name:
@@ -1006,52 +1006,52 @@ slots:
     usage_slot_name: name
     range: string
     required: true
-  Genet_speciesId:
-    name: Genet_speciesId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/speciesId
+  Genet_species_id:
+    name: Genet_species_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/species_id
     description: ID of the species
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    is_a: speciesId
+    is_a: species_id
     domain: Genet
-    slot_uri: oct_schema:speciesId
-    alias: speciesId
+    slot_uri: oct_schema:species_id
+    alias: species_id
     owner: Genet
     domain_of:
     - Genet
     is_usage_slot: true
-    usage_slot_name: speciesId
+    usage_slot_name: species_id
     range: string
     required: true
-  Genet_genetTypeId:
-    name: Genet_genetTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genetTypeId
+  Genet_genet_type_id:
+    name: Genet_genet_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genet_type_id
     description: ID of the genet type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Genet
-    is_a: genetTypeId
+    is_a: genet_type_id
     domain: Genet
-    slot_uri: oct_schema:genetTypeId
-    alias: genetTypeId
+    slot_uri: oct_schema:genet_type_id
+    alias: genet_type_id
     owner: Genet
     domain_of:
     - Genet
     is_usage_slot: true
-    usage_slot_name: genetTypeId
+    usage_slot_name: genet_type_id
     range: string
     required: true
-  Genet_sfId:
-    name: Genet_sfId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/sfId
+  Genet_sf_id:
+    name: Genet_sf_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/sf_id
     description: SeaFoundry ID
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Genet
-    is_a: sfId
+    is_a: sf_id
     domain: Genet
-    slot_uri: oct_schema:sfId
-    alias: sfId
+    slot_uri: oct_schema:sf_id
+    alias: sf_id
     owner: Genet
     domain_of:
     - Genet
     is_usage_slot: true
-    usage_slot_name: sfId
+    usage_slot_name: sf_id
     range: string
     required: true
   Coral_name:
@@ -1070,84 +1070,84 @@ slots:
     usage_slot_name: name
     range: string
     required: true
-  Coral_genetId:
-    name: Coral_genetId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genetId
+  Coral_genet_id:
+    name: Coral_genet_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genet_id
     description: ID of the genet
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    is_a: genetId
+    is_a: genet_id
     domain: Coral
-    slot_uri: oct_schema:genetId
-    alias: genetId
+    slot_uri: oct_schema:genet_id
+    alias: genet_id
     owner: Coral
     domain_of:
     - Coral
     is_usage_slot: true
-    usage_slot_name: genetId
+    usage_slot_name: genet_id
     range: string
     required: true
-  Coral_speciesId:
-    name: Coral_speciesId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/speciesId
+  Coral_species_id:
+    name: Coral_species_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/species_id
     description: ID of the species
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    is_a: speciesId
+    is_a: species_id
     domain: Coral
-    slot_uri: oct_schema:speciesId
-    alias: speciesId
+    slot_uri: oct_schema:species_id
+    alias: species_id
     owner: Coral
     domain_of:
     - Coral
     is_usage_slot: true
-    usage_slot_name: speciesId
+    usage_slot_name: species_id
     range: string
     required: true
-  Coral_siteId:
-    name: Coral_siteId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/siteId
+  Coral_site_id:
+    name: Coral_site_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/site_id
     description: ID of the site this entity belongs to
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Location
-    is_a: siteId
+    is_a: site_id
     domain: Coral
-    slot_uri: oct_schema:siteId
-    alias: siteId
+    slot_uri: oct_schema:site_id
+    alias: site_id
     owner: Coral
     domain_of:
     - Coral
     is_usage_slot: true
-    usage_slot_name: siteId
+    usage_slot_name: site_id
     range: string
     required: true
-  Coral_groupId:
-    name: Coral_groupId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/groupId
+  Coral_group_id:
+    name: Coral_group_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/group_id
     description: ID of the group/location
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    is_a: groupId
+    is_a: group_id
     domain: Coral
-    slot_uri: oct_schema:groupId
-    alias: groupId
+    slot_uri: oct_schema:group_id
+    alias: group_id
     owner: Coral
     domain_of:
     - Coral
     is_usage_slot: true
-    usage_slot_name: groupId
+    usage_slot_name: group_id
     range: string
     required: true
-  Coral_coralTypeId:
-    name: Coral_coralTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/coralTypeId
+  Coral_coral_type_id:
+    name: Coral_coral_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/coral_type_id
     description: ID of the coral type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Coral
-    is_a: coralTypeId
+    is_a: coral_type_id
     domain: Coral
-    slot_uri: oct_schema:coralTypeId
-    alias: coralTypeId
+    slot_uri: oct_schema:coral_type_id
+    alias: coral_type_id
     owner: Coral
     domain_of:
     - Coral
     is_usage_slot: true
-    usage_slot_name: coralTypeId
+    usage_slot_name: coral_type_id
     range: string
     required: true
   Coral_quantity:
@@ -1263,52 +1263,52 @@ slots:
     usage_slot_name: email
     range: string
     required: true
-  Event_eventTypeId:
-    name: Event_eventTypeId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/eventTypeId
+  Event_event_type_id:
+    name: Event_event_type_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/event_type_id
     description: ID of the event type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Event
-    is_a: eventTypeId
+    is_a: event_type_id
     domain: Event
-    slot_uri: oct_schema:eventTypeId
-    alias: eventTypeId
+    slot_uri: oct_schema:event_type_id
+    alias: event_type_id
     owner: Event
     domain_of:
     - Event
     is_usage_slot: true
-    usage_slot_name: eventTypeId
+    usage_slot_name: event_type_id
     range: string
     required: true
-  Event_recordId:
-    name: Event_recordId
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/recordId
+  Event_record_id:
+    name: Event_record_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/record_id
     description: ID of the record associated with the event
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Event
-    is_a: recordId
+    is_a: record_id
     domain: Event
-    slot_uri: oct_schema:recordId
-    alias: recordId
+    slot_uri: oct_schema:record_id
+    alias: record_id
     owner: Event
     domain_of:
     - Event
     is_usage_slot: true
-    usage_slot_name: recordId
+    usage_slot_name: record_id
     range: string
     required: true
-  Event_recordModelType:
-    name: Event_recordModelType
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/recordModelType
+  Event_record_model_type:
+    name: Event_record_model_type
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/record_model_type
     description: Type of the record model
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/Event
-    is_a: recordModelType
+    is_a: record_model_type
     domain: Event
-    slot_uri: oct_schema:recordModelType
-    alias: recordModelType
+    slot_uri: oct_schema:record_model_type
+    alias: record_model_type
     owner: Event
     domain_of:
     - Event
     is_usage_slot: true
-    usage_slot_name: recordModelType
+    usage_slot_name: record_model_type
     range: ModelType
     required: true
   SpeciesRegisterEntry_code:
@@ -1402,11 +1402,11 @@ classes:
     abstract: true
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
     class_uri: oct_schema:Record
   InventoryRecord:
     name: InventoryRecord
@@ -1417,13 +1417,13 @@ classes:
     abstract: true
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
-    - urlPath
-    - internalPath
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
+    - url_path
+    - internal_path
     - slug
     class_uri: oct_schema:InventoryRecord
   Organization:
@@ -1434,18 +1434,18 @@ classes:
     is_a: InventoryRecord
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
-    - urlPath
-    - internalPath
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
+    - url_path
+    - internal_path
     - slug
     - Organization_name
     - Organization_domain
-    - siteTypeIds
-    - speciesIds
+    - site_type_ids
+    - species_ids
     slot_usage:
       name:
         name: name
@@ -1462,21 +1462,21 @@ classes:
     is_a: InventoryRecord
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
-    - urlPath
-    - internalPath
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
+    - url_path
+    - internal_path
     - slug
-    - Site_siteTypeId
+    - Site_site_type_id
     - Site_name
-    - groupIdHierarchy
+    - group_id_hierarchy
     - description
     slot_usage:
-      siteTypeId:
-        name: siteTypeId
+      site_type_id:
+        name: site_type_id
         required: true
       name:
         name: name
@@ -1490,32 +1490,32 @@ classes:
     is_a: InventoryRecord
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
-    - urlPath
-    - internalPath
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
+    - url_path
+    - internal_path
     - slug
-    - Location_groupTypeId
+    - Location_group_type_id
     - Location_name
-    - Location_siteId
-    - Location_parentId
+    - Location_site_id
+    - Location_parent_id
     - description
     - capacity
     slot_usage:
-      groupTypeId:
-        name: groupTypeId
+      group_type_id:
+        name: group_type_id
         required: true
       name:
         name: name
         required: true
-      siteId:
-        name: siteId
+      site_id:
+        name: site_id
         required: true
-      parentId:
-        name: parentId
+      parent_id:
+        name: parent_id
         required: true
     class_uri: oct_schema:Location
   Genet:
@@ -1526,32 +1526,32 @@ classes:
     is_a: InventoryRecord
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
-    - urlPath
-    - internalPath
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
+    - url_path
+    - internal_path
     - slug
     - Genet_name
-    - Genet_speciesId
-    - Genet_genetTypeId
-    - Genet_sfId
-    - clonalId
-    - accessionNumber
+    - Genet_species_id
+    - Genet_genet_type_id
+    - Genet_sf_id
+    - clonal_id
+    - accession_number
     slot_usage:
       name:
         name: name
         required: true
-      speciesId:
-        name: speciesId
+      species_id:
+        name: species_id
         required: true
-      genetTypeId:
-        name: genetTypeId
+      genet_type_id:
+        name: genet_type_id
         required: true
-      sfId:
-        name: sfId
+      sf_id:
+        name: sf_id
         required: true
     class_uri: oct_schema:Genet
   Coral:
@@ -1562,40 +1562,40 @@ classes:
     is_a: InventoryRecord
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
-    - urlPath
-    - internalPath
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
+    - url_path
+    - internal_path
     - slug
     - Coral_name
-    - Coral_genetId
-    - Coral_speciesId
-    - Coral_siteId
-    - Coral_groupId
-    - Coral_coralTypeId
+    - Coral_genet_id
+    - Coral_species_id
+    - Coral_site_id
+    - Coral_group_id
+    - Coral_coral_type_id
     - Coral_quantity
     - coral_size
     slot_usage:
       name:
         name: name
         required: true
-      genetId:
-        name: genetId
+      genet_id:
+        name: genet_id
         required: true
-      speciesId:
-        name: speciesId
+      species_id:
+        name: species_id
         required: true
-      siteId:
-        name: siteId
+      site_id:
+        name: site_id
         required: true
-      groupId:
-        name: groupId
+      group_id:
+        name: group_id
         required: true
-      coralTypeId:
-        name: coralTypeId
+      coral_type_id:
+        name: coral_type_id
         required: true
       quantity:
         name: quantity
@@ -1633,14 +1633,14 @@ classes:
     is_a: Record
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
     - Person_name
     - Person_email
-    - imageUrl
+    - image_url
     slot_usage:
       name:
         name: name
@@ -1657,26 +1657,26 @@ classes:
     is_a: InventoryRecord
     slots:
     - id
-    - createdAt
-    - createdById
-    - updatedAt
-    - updatedById
-    - organizationId
-    - urlPath
-    - internalPath
+    - created_at
+    - created_by_id
+    - updated_at
+    - updated_by_id
+    - organization_id
+    - url_path
+    - internal_path
     - slug
-    - Event_eventTypeId
-    - Event_recordId
-    - Event_recordModelType
+    - Event_event_type_id
+    - Event_record_id
+    - Event_record_model_type
     slot_usage:
-      eventTypeId:
-        name: eventTypeId
+      event_type_id:
+        name: event_type_id
         required: true
-      recordId:
-        name: recordId
+      record_id:
+        name: record_id
         required: true
-      recordModelType:
-        name: recordModelType
+      record_model_type:
+        name: record_model_type
         required: true
     class_uri: oct_schema:Event
   SpeciesRegisterEntry:
@@ -1727,7 +1727,7 @@ classes:
     class_uri: oct_schema:OrganizationRegisterEntry
 metamodel_version: 1.7.0
 source_file: oct_schema.yaml
-source_file_date: '2026-01-07T01:25:27'
+source_file_date: '2026-01-07T01:48:06'
 source_file_size: 634
-generation_date: '2026-01-07T01:25:37'
+generation_date: '2026-01-07T01:48:15'
 

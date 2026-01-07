@@ -271,17 +271,17 @@
       Record &lt;|-- Person
         click Person href "../Person/"
 
-      Record : createdAt
+      Record : created_at
 
-      Record : createdById
+      Record : created_by_id
 
       Record : id
 
-      Record : organizationId
+      Record : organization_id
 
-      Record : updatedAt
+      Record : updated_at
 
-      Record : updatedById
+      Record : updated_by_id
 
 
 </div>
@@ -311,31 +311,31 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../createdAt/">createdAt</a></td>
+<td><a href="../created_at/">created_at</a></td>
 <td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>Timestamp when the record was created</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../createdById/">createdById</a></td>
+<td><a href="../created_by_id/">created_by_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>ID of the user who created the record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../updatedAt/">updatedAt</a></td>
+<td><a href="../updated_at/">updated_at</a></td>
 <td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>Timestamp when the record was last updated</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../updatedById/">updatedById</a></td>
+<td><a href="../updated_by_id/">updated_by_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>ID of the user who last updated the record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../organizationId/">organizationId</a></td>
+<td><a href="../organization_id/">organization_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>ID of the organization this record belongs to</td>
 <td>direct</td>
@@ -376,11 +376,11 @@ from_schema: https://w3id.org/OpenCoralTools/oct-schema
 abstract: true
 slots:
 - id
-- createdAt
-- createdById
-- updatedAt
-- updatedById
-- organizationId
+- created_at
+- created_by_id
+- updated_at
+- updated_by_id
+- organization_id
 
 </code></pre>
 </details>
@@ -403,52 +403,52 @@ attributes:
     - Record
     - Species
     range: uriorcurie
-  createdAt:
-    name: createdAt
+  created_at:
+    name: created_at
     description: Timestamp when the record was created
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: createdAt
+    alias: created_at
     owner: Record
     domain_of:
     - Record
     range: datetime
-  createdById:
-    name: createdById
+  created_by_id:
+    name: created_by_id
     description: ID of the user who created the record
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: createdById
+    alias: created_by_id
     owner: Record
     domain_of:
     - Record
     range: string
-  updatedAt:
-    name: updatedAt
+  updated_at:
+    name: updated_at
     description: Timestamp when the record was last updated
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: updatedAt
+    alias: updated_at
     owner: Record
     domain_of:
     - Record
     range: datetime
-  updatedById:
-    name: updatedById
+  updated_by_id:
+    name: updated_by_id
     description: ID of the user who last updated the record
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: updatedById
+    alias: updated_by_id
     owner: Record
     domain_of:
     - Record
     range: string
-  organizationId:
-    name: organizationId
+  organization_id:
+    name: organization_id
     description: ID of the organization this record belongs to
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: organizationId
+    alias: organization_id
     owner: Record
     domain_of:
     - Record

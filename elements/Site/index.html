@@ -266,31 +266,31 @@
       InventoryRecord &lt;|-- Site
         click InventoryRecord href "../InventoryRecord/"
 
-      Site : createdAt
+      Site : created_at
 
-      Site : createdById
+      Site : created_by_id
 
       Site : description
 
-      Site : groupIdHierarchy
+      Site : group_id_hierarchy
 
       Site : id
 
-      Site : internalPath
+      Site : internal_path
 
       Site : name
 
-      Site : organizationId
+      Site : organization_id
 
-      Site : siteTypeId
+      Site : site_type_id
 
       Site : slug
 
-      Site : updatedAt
+      Site : updated_at
 
-      Site : updatedById
+      Site : updated_by_id
 
-      Site : urlPath
+      Site : url_path
 
 
 </div>
@@ -316,7 +316,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../siteTypeId/">siteTypeId</a></td>
+<td><a href="../site_type_id/">site_type_id</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>ID of the site type</td>
 <td>direct</td>
@@ -328,7 +328,7 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../groupIdHierarchy/">groupIdHierarchy</a></td>
+<td><a href="../group_id_hierarchy/">group_id_hierarchy</a></td>
 <td>* <br/> <a href="../String/">String</a></td>
 <td>Hierarchy of group IDs</td>
 <td>direct</td>
@@ -340,13 +340,13 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../urlPath/">urlPath</a></td>
+<td><a href="../url_path/">url_path</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>URL friendly path to this resource</td>
 <td><a href="../InventoryRecord/">InventoryRecord</a></td>
 </tr>
 <tr>
-<td><a href="../internalPath/">internalPath</a></td>
+<td><a href="../internal_path/">internal_path</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Internal path structure</td>
 <td><a href="../InventoryRecord/">InventoryRecord</a></td>
@@ -364,31 +364,31 @@
 <td><a href="../Record/">Record</a></td>
 </tr>
 <tr>
-<td><a href="../createdAt/">createdAt</a></td>
+<td><a href="../created_at/">created_at</a></td>
 <td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>Timestamp when the record was created</td>
 <td><a href="../Record/">Record</a></td>
 </tr>
 <tr>
-<td><a href="../createdById/">createdById</a></td>
+<td><a href="../created_by_id/">created_by_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>ID of the user who created the record</td>
 <td><a href="../Record/">Record</a></td>
 </tr>
 <tr>
-<td><a href="../updatedAt/">updatedAt</a></td>
+<td><a href="../updated_at/">updated_at</a></td>
 <td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>Timestamp when the record was last updated</td>
 <td><a href="../Record/">Record</a></td>
 </tr>
 <tr>
-<td><a href="../updatedById/">updatedById</a></td>
+<td><a href="../updated_by_id/">updated_by_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>ID of the user who last updated the record</td>
 <td><a href="../Record/">Record</a></td>
 </tr>
 <tr>
-<td><a href="../organizationId/">organizationId</a></td>
+<td><a href="../organization_id/">organization_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>ID of the organization this record belongs to</td>
 <td><a href="../Record/">Record</a></td>
@@ -428,13 +428,13 @@ description: Represents a physical site
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 is_a: InventoryRecord
 slots:
-- siteTypeId
+- site_type_id
 - name
-- groupIdHierarchy
+- group_id_hierarchy
 - description
 slot_usage:
-  siteTypeId:
-    name: siteTypeId
+  site_type_id:
+    name: site_type_id
     required: true
   name:
     name: name
@@ -449,19 +449,19 @@ description: Represents a physical site
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 is_a: InventoryRecord
 slot_usage:
-  siteTypeId:
-    name: siteTypeId
+  site_type_id:
+    name: site_type_id
     required: true
   name:
     name: name
     required: true
 attributes:
-  siteTypeId:
-    name: siteTypeId
+  site_type_id:
+    name: site_type_id
     description: ID of the site type
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: siteTypeId
+    alias: site_type_id
     owner: Site
     domain_of:
     - Site
@@ -484,12 +484,12 @@ attributes:
     - OrganizationRegisterEntry
     range: string
     required: true
-  groupIdHierarchy:
-    name: groupIdHierarchy
+  group_id_hierarchy:
+    name: group_id_hierarchy
     description: Hierarchy of group IDs
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: groupIdHierarchy
+    alias: group_id_hierarchy
     owner: Site
     domain_of:
     - Site
@@ -506,22 +506,22 @@ attributes:
     - Site
     - Location
     range: string
-  urlPath:
-    name: urlPath
+  url_path:
+    name: url_path
     description: URL friendly path to this resource
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: urlPath
+    alias: url_path
     owner: Site
     domain_of:
     - InventoryRecord
     range: string
-  internalPath:
-    name: internalPath
+  internal_path:
+    name: internal_path
     description: Internal path structure
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: internalPath
+    alias: internal_path
     owner: Site
     domain_of:
     - InventoryRecord
@@ -549,52 +549,52 @@ attributes:
     - Species
     range: uriorcurie
     required: true
-  createdAt:
-    name: createdAt
+  created_at:
+    name: created_at
     description: Timestamp when the record was created
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: createdAt
+    alias: created_at
     owner: Site
     domain_of:
     - Record
     range: datetime
-  createdById:
-    name: createdById
+  created_by_id:
+    name: created_by_id
     description: ID of the user who created the record
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: createdById
+    alias: created_by_id
     owner: Site
     domain_of:
     - Record
     range: string
-  updatedAt:
-    name: updatedAt
+  updated_at:
+    name: updated_at
     description: Timestamp when the record was last updated
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: updatedAt
+    alias: updated_at
     owner: Site
     domain_of:
     - Record
     range: datetime
-  updatedById:
-    name: updatedById
+  updated_by_id:
+    name: updated_by_id
     description: ID of the user who last updated the record
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: updatedById
+    alias: updated_by_id
     owner: Site
     domain_of:
     - Record
     range: string
-  organizationId:
-    name: organizationId
+  organization_id:
+    name: organization_id
     description: ID of the organization this record belongs to
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: organizationId
+    alias: organization_id
     owner: Site
     domain_of:
     - Record
