@@ -1,0 +1,77 @@
+id: https://opencoral.tools/oct-schema/core/types
+name: oct-schema-core-types
+title: OCT Schema Core Types
+description: Common types and reusable classes for the OCT Core Schema
+
+imports:
+  - linkml:types
+
+types:
+  DateTime:
+    uri: xsd:dateTime
+    base: str
+    description: A timestamp in ISO 8601 format (e.g. 2023-01-01T12:00:00Z)
+
+  Identifier:
+    uri: xsd:string
+    base: str
+    description: A unique identifier for a record (URI, UUID, or CURIE)
+
+classes:
+  GeoPoint:
+    description: A geographic coordinate
+    attributes:
+      decimalLatitude:
+        range: float
+        required: true
+        minimum_value: -90
+        maximum_value: 90
+      decimalLongitude:
+        range: float
+        required: true
+        minimum_value: -180
+        maximum_value: 180
+      geodeticDatum:
+        range: string
+        ifabsent: string(WGS84)
+      coordinateUncertaintyMeters:
+        range: float
+        minimum_value: 0
+
+  MeasureValue:
+    description: A measured value with a unit
+    attributes:
+      value:
+        range: float
+        required: true
+      unit:
+        range: string
+        required: true
+        description: UCUM unit code recommended
+      method:
+        range: string
+        description: Method used to obtain the measurement
+
+  EntityRef:
+    description: A generic reference to another entity
+    attributes:
+      id:
+        range: string
+        required: true
+      type:
+        range: string
+      label:
+        range: string
+
+  TaxonRef:
+    description: A reference to a taxonomic entity
+    attributes:
+      name:
+        range: string
+        required: true
+        description: Scientific name or label
+      taxonId:
+        range: string
+        description: External identifier (e.g. LSID)
+      rank:
+        range: string

@@ -1,0 +1,14 @@
+id: https://opencoral.tools/oct-schema/coral/event
+name: oct-schema-coral-event
+title: OCT Schema Coral Event
+description: Coral-specific event extensions
+
+imports:
+  - ../core/event
+  - linkml:types
+
+classes:
+  CoralEvent:
+    is_a: Event
+    description: An event in the coral domain
+    # Future: restrict subjects to CoralSpecimenRecord etc.

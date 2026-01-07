@@ -1,0 +1,27 @@
+id: https://opencoral.tools/oct-schema/core/person
+name: oct-schema-core-person
+title: OCT Schema Core Person
+description: Person/User model for OCT Schema
+
+imports:
+  - ./record
+  - linkml:types
+
+classes:
+  Person:
+    is_a: Record
+    description: Represents a human user or agent
+    attributes:
+      recordType:
+        range: string
+        designates_type: true
+        pattern: "^Person$"
+        slot_uri: rdf:type
+      name:
+        range: string
+        required: true
+      email:
+        range: string
+        required: true
+      imageUrl:
+        range: string

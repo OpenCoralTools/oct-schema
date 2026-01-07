@@ -1,0 +1,23 @@
+id: https://opencoral.tools/oct-schema/coral/specimen
+name: oct-schema-coral-specimen
+title: OCT Schema Coral Specimen
+description: Coral-specific specimen extensions
+
+imports:
+  - ../core/specimen
+  - ./genet
+  - linkml:types
+
+classes:
+  CoralSpecimenRecord:
+    is_a: SpecimenRecord
+    description: A specimen record representing a coral
+    slot_usage:
+      taxon:
+        range: CoralTaxonRef
+        required: true
+      geneticGroupRef:
+        range: GenetRecord
+        description: Reference to the coral genet
+      inventoryUnitType:
+        range: InventoryUnitType # Uses core enum, effectively same, but declared

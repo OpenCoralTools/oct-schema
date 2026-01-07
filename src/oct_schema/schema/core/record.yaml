@@ -1,0 +1,37 @@
+id: https://opencoral.tools/oct-schema/core/record
+name: oct-schema-core-record
+title: OCT Schema Core Record
+description: Base record model for OCT Schema
+
+imports:
+  - ./types
+  - linkml:types
+
+classes:
+  Record:
+    abstract: true
+    description: Base class for all authoritative records
+    attributes:
+      recordId:
+        range: Identifier
+        required: true
+        identifier: true
+      recordType:
+        range: string
+        required: true
+        designates_type: true
+      orgId:
+        range: Identifier
+        required: true
+        description: The organization that owns/issued this record
+
+      # Provenance / Audit trail
+      createdAt:
+        range: DateTime
+      createdBy:
+        range: Identifier
+        description: ID of the Agent (Person/Service) who created this
+      updatedAt:
+        range: DateTime
+      updatedBy:
+        range: Identifier

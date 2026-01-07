@@ -1,0 +1,13 @@
+id: https://opencoral.tools/oct-schema/core
+name: oct-schema-core
+title: OCT Schema Core
+description: Core schema module for Open Coral Tools, defining Specimen, Event, and Location models.
+
+imports:
+  - ./types
+  - ./record
+  - ./person
+  - ./organization
+  - ./location
+  - ./specimen
+  - ./event

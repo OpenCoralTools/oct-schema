@@ -1,0 +1,117 @@
+id: https://opencoral.tools/oct-schema/core/location
+name: oct-schema-core-location
+title: OCT Schema Core Location
+description: Location model for OCT Schema
+
+imports:
+  - ./types
+  - ./record
+  - linkml:types
+
+enums:
+  LocationType:
+    permissible_values:
+      organization:
+      site:
+      container:
+      position:
+
+  SiteType:
+    permissible_values:
+      in_situ_nursery:
+      ex_situ_nursery:
+      gene_bank:
+      outplant_site:
+      lab:
+      other:
+
+  ContainerType:
+    permissible_values:
+      system:
+      tank:
+      tray:
+      rack:
+      table:
+      tree:
+      tree_branch:
+      rebar_table:
+      other:
+
+  PositionType:
+    permissible_values:
+      slot:
+      cell:
+      quadrant:
+      row:
+      column:
+      other:
+
+classes:
+  LocationRef:
+    description: A lightweight reference to a location
+    attributes:
+      locationId:
+        range: string
+        required: true
+      locationType:
+        range: LocationType
+      label:
+        range: string
+
+  ParentLocationRef:
+    is_a: LocationRef
+    description: Reference to a parent location with structural type information
+    attributes:
+      siteType:
+        range: SiteType
+      containerType:
+        range: ContainerType
+      name:
+        range: string
+
+  LocationRecord:
+    is_a: Record
+    description: A record representing a physical or logical location
+    attributes:
+      recordType:
+        range: string
+        designates_type: true
+        pattern: "^Location$"
+        required: true
+        slot_uri: rdf:type
+      # recordId and orgId inherited from Record
+      locationType:
+        range: LocationType
+        required: true
+      name:
+        range: string
+        required: true
+
+      # Parent hierarchy
+      parentLocationRef:
+        range: ParentLocationRef
+
+      # Subtype discriminators
+      siteType:
+        range: SiteType
+      containerType:
+        range: ContainerType
+      positionType:
+        range: PositionType
+
+      # Spatial data
+      geo:
+        range: GeoPoint
+      depth:
+        range: MeasureValue
+
+      # Flexible properties
+      # LinkML doesn't have "additionalProperties: true" in the same way,
+      # but we can define a catch-all or just omit strictness.
+      # We'll add specific structured properties if known, or leave for extensions.
+
+      notes:
+        range: string
+      codes:
+        range: string
+        multivalued: true # Simplified from Dict[str, str] for now, or we can use a class

@@ -1,32 +1,11 @@
-id: https://w3id.org/OpenCoralTools/oct-schema
+id: https://opencoral.tools/oct-schema
 name: oct-schema
-title: oct-schema
-version: 0.0.1
-description: Data standards for coral research and conservation
-license: MIT
-see_also:
-  - https://OpenCoralTools.github.io/oct-schema
-
+title: Open Coral Tools Schema
+description: Top-level schema combining Core and Coral modules.
 prefixes:
-  oct_schema: https://w3id.org/OpenCoralTools/oct-schema/
   linkml: https://w3id.org/linkml/
-  schema: http://schema.org/
-
-default_prefix: oct_schema
-default_range: string
-
+  xsd: http://www.w3.org/2001/XMLSchema#
+  oct: https://opencoral.tools/oct-schema/
 imports:
   - linkml:types
-  - common
-  - record
-  - inventory_record
-  - organization
-  - site
-  - location
-  - genet
-  - coral
-  - species
-  - person
-  - event
-  - registry/species_register_entry
-  - registry/organization_register_entry
+  - coral/schema

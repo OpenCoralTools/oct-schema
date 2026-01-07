@@ -1,0 +1,11 @@
+id: https://opencoral.tools/oct-schema/coral
+name: oct-schema-coral
+title: OCT Schema Coral
+description: Coral domain schema module for Open Coral Tools.
+
+imports:
+  - ../core/schema
+  - ./genet
+  - ./location
+  - ./specimen
+  - ./event

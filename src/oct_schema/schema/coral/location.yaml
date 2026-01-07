@@ -1,0 +1,17 @@
+id: https://opencoral.tools/oct-schema/coral/location
+name: oct-schema-coral-location
+title: OCT Schema Coral Location
+description: Coral-specific location extensions
+
+imports:
+  - ../core/location
+  - linkml:types
+
+classes:
+  CoralLocationRecord:
+    is_a: LocationRecord
+    description: A location record used in coral restoration (extensible placeholder)
+    # Future: specialize siteType or containerType enums here if needed
+    # slot_usage:
+    #   containerType:
+    #     range: CoralContainerType

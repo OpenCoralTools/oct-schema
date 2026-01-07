@@ -1,0 +1,34 @@
+id: https://opencoral.tools/oct-schema/core/organization
+name: oct-schema-core-organization
+title: OCT Schema Core Organization
+description: Organization model for OCT Schema
+
+imports:
+  - ./record
+  - ./location
+  - linkml:types
+
+classes:
+  Organization:
+    is_a: Record
+    description: Represents an organization
+    attributes:
+      recordType:
+        range: string
+        designates_type: true
+        pattern: "^Organization$"
+        slot_uri: rdf:type
+      name:
+        range: string
+        required: true
+      domain:
+        range: string
+        description: Domain name associated with the organization
+
+      # Capability/Config flags (formerly site_type_ids, species_ids)
+      supportedSiteTypes:
+        range: SiteType
+        multivalued: true
+      supportedSpecies:
+        range: string # Reference to species codes
+        multivalued: true

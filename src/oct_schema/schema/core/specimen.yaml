@@ -1,0 +1,142 @@
+id: https://opencoral.tools/oct-schema/core/specimen
+name: oct-schema-core-specimen
+title: OCT Schema Core Specimen
+description: Specimen record model for OCT Schema
+
+imports:
+  - ./types
+  - ./location
+  - ./record
+  - linkml:types
+
+enums:
+  InventoryUnitType:
+    permissible_values:
+      individual:
+      colony:
+      fragment:
+      substrate_unit:
+      propagule_batch:
+      sample:
+      unknown:
+
+  DevelopmentalStage:
+    permissible_values:
+      gamete:
+      embryo:
+      larva:
+      recruit:
+      juvenile:
+      adult:
+      unknown:
+
+  HealthStatus:
+    permissible_values:
+      healthy:
+      stressed:
+      bleached:
+      diseased:
+      dead:
+      unknown:
+
+  DispositionStatus:
+    permissible_values:
+      available:
+      reserved:
+      quarantine:
+      grow_out:
+      broodstock:
+      research_only:
+      unknown:
+
+classes:
+  Quantity:
+    description: Quantification of the specimen (count, size, etc.)
+    attributes:
+      count:
+        range: float
+        required: true
+        minimum_value: 0
+      countUncertainty:
+        range: float
+        minimum_value: 0
+      surfaceArea:
+        range: MeasureValue
+      volume:
+        range: MeasureValue
+      biomass:
+        range: MeasureValue
+      linearSize:
+        range: MeasureValue
+
+  SpecimenState:
+    description: Derived state of the specimen
+    attributes:
+      disposition:
+        range: DispositionStatus
+      health:
+        range: HealthStatus
+      readyForPropagation:
+        range: boolean
+      readyForOutplant:
+        range: boolean
+
+  SpecimenRecordSource:
+    attributes:
+      datasetId:
+        range: string
+      externalRecordId:
+        range: string
+      ingestedAt:
+        range: DateTime
+
+  SpecimenRecord:
+    is_a: Record
+    description: A record representing a biological specimen or group
+    attributes:
+      recordType:
+        range: string
+        designates_type: true
+        pattern: "^Specimen$"
+        required: true
+        slot_uri: rdf:type
+      # recordId and orgId inherited from Record
+      asOf:
+        range: DateTime
+        required: true
+
+      taxon:
+        range: TaxonRef
+        required: true
+
+      geneticGroupRef:
+        range: EntityRef
+        description: Reference to a genet or other genetic grouping
+
+      inventoryUnitType:
+        range: InventoryUnitType
+        required: true
+
+      developmentalStage:
+        range: DevelopmentalStage
+
+      quantity:
+        range: Quantity
+        required: true
+
+      locationRef:
+        range: LocationRef
+        required: true
+
+      state:
+        range: SpecimenState
+
+      tags:
+        range: string
+        multivalued: true
+
+      notes:
+        range: string
+
+      source:
+        range: SpecimenRecordSource

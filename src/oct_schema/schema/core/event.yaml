@@ -1,0 +1,114 @@
+id: https://opencoral.tools/oct-schema/core/event
+name: oct-schema-core-event
+title: OCT Schema Core Event
+description: Event model for OCT Schema
+
+imports:
+  - ./types
+  - ./location
+  - ./record
+  - linkml:types
+
+enums:
+  EventType:
+    permissible_values:
+      create:
+      transfer:
+      split:
+      merge:
+      measurement:
+      state:
+
+  RecordTypeEnum:
+    permissible_values:
+      Specimen:
+      Location:
+      Genet:
+      Other:
+
+classes:
+  EffectiveTime:
+    description: Time of the event (moment or interval)
+    attributes:
+      occurredAt:
+        range: DateTime
+      startAt:
+        range: DateTime
+      endAt:
+        range: DateTime
+    # Validation rule: either occurredAt OR startAt must be present
+
+  SubjectRef:
+    description: Reference to a record affected by the event
+    attributes:
+      recordId:
+        range: string
+        required: true
+      recordType:
+        range: RecordTypeEnum
+        required: true
+      role:
+        range: string
+        description: Role in the event (source, destination, etc.)
+
+  EventPayload:
+    description: Abstract base for event-specific payloads
+    abstract: true
+
+  StateEventPayload:
+    is_a: EventPayload
+    attributes:
+      stateType:
+        range: string
+        required: true
+        description: e.g. health, disposition
+      stateValue:
+        range: string # union of string/bool/number in JSON, LinkML uses Any or specific type
+        required: true
+
+  EventSource:
+    attributes:
+      datasetId:
+        range: string
+      externalEventId:
+        range: string
+      ingestedAt:
+        range: DateTime
+
+  Event:
+    is_a: Record
+    description: An event modifying one or more records
+    attributes:
+      recordType:
+        range: string
+        designates_type: true
+        pattern: "^Event$"
+        required: true
+        slot_uri: rdf:type
+      eventType:
+        range: EventType
+        required: true
+
+      effectiveTime:
+        range: EffectiveTime
+        required: true
+
+      subjects:
+        range: SubjectRef
+        multivalued: true
+        required: true
+        minimum_cardinality: 1
+
+      location:
+        range: LocationRef
+        description: Context location for the event
+
+      payload:
+        range: EventPayload
+        description: Type-specific event data
+
+      notes:
+        range: string
+
+      source:
+        range: EventSource

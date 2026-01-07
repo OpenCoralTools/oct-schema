@@ -1,0 +1,116 @@
+id: https://opencoral.tools/oct-schema/coral/genet
+name: oct-schema-coral-genet
+title: OCT Schema Coral Genet
+description: Genet record model for Coral domain
+
+imports:
+  - ../core/types
+  - ../core/location
+  - ../core/record
+  - linkml:types
+
+enums:
+  GenetOriginType:
+    permissible_values:
+      wild_collection:
+      sexual_cohort_root:
+      unknown:
+      other:
+
+classes:
+  CoralTaxonRef:
+    description: Coral-specific taxon reference with species code
+    attributes:
+      speciesCode:
+        range: string
+        required: true
+        pattern: "^[a-z0-9]{4}$"
+        description: Registry-backed 4-char species code (e.g., 'apal')
+      scientificName:
+        range: string
+      taxonId:
+        range: string
+
+  GenetOrigin:
+    attributes:
+      originType:
+        range: GenetOriginType
+      collectedAt:
+        range: DateTime
+      collectionLocationRef:
+        range: LocationRef
+      notes:
+        range: string
+
+  GenotypingMetadata:
+    attributes:
+      method:
+        range: string
+        description: e.g. SNP panel name, microsatellites
+      lab:
+        range: string
+      assayDate:
+        range: DateTime
+      associatedSequences:
+        range: string
+        multivalued: true
+
+  GenetPedigree:
+    attributes:
+      damGenetId:
+        range: string
+      sireGenetId:
+        range: string
+      cohortId:
+        range: string
+
+  GenetRecordSource:
+    attributes:
+      datasetId:
+        range: string
+      externalRecordId:
+        range: string
+      ingestedAt:
+        range: DateTime
+
+  GenetRecord:
+    is_a: Record
+    description: Coral-specific genet record (clonal lineage)
+    attributes:
+      recordType:
+        range: string
+        designates_type: true
+        pattern: "^Genet$"
+        required: true
+        slot_uri: rdf:type
+      # recordId and orgId inherited from Record
+
+      createdAt:
+        range: DateTime
+        required: true
+      updatedAt:
+        range: DateTime
+
+      taxon:
+        range: CoralTaxonRef
+        required: true
+
+      genetCode:
+        range: string
+        required: true
+        description: Program-level genet identifier
+
+      origin:
+        range: GenetOrigin
+
+      genotyping:
+        range: GenotypingMetadata
+
+      pedigree:
+        range: GenetPedigree
+
+      notes:
+        range: string
+
+      source:
+        range: GenetRecordSource
