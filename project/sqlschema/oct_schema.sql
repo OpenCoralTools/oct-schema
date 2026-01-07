@@ -310,13 +310,13 @@ CREATE TABLE "Organization_siteTypeIds" (
 	"siteTypeIds" TEXT,
 	PRIMARY KEY ("Organization_id", "siteTypeIds"),
 	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
-);CREATE INDEX "ix_Organization_siteTypeIds_Organization_id" ON "Organization_siteTypeIds" ("Organization_id");CREATE INDEX "ix_Organization_siteTypeIds_siteTypeIds" ON "Organization_siteTypeIds" ("siteTypeIds");
+);CREATE INDEX "ix_Organization_siteTypeIds_siteTypeIds" ON "Organization_siteTypeIds" ("siteTypeIds");CREATE INDEX "ix_Organization_siteTypeIds_Organization_id" ON "Organization_siteTypeIds" ("Organization_id");
 CREATE TABLE "Organization_speciesIds" (
 	"Organization_id" TEXT,
 	"speciesIds" TEXT,
 	PRIMARY KEY ("Organization_id", "speciesIds"),
 	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
-);CREATE INDEX "ix_Organization_speciesIds_speciesIds" ON "Organization_speciesIds" ("speciesIds");CREATE INDEX "ix_Organization_speciesIds_Organization_id" ON "Organization_speciesIds" ("Organization_id");
+);CREATE INDEX "ix_Organization_speciesIds_Organization_id" ON "Organization_speciesIds" ("Organization_id");CREATE INDEX "ix_Organization_speciesIds_speciesIds" ON "Organization_speciesIds" ("speciesIds");
 CREATE TABLE "Site_groupIdHierarchy" (
 	"Site_id" TEXT,
 	"groupIdHierarchy" TEXT,
@@ -328,7 +328,7 @@ CREATE TABLE "SpeciesRegisterEntry_external_references" (
 	external_references TEXT,
 	PRIMARY KEY ("SpeciesRegisterEntry_code", external_references),
 	FOREIGN KEY("SpeciesRegisterEntry_code") REFERENCES "SpeciesRegisterEntry" (code)
-);CREATE INDEX "ix_SpeciesRegisterEntry_external_references_external_references" ON "SpeciesRegisterEntry_external_references" (external_references);CREATE INDEX "ix_SpeciesRegisterEntry_external_references_SpeciesRegisterEntry_code" ON "SpeciesRegisterEntry_external_references" ("SpeciesRegisterEntry_code");
+);CREATE INDEX "ix_SpeciesRegisterEntry_external_references_SpeciesRegisterEntry_code" ON "SpeciesRegisterEntry_external_references" ("SpeciesRegisterEntry_code");CREATE INDEX "ix_SpeciesRegisterEntry_external_references_external_references" ON "SpeciesRegisterEntry_external_references" (external_references);
 CREATE TABLE "SpeciesRegisterEntry_synonyms" (
 	"SpeciesRegisterEntry_code" TEXT,
 	synonyms TEXT,
@@ -340,4 +340,4 @@ CREATE TABLE "SpeciesRegisterEntry_deprecated_codes" (
 	deprecated_codes TEXT,
 	PRIMARY KEY ("SpeciesRegisterEntry_code", deprecated_codes),
 	FOREIGN KEY("SpeciesRegisterEntry_code") REFERENCES "SpeciesRegisterEntry" (code)
-);CREATE INDEX "ix_SpeciesRegisterEntry_deprecated_codes_SpeciesRegisterEntry_code" ON "SpeciesRegisterEntry_deprecated_codes" ("SpeciesRegisterEntry_code");CREATE INDEX "ix_SpeciesRegisterEntry_deprecated_codes_deprecated_codes" ON "SpeciesRegisterEntry_deprecated_codes" (deprecated_codes);
+);CREATE INDEX "ix_SpeciesRegisterEntry_deprecated_codes_deprecated_codes" ON "SpeciesRegisterEntry_deprecated_codes" (deprecated_codes);CREATE INDEX "ix_SpeciesRegisterEntry_deprecated_codes_SpeciesRegisterEntry_code" ON "SpeciesRegisterEntry_deprecated_codes" ("SpeciesRegisterEntry_code");

@@ -117,9 +117,7 @@ gen-project:
     mkdir -p {{dest}}/owl && \
     uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
   fi
-  @if [ ! ${{gen_ts_args}} ]; then \
-    uv run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
-  fi
+  uv run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ;
 
 # ============== Migrations recipes for Copier ==============
 

@@ -1984,7 +1984,7 @@
   "source_file": "oct_schema.yaml",
   "source_file_date": "2026-01-06T15:19:45",
   "source_file_size": 634,
-  "generation_date": "2026-01-06T15:25:21",
+  "generation_date": "2026-01-06T17:03:56",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/oct_schema.context.jsonld",

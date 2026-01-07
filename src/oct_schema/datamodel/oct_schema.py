@@ -1,5 +1,5 @@
 # Auto generated from oct_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-06T15:25:21
+# Generation date: 2026-01-06T17:03:56
 # Schema: oct-schema
 #
 # id: https://w3id.org/OpenCoralTools/oct-schema
