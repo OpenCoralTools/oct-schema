@@ -249,20 +249,30 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-organizationregisterentry">Class: OrganizationRegisterEntry</h1>
-<p><em>A canonical organization record in the registry</em></p>
+<p><em>Represents an entry in the organization registry</em></p>
 <p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/OrganizationRegisterEntry">oct_schema:OrganizationRegisterEntry</a></p>
 <div class="mermaid"> classDiagram
     class OrganizationRegisterEntry
     click OrganizationRegisterEntry href "../OrganizationRegisterEntry/"
-      OrganizationRegisterEntry : country
+      OrganizationRegisterEntry : contact_email
 
-      OrganizationRegisterEntry : metadata
+      OrganizationRegisterEntry : created_at
+
+      OrganizationRegisterEntry : description
+
+      OrganizationRegisterEntry : id
+
+      OrganizationRegisterEntry : is_active
+
+      OrganizationRegisterEntry : logo_url
 
       OrganizationRegisterEntry : name
 
-      OrganizationRegisterEntry : org_id
+      OrganizationRegisterEntry : region
 
-      OrganizationRegisterEntry : url
+      OrganizationRegisterEntry : updated_at
+
+      OrganizationRegisterEntry : website_url
 
 
 </div>
@@ -279,9 +289,21 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../org_id/">org_id</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unique identifier for the organization</td>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Unique identifier for the record</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../created_at/">created_at</a></td>
+<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>Timestamp when the record was created</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../updated_at/">updated_at</a></td>
+<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>Timestamp when the record was last updated</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -291,21 +313,39 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../url/">url</a></td>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Description of the entity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../region/">region</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Geographical region of the organization</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../website_url/">website_url</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Website URL of the organization</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../country/">country</a></td>
+<td><a href="../contact_email/">contact_email</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Country where the organization is based</td>
+<td>Contact email for the organization</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../metadata/">metadata</a></td>
+<td><a href="../logo_url/">logo_url</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Additional metadata as a JSON string or key-value pair</td>
+<td>URL to the organization's logo</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../is_active/">is_active</a></td>
+<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
+<td>Whether the organization is active</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -339,21 +379,34 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: OrganizationRegisterEntry
-description: A canonical organization record in the registry
+description: Represents an entry in the organization registry
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 slots:
-- org_id
+- id
+- created_at
+- updated_at
 - name
-- url
-- country
-- metadata
+- description
+- region
+- website_url
+- contact_email
+- logo_url
+- is_active
 slot_usage:
-  org_id:
-    name: org_id
+  id:
+    name: id
     identifier: true
+  created_at:
+    name: created_at
+    required: true
+  updated_at:
+    name: updated_at
     required: true
   name:
     name: name
+    required: true
+  region:
+    name: region
     required: true
 
 </code></pre>
@@ -361,28 +414,65 @@ slot_usage:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: OrganizationRegisterEntry
-description: A canonical organization record in the registry
+description: Represents an entry in the organization registry
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 slot_usage:
-  org_id:
-    name: org_id
+  id:
+    name: id
     identifier: true
+  created_at:
+    name: created_at
+    required: true
+  updated_at:
+    name: updated_at
     required: true
   name:
     name: name
     required: true
+  region:
+    name: region
+    required: true
 attributes:
-  org_id:
-    name: org_id
-    description: Unique identifier for the organization
+  id:
+    name: id
+    description: Unique identifier for the record
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
     identifier: true
-    alias: org_id
+    alias: id
     owner: OrganizationRegisterEntry
     domain_of:
+    - Record
+    - Species
+    - SpeciesRegisterEntry
     - OrganizationRegisterEntry
-    range: string
+    range: uriorcurie
+    required: true
+  created_at:
+    name: created_at
+    description: Timestamp when the record was created
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema
+    rank: 1000
+    alias: created_at
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - Record
+    - SpeciesRegisterEntry
+    - OrganizationRegisterEntry
+    range: datetime
+    required: true
+  updated_at:
+    name: updated_at
+    description: Timestamp when the record was last updated
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema
+    rank: 1000
+    alias: updated_at
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - Record
+    - SpeciesRegisterEntry
+    - OrganizationRegisterEntry
+    range: datetime
     required: true
   name:
     name: name
@@ -401,36 +491,69 @@ attributes:
     - OrganizationRegisterEntry
     range: string
     required: true
-  url:
-    name: url
+  description:
+    name: description
+    description: Description of the entity
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema
+    rank: 1000
+    alias: description
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - Site
+    - Location
+    - OrganizationRegisterEntry
+    range: string
+  region:
+    name: region
+    description: Geographical region of the organization
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema
+    rank: 1000
+    alias: region
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - OrganizationRegisterEntry
+    range: string
+    required: true
+  website_url:
+    name: website_url
     description: Website URL of the organization
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: url
+    alias: website_url
     owner: OrganizationRegisterEntry
     domain_of:
     - OrganizationRegisterEntry
     range: string
-  country:
-    name: country
-    description: Country where the organization is based
+  contact_email:
+    name: contact_email
+    description: Contact email for the organization
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: country
+    alias: contact_email
     owner: OrganizationRegisterEntry
     domain_of:
     - OrganizationRegisterEntry
     range: string
-  metadata:
-    name: metadata
-    description: Additional metadata as a JSON string or key-value pair
+  logo_url:
+    name: logo_url
+    description: URL to the organization's logo
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: metadata
+    alias: logo_url
     owner: OrganizationRegisterEntry
     domain_of:
     - OrganizationRegisterEntry
     range: string
+  is_active:
+    name: is_active
+    description: Whether the organization is active
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema
+    rank: 1000
+    alias: is_active
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - OrganizationRegisterEntry
+    range: boolean
 
 </code></pre>
 </details>

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://OpenCoralTools.github.io/oct-schema/elements/code/">
+        <link rel="canonical" href="https://OpenCoralTools.github.io/oct-schema/elements/region/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: code - oct-schema</title>
+        <title>Slot: region - oct-schema</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-code" class="md-skip">
+        <a href="#slot-region" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: code
+              Slot: region
             
           </span>
         </div>
@@ -416,10 +416,10 @@
   
 
 
-<h1 id="slot-code">Slot: code</h1>
-<p><em>Unique 4-character species code (e.g. apal)</em></p>
-<p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/code">oct_schema:code</a>
-Alias: code</p>
+<h1 id="slot-region">Slot: region</h1>
+<p><em>Geographical region of the organization</em></p>
+<p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/region">oct_schema:region</a>
+Alias: region</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -433,8 +433,8 @@ Alias: code</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../SpeciesRegisterEntry/">SpeciesRegisterEntry</a></td>
-<td>A canonical species record in the registry</td>
+<td><a href="../OrganizationRegisterEntry/">OrganizationRegisterEntry</a></td>
+<td>Represents an entry in the organization registry</td>
 <td>yes</td>
 </tr>
 </tbody>
@@ -459,24 +459,24 @@ Alias: code</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>oct_schema:code</td>
+<td>oct_schema:region</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oct_schema:code</td>
+<td>oct_schema:region</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: code
-description: Unique 4-character species code (e.g. apal)
+<pre><code class="language-yaml">name: region
+description: Geographical region of the organization
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 rank: 1000
-alias: code
+alias: region
 domain_of:
-- SpeciesRegisterEntry
+- OrganizationRegisterEntry
 range: string
 
 </code></pre>

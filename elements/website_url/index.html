@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://OpenCoralTools.github.io/oct-schema/elements/deprecated_codes/">
+        <link rel="canonical" href="https://OpenCoralTools.github.io/oct-schema/elements/website_url/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: deprecated_codes - oct-schema</title>
+        <title>Slot: website_url - oct-schema</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-deprecated_codes" class="md-skip">
+        <a href="#slot-website_url" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: deprecated_codes
+              Slot: website_url
             
           </span>
         </div>
@@ -416,10 +416,10 @@
   
 
 
-<h1 id="slot-deprecated_codes">Slot: deprecated_codes</h1>
-<p><em>Previous or deprecated codes for this species</em></p>
-<p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/deprecated_codes">oct_schema:deprecated_codes</a>
-Alias: deprecated_codes</p>
+<h1 id="slot-website_url">Slot: website_url</h1>
+<p><em>Website URL of the organization</em></p>
+<p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/website_url">oct_schema:website_url</a>
+Alias: website_url</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -433,20 +433,15 @@ Alias: deprecated_codes</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../SpeciesRegisterEntry/">SpeciesRegisterEntry</a></td>
-<td>A canonical species record in the registry</td>
+<td><a href="../OrganizationRegisterEntry/">OrganizationRegisterEntry</a></td>
+<td>Represents an entry in the organization registry</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../String/">String</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -464,26 +459,25 @@ Alias: deprecated_codes</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>oct_schema:deprecated_codes</td>
+<td>oct_schema:website_url</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oct_schema:deprecated_codes</td>
+<td>oct_schema:website_url</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: deprecated_codes
-description: Previous or deprecated codes for this species
+<pre><code class="language-yaml">name: website_url
+description: Website URL of the organization
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 rank: 1000
-alias: deprecated_codes
+alias: website_url
 domain_of:
-- SpeciesRegisterEntry
+- OrganizationRegisterEntry
 range: string
-multivalued: true
 
 </code></pre>
 

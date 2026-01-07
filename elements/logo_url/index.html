@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://OpenCoralTools.github.io/oct-schema/elements/external_references/">
+        <link rel="canonical" href="https://OpenCoralTools.github.io/oct-schema/elements/logo_url/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: external_references - oct-schema</title>
+        <title>Slot: logo_url - oct-schema</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-external_references" class="md-skip">
+        <a href="#slot-logo_url" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: external_references
+              Slot: logo_url
             
           </span>
         </div>
@@ -416,10 +416,10 @@
   
 
 
-<h1 id="slot-external_references">Slot: external_references</h1>
-<p><em>External identifiers (e.g. worms:12345)</em></p>
-<p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/external_references">oct_schema:external_references</a>
-Alias: external_references</p>
+<h1 id="slot-logo_url">Slot: logo_url</h1>
+<p><em>URL to the organization's logo</em></p>
+<p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/logo_url">oct_schema:logo_url</a>
+Alias: logo_url</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -433,20 +433,15 @@ Alias: external_references</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../SpeciesRegisterEntry/">SpeciesRegisterEntry</a></td>
-<td>A canonical species record in the registry</td>
+<td><a href="../OrganizationRegisterEntry/">OrganizationRegisterEntry</a></td>
+<td>Represents an entry in the organization registry</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../String/">String</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -464,26 +459,25 @@ Alias: external_references</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>oct_schema:external_references</td>
+<td>oct_schema:logo_url</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oct_schema:external_references</td>
+<td>oct_schema:logo_url</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: external_references
-description: External identifiers (e.g. worms:12345)
+<pre><code class="language-yaml">name: logo_url
+description: URL to the organization's logo
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 rank: 1000
-alias: external_references
+alias: logo_url
 domain_of:
-- SpeciesRegisterEntry
+- OrganizationRegisterEntry
 range: string
-multivalued: true
 
 </code></pre>
 

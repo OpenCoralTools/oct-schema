@@ -161,11 +161,11 @@
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/code/</loc>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/common_name/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/common_name/</loc>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/contact_email/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
@@ -177,19 +177,11 @@
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/country/</loc>
-         <lastmod>2026-01-07</lastmod>
-    </url>
-    <url>
          <loc>https://OpenCoralTools.github.io/oct-schema/elements/created_at/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
          <loc>https://OpenCoralTools.github.io/oct-schema/elements/created_by_id/</loc>
-         <lastmod>2026-01-07</lastmod>
-    </url>
-    <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/deprecated_codes/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
@@ -206,10 +198,6 @@
     </url>
     <url>
          <loc>https://OpenCoralTools.github.io/oct-schema/elements/event_type_id/</loc>
-         <lastmod>2026-01-07</lastmod>
-    </url>
-    <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/external_references/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
@@ -249,7 +237,11 @@
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/metadata/</loc>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/is_active/</loc>
+         <lastmod>2026-01-07</lastmod>
+    </url>
+    <url>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/logo_url/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
@@ -261,15 +253,15 @@
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/org_id/</loc>
-         <lastmod>2026-01-07</lastmod>
-    </url>
-    <url>
          <loc>https://OpenCoralTools.github.io/oct-schema/elements/organization_id/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
          <loc>https://OpenCoralTools.github.io/oct-schema/elements/parent_id/</loc>
+         <lastmod>2026-01-07</lastmod>
+    </url>
+    <url>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/photo_url/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
@@ -285,11 +277,11 @@
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/scientific_name/</loc>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/region/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/scientific_name_authorship/</loc>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/scientific_name/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
@@ -325,7 +317,7 @@
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/synonyms/</loc>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/tags/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
@@ -337,11 +329,11 @@
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/url/</loc>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/url_path/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
     <url>
-         <loc>https://OpenCoralTools.github.io/oct-schema/elements/url_path/</loc>
+         <loc>https://OpenCoralTools.github.io/oct-schema/elements/website_url/</loc>
          <lastmod>2026-01-07</lastmod>
     </url>
 </urlset>

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://OpenCoralTools.github.io/oct-schema/elements/org_id/">
+        <link rel="canonical" href="https://OpenCoralTools.github.io/oct-schema/elements/photo_url/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: org_id - oct-schema</title>
+        <title>Slot: photo_url - oct-schema</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-org_id" class="md-skip">
+        <a href="#slot-photo_url" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: org_id
+              Slot: photo_url
             
           </span>
         </div>
@@ -416,10 +416,10 @@
   
 
 
-<h1 id="slot-org_id">Slot: org_id</h1>
-<p><em>Unique identifier for the organization</em></p>
-<p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/org_id">oct_schema:org_id</a>
-Alias: org_id</p>
+<h1 id="slot-photo_url">Slot: photo_url</h1>
+<p><em>URL to a photo of the species</em></p>
+<p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/photo_url">oct_schema:photo_url</a>
+Alias: photo_url</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -433,9 +433,9 @@ Alias: org_id</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../OrganizationRegisterEntry/">OrganizationRegisterEntry</a></td>
-<td>A canonical organization record in the registry</td>
-<td>yes</td>
+<td><a href="../SpeciesRegisterEntry/">SpeciesRegisterEntry</a></td>
+<td>Represents an entry in the species registry</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
@@ -459,24 +459,24 @@ Alias: org_id</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>oct_schema:org_id</td>
+<td>oct_schema:photo_url</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oct_schema:org_id</td>
+<td>oct_schema:photo_url</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: org_id
-description: Unique identifier for the organization
+<pre><code class="language-yaml">name: photo_url
+description: URL to a photo of the species
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 rank: 1000
-alias: org_id
+alias: photo_url
 domain_of:
-- OrganizationRegisterEntry
+- SpeciesRegisterEntry
 range: string
 
 </code></pre>

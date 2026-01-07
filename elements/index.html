@@ -520,7 +520,7 @@
 <tbody>
 <tr>
 <td><a href="OrganizationRegisterEntry/">OrganizationRegisterEntry</a></td>
-<td>A canonical organization record in the registry</td>
+<td>Represents an entry in the organization registry</td>
 </tr>
 <tr>
 <td><a href="Record/">Record</a></td>
@@ -564,7 +564,7 @@
 </tr>
 <tr>
 <td><a href="SpeciesRegisterEntry/">SpeciesRegisterEntry</a></td>
-<td>A canonical species record in the registry</td>
+<td>Represents an entry in the species registry</td>
 </tr>
 </tbody>
 </table>
@@ -590,12 +590,12 @@
 <td>Clonal ID if applicable</td>
 </tr>
 <tr>
-<td><a href="code/">code</a></td>
-<td>Unique 4-character species code (e</td>
-</tr>
-<tr>
 <td><a href="common_name/">common_name</a></td>
 <td>Common name of the species</td>
+</tr>
+<tr>
+<td><a href="contact_email/">contact_email</a></td>
+<td>Contact email for the organization</td>
 </tr>
 <tr>
 <td><a href="coral_size/">coral_size</a></td>
@@ -606,20 +606,12 @@
 <td>ID of the coral type</td>
 </tr>
 <tr>
-<td><a href="country/">country</a></td>
-<td>Country where the organization is based</td>
-</tr>
-<tr>
 <td><a href="created_at/">created_at</a></td>
 <td>Timestamp when the record was created</td>
 </tr>
 <tr>
 <td><a href="created_by_id/">created_by_id</a></td>
 <td>ID of the user who created the record</td>
-</tr>
-<tr>
-<td><a href="deprecated_codes/">deprecated_codes</a></td>
-<td>Previous or deprecated codes for this species</td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
@@ -636,10 +628,6 @@
 <tr>
 <td><a href="event_type_id/">event_type_id</a></td>
 <td>ID of the event type</td>
-</tr>
-<tr>
-<td><a href="external_references/">external_references</a></td>
-<td>External identifiers (e</td>
 </tr>
 <tr>
 <td><a href="genet_id/">genet_id</a></td>
@@ -678,16 +666,16 @@
 <td>Internal path structure</td>
 </tr>
 <tr>
-<td><a href="metadata/">metadata</a></td>
-<td>Additional metadata as a JSON string or key-value pair</td>
+<td><a href="is_active/">is_active</a></td>
+<td>Whether the organization is active</td>
+</tr>
+<tr>
+<td><a href="logo_url/">logo_url</a></td>
+<td>URL to the organization's logo</td>
 </tr>
 <tr>
 <td><a href="name/">name</a></td>
 <td>Name of the entity</td>
-</tr>
-<tr>
-<td><a href="org_id/">org_id</a></td>
-<td>Unique identifier for the organization</td>
 </tr>
 <tr>
 <td><a href="organization_id/">organization_id</a></td>
@@ -696,6 +684,10 @@
 <tr>
 <td><a href="parent_id/">parent_id</a></td>
 <td>ID of the parent entity</td>
+</tr>
+<tr>
+<td><a href="photo_url/">photo_url</a></td>
+<td>URL to a photo of the species</td>
 </tr>
 <tr>
 <td><a href="quantity/">quantity</a></td>
@@ -710,12 +702,12 @@
 <td>Type of the record model</td>
 </tr>
 <tr>
-<td><a href="scientific_name/">scientific_name</a></td>
-<td>Full scientific name (genus + specific_epithet)</td>
+<td><a href="region/">region</a></td>
+<td>Geographical region of the organization</td>
 </tr>
 <tr>
-<td><a href="scientific_name_authorship/">scientific_name_authorship</a></td>
-<td>Author and year of the species description</td>
+<td><a href="scientific_name/">scientific_name</a></td>
+<td>Full scientific name (genus + specific epithet)</td>
 </tr>
 <tr>
 <td><a href="sf_id/">sf_id</a></td>
@@ -750,8 +742,8 @@
 <td>The specific name (second part of the binomial name)</td>
 </tr>
 <tr>
-<td><a href="synonyms/">synonyms</a></td>
-<td>List of synonymous scientific names</td>
+<td><a href="tags/">tags</a></td>
+<td>Tags associated with the species</td>
 </tr>
 <tr>
 <td><a href="updated_at/">updated_at</a></td>
@@ -762,12 +754,12 @@
 <td>ID of the user who last updated the record</td>
 </tr>
 <tr>
-<td><a href="url/">url</a></td>
-<td>Website URL of the organization</td>
-</tr>
-<tr>
 <td><a href="url_path/">url_path</a></td>
 <td>URL friendly path to this resource</td>
+</tr>
+<tr>
+<td><a href="website_url/">website_url</a></td>
+<td>Website URL of the organization</td>
 </tr>
 </tbody>
 </table>

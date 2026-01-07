@@ -249,26 +249,28 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-speciesregisterentry">Class: SpeciesRegisterEntry</h1>
-<p><em>A canonical species record in the registry</em></p>
+<p><em>Represents an entry in the species registry</em></p>
 <p>URI: <a href="https://w3id.org/OpenCoralTools/oct-schema/SpeciesRegisterEntry">oct_schema:SpeciesRegisterEntry</a></p>
 <div class="mermaid"> classDiagram
     class SpeciesRegisterEntry
     click SpeciesRegisterEntry href "../SpeciesRegisterEntry/"
-      SpeciesRegisterEntry : code
+      SpeciesRegisterEntry : common_name
 
-      SpeciesRegisterEntry : deprecated_codes
-
-      SpeciesRegisterEntry : external_references
+      SpeciesRegisterEntry : created_at
 
       SpeciesRegisterEntry : genus
 
-      SpeciesRegisterEntry : scientific_name
+      SpeciesRegisterEntry : id
 
-      SpeciesRegisterEntry : scientific_name_authorship
+      SpeciesRegisterEntry : photo_url
+
+      SpeciesRegisterEntry : scientific_name
 
       SpeciesRegisterEntry : specific_epithet
 
-      SpeciesRegisterEntry : synonyms
+      SpeciesRegisterEntry : tags
+
+      SpeciesRegisterEntry : updated_at
 
 
 </div>
@@ -285,9 +287,27 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../code/">code</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unique 4-character species code (e</td>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Unique identifier for the record</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../created_at/">created_at</a></td>
+<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>Timestamp when the record was created</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../updated_at/">updated_at</a></td>
+<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>Timestamp when the record was last updated</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../common_name/">common_name</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Common name of the species</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -305,31 +325,19 @@
 <tr>
 <td><a href="../scientific_name/">scientific_name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Full scientific name (genus + specific_epithet)</td>
+<td>Full scientific name (genus + specific epithet)</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../scientific_name_authorship/">scientific_name_authorship</a></td>
+<td><a href="../photo_url/">photo_url</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Author and year of the species description</td>
+<td>URL to a photo of the species</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../external_references/">external_references</a></td>
+<td><a href="../tags/">tags</a></td>
 <td>* <br/> <a href="../String/">String</a></td>
-<td>External identifiers (e</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../synonyms/">synonyms</a></td>
-<td>* <br/> <a href="../String/">String</a></td>
-<td>List of synonymous scientific names</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../deprecated_codes/">deprecated_codes</a></td>
-<td>* <br/> <a href="../String/">String</a></td>
-<td>Previous or deprecated codes for this species</td>
+<td>Tags associated with the species</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -363,22 +371,31 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: SpeciesRegisterEntry
-description: A canonical species record in the registry
+description: Represents an entry in the species registry
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 slots:
-- code
+- id
+- created_at
+- updated_at
+- common_name
 - genus
 - specific_epithet
 - scientific_name
-- scientific_name_authorship
-- external_references
-- synonyms
-- deprecated_codes
+- photo_url
+- tags
 slot_usage:
-  code:
-    name: code
+  id:
+    name: id
     identifier: true
+  created_at:
+    name: created_at
     required: true
+  updated_at:
+    name: updated_at
+    required: true
+  common_name:
+    name: common_name
+    required: false
   genus:
     name: genus
     required: true
@@ -391,13 +408,21 @@ slot_usage:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: SpeciesRegisterEntry
-description: A canonical species record in the registry
+description: Represents an entry in the species registry
 from_schema: https://w3id.org/OpenCoralTools/oct-schema
 slot_usage:
-  code:
-    name: code
+  id:
+    name: id
     identifier: true
+  created_at:
+    name: created_at
     required: true
+  updated_at:
+    name: updated_at
+    required: true
+  common_name:
+    name: common_name
+    required: false
   genus:
     name: genus
     required: true
@@ -405,18 +430,59 @@ slot_usage:
     name: specific_epithet
     required: true
 attributes:
-  code:
-    name: code
-    description: Unique 4-character species code (e.g. apal)
+  id:
+    name: id
+    description: Unique identifier for the record
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
     identifier: true
-    alias: code
+    alias: id
     owner: SpeciesRegisterEntry
     domain_of:
+    - Record
+    - Species
+    - SpeciesRegisterEntry
+    - OrganizationRegisterEntry
+    range: uriorcurie
+    required: true
+  created_at:
+    name: created_at
+    description: Timestamp when the record was created
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema
+    rank: 1000
+    alias: created_at
+    owner: SpeciesRegisterEntry
+    domain_of:
+    - Record
+    - SpeciesRegisterEntry
+    - OrganizationRegisterEntry
+    range: datetime
+    required: true
+  updated_at:
+    name: updated_at
+    description: Timestamp when the record was last updated
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema
+    rank: 1000
+    alias: updated_at
+    owner: SpeciesRegisterEntry
+    domain_of:
+    - Record
+    - SpeciesRegisterEntry
+    - OrganizationRegisterEntry
+    range: datetime
+    required: true
+  common_name:
+    name: common_name
+    description: Common name of the species
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema
+    rank: 1000
+    alias: common_name
+    owner: SpeciesRegisterEntry
+    domain_of:
+    - Species
     - SpeciesRegisterEntry
     range: string
-    required: true
+    required: false
   genus:
     name: genus
     description: The genus name
@@ -443,7 +509,7 @@ attributes:
     required: true
   scientific_name:
     name: scientific_name
-    description: Full scientific name (genus + specific_epithet)
+    description: Full scientific name (genus + specific epithet)
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
     alias: scientific_name
@@ -451,44 +517,22 @@ attributes:
     domain_of:
     - SpeciesRegisterEntry
     range: string
-  scientific_name_authorship:
-    name: scientific_name_authorship
-    description: Author and year of the species description
+  photo_url:
+    name: photo_url
+    description: URL to a photo of the species
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: scientific_name_authorship
+    alias: photo_url
     owner: SpeciesRegisterEntry
     domain_of:
     - SpeciesRegisterEntry
     range: string
-  external_references:
-    name: external_references
-    description: External identifiers (e.g. worms:12345)
+  tags:
+    name: tags
+    description: Tags associated with the species
     from_schema: https://w3id.org/OpenCoralTools/oct-schema
     rank: 1000
-    alias: external_references
-    owner: SpeciesRegisterEntry
-    domain_of:
-    - SpeciesRegisterEntry
-    range: string
-    multivalued: true
-  synonyms:
-    name: synonyms
-    description: List of synonymous scientific names
-    from_schema: https://w3id.org/OpenCoralTools/oct-schema
-    rank: 1000
-    alias: synonyms
-    owner: SpeciesRegisterEntry
-    domain_of:
-    - SpeciesRegisterEntry
-    range: string
-    multivalued: true
-  deprecated_codes:
-    name: deprecated_codes
-    description: Previous or deprecated codes for this species
-    from_schema: https://w3id.org/OpenCoralTools/oct-schema
-    rank: 1000
-    alias: deprecated_codes
+    alias: tags
     owner: SpeciesRegisterEntry
     domain_of:
     - SpeciesRegisterEntry

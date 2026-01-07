@@ -7,18 +7,18 @@ id: https://w3id.org/OpenCoralTools/oct-schema
 imports:
 - linkml:types
 - common
-- Record
-- InventoryRecord
-- Organization
-- Site
-- Location
-- Genet
-- Coral
-- Species
-- Person
-- Event
-- registry/SpeciesRegisterEntry
-- registry/OrganizationRegisterEntry
+- record
+- inventory_record
+- organization
+- site
+- location
+- genet
+- coral
+- species
+- person
+- event
+- registry/species_register_entry
+- registry/organization_register_entry
 - common
 - common
 license: MIT
@@ -369,10 +369,12 @@ slots:
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
     slot_uri: oct_schema:id
     identifier: true
-    owner: Species
+    owner: OrganizationRegisterEntry
     domain_of:
     - Record
     - Species
+    - SpeciesRegisterEntry
+    - OrganizationRegisterEntry
     range: uriorcurie
     required: true
   created_at:
@@ -381,9 +383,11 @@ slots:
     description: Timestamp when the record was created
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
     slot_uri: oct_schema:created_at
-    owner: Record
+    owner: OrganizationRegisterEntry
     domain_of:
     - Record
+    - SpeciesRegisterEntry
+    - OrganizationRegisterEntry
     range: datetime
   created_by_id:
     name: created_by_id
@@ -401,9 +405,11 @@ slots:
     description: Timestamp when the record was last updated
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
     slot_uri: oct_schema:updated_at
-    owner: Record
+    owner: OrganizationRegisterEntry
     domain_of:
     - Record
+    - SpeciesRegisterEntry
+    - OrganizationRegisterEntry
     range: datetime
   updated_by_id:
     name: updated_by_id
@@ -477,10 +483,11 @@ slots:
     description: Description of the entity
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
     slot_uri: oct_schema:description
-    owner: Location
+    owner: OrganizationRegisterEntry
     domain_of:
     - Site
     - Location
+    - OrganizationRegisterEntry
     range: string
   genus:
     name: genus
@@ -510,9 +517,10 @@ slots:
     description: Common name of the species
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
     slot_uri: oct_schema:common_name
-    owner: Species
+    owner: SpeciesRegisterEntry
     domain_of:
     - Species
+    - SpeciesRegisterEntry
     range: string
   domain:
     name: domain
@@ -759,109 +767,87 @@ slots:
     domain_of:
     - Event
     range: ModelType
-  code:
-    name: code
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/code
-    description: Unique 4-character species code (e.g. apal)
-    from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
-    slot_uri: oct_schema:code
-    owner: SpeciesRegisterEntry
-    domain_of:
-    - SpeciesRegisterEntry
-    range: string
   scientific_name:
     name: scientific_name
     definition_uri: https://w3id.org/OpenCoralTools/oct-schema/scientific_name
-    description: Full scientific name (genus + specific_epithet)
+    description: Full scientific name (genus + specific epithet)
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
     slot_uri: oct_schema:scientific_name
     owner: SpeciesRegisterEntry
     domain_of:
     - SpeciesRegisterEntry
     range: string
-  scientific_name_authorship:
-    name: scientific_name_authorship
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/scientific_name_authorship
-    description: Author and year of the species description
+  photo_url:
+    name: photo_url
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/photo_url
+    description: URL to a photo of the species
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
-    slot_uri: oct_schema:scientific_name_authorship
+    slot_uri: oct_schema:photo_url
     owner: SpeciesRegisterEntry
     domain_of:
     - SpeciesRegisterEntry
     range: string
-  external_references:
-    name: external_references
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/external_references
-    description: External identifiers (e.g. worms:12345)
+  tags:
+    name: tags
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/tags
+    description: Tags associated with the species
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
-    slot_uri: oct_schema:external_references
-    owner: SpeciesRegisterEntry
-    domain_of:
-    - SpeciesRegisterEntry
-    range: string
-    multivalued: true
-  synonyms:
-    name: synonyms
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/synonyms
-    description: List of synonymous scientific names
-    from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
-    slot_uri: oct_schema:synonyms
+    slot_uri: oct_schema:tags
     owner: SpeciesRegisterEntry
     domain_of:
     - SpeciesRegisterEntry
     range: string
     multivalued: true
-  deprecated_codes:
-    name: deprecated_codes
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/deprecated_codes
-    description: Previous or deprecated codes for this species
-    from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
-    slot_uri: oct_schema:deprecated_codes
-    owner: SpeciesRegisterEntry
-    domain_of:
-    - SpeciesRegisterEntry
-    range: string
-    multivalued: true
-  org_id:
-    name: org_id
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/org_id
-    description: Unique identifier for the organization
+  region:
+    name: region
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/region
+    description: Geographical region of the organization
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
-    slot_uri: oct_schema:org_id
+    slot_uri: oct_schema:region
     owner: OrganizationRegisterEntry
     domain_of:
     - OrganizationRegisterEntry
     range: string
-  url:
-    name: url
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/url
+  website_url:
+    name: website_url
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/website_url
     description: Website URL of the organization
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
-    slot_uri: oct_schema:url
+    slot_uri: oct_schema:website_url
     owner: OrganizationRegisterEntry
     domain_of:
     - OrganizationRegisterEntry
     range: string
-  country:
-    name: country
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/country
-    description: Country where the organization is based
+  contact_email:
+    name: contact_email
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/contact_email
+    description: Contact email for the organization
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
-    slot_uri: oct_schema:country
+    slot_uri: oct_schema:contact_email
     owner: OrganizationRegisterEntry
     domain_of:
     - OrganizationRegisterEntry
     range: string
-  metadata:
-    name: metadata
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/metadata
-    description: Additional metadata as a JSON string or key-value pair
+  logo_url:
+    name: logo_url
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/logo_url
+    description: URL to the organization's logo
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
-    slot_uri: oct_schema:metadata
+    slot_uri: oct_schema:logo_url
     owner: OrganizationRegisterEntry
     domain_of:
     - OrganizationRegisterEntry
     range: string
+  is_active:
+    name: is_active
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/is_active
+    description: Whether the organization is active
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
+    slot_uri: oct_schema:is_active
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - OrganizationRegisterEntry
+    range: boolean
   Organization_name:
     name: Organization_name
     definition_uri: https://w3id.org/OpenCoralTools/oct-schema/name
@@ -1311,23 +1297,71 @@ slots:
     usage_slot_name: record_model_type
     range: ModelType
     required: true
-  SpeciesRegisterEntry_code:
-    name: SpeciesRegisterEntry_code
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/code
-    description: Unique 4-character species code (e.g. apal)
-    from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
-    is_a: code
+  SpeciesRegisterEntry_id:
+    name: SpeciesRegisterEntry_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/id
+    description: Unique identifier for the record
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
+    is_a: id
     domain: SpeciesRegisterEntry
-    slot_uri: oct_schema:code
+    slot_uri: oct_schema:id
     identifier: true
-    alias: code
+    alias: id
     owner: SpeciesRegisterEntry
     domain_of:
     - SpeciesRegisterEntry
     is_usage_slot: true
-    usage_slot_name: code
-    range: string
+    usage_slot_name: id
+    range: uriorcurie
     required: true
+  SpeciesRegisterEntry_created_at:
+    name: SpeciesRegisterEntry_created_at
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/created_at
+    description: Timestamp when the record was created
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
+    is_a: created_at
+    domain: SpeciesRegisterEntry
+    slot_uri: oct_schema:created_at
+    alias: created_at
+    owner: SpeciesRegisterEntry
+    domain_of:
+    - SpeciesRegisterEntry
+    is_usage_slot: true
+    usage_slot_name: created_at
+    range: datetime
+    required: true
+  SpeciesRegisterEntry_updated_at:
+    name: SpeciesRegisterEntry_updated_at
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/updated_at
+    description: Timestamp when the record was last updated
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
+    is_a: updated_at
+    domain: SpeciesRegisterEntry
+    slot_uri: oct_schema:updated_at
+    alias: updated_at
+    owner: SpeciesRegisterEntry
+    domain_of:
+    - SpeciesRegisterEntry
+    is_usage_slot: true
+    usage_slot_name: updated_at
+    range: datetime
+    required: true
+  SpeciesRegisterEntry_common_name:
+    name: SpeciesRegisterEntry_common_name
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/common_name
+    description: Common name of the species
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
+    is_a: common_name
+    domain: SpeciesRegisterEntry
+    slot_uri: oct_schema:common_name
+    alias: common_name
+    owner: SpeciesRegisterEntry
+    domain_of:
+    - SpeciesRegisterEntry
+    is_usage_slot: true
+    usage_slot_name: common_name
+    range: string
+    required: false
   SpeciesRegisterEntry_genus:
     name: SpeciesRegisterEntry_genus
     definition_uri: https://w3id.org/OpenCoralTools/oct-schema/genus
@@ -1360,22 +1394,54 @@ slots:
     usage_slot_name: specific_epithet
     range: string
     required: true
-  OrganizationRegisterEntry_org_id:
-    name: OrganizationRegisterEntry_org_id
-    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/org_id
-    description: Unique identifier for the organization
-    from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
-    is_a: org_id
+  OrganizationRegisterEntry_id:
+    name: OrganizationRegisterEntry_id
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/id
+    description: Unique identifier for the record
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
+    is_a: id
     domain: OrganizationRegisterEntry
-    slot_uri: oct_schema:org_id
+    slot_uri: oct_schema:id
     identifier: true
-    alias: org_id
+    alias: id
     owner: OrganizationRegisterEntry
     domain_of:
     - OrganizationRegisterEntry
     is_usage_slot: true
-    usage_slot_name: org_id
-    range: string
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+  OrganizationRegisterEntry_created_at:
+    name: OrganizationRegisterEntry_created_at
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/created_at
+    description: Timestamp when the record was created
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
+    is_a: created_at
+    domain: OrganizationRegisterEntry
+    slot_uri: oct_schema:created_at
+    alias: created_at
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - OrganizationRegisterEntry
+    is_usage_slot: true
+    usage_slot_name: created_at
+    range: datetime
+    required: true
+  OrganizationRegisterEntry_updated_at:
+    name: OrganizationRegisterEntry_updated_at
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/updated_at
+    description: Timestamp when the record was last updated
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/common
+    is_a: updated_at
+    domain: OrganizationRegisterEntry
+    slot_uri: oct_schema:updated_at
+    alias: updated_at
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - OrganizationRegisterEntry
+    is_usage_slot: true
+    usage_slot_name: updated_at
+    range: datetime
     required: true
   OrganizationRegisterEntry_name:
     name: OrganizationRegisterEntry_name
@@ -1391,6 +1457,22 @@ slots:
     - OrganizationRegisterEntry
     is_usage_slot: true
     usage_slot_name: name
+    range: string
+    required: true
+  OrganizationRegisterEntry_region:
+    name: OrganizationRegisterEntry_region
+    definition_uri: https://w3id.org/OpenCoralTools/oct-schema/region
+    description: Geographical region of the organization
+    from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
+    is_a: region
+    domain: OrganizationRegisterEntry
+    slot_uri: oct_schema:region
+    alias: region
+    owner: OrganizationRegisterEntry
+    domain_of:
+    - OrganizationRegisterEntry
+    is_usage_slot: true
+    usage_slot_name: region
     range: string
     required: true
 classes:
@@ -1682,22 +1764,31 @@ classes:
   SpeciesRegisterEntry:
     name: SpeciesRegisterEntry
     definition_uri: https://w3id.org/OpenCoralTools/oct-schema/SpeciesRegisterEntry
-    description: A canonical species record in the registry
+    description: Represents an entry in the species registry
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry
     slots:
-    - SpeciesRegisterEntry_code
+    - SpeciesRegisterEntry_id
+    - SpeciesRegisterEntry_created_at
+    - SpeciesRegisterEntry_updated_at
+    - SpeciesRegisterEntry_common_name
     - SpeciesRegisterEntry_genus
     - SpeciesRegisterEntry_specific_epithet
     - scientific_name
-    - scientific_name_authorship
-    - external_references
-    - synonyms
-    - deprecated_codes
+    - photo_url
+    - tags
     slot_usage:
-      code:
-        name: code
+      id:
+        name: id
         identifier: true
+      created_at:
+        name: created_at
         required: true
+      updated_at:
+        name: updated_at
+        required: true
+      common_name:
+        name: common_name
+        required: false
       genus:
         name: genus
         required: true
@@ -1708,26 +1799,39 @@ classes:
   OrganizationRegisterEntry:
     name: OrganizationRegisterEntry
     definition_uri: https://w3id.org/OpenCoralTools/oct-schema/OrganizationRegisterEntry
-    description: A canonical organization record in the registry
+    description: Represents an entry in the organization registry
     from_schema: https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry
     slots:
-    - OrganizationRegisterEntry_org_id
+    - OrganizationRegisterEntry_id
+    - OrganizationRegisterEntry_created_at
+    - OrganizationRegisterEntry_updated_at
     - OrganizationRegisterEntry_name
-    - url
-    - country
-    - metadata
+    - description
+    - OrganizationRegisterEntry_region
+    - website_url
+    - contact_email
+    - logo_url
+    - is_active
     slot_usage:
-      org_id:
-        name: org_id
+      id:
+        name: id
         identifier: true
+      created_at:
+        name: created_at
+        required: true
+      updated_at:
+        name: updated_at
         required: true
       name:
         name: name
         required: true
+      region:
+        name: region
+        required: true
     class_uri: oct_schema:OrganizationRegisterEntry
 metamodel_version: 1.7.0
 source_file: oct_schema.yaml
-source_file_date: '2026-01-07T01:48:06'
-source_file_size: 634
-generation_date: '2026-01-07T01:48:15'
+source_file_date: '2026-01-07T02:04:31'
+source_file_size: 639
+generation_date: '2026-01-07T02:04:40'
 
