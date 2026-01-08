@@ -44,6 +44,9 @@ prefixes:
   xsd:
     prefix_prefix: xsd
     prefix_reference: http://www.w3.org/2001/XMLSchema#
+  rdf:
+    prefix_prefix: rdf
+    prefix_reference: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   oct:
     prefix_prefix: oct
     prefix_reference: https://opencoral.tools/oct-schema/
@@ -507,20 +510,143 @@ enums:
         text: measurement
       state:
         text: state
-  RecordTypeEnum:
-    name: RecordTypeEnum
-    definition_uri: https://opencoral.tools/oct-schema/core/event/RecordTypeEnum
+  RecordType:
+    name: RecordType
+    definition_uri: https://opencoral.tools/oct-schema/core/event/RecordType
     from_schema: https://opencoral.tools/oct-schema/core/event
     permissible_values:
-      Specimen:
-        text: Specimen
-      Location:
-        text: Location
-      Genet:
-        text: Genet
-      Other:
-        text: Other
+      specimen:
+        text: specimen
+      event:
+        text: event
+      location:
+        text: location
+      genet:
+        text: genet
+      other:
+        text: other
 slots:
+  recordType:
+    name: recordType
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/recordType
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/recordType
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: string
+  asOf:
+    name: asOf
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/asOf
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/asOf
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: DateTime
+  taxon:
+    name: taxon
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/taxon
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/taxon
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: TaxonRef
+    inlined: true
+    inlined_as_list: true
+  geneticGroupRef:
+    name: geneticGroupRef
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: EntityRef
+    inlined: true
+    inlined_as_list: true
+  inventoryUnitType:
+    name: inventoryUnitType
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: InventoryUnitType
+  developmentalStage:
+    name: developmentalStage
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/developmentalStage
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/developmentalStage
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: DevelopmentalStage
+  quantity:
+    name: quantity
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/quantity
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/quantity
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  locationRef:
+    name: locationRef
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/locationRef
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/locationRef
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: LocationRef
+    inlined: true
+    inlined_as_list: true
+  state:
+    name: state
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/state
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/state
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: SpecimenState
+    inlined: true
+    inlined_as_list: true
+  tags:
+    name: tags
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/tags
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/tags
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: string
+    multivalued: true
+  notes:
+    name: notes
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/notes
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/notes
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: string
+  source:
+    name: source
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/source
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/source
+    owner: SpecimenRecord
+    domain_of:
+    - SpecimenRecord
+    range: SpecimenRecordSource
+    inlined: true
+    inlined_as_list: true
   coralTaxonRef__speciesCode:
     name: coralTaxonRef__speciesCode
     description: Registry-backed 4-char species code (e.g., 'apal')
@@ -1420,18 +1546,6 @@ slots:
     required: true
     inlined: true
     inlined_as_list: true
-  specimenRecord__geneticGroupRef:
-    name: specimenRecord__geneticGroupRef
-    description: Reference to a genet or other genetic grouping
-    from_schema: https://opencoral.tools/oct-schema/core/specimen
-    slot_uri: https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef
-    alias: geneticGroupRef
-    owner: SpecimenRecord
-    domain_of:
-    - SpecimenRecord
-    range: EntityRef
-    inlined: true
-    inlined_as_list: true
   specimenRecord__inventoryUnitType:
     name: specimenRecord__inventoryUnitType
     from_schema: https://opencoral.tools/oct-schema/core/specimen
@@ -1442,15 +1556,6 @@ slots:
     - SpecimenRecord
     range: InventoryUnitType
     required: true
-  specimenRecord__developmentalStage:
-    name: specimenRecord__developmentalStage
-    from_schema: https://opencoral.tools/oct-schema/core/specimen
-    slot_uri: https://opencoral.tools/oct-schema/core/specimen/developmentalStage
-    alias: developmentalStage
-    owner: SpecimenRecord
-    domain_of:
-    - SpecimenRecord
-    range: DevelopmentalStage
   specimenRecord__quantity:
     name: specimenRecord__quantity
     from_schema: https://opencoral.tools/oct-schema/core/specimen
@@ -1473,47 +1578,6 @@ slots:
     - SpecimenRecord
     range: LocationRef
     required: true
-    inlined: true
-    inlined_as_list: true
-  specimenRecord__state:
-    name: specimenRecord__state
-    from_schema: https://opencoral.tools/oct-schema/core/specimen
-    slot_uri: https://opencoral.tools/oct-schema/core/specimen/state
-    alias: state
-    owner: SpecimenRecord
-    domain_of:
-    - SpecimenRecord
-    range: SpecimenState
-    inlined: true
-    inlined_as_list: true
-  specimenRecord__tags:
-    name: specimenRecord__tags
-    from_schema: https://opencoral.tools/oct-schema/core/specimen
-    slot_uri: https://opencoral.tools/oct-schema/core/specimen/tags
-    alias: tags
-    owner: SpecimenRecord
-    domain_of:
-    - SpecimenRecord
-    range: string
-    multivalued: true
-  specimenRecord__notes:
-    name: specimenRecord__notes
-    from_schema: https://opencoral.tools/oct-schema/core/specimen
-    slot_uri: https://opencoral.tools/oct-schema/core/specimen/notes
-    alias: notes
-    owner: SpecimenRecord
-    domain_of:
-    - SpecimenRecord
-    range: string
-  specimenRecord__source:
-    name: specimenRecord__source
-    from_schema: https://opencoral.tools/oct-schema/core/specimen
-    slot_uri: https://opencoral.tools/oct-schema/core/specimen/source
-    alias: source
-    owner: SpecimenRecord
-    domain_of:
-    - SpecimenRecord
-    range: SpecimenRecordSource
     inlined: true
     inlined_as_list: true
   effectiveTime__occurredAt:
@@ -1561,7 +1625,7 @@ slots:
     owner: SubjectRef
     domain_of:
     - SubjectRef
-    range: RecordTypeEnum
+    range: RecordType
     required: true
   subjectRef__role:
     name: subjectRef__role
@@ -1717,10 +1781,11 @@ slots:
     inlined_as_list: true
   CoralSpecimenRecord_taxon:
     name: CoralSpecimenRecord_taxon
-    from_schema: https://opencoral.tools/oct-schema
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/taxon
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
     is_a: specimenRecord__taxon
     domain: CoralSpecimenRecord
-    slot_uri: oct:taxon
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/taxon
     alias: taxon
     owner: CoralSpecimenRecord
     domain_of:
@@ -1733,11 +1798,12 @@ slots:
     inlined_as_list: true
   CoralSpecimenRecord_geneticGroupRef:
     name: CoralSpecimenRecord_geneticGroupRef
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef
     description: Reference to the coral genet
-    from_schema: https://opencoral.tools/oct-schema
-    is_a: specimenRecord__geneticGroupRef
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
+    is_a: geneticGroupRef
     domain: CoralSpecimenRecord
-    slot_uri: oct:geneticGroupRef
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef
     alias: geneticGroupRef
     owner: CoralSpecimenRecord
     domain_of:
@@ -1747,10 +1813,11 @@ slots:
     range: GenetRecord
   CoralSpecimenRecord_inventoryUnitType:
     name: CoralSpecimenRecord_inventoryUnitType
-    from_schema: https://opencoral.tools/oct-schema
+    definition_uri: https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType
+    from_schema: https://opencoral.tools/oct-schema/core/specimen
     is_a: specimenRecord__inventoryUnitType
     domain: CoralSpecimenRecord
-    slot_uri: oct:inventoryUnitType
+    slot_uri: https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType
     alias: inventoryUnitType
     owner: CoralSpecimenRecord
     domain_of:
@@ -1968,15 +2035,15 @@ classes:
     - record__createdBy
     - record__updatedAt
     - record__updatedBy
+    - developmentalStage
+    - state
+    - tags
+    - notes
+    - source
     - specimenRecord__recordType
     - specimenRecord__asOf
-    - specimenRecord__developmentalStage
     - specimenRecord__quantity
     - specimenRecord__locationRef
-    - specimenRecord__state
-    - specimenRecord__tags
-    - specimenRecord__notes
-    - specimenRecord__source
     - CoralSpecimenRecord_taxon
     - CoralSpecimenRecord_geneticGroupRef
     - CoralSpecimenRecord_inventoryUnitType
@@ -1989,7 +2056,6 @@ classes:
       geneticGroupRef:
         name: geneticGroupRef
         description: Reference to the coral genet
-        is_a: specimenRecord__geneticGroupRef
         range: GenetRecord
       inventoryUnitType:
         name: inventoryUnitType
@@ -2442,18 +2508,24 @@ classes:
     - record__createdBy
     - record__updatedAt
     - record__updatedBy
+    - recordType
+    - asOf
+    - taxon
+    - geneticGroupRef
+    - inventoryUnitType
+    - developmentalStage
+    - quantity
+    - locationRef
+    - state
+    - tags
+    - notes
+    - source
     - specimenRecord__recordType
     - specimenRecord__asOf
     - specimenRecord__taxon
-    - specimenRecord__geneticGroupRef
     - specimenRecord__inventoryUnitType
-    - specimenRecord__developmentalStage
     - specimenRecord__quantity
     - specimenRecord__locationRef
-    - specimenRecord__state
-    - specimenRecord__tags
-    - specimenRecord__notes
-    - specimenRecord__source
     attributes:
       recordType:
         name: recordType
@@ -2470,17 +2542,10 @@ classes:
         name: taxon
         range: TaxonRef
         required: true
-      geneticGroupRef:
-        name: geneticGroupRef
-        description: Reference to a genet or other genetic grouping
-        range: EntityRef
       inventoryUnitType:
         name: inventoryUnitType
         range: InventoryUnitType
         required: true
-      developmentalStage:
-        name: developmentalStage
-        range: DevelopmentalStage
       quantity:
         name: quantity
         range: Quantity
@@ -2489,19 +2554,6 @@ classes:
         name: locationRef
         range: LocationRef
         required: true
-      state:
-        name: state
-        range: SpecimenState
-      tags:
-        name: tags
-        range: string
-        multivalued: true
-      notes:
-        name: notes
-        range: string
-      source:
-        name: source
-        range: SpecimenRecordSource
     class_uri: https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord
   EffectiveTime:
     name: EffectiveTime
@@ -2539,7 +2591,7 @@ classes:
         required: true
       recordType:
         name: recordType
-        range: RecordTypeEnum
+        range: RecordType
         required: true
       role:
         name: role
@@ -2651,6 +2703,6 @@ classes:
     class_uri: https://opencoral.tools/oct-schema/core/event/Event
 metamodel_version: 1.7.0
 source_file: oct_schema.yaml
-source_file_date: '2026-01-07T14:34:27'
-source_file_size: 323
-generation_date: '2026-01-07T14:34:31'
+source_file_date: '2026-01-08T12:22:35'
+source_file_size: 374
+generation_date: '2026-01-08T16:19:01'

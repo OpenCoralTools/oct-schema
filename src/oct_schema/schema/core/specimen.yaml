@@ -49,6 +49,33 @@ enums:
       research_only:
       unknown:
 
+slots:
+  recordType:
+    range: string
+  asOf:
+    range: DateTime
+  taxon:
+    range: TaxonRef
+  geneticGroupRef:
+    range: EntityRef
+  inventoryUnitType:
+    range: InventoryUnitType
+  developmentalStage:
+    range: DevelopmentalStage
+  quantity:
+    range: Quantity
+  locationRef:
+    range: LocationRef
+  state:
+    range: SpecimenState
+  tags:
+    range: string
+    multivalued: true
+  notes:
+    range: string
+  source:
+    range: SpecimenRecordSource
+
 classes:
   Quantity:
     description: Quantification of the specimen (count, size, etc.)
@@ -93,6 +120,19 @@ classes:
   SpecimenRecord:
     is_a: Record
     description: A record representing a biological specimen or group
+    slots:
+      - recordType
+      - asOf
+      - taxon
+      - geneticGroupRef
+      - inventoryUnitType
+      - developmentalStage
+      - quantity
+      - locationRef
+      - state
+      - tags
+      - notes
+      - source
     attributes:
       recordType:
         range: string
@@ -104,39 +144,15 @@ classes:
       asOf:
         range: DateTime
         required: true
-
       taxon:
         range: TaxonRef
         required: true
-
-      geneticGroupRef:
-        range: EntityRef
-        description: Reference to a genet or other genetic grouping
-
       inventoryUnitType:
         range: InventoryUnitType
         required: true
-
-      developmentalStage:
-        range: DevelopmentalStage
-
       quantity:
         range: Quantity
         required: true
-
       locationRef:
         range: LocationRef
         required: true
-
-      state:
-        range: SpecimenState
-
-      tags:
-        range: string
-        multivalued: true
-
-      notes:
-        range: string
-
-      source:
-        range: SpecimenRecordSource

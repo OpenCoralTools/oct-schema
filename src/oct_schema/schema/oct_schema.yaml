@@ -5,6 +5,7 @@ description: Top-level schema combining Core and Coral modules.
 prefixes:
   linkml: https://w3id.org/linkml/
   xsd: http://www.w3.org/2001/XMLSchema#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   oct: https://opencoral.tools/oct-schema/
 imports:
   - linkml:types

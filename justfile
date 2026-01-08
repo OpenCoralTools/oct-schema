@@ -110,18 +110,11 @@ gen-python:
 [group('model development')]
 gen-project:
   uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
-  mv {{dest}}/*.py {{pymodel}}
-  uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
-  uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
-  @if [ ! ${{gen_owl_args}} ]; then \
-    mkdir -p {{dest}}/owl && \
-    uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
-  fi
   # Generate TypeScript to packages/node
   uv run python scripts/gen_ts_camel.py {{source_schema_path}} -o packages/node/src/{{schema_name}}.ts
-  # Generate Dart from JSON Schema using quicktype
+  # Generate Dart using custom LinkML generator
   @mkdir -p packages/dart/oct_schema/lib
-  uv run python scripts/gen_dart_from_json_schema.py {{dest}}/jsonschema/{{schema_name}}.schema.json -o packages/dart/oct_schema/lib/{{schema_name}}.dart
+  uv run python scripts/dartgen.py {{source_schema_path}} -o packages/dart/oct_schema/lib/{{schema_name}}.dart
 
 # ============== Migrations recipes for Copier ==============
 

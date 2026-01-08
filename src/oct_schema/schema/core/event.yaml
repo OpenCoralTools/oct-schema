@@ -19,12 +19,13 @@ enums:
       measurement:
       state:
 
-  RecordTypeEnum:
+  RecordType:
     permissible_values:
-      Specimen:
-      Location:
-      Genet:
-      Other:
+      specimen:
+      event:
+      location:
+      genet:
+      other:
 
 classes:
   EffectiveTime:
@@ -45,7 +46,7 @@ classes:
         range: string
         required: true
       recordType:
-        range: RecordTypeEnum
+        range: RecordType
         required: true
       role:
         range: string

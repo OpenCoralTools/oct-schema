@@ -1,0 +1,69 @@
+// Generated from LinkML schema: {{ schema.name }}
+
+{% for enum in enums %}
+enum {{ enum.name }} {
+{% for value in enum.values %}
+    {{ value }}{{ "," if not loop.last else "" }}
+{%- endfor %}
+}
+
+class {{ enum.name }}Values {
+    static const Map<{{ enum.name }}, String> map = {
+{% for value in enum.values %}
+        {{ enum.name }}.{{ value }}: "{{ value }}"{% if not loop.last %},{% endif %}
+{%- endfor %}
+    };
+    static const Map<String, {{ enum.name }}> reverse = {
+{% for value in enum.values %}
+        "{{ value }}": {{ enum.name }}.{{ value }}{% if not loop.last %},{% endif %}
+{%- endfor %}
+    };
+}
+
+{% endfor %}
+
+{% for cls in classes %}
+{% if cls.description %}/// {{ cls.description }}
+{% endif %}{% if cls.is_abstract %}abstract class {{ cls.name }} {
+{% for slot in cls.slots %}
+{% if slot.description %}    /// {{ slot.description }}
+{% endif %}    {% if slot.required %}late {% endif %}{{ slot.dart_type }}{% if not slot.required %}?{% endif %} {{ slot.name }};
+{% endfor %}
+{% if cls.slots %}
+    {{ cls.name }}({
+{% for slot in cls.slots %}
+        {% if slot.required %}required {% endif %}this.{{ slot.name }}{% if not loop.last %},{% endif %}
+{% endfor %}
+    });
+{% endif %}}
+
+{% else %}class {{ cls.name }}{% if cls.parent %} extends {{ cls.parent }}{% endif %} {
+{% for slot in cls.slots %}
+{% if slot.description %}    /// {{ slot.description }}
+{% endif %}    {{ slot.dart_type }}{% if not slot.required %}?{% endif %} {{ slot.name }};
+{% endfor %}
+{% set has_params = (cls.slots or (cls.parent and cls.parent_required_slot_names)) %}
+    {{ cls.name }}({% if has_params %}{
+{% if cls.parent and cls.parent_required_slot_names %}{% for i in range(cls.parent_required_slot_names|length) %}        required {{ cls.parent_required_slot_types[i] }} {{ cls.parent_required_slot_names[i] }},
+{% endfor %}{% endif %}{% for slot in cls.slots %}
+        {% if slot.required %}required {% endif %}this.{{ slot.name }}{% if not loop.last %},{% endif %}
+{% endfor %}
+    }{% endif %}){% if cls.parent and cls.parent_required_slot_names %}: super({% for req_slot_name in cls.parent_required_slot_names %}{{ req_slot_name }}: {{ req_slot_name }}{% if not loop.last %}, {% endif %}{% endfor %}){% elif cls.parent %}: super(){% endif %};
+
+    factory {{ cls.name }}.fromJson(Map<String, dynamic> json) => {{ cls.name }}(
+{% if cls.parent and cls.parent_required_slot_names %}{% for i in range(cls.parent_required_slot_names|length) %}{% set req_slot_name = cls.parent_required_slot_names[i] %}{% set req_slot_type = cls.parent_required_slot_types[i] %}{% set req_json_name = cls.parent_required_slot_json_names[i] %}{% set req_slot_enum = req_slot_type.replace('List<', '').replace('>', '') in enum_names %}{% set req_slot_is_list = 'List<' in req_slot_type %}{% set req_slot_class = req_slot_type.replace('List<', '').replace('>', '') in view.all_classes() %}{% if req_slot_is_list %}{% set item_type = req_slot_type.replace('List<', '').replace('>', '') %}{% set item_is_enum = item_type in enum_names %}{% set item_is_class = item_type in view.all_classes() %}{% if item_is_enum %}        {{ req_slot_name }}: (json["{{ req_json_name }}"] as List?)?.map((x) => {{ item_type }}Values.reverse[x]!).toList() ?? [],{% elif item_is_class %}        {{ req_slot_name }}: (json["{{ req_json_name }}"] as List?)?.map((x) => {{ item_type }}.fromJson(x)).toList() ?? [],{% else %}        {{ req_slot_name }}: (json["{{ req_json_name }}"] as List?)?.map((x) => x as {{ item_type }}).toList() ?? [],{% endif %}{% elif req_slot_enum %}        {{ req_slot_name }}: {{ req_slot_type }}Values.reverse[json["{{ req_json_name }}"]]!,{% elif req_slot_class %}        {{ req_slot_name }}: {{ req_slot_type }}.fromJson(json["{{ req_json_name }}"]),{% else %}        {{ req_slot_name }}: json["{{ req_json_name }}"],{% endif %}
+{% endfor %}{% endif %}{% for slot in cls.slots %}
+        {{ slot.name }}: {% if slot.is_enum and not slot.is_list %}{{ slot.enum_name }}Values.reverse[json["{{ slot.json_name }}"]]!{% elif slot.is_list and slot.item_type in enum_names %}(json["{{ slot.json_name }}"] as List?)?.map((x) => {{ slot.item_type }}Values.reverse[x]!).toList(){% elif slot.is_class and slot.dart_type != 'EventPayload' %}{{ slot.dart_type }}.fromJson(json["{{ slot.json_name }}"]){% elif slot.is_list %}(json["{{ slot.json_name }}"] as List?)?.map((x) => {% if slot.item_type in ['String', 'int', 'double', 'bool'] %}x as {{ slot.item_type }}{% elif slot.item_type == 'EventPayload' %}x{% else %}{{ slot.item_type }}.fromJson(x){% endif %}).toList(){% else %}json["{{ slot.json_name }}"]{% endif %}{% if not loop.last %},{% endif %}
+{% endfor %}
+    );
+
+    Map<String, dynamic> toJson() => {
+{% for slot in cls.slots %}
+        "{{ slot.json_name }}": {% if slot.is_enum and not slot.is_list %}{{ slot.enum_name }}Values.reverse[{{ slot.name }}]{% elif slot.is_list and slot.item_type in enum_names %}{{ slot.name }}?.map((x) => {{ slot.item_type }}Values.reverse[x]).toList(){% elif slot.is_class and slot.dart_type != 'EventPayload' %}{{ slot.name }}?.toJson(){% elif slot.is_list %}{{ slot.name }}?.map((x) => {% if slot.item_type in ['String', 'int', 'double', 'bool'] %}x{% elif slot.item_type == 'EventPayload' %}x{% else %}x.toJson(){% endif %}).toList(){% else %}{{ slot.name }}{% endif %}{% if not loop.last %},{% endif %}
+{% endfor %}
+    };
+}
+
+{% endif %}
+
+{% endfor %}

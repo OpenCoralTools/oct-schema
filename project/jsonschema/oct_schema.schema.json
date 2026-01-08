@@ -1340,15 +1340,16 @@
             "title": "Quantity",
             "type": "object"
         },
-        "RecordTypeEnum": {
+        "RecordType": {
             "description": "",
             "enum": [
-                "Specimen",
-                "Location",
-                "Genet",
-                "Other"
+                "specimen",
+                "event",
+                "location",
+                "genet",
+                "other"
             ],
-            "title": "RecordTypeEnum",
+            "title": "RecordType",
             "type": "string"
         },
         "SiteType": {
@@ -1395,8 +1396,7 @@
                         {
                             "type": "null"
                         }
-                    ],
-                    "description": "Reference to a genet or other genetic grouping"
+                    ]
                 },
                 "inventoryUnitType": {
                     "$ref": "#/$defs/InventoryUnitType"
@@ -1564,7 +1564,7 @@
                     "type": "string"
                 },
                 "recordType": {
-                    "$ref": "#/$defs/RecordTypeEnum"
+                    "$ref": "#/$defs/RecordType"
                 },
                 "role": {
                     "description": "Role in the event (source, destination, etc.)",
