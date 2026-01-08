@@ -1,5 +1,6 @@
 {
    "linkml": "https://w3id.org/linkml/",
-   "oct_schema": "https://w3id.org/OpenCoralTools/oct-schema/",
-   "schema": "http://schema.org/"
+   "oct": "https://opencoral.tools/oct-schema/",
+   "rdf": "http://example.org/UNKNOWN/rdf/",
+   "xsd": "http://www.w3.org/2001/XMLSchema#"
 }

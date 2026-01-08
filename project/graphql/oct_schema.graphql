@@ -1,212 +1,429 @@
 # metamodel_version: 1.7.0
-# version: 0.0.1
-enum CoralSize
+enum ContainerType
   {
-    xs
-    s
-    m
-    l
-    xl
+    system
+    tank
+    tray
+    rack
+    table
+    tree
+    tree_branch
+    rebar_table
+    other
   }
 
-enum ModelType
+enum DevelopmentalStage
   {
-    user
+    gamete
+    embryo
+    larva
+    recruit
+    juvenile
+    adult
+    unknown
+  }
+
+enum DispositionStatus
+  {
+    available
+    reserved
+    quarantine
+    grow_out
+    broodstock
+    research_only
+    unknown
+  }
+
+enum EventType
+  {
+    create
+    transfer
+    split
+    merge
+    measurement
+    state
+  }
+
+enum GenetOriginType
+  {
+    wild_collection
+    sexual_cohort_root
+    unknown
+    other
+  }
+
+enum HealthStatus
+  {
+    healthy
+    stressed
+    bleached
+    diseased
+    dead
+    unknown
+  }
+
+enum InventoryUnitType
+  {
+    individual
+    colony
+    fragment
+    substrate_unit
+    propagule_batch
+    sample
+    unknown
+  }
+
+enum LocationType
+  {
     organization
     site
-    group
-    coral
-    genet
-    recordType
-    event
-    invitation
-    unknown
+    container
+    position
+  }
+
+enum PositionType
+  {
+    slot
+    cell
+    quadrant
+    row
+    column
+    other
+  }
+
+enum RecordTypeEnum
+  {
+    Specimen
+    Location
+    Genet
+    Other
   }
 
 enum SiteType
   {
-    site_type_nursery_ex_situ
-    site_type_nursery_in_situ
-    site_type_outplanting
-    site_type_gene_bank
+    in_situ_nursery
+    ex_situ_nursery
+    gene_bank
+    outplant_site
+    lab
+    other
   }
 
-type Coral
+type CoralEvent
+  {
+    recordId: Identifier!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
+    recordType: String!
+    eventType: EventType!
+    effectiveTime: EffectiveTime!
+    subjects: [SubjectRef]!
+    location: LocationRef
+    payload: EventPayload
+    notes: String
+    source: EventSource
+  }
+
+type CoralLocationRecord
+  {
+    recordId: Identifier!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
+    recordType: String!
+    locationType: LocationType!
+    name: String!
+    parentLocationRef: ParentLocationRef
+    siteType: SiteType
+    containerType: ContainerType
+    positionType: PositionType
+    geo: GeoPoint
+    depth: MeasureValue
+    notes: String
+    codes: [String]
+  }
+
+type CoralSpecimenRecord
+  {
+    recordId: Identifier!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
+    recordType: String!
+    asOf: DateTime!
+    developmentalStage: DevelopmentalStage
+    quantity: Quantity!
+    locationRef: LocationRef!
+    state: SpecimenState
+    tags: [String]
+    notes: String
+    source: SpecimenRecordSource
+    taxon: CoralTaxonRef!
+    geneticGroupRef: GenetRecord
+    inventoryUnitType: InventoryUnitType!
+  }
+
+type CoralTaxonRef
+  {
+    speciesCode: String!
+    scientificName: String
+    taxonId: String
+  }
+
+type EffectiveTime
+  {
+    occurredAt: DateTime
+    startAt: DateTime
+    endAt: DateTime
+  }
+
+type EntityRef
   {
     id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
-    urlPath: String
-    internalPath: String
-    slug: String
-    name: String!
-    genetId: String!
-    speciesId: String!
-    siteId: String!
-    groupId: String!
-    coralTypeId: String!
-    quantity: Int!
-    coralSize: CoralSize
+    type: String
+    label: String
   }
 
 type Event
   {
-    id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
-    urlPath: String
-    internalPath: String
-    slug: String
-    eventTypeId: String!
-    recordId: String!
-    recordModelType: ModelType!
+    recordId: Identifier!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
+    recordType: String!
+    eventType: EventType!
+    effectiveTime: EffectiveTime!
+    subjects: [SubjectRef]!
+    location: LocationRef
+    payload: EventPayload
+    notes: String
+    source: EventSource
   }
 
-type Genet
+interface EventPayload
   {
-    id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
-    urlPath: String
-    internalPath: String
-    slug: String
+  }
+
+type EventSource
+  {
+    datasetId: String
+    externalEventId: String
+    ingestedAt: DateTime
+  }
+
+type GenetOrigin
+  {
+    originType: GenetOriginType
+    collectedAt: DateTime
+    collectionLocationRef: LocationRef
+    notes: String
+  }
+
+type GenetPedigree
+  {
+    damGenetId: String
+    sireGenetId: String
+    cohortId: String
+  }
+
+type GenetRecord
+  {
+    recordId: Identifier!
+    orgId: Identifier!
+    createdBy: Identifier
+    updatedBy: Identifier
+    recordType: String!
+    createdAt: DateTime!
+    updatedAt: DateTime
+    taxon: CoralTaxonRef!
+    genetCode: String!
+    origin: GenetOrigin
+    genotyping: GenotypingMetadata
+    pedigree: GenetPedigree
+    notes: String
+    source: GenetRecordSource
+  }
+
+type GenetRecordSource
+  {
+    datasetId: String
+    externalRecordId: String
+    ingestedAt: DateTime
+  }
+
+type GenotypingMetadata
+  {
+    method: String
+    lab: String
+    assayDate: DateTime
+    associatedSequences: [String]
+  }
+
+type GeoPoint
+  {
+    decimalLatitude: Float!
+    decimalLongitude: Float!
+    geodeticDatum: String
+    coordinateUncertaintyMeters: Float
+  }
+
+type LocationRecord
+  {
+    recordId: Identifier!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
+    recordType: String!
+    locationType: LocationType!
     name: String!
-    speciesId: String!
-    genetTypeId: String!
-    sfId: String!
-    clonalId: String
-    accessionNumber: String
+    parentLocationRef: ParentLocationRef
+    siteType: SiteType
+    containerType: ContainerType
+    positionType: PositionType
+    geo: GeoPoint
+    depth: MeasureValue
+    notes: String
+    codes: [String]
   }
 
-interface InventoryRecord
+type LocationRef
   {
-    id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
-    urlPath: String
-    internalPath: String
-    slug: String
+    locationId: String!
+    locationType: LocationType
+    label: String
   }
 
-type Location
+type MeasureValue
   {
-    id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
-    urlPath: String
-    internalPath: String
-    slug: String
-    groupTypeId: String!
-    name: String!
-    siteId: String!
-    parentId: String!
-    description: String
-    capacity: Int
+    value: Float!
+    unit: String!
+    method: String
   }
 
 type Organization
   {
-    id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
-    urlPath: String
-    internalPath: String
-    slug: String
+    recordId: Identifier!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
+    recordType: String
     name: String!
-    domain: String!
-    siteTypeIds: [String]
-    speciesIds: [String]
+    domain: String
+    supportedSiteTypes: [SiteType]
+    supportedSpecies: [String]
   }
 
-type OrganizationRegisterEntry
+type ParentLocationRef
   {
-    id: String!
-    createdAt: String!
-    updatedAt: String!
-    name: String!
-    description: String
-    region: String!
-    websiteUrl: String
-    contactEmail: String
-    logoUrl: String
-    isActive: Boolean
+    locationId: String!
+    locationType: LocationType
+    label: String
+    siteType: SiteType
+    containerType: ContainerType
+    name: String
   }
 
 type Person
   {
-    id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
+    recordId: Identifier!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
+    recordType: String
     name: String!
     email: String!
     imageUrl: String
   }
 
+type Quantity
+  {
+    count: Float!
+    countUncertainty: Float
+    surfaceArea: MeasureValue
+    volume: MeasureValue
+    biomass: MeasureValue
+    linearSize: MeasureValue
+  }
+
 interface Record
   {
-    id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
+    recordId: Identifier!
+    recordType: String!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
   }
 
-type Site
+type SpecimenRecord
   {
-    id: String!
-    createdAt: String
-    createdById: String
-    updatedAt: String
-    updatedById: String
-    organizationId: String
-    urlPath: String
-    internalPath: String
-    slug: String
-    siteTypeId: String!
-    name: String!
-    groupIdHierarchy: [String]
-    description: String
-  }
-
-type Species
-  {
-    id: String!
-    commonName: String
-    genus: String!
-    specificEpithet: String!
-  }
-
-type SpeciesRegisterEntry
-  {
-    id: String!
-    createdAt: String!
-    updatedAt: String!
-    commonName: String
-    genus: String!
-    specificEpithet: String!
-    scientificName: String
-    photoUrl: String
+    recordId: Identifier!
+    orgId: Identifier!
+    createdAt: DateTime
+    createdBy: Identifier
+    updatedAt: DateTime
+    updatedBy: Identifier
+    recordType: String!
+    asOf: DateTime!
+    taxon: TaxonRef!
+    geneticGroupRef: EntityRef
+    inventoryUnitType: InventoryUnitType!
+    developmentalStage: DevelopmentalStage
+    quantity: Quantity!
+    locationRef: LocationRef!
+    state: SpecimenState
     tags: [String]
+    notes: String
+    source: SpecimenRecordSource
+  }
+
+type SpecimenRecordSource
+  {
+    datasetId: String
+    externalRecordId: String
+    ingestedAt: DateTime
+  }
+
+type SpecimenState
+  {
+    disposition: DispositionStatus
+    health: HealthStatus
+    readyForPropagation: Boolean
+    readyForOutplant: Boolean
+  }
+
+type StateEventPayload
+  {
+    stateType: String!
+    stateValue: String!
+  }
+
+type SubjectRef
+  {
+    recordId: String!
+    recordType: RecordTypeEnum!
+    role: String
+  }
+
+type TaxonRef
+  {
+    name: String!
+    taxonId: String
+    rank: String
   }

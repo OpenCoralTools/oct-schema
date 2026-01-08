@@ -1,1137 +1,2381 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix linkml: <https://w3id.org/linkml/> .
-@prefix oct_schema: <https://w3id.org/OpenCoralTools/oct-schema/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix pav: <http://purl.org/pav/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://w3id.org/OpenCoralTools/oct-schema> a owl:Ontology ;
+<https://opencoral.tools/oct-schema> a owl:Ontology ;
     rdfs:label "oct-schema" ;
-    dcterms:license "MIT" ;
-    dcterms:title "oct-schema" ;
-    pav:version "0.0.1" ;
-    rdfs:seeAlso <https://OpenCoralTools.github.io/oct-schema> ;
-    skos:definition "Data standards for coral research and conservation" .
+    dcterms:title "Open Coral Tools Schema" ;
+    skos:definition "Top-level schema combining Core and Coral modules." .
 
-oct_schema:Coral a owl:Class,
+<https://opencoral.tools/oct-schema/core/event/StateEventPayload> a owl:Class,
         linkml:ClassDefinition ;
-    rdfs:label "Coral" ;
+    rdfs:label "StateEventPayload" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/stateValue> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/stateType> ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:quantity ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/stateValue> ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/stateType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/stateType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/stateValue> ],
+        <https://opencoral.tools/oct-schema/core/event/EventPayload> ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/coral/genet/GenetOrigin> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "GenetOrigin" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/collectionLocationRef> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/location/LocationRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/collectionLocationRef> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/originType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/notes> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/collectedAt> ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:coral_size ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/originType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/notes> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:GenetOriginType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/originType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/collectedAt> ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:group_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:genet_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/notes> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:coral_type_id ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/collectedAt> ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:species_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:group_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
-            owl:onProperty oct_schema:quantity ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:quantity ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:coral_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:coral_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:genet_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:genet_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:group_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:species_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom oct_schema:CoralSize ;
-            owl:onProperty oct_schema:coral_size ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:species_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:coral_size ],
-        oct_schema:InventoryRecord ;
-    skos:definition "Represents a specific coral instance" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Coral> .
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/collectionLocationRef> ] ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-oct_schema:Event a owl:Class,
+<https://opencoral.tools/oct-schema/coral/genet/GenetPedigree> a owl:Class,
         linkml:ClassDefinition ;
-    rdfs:label "Event" ;
+    rdfs:label "GenetPedigree" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/sireGenetId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/cohortId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/damGenetId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/sireGenetId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/damGenetId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/cohortId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/cohortId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/damGenetId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/sireGenetId> ] ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/GenetRecordSource> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "GenetRecordSource" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:event_type_id ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/datasetId> ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:record_id ],
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/externalRecordId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/datasetId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/externalRecordId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/ingestedAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/datasetId> ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:record_id ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/externalRecordId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/ingestedAt> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:record_model_type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom oct_schema:ModelType ;
-            owl:onProperty oct_schema:record_model_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:event_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:record_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:record_model_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:event_type_id ],
-        oct_schema:InventoryRecord ;
-    skos:definition "Represents an event in the system history" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Event> .
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/ingestedAt> ] ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-oct_schema:Genet a owl:Class,
+<https://opencoral.tools/oct-schema/coral/genet/GenotypingMetadata> a owl:Class,
         linkml:ClassDefinition ;
+    rdfs:label "GenotypingMetadata" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/lab> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/method> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/lab> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/assayDate> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/associatedSequences> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/lab> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/assayDate> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/method> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/method> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/assayDate> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/associatedSequences> ] ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/core/event/EffectiveTime> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "EffectiveTime" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/startAt> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/endAt> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/endAt> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/startAt> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/occurredAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/endAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/startAt> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/occurredAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/occurredAt> ] ;
+    skos:definition "Time of the event (moment or interval)" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/EventSource> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "EventSource" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/externalEventId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/ingestedAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/externalEventId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/externalEventId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/ingestedAt> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/datasetId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/ingestedAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/datasetId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/datasetId> ] ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/SubjectRef> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "SubjectRef" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:RecordTypeEnum> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/role> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/role> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/role> ] ;
+    skos:definition "Reference to a record affected by the event" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/location/ParentLocationRef> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ParentLocationRef" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/siteType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/siteType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:ContainerType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/containerType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/containerType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/containerType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/name> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/name> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:SiteType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/siteType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/name> ],
+        <https://opencoral.tools/oct-schema/core/location/LocationRef> ;
+    skos:definition "Reference to a parent location with structural type information" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/specimen/Quantity> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Quantity" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/biomass> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/countUncertainty> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/volume> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/linearSize> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/biomass> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/surfaceArea> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/count> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:minInclusive 0 ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/countUncertainty> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/MeasureValue> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/surfaceArea> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/count> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/volume> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/surfaceArea> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/MeasureValue> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/biomass> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/MeasureValue> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/volume> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/countUncertainty> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/MeasureValue> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/linearSize> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:minInclusive 0 ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/count> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/linearSize> ] ;
+    skos:definition "Quantification of the specimen (count, size, etc.)" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecordSource> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "SpecimenRecordSource" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/externalRecordId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/datasetId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/ingestedAt> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/externalRecordId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/externalRecordId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/ingestedAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/datasetId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/ingestedAt> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/datasetId> ] ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/SpecimenState> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "SpecimenState" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Boolean ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/readyForOutplant> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/readyForPropagation> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/disposition> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/readyForPropagation> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Boolean ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/readyForPropagation> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/readyForOutplant> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:HealthStatus> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/health> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:DispositionStatus> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/disposition> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/health> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/disposition> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/readyForOutplant> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/health> ] ;
+    skos:definition "Derived state of the specimen" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/types/EntityRef> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "EntityRef" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/id> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/label> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/type> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/label> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/label> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/type> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/id> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/id> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/type> ] ;
+    skos:definition "A generic reference to another entity" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/GeoPoint> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "GeoPoint" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/decimalLatitude> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/coordinateUncertaintyMeters> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/geodeticDatum> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/geodeticDatum> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/decimalLongitude> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/decimalLatitude> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/coordinateUncertaintyMeters> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:minInclusive -90 ] ) ] [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxInclusive 90 ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/decimalLatitude> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:minInclusive -180 ] ) ] [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxInclusive 180 ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/decimalLongitude> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/geodeticDatum> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:minInclusive 0 ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/coordinateUncertaintyMeters> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/decimalLongitude> ] ;
+    skos:definition "A geographic coordinate" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/TaxonRef> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "TaxonRef" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/taxonId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/name> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/rank> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/rank> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/taxonId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/name> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/name> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/taxonId> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/rank> ] ;
+    skos:definition "A reference to a taxonomic entity" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#other> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "other" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#rack> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "rack" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#rebar_table> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "rebar_table" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#system> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "system" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#table> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "table" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#tank> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "tank" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#tray> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "tray" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#tree> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "tree" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:ContainerType#tree_branch> a owl:Class,
+        <https://opencoral.tools/oct-schema/:ContainerType> ;
+    rdfs:label "tree_branch" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:ContainerType> .
+
+<https://opencoral.tools/oct-schema/:DevelopmentalStage#adult> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage> ;
+    rdfs:label "adult" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DevelopmentalStage> .
+
+<https://opencoral.tools/oct-schema/:DevelopmentalStage#embryo> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage> ;
+    rdfs:label "embryo" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DevelopmentalStage> .
+
+<https://opencoral.tools/oct-schema/:DevelopmentalStage#gamete> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage> ;
+    rdfs:label "gamete" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DevelopmentalStage> .
+
+<https://opencoral.tools/oct-schema/:DevelopmentalStage#juvenile> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage> ;
+    rdfs:label "juvenile" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DevelopmentalStage> .
+
+<https://opencoral.tools/oct-schema/:DevelopmentalStage#larva> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage> ;
+    rdfs:label "larva" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DevelopmentalStage> .
+
+<https://opencoral.tools/oct-schema/:DevelopmentalStage#recruit> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage> ;
+    rdfs:label "recruit" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DevelopmentalStage> .
+
+<https://opencoral.tools/oct-schema/:DevelopmentalStage#unknown> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage> ;
+    rdfs:label "unknown" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DevelopmentalStage> .
+
+<https://opencoral.tools/oct-schema/:DispositionStatus#available> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DispositionStatus> ;
+    rdfs:label "available" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DispositionStatus> .
+
+<https://opencoral.tools/oct-schema/:DispositionStatus#broodstock> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DispositionStatus> ;
+    rdfs:label "broodstock" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DispositionStatus> .
+
+<https://opencoral.tools/oct-schema/:DispositionStatus#grow_out> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DispositionStatus> ;
+    rdfs:label "grow_out" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DispositionStatus> .
+
+<https://opencoral.tools/oct-schema/:DispositionStatus#quarantine> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DispositionStatus> ;
+    rdfs:label "quarantine" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DispositionStatus> .
+
+<https://opencoral.tools/oct-schema/:DispositionStatus#research_only> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DispositionStatus> ;
+    rdfs:label "research_only" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DispositionStatus> .
+
+<https://opencoral.tools/oct-schema/:DispositionStatus#reserved> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DispositionStatus> ;
+    rdfs:label "reserved" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DispositionStatus> .
+
+<https://opencoral.tools/oct-schema/:DispositionStatus#unknown> a owl:Class,
+        <https://opencoral.tools/oct-schema/:DispositionStatus> ;
+    rdfs:label "unknown" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:DispositionStatus> .
+
+<https://opencoral.tools/oct-schema/:EventType#create> a owl:Class,
+        <https://opencoral.tools/oct-schema/:EventType> ;
+    rdfs:label "create" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:EventType> .
+
+<https://opencoral.tools/oct-schema/:EventType#measurement> a owl:Class,
+        <https://opencoral.tools/oct-schema/:EventType> ;
+    rdfs:label "measurement" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:EventType> .
+
+<https://opencoral.tools/oct-schema/:EventType#merge> a owl:Class,
+        <https://opencoral.tools/oct-schema/:EventType> ;
+    rdfs:label "merge" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:EventType> .
+
+<https://opencoral.tools/oct-schema/:EventType#split> a owl:Class,
+        <https://opencoral.tools/oct-schema/:EventType> ;
+    rdfs:label "split" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:EventType> .
+
+<https://opencoral.tools/oct-schema/:EventType#state> a owl:Class,
+        <https://opencoral.tools/oct-schema/:EventType> ;
+    rdfs:label "state" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:EventType> .
+
+<https://opencoral.tools/oct-schema/:EventType#transfer> a owl:Class,
+        <https://opencoral.tools/oct-schema/:EventType> ;
+    rdfs:label "transfer" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:EventType> .
+
+<https://opencoral.tools/oct-schema/:GenetOriginType#other> a owl:Class,
+        <https://opencoral.tools/oct-schema/:GenetOriginType> ;
+    rdfs:label "other" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:GenetOriginType> .
+
+<https://opencoral.tools/oct-schema/:GenetOriginType#sexual_cohort_root> a owl:Class,
+        <https://opencoral.tools/oct-schema/:GenetOriginType> ;
+    rdfs:label "sexual_cohort_root" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:GenetOriginType> .
+
+<https://opencoral.tools/oct-schema/:GenetOriginType#unknown> a owl:Class,
+        <https://opencoral.tools/oct-schema/:GenetOriginType> ;
+    rdfs:label "unknown" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:GenetOriginType> .
+
+<https://opencoral.tools/oct-schema/:GenetOriginType#wild_collection> a owl:Class,
+        <https://opencoral.tools/oct-schema/:GenetOriginType> ;
+    rdfs:label "wild_collection" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:GenetOriginType> .
+
+<https://opencoral.tools/oct-schema/:HealthStatus#bleached> a owl:Class,
+        <https://opencoral.tools/oct-schema/:HealthStatus> ;
+    rdfs:label "bleached" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:HealthStatus> .
+
+<https://opencoral.tools/oct-schema/:HealthStatus#dead> a owl:Class,
+        <https://opencoral.tools/oct-schema/:HealthStatus> ;
+    rdfs:label "dead" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:HealthStatus> .
+
+<https://opencoral.tools/oct-schema/:HealthStatus#diseased> a owl:Class,
+        <https://opencoral.tools/oct-schema/:HealthStatus> ;
+    rdfs:label "diseased" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:HealthStatus> .
+
+<https://opencoral.tools/oct-schema/:HealthStatus#healthy> a owl:Class,
+        <https://opencoral.tools/oct-schema/:HealthStatus> ;
+    rdfs:label "healthy" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:HealthStatus> .
+
+<https://opencoral.tools/oct-schema/:HealthStatus#stressed> a owl:Class,
+        <https://opencoral.tools/oct-schema/:HealthStatus> ;
+    rdfs:label "stressed" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:HealthStatus> .
+
+<https://opencoral.tools/oct-schema/:HealthStatus#unknown> a owl:Class,
+        <https://opencoral.tools/oct-schema/:HealthStatus> ;
+    rdfs:label "unknown" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:HealthStatus> .
+
+<https://opencoral.tools/oct-schema/:InventoryUnitType#colony> a owl:Class,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+    rdfs:label "colony" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:InventoryUnitType> .
+
+<https://opencoral.tools/oct-schema/:InventoryUnitType#fragment> a owl:Class,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+    rdfs:label "fragment" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:InventoryUnitType> .
+
+<https://opencoral.tools/oct-schema/:InventoryUnitType#individual> a owl:Class,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+    rdfs:label "individual" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:InventoryUnitType> .
+
+<https://opencoral.tools/oct-schema/:InventoryUnitType#propagule_batch> a owl:Class,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+    rdfs:label "propagule_batch" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:InventoryUnitType> .
+
+<https://opencoral.tools/oct-schema/:InventoryUnitType#sample> a owl:Class,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+    rdfs:label "sample" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:InventoryUnitType> .
+
+<https://opencoral.tools/oct-schema/:InventoryUnitType#substrate_unit> a owl:Class,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+    rdfs:label "substrate_unit" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:InventoryUnitType> .
+
+<https://opencoral.tools/oct-schema/:InventoryUnitType#unknown> a owl:Class,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+    rdfs:label "unknown" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:InventoryUnitType> .
+
+<https://opencoral.tools/oct-schema/:LocationType#container> a owl:Class,
+        <https://opencoral.tools/oct-schema/:LocationType> ;
+    rdfs:label "container" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:LocationType> .
+
+<https://opencoral.tools/oct-schema/:LocationType#organization> a owl:Class,
+        <https://opencoral.tools/oct-schema/:LocationType> ;
+    rdfs:label "organization" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:LocationType> .
+
+<https://opencoral.tools/oct-schema/:LocationType#position> a owl:Class,
+        <https://opencoral.tools/oct-schema/:LocationType> ;
+    rdfs:label "position" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:LocationType> .
+
+<https://opencoral.tools/oct-schema/:LocationType#site> a owl:Class,
+        <https://opencoral.tools/oct-schema/:LocationType> ;
+    rdfs:label "site" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:LocationType> .
+
+<https://opencoral.tools/oct-schema/:PositionType#cell> a owl:Class,
+        <https://opencoral.tools/oct-schema/:PositionType> ;
+    rdfs:label "cell" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:PositionType> .
+
+<https://opencoral.tools/oct-schema/:PositionType#column> a owl:Class,
+        <https://opencoral.tools/oct-schema/:PositionType> ;
+    rdfs:label "column" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:PositionType> .
+
+<https://opencoral.tools/oct-schema/:PositionType#other> a owl:Class,
+        <https://opencoral.tools/oct-schema/:PositionType> ;
+    rdfs:label "other" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:PositionType> .
+
+<https://opencoral.tools/oct-schema/:PositionType#quadrant> a owl:Class,
+        <https://opencoral.tools/oct-schema/:PositionType> ;
+    rdfs:label "quadrant" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:PositionType> .
+
+<https://opencoral.tools/oct-schema/:PositionType#row> a owl:Class,
+        <https://opencoral.tools/oct-schema/:PositionType> ;
+    rdfs:label "row" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:PositionType> .
+
+<https://opencoral.tools/oct-schema/:PositionType#slot> a owl:Class,
+        <https://opencoral.tools/oct-schema/:PositionType> ;
+    rdfs:label "slot" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:PositionType> .
+
+<https://opencoral.tools/oct-schema/:RecordTypeEnum#Genet> a owl:Class,
+        <https://opencoral.tools/oct-schema/:RecordTypeEnum> ;
     rdfs:label "Genet" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:accession_number ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:species_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:sf_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:clonal_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:clonal_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:sf_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:genet_type_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:sf_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:accession_number ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:clonal_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:species_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:genet_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:accession_number ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:genet_type_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:species_id ],
-        oct_schema:InventoryRecord ;
-    skos:definition "Represents a genetic individual" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Genet> .
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:RecordTypeEnum> .
 
-oct_schema:Location a owl:Class,
-        linkml:ClassDefinition ;
+<https://opencoral.tools/oct-schema/:RecordTypeEnum#Location> a owl:Class,
+        <https://opencoral.tools/oct-schema/:RecordTypeEnum> ;
     rdfs:label "Location" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:group_type_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:parent_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:parent_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:parent_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:capacity ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:group_type_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:capacity ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
-            owl:onProperty oct_schema:capacity ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:site_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:group_type_id ],
-        oct_schema:InventoryRecord ;
-    skos:definition "Represents a group of items or a container within a site" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Location> .
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:RecordTypeEnum> .
 
-oct_schema:Organization a owl:Class,
+<https://opencoral.tools/oct-schema/:RecordTypeEnum#Other> a owl:Class,
+        <https://opencoral.tools/oct-schema/:RecordTypeEnum> ;
+    rdfs:label "Other" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:RecordTypeEnum> .
+
+<https://opencoral.tools/oct-schema/:RecordTypeEnum#Specimen> a owl:Class,
+        <https://opencoral.tools/oct-schema/:RecordTypeEnum> ;
+    rdfs:label "Specimen" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:RecordTypeEnum> .
+
+<https://opencoral.tools/oct-schema/:SiteType#ex_situ_nursery> a owl:Class,
+        <https://opencoral.tools/oct-schema/:SiteType> ;
+    rdfs:label "ex_situ_nursery" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:SiteType> .
+
+<https://opencoral.tools/oct-schema/:SiteType#gene_bank> a owl:Class,
+        <https://opencoral.tools/oct-schema/:SiteType> ;
+    rdfs:label "gene_bank" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:SiteType> .
+
+<https://opencoral.tools/oct-schema/:SiteType#in_situ_nursery> a owl:Class,
+        <https://opencoral.tools/oct-schema/:SiteType> ;
+    rdfs:label "in_situ_nursery" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:SiteType> .
+
+<https://opencoral.tools/oct-schema/:SiteType#lab> a owl:Class,
+        <https://opencoral.tools/oct-schema/:SiteType> ;
+    rdfs:label "lab" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:SiteType> .
+
+<https://opencoral.tools/oct-schema/:SiteType#other> a owl:Class,
+        <https://opencoral.tools/oct-schema/:SiteType> ;
+    rdfs:label "other" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:SiteType> .
+
+<https://opencoral.tools/oct-schema/:SiteType#outplant_site> a owl:Class,
+        <https://opencoral.tools/oct-schema/:SiteType> ;
+    rdfs:label "outplant_site" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/:SiteType> .
+
+<https://opencoral.tools/oct-schema/coral/event/CoralEvent> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "CoralEvent" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/core/event/Event> ;
+    skos:definition "An event in the coral domain" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/event> .
+
+<https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "CoralTaxonRef" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/scientificName> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/taxonId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/scientificName> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/scientificName> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/speciesCode> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/speciesCode> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^[a-z0-9]{4}$" ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/speciesCode> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/taxonId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/taxonId> ] ;
+    skos:definition "Coral-specific taxon reference with species code" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/associatedSequences> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "associatedSequences" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "CoralLocationRecord" ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/core/location/LocationRecord> ;
+    skos:definition "A location record used in coral restoration (extensible placeholder)" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/location> .
+
+<https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "CoralSpecimenRecord" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:geneticGroupRef> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/coral/genet/GenetRecord> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:geneticGroupRef> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:inventoryUnitType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:inventoryUnitType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:taxon> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:inventoryUnitType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:geneticGroupRef> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:taxon> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/:taxon> ],
+        <https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord> ;
+    skos:definition "A specimen record representing a coral" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/specimen> .
+
+<https://opencoral.tools/oct-schema/core/event/EventPayload> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "EventPayload" ;
+    skos:definition "Abstract base for event-specific payloads" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/subjects> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "subjects" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/location/codes> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "codes" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/organization/Organization> a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Organization" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:site_type_ids ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:site_type_ids ],
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/name> ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:domain ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/name> ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:domain ],
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/domain> ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:species_ids ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/supportedSiteTypes> ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:species_ids ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/supportedSpecies> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/supportedSpecies> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/domain> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^Organization$" ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/recordType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/domain> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/recordType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/name> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/recordType> ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:domain ],
-        oct_schema:InventoryRecord ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:SiteType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/organization/supportedSiteTypes> ],
+        <https://opencoral.tools/oct-schema/core/record/Record> ;
     skos:definition "Represents an organization" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Organization> .
+    skos:inScheme <https://opencoral.tools/oct-schema/core/organization> .
 
-oct_schema:OrganizationRegisterEntry a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "OrganizationRegisterEntry" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:website_url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:website_url ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Boolean ;
-            owl:onProperty oct_schema:is_active ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:logo_url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:region ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:website_url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:region ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:contact_email ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:logo_url ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:is_active ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:is_active ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:logo_url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:contact_email ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:region ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:contact_email ] ;
-    skos:definition "Represents an entry in the organization registry" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry> .
+<https://opencoral.tools/oct-schema/core/organization/supportedSiteTypes> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "supportedSiteTypes" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/organization> .
 
-oct_schema:Person a owl:Class,
+<https://opencoral.tools/oct-schema/core/organization/supportedSpecies> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "supportedSpecies" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/organization> .
+
+<https://opencoral.tools/oct-schema/core/person/Person> a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Person" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:image_url ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/recordType> ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/name> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/recordType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/imageUrl> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^Person$" ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/recordType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/imageUrl> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/name> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/email> ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:email ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:image_url ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:image_url ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/email> ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/name> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:email ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/email> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:email ],
-        oct_schema:Record ;
-    skos:definition "Represents a person (user)" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Person> .
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/person/imageUrl> ],
+        <https://opencoral.tools/oct-schema/core/record/Record> ;
+    skos:definition "Represents a human user or agent" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/person> .
 
-oct_schema:Site a owl:Class,
+<https://opencoral.tools/oct-schema/core/specimen/tags> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "tags" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+linkml:topValue a owl:DatatypeProperty ;
+    rdfs:label "value" .
+
+<https://opencoral.tools/oct-schema/coral/genet/GenetRecord> a owl:Class,
         linkml:ClassDefinition ;
-    rdfs:label "Site" ;
+    rdfs:label "GenetRecord" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:description ],
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/pedigree> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:name ],
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/taxon> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:group_id_hierarchy ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/genotyping> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:site_type_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:site_type_id ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/updatedAt> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/notes> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:site_type_id ],
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/coral/genet/GenetPedigree> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/pedigree> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/taxon> ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:description ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/notes> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/coral/genet/GenetOrigin> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/origin> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^Genet$" ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/recordType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/createdAt> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/coral/genet/GenetRecordSource> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/source> ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:group_id_hierarchy ],
-        oct_schema:InventoryRecord ;
-    skos:definition "Represents a physical site" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Site> .
-
-oct_schema:Species a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "Species" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:common_name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/origin> ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:common_name ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/notes> ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:specific_epithet ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:specific_epithet ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:common_name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:specific_epithet ] ;
-    skos:definition "Represents a species" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Species> .
-
-oct_schema:SpeciesRegisterEntry a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "SpeciesRegisterEntry" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:scientific_name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:common_name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:tags ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:specific_epithet ],
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/updatedAt> ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:photo_url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:photo_url ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:specific_epithet ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:common_name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/updatedAt> ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:tags ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/source> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:specific_epithet ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oct_schema:genus ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:scientific_name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:photo_url ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:scientific_name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:created_at ],
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/source> ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:common_name ] ;
-    skos:definition "Represents an entry in the species registry" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry> .
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/genotyping> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/recordType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/pedigree> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/createdAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/genetCode> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/origin> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/coral/genet/GenotypingMetadata> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/genotyping> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/taxon> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/genetCode> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/genetCode> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/createdAt> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/coral/genet/recordType> ],
+        <https://opencoral.tools/oct-schema/core/record/Record> ;
+    skos:definition "Coral-specific genet record (clonal lineage)" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/CoralSize#l> a owl:Class,
-        oct_schema:CoralSize ;
-    rdfs:label "l" ;
-    rdfs:subClassOf oct_schema:CoralSize .
+<https://opencoral.tools/oct-schema/coral/genet/assayDate> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "assayDate" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/CoralSize#m> a owl:Class,
-        oct_schema:CoralSize ;
-    rdfs:label "m" ;
-    rdfs:subClassOf oct_schema:CoralSize .
+<https://opencoral.tools/oct-schema/coral/genet/cohortId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "cohortId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/CoralSize#s> a owl:Class,
-        oct_schema:CoralSize ;
-    rdfs:label "s" ;
-    rdfs:subClassOf oct_schema:CoralSize .
+<https://opencoral.tools/oct-schema/coral/genet/collectedAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "collectedAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xl> a owl:Class,
-        oct_schema:CoralSize ;
-    rdfs:label "xl" ;
-    rdfs:subClassOf oct_schema:CoralSize .
+<https://opencoral.tools/oct-schema/coral/genet/collectionLocationRef> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "collectionLocationRef" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xs> a owl:Class,
-        oct_schema:CoralSize ;
-    rdfs:label "xs" ;
-    rdfs:subClassOf oct_schema:CoralSize .
+<https://opencoral.tools/oct-schema/coral/genet/createdAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "createdAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#coral> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "coral" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/damGenetId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "damGenetId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#event> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "event" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/datasetId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "datasetId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#genet> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "genet" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/externalRecordId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "externalRecordId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#group> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "group" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/genetCode> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "genetCode" ;
+    skos:definition "Program-level genet identifier" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#invitation> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "invitation" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/genotyping> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "genotyping" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#organization> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "organization" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/ingestedAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "ingestedAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#recordType> a owl:Class,
-        oct_schema:ModelType ;
+<https://opencoral.tools/oct-schema/coral/genet/lab> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "lab" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/method> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "method" ;
+    skos:definition "e.g. SNP panel name, microsatellites" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/origin> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "origin" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/originType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "originType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/pedigree> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "pedigree" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/recordType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
     rdfs:label "recordType" ;
-    rdfs:subClassOf oct_schema:ModelType .
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#site> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "site" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/scientificName> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "scientificName" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#unknown> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "unknown" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/sireGenetId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "sireGenetId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/ModelType#user> a owl:Class,
-        oct_schema:ModelType ;
-    rdfs:label "user" ;
-    rdfs:subClassOf oct_schema:ModelType .
+<https://opencoral.tools/oct-schema/coral/genet/source> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "source" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
 
-oct_schema:Record a owl:Class,
+<https://opencoral.tools/oct-schema/coral/genet/speciesCode> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "speciesCode" ;
+    skos:definition "Registry-backed 4-char species code (e.g., 'apal')" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/taxon> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "taxon" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/taxonId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "taxonId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/coral/genet/updatedAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "updatedAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> .
+
+<https://opencoral.tools/oct-schema/core/event/Event> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Event" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/notes> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/source> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/event/SubjectRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/subjects> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/location> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/payload> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/effectiveTime> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^Event$" ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/event/EventPayload> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/payload> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/notes> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/notes> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/location/LocationRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/location> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/payload> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/source> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/event/EventSource> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/source> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/effectiveTime> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/eventType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/location> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:EventType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/eventType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/recordType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/eventType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/event/EffectiveTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/effectiveTime> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/event/subjects> ],
+        <https://opencoral.tools/oct-schema/core/record/Record> ;
+    skos:definition "An event modifying one or more records" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/datasetId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "datasetId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/effectiveTime> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "effectiveTime" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/endAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "endAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/eventType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "eventType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/externalEventId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "externalEventId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/ingestedAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "ingestedAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/location> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "location" ;
+    skos:definition "Context location for the event" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/notes> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "notes" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/occurredAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "occurredAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/payload> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "payload" ;
+    skos:definition "Type-specific event data" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/recordId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "recordId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/role> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "role" ;
+    skos:definition "Role in the event (source, destination, etc.)" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/source> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "source" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/startAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "startAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/stateType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "stateType" ;
+    skos:definition "e.g. health, disposition" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/event/stateValue> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "stateValue" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/location/LocationRecord> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "LocationRecord" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/positionType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/location/ParentLocationRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/parentLocationRef> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/name> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/recordType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/codes> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/positionType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/name> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^Location$" ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/recordType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:ContainerType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/containerType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/GeoPoint> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/geo> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/containerType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/MeasureValue> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/depth> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/name> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/notes> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/notes> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/parentLocationRef> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/recordType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:PositionType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/positionType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:SiteType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/siteType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/codes> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/geo> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/geo> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/containerType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:LocationType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/depth> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/siteType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/notes> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/siteType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/depth> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/parentLocationRef> ],
+        <https://opencoral.tools/oct-schema/core/record/Record> ;
+    skos:definition "A record representing a physical or logical location" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/location/depth> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "depth" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/location/geo> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "geo" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/location/label> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "label" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/location/locationId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "locationId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/location/notes> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "notes" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/location/parentLocationRef> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "parentLocationRef" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/location/positionType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "positionType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/location/recordType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "recordType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/organization/domain> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "domain" ;
+    skos:definition "Domain name associated with the organization" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/organization> .
+
+<https://opencoral.tools/oct-schema/core/organization/name> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "name" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/organization> .
+
+<https://opencoral.tools/oct-schema/core/organization/recordType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "recordType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/organization> .
+
+<https://opencoral.tools/oct-schema/core/person/email> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "email" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/person> .
+
+<https://opencoral.tools/oct-schema/core/person/imageUrl> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "imageUrl" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/person> .
+
+<https://opencoral.tools/oct-schema/core/person/name> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "name" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/person> .
+
+<https://opencoral.tools/oct-schema/core/person/recordType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "recordType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/person> .
+
+<https://opencoral.tools/oct-schema/core/record/createdAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "createdAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/record> .
+
+<https://opencoral.tools/oct-schema/core/record/createdBy> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "createdBy" ;
+    skos:definition "ID of the Agent (Person/Service) who created this" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/record> .
+
+<https://opencoral.tools/oct-schema/core/record/orgId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "orgId" ;
+    skos:definition "The organization that owns/issued this record" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/record> .
+
+<https://opencoral.tools/oct-schema/core/record/recordId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "recordId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/record> .
+
+<https://opencoral.tools/oct-schema/core/record/recordType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "recordType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/record> .
+
+<https://opencoral.tools/oct-schema/core/record/updatedAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "updatedAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/record> .
+
+<https://opencoral.tools/oct-schema/core/record/updatedBy> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "updatedBy" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/record> .
+
+<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "SpecimenRecord" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/notes> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/developmentalStage> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/state> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/location/LocationRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/locationRef> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/taxon> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/tags> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:DevelopmentalStage> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/developmentalStage> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/TaxonRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/taxon> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/specimen/SpecimenState> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/state> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/specimen/Quantity> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/quantity> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/asOf> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/asOf> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/source> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/tags> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/quantity> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/quantity> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/recordType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/EntityRef> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/locationRef> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/recordType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:InventoryUnitType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/source> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/state> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/notes> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/developmentalStage> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/locationRef> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^Specimen$" ] ) ] ) ] ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/recordType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/taxon> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/specimen/SpecimenRecordSource> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/source> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/asOf> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/specimen/notes> ],
+        <https://opencoral.tools/oct-schema/core/record/Record> ;
+    skos:definition "A record representing a biological specimen or group" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/asOf> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "asOf" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/biomass> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "biomass" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/count> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "count" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/countUncertainty> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "countUncertainty" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/datasetId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "datasetId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/developmentalStage> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "developmentalStage" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/disposition> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "disposition" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/externalRecordId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "externalRecordId" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "geneticGroupRef" ;
+    skos:definition "Reference to a genet or other genetic grouping" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/health> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "health" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/ingestedAt> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "ingestedAt" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "inventoryUnitType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/linearSize> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "linearSize" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/locationRef> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "locationRef" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/notes> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "notes" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/quantity> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "quantity" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/readyForOutplant> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "readyForOutplant" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/readyForPropagation> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "readyForPropagation" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/recordType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "recordType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/source> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "source" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/state> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "state" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/surfaceArea> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "surfaceArea" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/taxon> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "taxon" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/specimen/volume> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "volume" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> .
+
+<https://opencoral.tools/oct-schema/core/types/coordinateUncertaintyMeters> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "coordinateUncertaintyMeters" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/decimalLatitude> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "decimalLatitude" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/decimalLongitude> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "decimalLongitude" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/geodeticDatum> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "geodeticDatum" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/id> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "id" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/label> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "label" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/method> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "method" ;
+    skos:definition "Method used to obtain the measurement" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/name> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "name" ;
+    skos:definition "Scientific name or label" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/rank> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "rank" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/taxonId> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "taxonId" ;
+    skos:definition "External identifier (e.g. LSID)" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/type> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "type" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/unit> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "unit" ;
+    skos:definition "UCUM unit code recommended" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/types/value> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "value" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/core/location/LocationRef> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "LocationRef" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/:LocationType> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationType> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/label> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/label> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/label> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/location/locationType> ] ;
+    skos:definition "A lightweight reference to a location" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> .
+
+<https://opencoral.tools/oct-schema/core/types/Identifier> a owl:Class,
+        linkml:TypeDefinition ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange <https://opencoral.tools/oct-schema/core/types/Identifier> ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] .
+
+<https://opencoral.tools/oct-schema/core/types/MeasureValue> a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "MeasureValue" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/method> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/value> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Float ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/value> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/unit> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/method> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/value> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/unit> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/unit> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/types/method> ] ;
+    skos:definition "A measured value with a unit" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/types> .
+
+<https://opencoral.tools/oct-schema/coral/genet/notes> a owl:ObjectProperty,
+        linkml:SlotDefinition .
+
+<https://opencoral.tools/oct-schema/core/event/recordType> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "recordType" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> .
+
+<https://opencoral.tools/oct-schema/core/location/containerType> a owl:ObjectProperty,
+        linkml:SlotDefinition .
+
+<https://opencoral.tools/oct-schema/core/location/locationType> a owl:ObjectProperty,
+        linkml:SlotDefinition .
+
+<https://opencoral.tools/oct-schema/core/location/name> a owl:ObjectProperty,
+        linkml:SlotDefinition .
+
+<https://opencoral.tools/oct-schema/core/location/siteType> a owl:ObjectProperty,
+        linkml:SlotDefinition .
+
+<https://opencoral.tools/oct-schema/core/record/Record> a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Record" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:updated_by_id ],
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/recordType> ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:updated_by_id ],
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/Identifier> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/orgId> ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:created_by_id ],
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/createdBy> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/Identifier> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/recordId> ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty oct_schema:id ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/recordId> ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:created_by_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:organization_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:created_at ],
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/updatedAt> ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oct_schema:organization_id ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/createdBy> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oct_schema:id ],
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/orgId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/updatedBy> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/recordId> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/updatedBy> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/updatedAt> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/createdAt> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/orgId> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/updatedAt> ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:created_by_id ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/recordType> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/recordType> ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:created_at ],
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/createdAt> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:organization_id ],
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/Identifier> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/updatedBy> ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:updated_by_id ],
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/Identifier> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/createdBy> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oct_schema:updated_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:created_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:updated_at ] ;
-    skos:definition "Base class for all records" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Record> .
+            owl:allValuesFrom <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty <https://opencoral.tools/oct-schema/core/record/createdAt> ] ;
+    skos:definition "Base class for all authoritative records" ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/record> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_gene_bank> a owl:Class,
-        oct_schema:SiteType ;
-    rdfs:label "site_type_gene_bank" ;
-    rdfs:subClassOf oct_schema:SiteType ;
-    skos:definition "Gene Bank" .
+<https://opencoral.tools/oct-schema/:GenetOriginType> a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "GenetOriginType" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:GenetOriginType#wild_collection> <https://opencoral.tools/oct-schema/:GenetOriginType#sexual_cohort_root> <https://opencoral.tools/oct-schema/:GenetOriginType#unknown> <https://opencoral.tools/oct-schema/:GenetOriginType#other> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/coral/genet> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:GenetOriginType#other>,
+        <https://opencoral.tools/oct-schema/:GenetOriginType#sexual_cohort_root>,
+        <https://opencoral.tools/oct-schema/:GenetOriginType#unknown>,
+        <https://opencoral.tools/oct-schema/:GenetOriginType#wild_collection> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_nursery_ex_situ> a owl:Class,
-        oct_schema:SiteType ;
-    rdfs:label "site_type_nursery_ex_situ" ;
-    rdfs:subClassOf oct_schema:SiteType ;
-    skos:definition "Ex-Situ Nursery" .
+<https://opencoral.tools/oct-schema/:RecordTypeEnum> a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "RecordTypeEnum" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:RecordTypeEnum#Specimen> <https://opencoral.tools/oct-schema/:RecordTypeEnum#Location> <https://opencoral.tools/oct-schema/:RecordTypeEnum#Genet> <https://opencoral.tools/oct-schema/:RecordTypeEnum#Other> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:RecordTypeEnum#Genet>,
+        <https://opencoral.tools/oct-schema/:RecordTypeEnum#Location>,
+        <https://opencoral.tools/oct-schema/:RecordTypeEnum#Other>,
+        <https://opencoral.tools/oct-schema/:RecordTypeEnum#Specimen> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_nursery_in_situ> a owl:Class,
-        oct_schema:SiteType ;
-    rdfs:label "site_type_nursery_in_situ" ;
-    rdfs:subClassOf oct_schema:SiteType ;
-    skos:definition "In-Situ Nursery" .
+<https://opencoral.tools/oct-schema/:LocationType> a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "LocationType" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:LocationType#organization> <https://opencoral.tools/oct-schema/:LocationType#site> <https://opencoral.tools/oct-schema/:LocationType#container> <https://opencoral.tools/oct-schema/:LocationType#position> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:LocationType#container>,
+        <https://opencoral.tools/oct-schema/:LocationType#organization>,
+        <https://opencoral.tools/oct-schema/:LocationType#position>,
+        <https://opencoral.tools/oct-schema/:LocationType#site> .
 
-<https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_outplanting> a owl:Class,
-        oct_schema:SiteType ;
-    rdfs:label "site_type_outplanting" ;
-    rdfs:subClassOf oct_schema:SiteType ;
-    skos:definition "Outplanting Site" .
+<https://opencoral.tools/oct-schema/:EventType> a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "EventType" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:EventType#create> <https://opencoral.tools/oct-schema/:EventType#transfer> <https://opencoral.tools/oct-schema/:EventType#split> <https://opencoral.tools/oct-schema/:EventType#merge> <https://opencoral.tools/oct-schema/:EventType#measurement> <https://opencoral.tools/oct-schema/:EventType#state> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/event> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:EventType#create>,
+        <https://opencoral.tools/oct-schema/:EventType#measurement>,
+        <https://opencoral.tools/oct-schema/:EventType#merge>,
+        <https://opencoral.tools/oct-schema/:EventType#split>,
+        <https://opencoral.tools/oct-schema/:EventType#state>,
+        <https://opencoral.tools/oct-schema/:EventType#transfer> .
 
-oct_schema:group_id_hierarchy a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "group_id_hierarchy" ;
-    rdfs:range linkml:String ;
-    skos:definition "Hierarchy of group IDs" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Site> .
+<https://opencoral.tools/oct-schema/:HealthStatus> a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "HealthStatus" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:HealthStatus#healthy> <https://opencoral.tools/oct-schema/:HealthStatus#stressed> <https://opencoral.tools/oct-schema/:HealthStatus#bleached> <https://opencoral.tools/oct-schema/:HealthStatus#diseased> <https://opencoral.tools/oct-schema/:HealthStatus#dead> <https://opencoral.tools/oct-schema/:HealthStatus#unknown> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:HealthStatus#bleached>,
+        <https://opencoral.tools/oct-schema/:HealthStatus#dead>,
+        <https://opencoral.tools/oct-schema/:HealthStatus#diseased>,
+        <https://opencoral.tools/oct-schema/:HealthStatus#healthy>,
+        <https://opencoral.tools/oct-schema/:HealthStatus#stressed>,
+        <https://opencoral.tools/oct-schema/:HealthStatus#unknown> .
 
-oct_schema:site_type_ids a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "site_type_ids" ;
-    rdfs:range linkml:String ;
-    skos:definition "List of site type IDs supported by the organization" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Organization> .
+<https://opencoral.tools/oct-schema/:PositionType> a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "PositionType" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:PositionType#slot> <https://opencoral.tools/oct-schema/:PositionType#cell> <https://opencoral.tools/oct-schema/:PositionType#quadrant> <https://opencoral.tools/oct-schema/:PositionType#row> <https://opencoral.tools/oct-schema/:PositionType#column> <https://opencoral.tools/oct-schema/:PositionType#other> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:PositionType#cell>,
+        <https://opencoral.tools/oct-schema/:PositionType#column>,
+        <https://opencoral.tools/oct-schema/:PositionType#other>,
+        <https://opencoral.tools/oct-schema/:PositionType#quadrant>,
+        <https://opencoral.tools/oct-schema/:PositionType#row>,
+        <https://opencoral.tools/oct-schema/:PositionType#slot> .
 
-oct_schema:species_ids a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "species_ids" ;
-    rdfs:range linkml:String ;
-    skos:definition "List of species IDs supported by the organization" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Organization> .
-
-oct_schema:tags a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "tags" ;
-    rdfs:range linkml:String ;
-    skos:definition "Tags associated with the species" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry> .
-
-oct_schema:accession_number a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "accession_number" ;
-    rdfs:range linkml:String ;
-    skos:definition "Accession number if applicable" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Genet> .
-
-oct_schema:capacity a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "capacity" ;
-    rdfs:range linkml:Integer ;
-    skos:definition "Capacity of the group" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Location> .
-
-oct_schema:clonal_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "clonal_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "Clonal ID if applicable" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Genet> .
-
-oct_schema:contact_email a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "contact_email" ;
-    rdfs:range linkml:String ;
-    skos:definition "Contact email for the organization" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry> .
-
-oct_schema:coral_size a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "coral_size" ;
-    rdfs:range oct_schema:CoralSize ;
-    skos:definition "Size of the coral" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Coral> .
-
-oct_schema:coral_type_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "coral_type_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the coral type" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Coral> .
-
-oct_schema:created_by_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "created_by_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the user who created the record" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:domain a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "domain" ;
-    rdfs:range linkml:String ;
-    skos:definition "Domain name associated with the organization" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Organization> .
-
-oct_schema:email a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "email" ;
-    rdfs:range linkml:String ;
-    skos:definition "Email address of the user" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Person> .
-
-oct_schema:event_type_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "event_type_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the event type" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Event> .
-
-oct_schema:genet_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "genet_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the genet" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Coral> .
-
-oct_schema:genet_type_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "genet_type_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the genet type" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Genet> .
-
-oct_schema:group_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "group_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the group/location" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Coral> .
-
-oct_schema:group_type_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "group_type_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the group type" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Location> .
-
-oct_schema:image_url a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "image_url" ;
-    rdfs:range linkml:String ;
-    skos:definition "URL to the user's image" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Person> .
-
-oct_schema:internal_path a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "internal_path" ;
-    rdfs:range linkml:String ;
-    skos:definition "Internal path structure" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:is_active a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "is_active" ;
-    rdfs:range linkml:Boolean ;
-    skos:definition "Whether the organization is active" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry> .
-
-oct_schema:logo_url a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "logo_url" ;
-    rdfs:range linkml:String ;
-    skos:definition "URL to the organization's logo" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry> .
-
-oct_schema:organization_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "organization_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the organization this record belongs to" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:parent_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "parent_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the parent entity" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Location> .
-
-oct_schema:photo_url a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "photo_url" ;
-    rdfs:range linkml:String ;
-    skos:definition "URL to a photo of the species" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry> .
-
-oct_schema:quantity a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "quantity" ;
-    rdfs:range linkml:Integer ;
-    skos:definition "Quantity of items" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Coral> .
-
-oct_schema:record_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "record_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the record associated with the event" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Event> .
-
-oct_schema:record_model_type a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "record_model_type" ;
-    rdfs:range oct_schema:ModelType ;
-    skos:definition "Type of the record model" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Event> .
-
-oct_schema:region a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "region" ;
-    rdfs:range linkml:String ;
-    skos:definition "Geographical region of the organization" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry> .
-
-oct_schema:scientific_name a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "scientific_name" ;
-    rdfs:range linkml:String ;
-    skos:definition "Full scientific name (genus + specific epithet)" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/SpeciesRegisterEntry> .
-
-oct_schema:sf_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "sf_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "SeaFoundry ID" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Genet> .
-
-oct_schema:site_type_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "site_type_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the site type" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Site> .
-
-oct_schema:slug a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "slug" ;
-    rdfs:range linkml:String ;
-    skos:definition "URL friendly identifier part" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:updated_by_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "updated_by_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the user who last updated the record" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:url_path a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "url_path" ;
-    rdfs:range linkml:String ;
-    skos:definition "URL friendly path to this resource" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:website_url a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "website_url" ;
-    rdfs:range linkml:String ;
-    skos:definition "Website URL of the organization" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/registry/OrganizationRegisterEntry> .
-
-oct_schema:InventoryRecord a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "InventoryRecord" ;
+<https://opencoral.tools/oct-schema/core/types/DateTime> a owl:Class,
+        linkml:TypeDefinition ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:internal_path ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:url_path ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:slug ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:internal_path ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:slug ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:internal_path ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oct_schema:url_path ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oct_schema:slug ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oct_schema:url_path ],
-        oct_schema:Record ;
-    skos:definition "Base class for inventory items that have URL paths" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/InventoryRecord> .
+            owl:onDataRange <https://opencoral.tools/oct-schema/core/types/DateTime> ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] .
 
-oct_schema:common_name a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "common_name" ;
-    rdfs:range linkml:String ;
-    skos:definition "Common name of the species" ;
-    skos:inScheme oct_schema:common .
+<https://opencoral.tools/oct-schema/:DevelopmentalStage> a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "DevelopmentalStage" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:DevelopmentalStage#gamete> <https://opencoral.tools/oct-schema/:DevelopmentalStage#embryo> <https://opencoral.tools/oct-schema/:DevelopmentalStage#larva> <https://opencoral.tools/oct-schema/:DevelopmentalStage#recruit> <https://opencoral.tools/oct-schema/:DevelopmentalStage#juvenile> <https://opencoral.tools/oct-schema/:DevelopmentalStage#adult> <https://opencoral.tools/oct-schema/:DevelopmentalStage#unknown> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:DevelopmentalStage#adult>,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage#embryo>,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage#gamete>,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage#juvenile>,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage#larva>,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage#recruit>,
+        <https://opencoral.tools/oct-schema/:DevelopmentalStage#unknown> .
 
-oct_schema:genus a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "genus" ;
-    rdfs:range linkml:String ;
-    skos:definition "The genus name" ;
-    skos:inScheme oct_schema:common .
+<https://opencoral.tools/oct-schema/:DispositionStatus> a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "DispositionStatus" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:DispositionStatus#available> <https://opencoral.tools/oct-schema/:DispositionStatus#reserved> <https://opencoral.tools/oct-schema/:DispositionStatus#quarantine> <https://opencoral.tools/oct-schema/:DispositionStatus#grow_out> <https://opencoral.tools/oct-schema/:DispositionStatus#broodstock> <https://opencoral.tools/oct-schema/:DispositionStatus#research_only> <https://opencoral.tools/oct-schema/:DispositionStatus#unknown> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:DispositionStatus#available>,
+        <https://opencoral.tools/oct-schema/:DispositionStatus#broodstock>,
+        <https://opencoral.tools/oct-schema/:DispositionStatus#grow_out>,
+        <https://opencoral.tools/oct-schema/:DispositionStatus#quarantine>,
+        <https://opencoral.tools/oct-schema/:DispositionStatus#research_only>,
+        <https://opencoral.tools/oct-schema/:DispositionStatus#reserved>,
+        <https://opencoral.tools/oct-schema/:DispositionStatus#unknown> .
 
-oct_schema:site_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "site_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the site this entity belongs to" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Location> .
-
-oct_schema:species_id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "species_id" ;
-    rdfs:range linkml:String ;
-    skos:definition "ID of the species" ;
-    skos:inScheme <https://w3id.org/OpenCoralTools/oct-schema/classes/Coral> .
-
-oct_schema:specific_epithet a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "specific_epithet" ;
-    rdfs:range linkml:String ;
-    skos:definition "The specific name (second part of the binomial name)" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:SiteType a owl:Class,
+<https://opencoral.tools/oct-schema/:SiteType> a owl:Class,
         linkml:EnumDefinition ;
     rdfs:label "SiteType" ;
-    owl:unionOf ( <https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_nursery_ex_situ> <https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_nursery_in_situ> <https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_outplanting> <https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_gene_bank> ) ;
-    skos:inScheme oct_schema:common ;
-    linkml:permissible_values <https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_gene_bank>,
-        <https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_nursery_ex_situ>,
-        <https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_nursery_in_situ>,
-        <https://w3id.org/OpenCoralTools/oct-schema/SiteType#site_type_outplanting> .
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:SiteType#in_situ_nursery> <https://opencoral.tools/oct-schema/:SiteType#ex_situ_nursery> <https://opencoral.tools/oct-schema/:SiteType#gene_bank> <https://opencoral.tools/oct-schema/:SiteType#outplant_site> <https://opencoral.tools/oct-schema/:SiteType#lab> <https://opencoral.tools/oct-schema/:SiteType#other> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:SiteType#ex_situ_nursery>,
+        <https://opencoral.tools/oct-schema/:SiteType#gene_bank>,
+        <https://opencoral.tools/oct-schema/:SiteType#in_situ_nursery>,
+        <https://opencoral.tools/oct-schema/:SiteType#lab>,
+        <https://opencoral.tools/oct-schema/:SiteType#other>,
+        <https://opencoral.tools/oct-schema/:SiteType#outplant_site> .
 
-oct_schema:created_at a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "created_at" ;
-    rdfs:range linkml:Datetime ;
-    skos:definition "Timestamp when the record was created" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:description a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "description" ;
-    rdfs:range linkml:String ;
-    skos:definition "Description of the entity" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:updated_at a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "updated_at" ;
-    rdfs:range linkml:Datetime ;
-    skos:definition "Timestamp when the record was last updated" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:CoralSize a owl:Class,
+<https://opencoral.tools/oct-schema/:InventoryUnitType> a owl:Class,
         linkml:EnumDefinition ;
-    rdfs:label "CoralSize" ;
-    owl:unionOf ( <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xs> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#s> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#m> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#l> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xl> ) ;
-    skos:inScheme oct_schema:common ;
-    linkml:permissible_values <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#l>,
-        <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#m>,
-        <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#s>,
-        <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xl>,
-        <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xs> .
+    rdfs:label "InventoryUnitType" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:InventoryUnitType#individual> <https://opencoral.tools/oct-schema/:InventoryUnitType#colony> <https://opencoral.tools/oct-schema/:InventoryUnitType#fragment> <https://opencoral.tools/oct-schema/:InventoryUnitType#substrate_unit> <https://opencoral.tools/oct-schema/:InventoryUnitType#propagule_batch> <https://opencoral.tools/oct-schema/:InventoryUnitType#sample> <https://opencoral.tools/oct-schema/:InventoryUnitType#unknown> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/specimen> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:InventoryUnitType#colony>,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType#fragment>,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType#individual>,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType#propagule_batch>,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType#sample>,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType#substrate_unit>,
+        <https://opencoral.tools/oct-schema/:InventoryUnitType#unknown> .
 
-oct_schema:id a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "id" ;
-    rdfs:range linkml:Uriorcurie ;
-    skos:definition "Unique identifier for the record" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:name a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "name" ;
-    rdfs:range linkml:String ;
-    skos:definition "Name of the entity" ;
-    skos:inScheme oct_schema:common .
-
-oct_schema:ModelType a owl:Class,
+<https://opencoral.tools/oct-schema/:ContainerType> a owl:Class,
         linkml:EnumDefinition ;
-    rdfs:label "ModelType" ;
-    owl:unionOf ( <https://w3id.org/OpenCoralTools/oct-schema/ModelType#user> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#organization> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#site> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#group> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#coral> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#genet> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#recordType> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#event> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#invitation> <https://w3id.org/OpenCoralTools/oct-schema/ModelType#unknown> ) ;
-    skos:inScheme oct_schema:common ;
-    linkml:permissible_values <https://w3id.org/OpenCoralTools/oct-schema/ModelType#coral>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#event>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#genet>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#group>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#invitation>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#organization>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#recordType>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#site>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#unknown>,
-        <https://w3id.org/OpenCoralTools/oct-schema/ModelType#user> .
+    rdfs:label "ContainerType" ;
+    owl:unionOf ( <https://opencoral.tools/oct-schema/:ContainerType#system> <https://opencoral.tools/oct-schema/:ContainerType#tank> <https://opencoral.tools/oct-schema/:ContainerType#tray> <https://opencoral.tools/oct-schema/:ContainerType#rack> <https://opencoral.tools/oct-schema/:ContainerType#table> <https://opencoral.tools/oct-schema/:ContainerType#tree> <https://opencoral.tools/oct-schema/:ContainerType#tree_branch> <https://opencoral.tools/oct-schema/:ContainerType#rebar_table> <https://opencoral.tools/oct-schema/:ContainerType#other> ) ;
+    skos:inScheme <https://opencoral.tools/oct-schema/core/location> ;
+    linkml:permissible_values <https://opencoral.tools/oct-schema/:ContainerType#other>,
+        <https://opencoral.tools/oct-schema/:ContainerType#rack>,
+        <https://opencoral.tools/oct-schema/:ContainerType#rebar_table>,
+        <https://opencoral.tools/oct-schema/:ContainerType#system>,
+        <https://opencoral.tools/oct-schema/:ContainerType#table>,
+        <https://opencoral.tools/oct-schema/:ContainerType#tank>,
+        <https://opencoral.tools/oct-schema/:ContainerType#tray>,
+        <https://opencoral.tools/oct-schema/:ContainerType#tree>,
+        <https://opencoral.tools/oct-schema/:ContainerType#tree_branch> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/core/person/Person> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/core/person/Person> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/coral/event/CoralEvent> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/coral/event/CoralEvent> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/core/event/Event> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/core/event/Event> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/core/location/LocationRecord> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/core/location/LocationRecord> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/core/record/Record> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/core/record/Record> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/core/organization/Organization> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/core/organization/Organization> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://opencoral.tools/oct-schema/coral/genet/GenetRecord> ;
+    owl:onProperty <https://opencoral.tools/oct-schema/:recordType> ;
+    owl:someValuesFrom <https://opencoral.tools/oct-schema/coral/genet/GenetRecord> .

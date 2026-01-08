@@ -1,161 +1,300 @@
  syntax="proto3";
  package
 // metamodel_version: 1.7.0
-// version: 0.0.1
-// Represents a specific coral instance
-message Coral
+// An event in the coral domain
+message CoralEvent
  {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  string createdById = 0
-  datetime updatedAt = 0
-  string updatedById = 0
-  string organizationId = 0
-  string urlPath = 0
-  string internalPath = 0
-  string slug = 0
-  string name = 0
-  string genetId = 0
-  string speciesId = 0
-  string siteId = 0
-  string groupId = 0
-  string coralTypeId = 0
-  integer quantity = 0
-  coralSize coralSize = 0
+  identifier recordId = 0
+  identifier orgId = 0
+  dateTime createdAt = 0
+  identifier createdBy = 0
+  dateTime updatedAt = 0
+  identifier updatedBy = 0
+  string recordType = 0
+  eventType eventType = 0
+  effectiveTime effectiveTime = 0
+ repeated  subjectRef subjects = 0
+  locationRef location = 0
+  eventPayload payload = 0
+  string notes = 0
+  eventSource source = 0
  }
-// Represents an event in the system history
+// A location record used in coral restoration (extensible placeholder)
+message CoralLocationRecord
+ {
+  identifier recordId = 0
+  identifier orgId = 0
+  dateTime createdAt = 0
+  identifier createdBy = 0
+  dateTime updatedAt = 0
+  identifier updatedBy = 0
+  string recordType = 0
+  locationType locationType = 0
+  string name = 0
+  parentLocationRef parentLocationRef = 0
+  siteType siteType = 0
+  containerType containerType = 0
+  positionType positionType = 0
+  geoPoint geo = 0
+  measureValue depth = 0
+  string notes = 0
+ repeated  string codes = 0
+ }
+// A specimen record representing a coral
+message CoralSpecimenRecord
+ {
+  identifier recordId = 0
+  identifier orgId = 0
+  dateTime createdAt = 0
+  identifier createdBy = 0
+  dateTime updatedAt = 0
+  identifier updatedBy = 0
+  string recordType = 0
+  dateTime asOf = 0
+  developmentalStage developmentalStage = 0
+  quantity quantity = 0
+  locationRef locationRef = 0
+  specimenState state = 0
+ repeated  string tags = 0
+  string notes = 0
+  specimenRecordSource source = 0
+  coralTaxonRef taxon = 0
+  genetRecord geneticGroupRef = 0
+  inventoryUnitType inventoryUnitType = 0
+ }
+// Coral-specific taxon reference with species code
+message CoralTaxonRef
+ {
+  string speciesCode = 0
+  string scientificName = 0
+  string taxonId = 0
+ }
+// Time of the event (moment or interval)
+message EffectiveTime
+ {
+  dateTime occurredAt = 0
+  dateTime startAt = 0
+  dateTime endAt = 0
+ }
+// A generic reference to another entity
+message EntityRef
+ {
+  string id = 0
+  string type = 0
+  string label = 0
+ }
+// An event modifying one or more records
 message Event
  {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  string createdById = 0
-  datetime updatedAt = 0
-  string updatedById = 0
-  string organizationId = 0
-  string urlPath = 0
-  string internalPath = 0
-  string slug = 0
-  string eventTypeId = 0
-  string recordId = 0
-  modelType recordModelType = 0
+  identifier recordId = 0
+  identifier orgId = 0
+  dateTime createdAt = 0
+  identifier createdBy = 0
+  dateTime updatedAt = 0
+  identifier updatedBy = 0
+  string recordType = 0
+  eventType eventType = 0
+  effectiveTime effectiveTime = 0
+ repeated  subjectRef subjects = 0
+  locationRef location = 0
+  eventPayload payload = 0
+  string notes = 0
+  eventSource source = 0
  }
-// Represents a genetic individual
-message Genet
+message EventSource
  {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  string createdById = 0
-  datetime updatedAt = 0
-  string updatedById = 0
-  string organizationId = 0
-  string urlPath = 0
-  string internalPath = 0
-  string slug = 0
-  string name = 0
-  string speciesId = 0
-  string genetTypeId = 0
-  string sfId = 0
-  string clonalId = 0
-  string accessionNumber = 0
+  string datasetId = 0
+  string externalEventId = 0
+  dateTime ingestedAt = 0
  }
-// Represents a group of items or a container within a site
-message Location
+message GenetOrigin
  {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  string createdById = 0
-  datetime updatedAt = 0
-  string updatedById = 0
-  string organizationId = 0
-  string urlPath = 0
-  string internalPath = 0
-  string slug = 0
-  string groupTypeId = 0
+  genetOriginType originType = 0
+  dateTime collectedAt = 0
+  locationRef collectionLocationRef = 0
+  string notes = 0
+ }
+message GenetPedigree
+ {
+  string damGenetId = 0
+  string sireGenetId = 0
+  string cohortId = 0
+ }
+// Coral-specific genet record (clonal lineage)
+message GenetRecord
+ {
+  identifier recordId = 0
+  identifier orgId = 0
+  identifier createdBy = 0
+  identifier updatedBy = 0
+  string recordType = 0
+  dateTime createdAt = 0
+  dateTime updatedAt = 0
+  coralTaxonRef taxon = 0
+  string genetCode = 0
+  genetOrigin origin = 0
+  genotypingMetadata genotyping = 0
+  genetPedigree pedigree = 0
+  string notes = 0
+  genetRecordSource source = 0
+ }
+message GenetRecordSource
+ {
+  string datasetId = 0
+  string externalRecordId = 0
+  dateTime ingestedAt = 0
+ }
+message GenotypingMetadata
+ {
+  string method = 0
+  string lab = 0
+  dateTime assayDate = 0
+ repeated  string associatedSequences = 0
+ }
+// A geographic coordinate
+message GeoPoint
+ {
+  float decimalLatitude = 0
+  float decimalLongitude = 0
+  string geodeticDatum = 0
+  float coordinateUncertaintyMeters = 0
+ }
+// A record representing a physical or logical location
+message LocationRecord
+ {
+  identifier recordId = 0
+  identifier orgId = 0
+  dateTime createdAt = 0
+  identifier createdBy = 0
+  dateTime updatedAt = 0
+  identifier updatedBy = 0
+  string recordType = 0
+  locationType locationType = 0
   string name = 0
-  string siteId = 0
-  string parentId = 0
-  string description = 0
-  integer capacity = 0
+  parentLocationRef parentLocationRef = 0
+  siteType siteType = 0
+  containerType containerType = 0
+  positionType positionType = 0
+  geoPoint geo = 0
+  measureValue depth = 0
+  string notes = 0
+ repeated  string codes = 0
+ }
+// A lightweight reference to a location
+message LocationRef
+ {
+  string locationId = 0
+  locationType locationType = 0
+  string label = 0
+ }
+// A measured value with a unit
+message MeasureValue
+ {
+  float value = 0
+  string unit = 0
+  string method = 0
  }
 // Represents an organization
 message Organization
  {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  string createdById = 0
-  datetime updatedAt = 0
-  string updatedById = 0
-  string organizationId = 0
-  string urlPath = 0
-  string internalPath = 0
-  string slug = 0
+  identifier recordId = 0
+  identifier orgId = 0
+  dateTime createdAt = 0
+  identifier createdBy = 0
+  dateTime updatedAt = 0
+  identifier updatedBy = 0
+  string recordType = 0
   string name = 0
   string domain = 0
- repeated  string siteTypeIds = 0
- repeated  string speciesIds = 0
+ repeated  siteType supportedSiteTypes = 0
+ repeated  string supportedSpecies = 0
  }
-// Represents an entry in the organization registry
-message OrganizationRegisterEntry
+// Reference to a parent location with structural type information
+message ParentLocationRef
  {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  datetime updatedAt = 0
+  string locationId = 0
+  locationType locationType = 0
+  string label = 0
+  siteType siteType = 0
+  containerType containerType = 0
   string name = 0
-  string description = 0
-  string region = 0
-  string websiteUrl = 0
-  string contactEmail = 0
-  string logoUrl = 0
-  boolean isActive = 0
  }
-// Represents a person (user)
+// Represents a human user or agent
 message Person
  {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  string createdById = 0
-  datetime updatedAt = 0
-  string updatedById = 0
-  string organizationId = 0
+  identifier recordId = 0
+  identifier orgId = 0
+  dateTime createdAt = 0
+  identifier createdBy = 0
+  dateTime updatedAt = 0
+  identifier updatedBy = 0
+  string recordType = 0
   string name = 0
   string email = 0
   string imageUrl = 0
  }
-// Represents a physical site
-message Site
+// Quantification of the specimen (count, size, etc.)
+message Quantity
  {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  string createdById = 0
-  datetime updatedAt = 0
-  string updatedById = 0
-  string organizationId = 0
-  string urlPath = 0
-  string internalPath = 0
-  string slug = 0
-  string siteTypeId = 0
-  string name = 0
- repeated  string groupIdHierarchy = 0
-  string description = 0
+  float count = 0
+  float countUncertainty = 0
+  measureValue surfaceArea = 0
+  measureValue volume = 0
+  measureValue biomass = 0
+  measureValue linearSize = 0
  }
-// Represents a species
-message Species
+// A record representing a biological specimen or group
+message SpecimenRecord
  {
-  uriorcurie id = 0
-  string commonName = 0
-  string genus = 0
-  string specificEpithet = 0
- }
-// Represents an entry in the species registry
-message SpeciesRegisterEntry
- {
-  uriorcurie id = 0
-  datetime createdAt = 0
-  datetime updatedAt = 0
-  string commonName = 0
-  string genus = 0
-  string specificEpithet = 0
-  string scientificName = 0
-  string photoUrl = 0
+  identifier recordId = 0
+  identifier orgId = 0
+  dateTime createdAt = 0
+  identifier createdBy = 0
+  dateTime updatedAt = 0
+  identifier updatedBy = 0
+  string recordType = 0
+  dateTime asOf = 0
+  taxonRef taxon = 0
+  entityRef geneticGroupRef = 0
+  inventoryUnitType inventoryUnitType = 0
+  developmentalStage developmentalStage = 0
+  quantity quantity = 0
+  locationRef locationRef = 0
+  specimenState state = 0
  repeated  string tags = 0
+  string notes = 0
+  specimenRecordSource source = 0
+ }
+message SpecimenRecordSource
+ {
+  string datasetId = 0
+  string externalRecordId = 0
+  dateTime ingestedAt = 0
+ }
+// Derived state of the specimen
+message SpecimenState
+ {
+  dispositionStatus disposition = 0
+  healthStatus health = 0
+  boolean readyForPropagation = 0
+  boolean readyForOutplant = 0
+ }
+message StateEventPayload
+ {
+  string stateType = 0
+  string stateValue = 0
+ }
+// Reference to a record affected by the event
+message SubjectRef
+ {
+  string recordId = 0
+  recordTypeEnum recordType = 0
+  string role = 0
+ }
+// A reference to a taxonomic entity
+message TaxonRef
+ {
+  string name = 0
+  string taxonId = 0
+  string rank = 0
  }

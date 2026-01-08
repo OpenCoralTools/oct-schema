@@ -119,8 +119,9 @@ gen-project:
   fi
   # Generate TypeScript to packages/node
   uv run python scripts/gen_ts_camel.py {{source_schema_path}} -o packages/node/src/{{schema_name}}.ts
-  # Generate Dart (placeholder - requires linkml-runtime with dart generator)
-  # uv run gen-dart {{source_schema_path}} > packages/dart/lib/{{schema_name}}.dart || true
+  # Generate Dart from JSON Schema using quicktype
+  @mkdir -p packages/dart/oct_schema/lib
+  uv run python scripts/gen_dart_from_json_schema.py {{dest}}/jsonschema/{{schema_name}}.schema.json -o packages/dart/oct_schema/lib/{{schema_name}}.dart
 
 # ============== Migrations recipes for Copier ==============
 

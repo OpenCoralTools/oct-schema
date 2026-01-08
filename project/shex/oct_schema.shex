@@ -1,9 +1,9 @@
 # metamodel_version: 1.7.0
-# version: 0.0.1
-BASE <https://w3id.org/OpenCoralTools/oct-schema/>
+BASE <https://opencoral.tools/oct-schema/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX rdf1: <http://example.org/UNKNOWN/rdf/>
 
 
 linkml:String xsd:string
@@ -44,171 +44,484 @@ linkml:Jsonpath xsd:string
 
 linkml:Sparqlpath xsd:string
 
-<Coral> CLOSED {
-    (  $<Coral_tes> (  &<InventoryRecord_tes> ;
-          rdf:type [ <InventoryRecord> ] ? ;
-          <name> @linkml:String ;
-          <genet_id> @linkml:String ;
-          <species_id> @linkml:String ;
-          <site_id> @linkml:String ;
-          <group_id> @linkml:String ;
-          <coral_type_id> @linkml:String ;
-          <quantity> @linkml:Integer ;
-          <coral_size> [ <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xs>
-             <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#s> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#m>
-             <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#l> <https://w3id.org/OpenCoralTools/oct-schema/CoralSize#xl> ] ?
+<https://opencoral.tools/oct-schema/core/types/DateTime> xsd:dateTime
+
+<https://opencoral.tools/oct-schema/core/types/Identifier> xsd:string
+
+<https://opencoral.tools/oct-schema/coral/event/CoralEvent> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/event/CoralEvent_tes> (
+          &<https://opencoral.tools/oct-schema/core/event/Event_tes> ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/event/Event> ] ?
        ) ;
-       rdf:type [ <Coral> ]
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/event/CoralEvent> ]
     )
 }
 
-<Event> CLOSED {
-    (  $<Event_tes> (  &<InventoryRecord_tes> ;
-          rdf:type [ <InventoryRecord> ] ? ;
-          <event_type_id> @linkml:String ;
-          <record_id> @linkml:String ;
-          <record_model_type> [ <https://w3id.org/OpenCoralTools/oct-schema/ModelType#user>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#organization>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#site>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#group>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#coral>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#genet>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#recordType>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#event>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#invitation>
-             <https://w3id.org/OpenCoralTools/oct-schema/ModelType#unknown> ]
+<https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord_tes> (
+          &<https://opencoral.tools/oct-schema/core/location/LocationRecord_tes> ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/location/LocationRecord> ] ?
        ) ;
-       rdf:type [ <Event> ]
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord> ]
     )
 }
 
-<Genet> CLOSED {
-    (  $<Genet_tes> (  &<InventoryRecord_tes> ;
-          rdf:type [ <InventoryRecord> ] ? ;
-          <name> @linkml:String ;
-          <species_id> @linkml:String ;
-          <genet_type_id> @linkml:String ;
-          <sf_id> @linkml:String ;
-          <clonal_id> @linkml:String ? ;
-          <accession_number> @linkml:String ?
+<https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord_tes> (
+          &<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord_tes> ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord> ] ? ;
+          <taxon> @<https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef> ;
+          <geneticGroupRef> @<https://opencoral.tools/oct-schema/coral/genet/GenetRecord> ? ;
+          <inventoryUnitType> [ <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#individual>
+             <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#colony>
+             <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#fragment>
+             <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#substrate_unit>
+             <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#propagule_batch>
+             <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#sample>
+             <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#unknown> ]
        ) ;
-       rdf:type [ <Genet> ]
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord> ]
     )
 }
 
-<InventoryRecord>  (
-    @<Coral> OR @<Event> OR @<Genet> OR @<Location> OR @<Organization> OR @<Site>
+<https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef_tes> (
+          <https://opencoral.tools/oct-schema/coral/genet/speciesCode> @linkml:String ;
+          <https://opencoral.tools/oct-schema/coral/genet/scientificName> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/taxonId> @linkml:String ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/event/EffectiveTime> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/event/EffectiveTime_tes> (
+          <https://opencoral.tools/oct-schema/core/event/occurredAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ? ;
+          <https://opencoral.tools/oct-schema/core/event/startAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ? ;
+          <https://opencoral.tools/oct-schema/core/event/endAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/event/EffectiveTime> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/types/EntityRef> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/types/EntityRef_tes> (  <https://opencoral.tools/oct-schema/core/types/id>
+          @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/types/type> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/types/label> @linkml:String ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/types/EntityRef> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/event/Event>  (
+    CLOSED {
+       (  $<https://opencoral.tools/oct-schema/core/event/Event_tes> (
+             &<https://opencoral.tools/oct-schema/core/record/Record_tes> ;
+             rdf:type [ <https://opencoral.tools/oct-schema/core/record/Record> ] ? ;
+             rdf1:type @linkml:String ;
+             <https://opencoral.tools/oct-schema/core/event/eventType> [
+                <https://opencoral.tools/oct-schema/core/event/EventType#create>
+                <https://opencoral.tools/oct-schema/core/event/EventType#transfer>
+                <https://opencoral.tools/oct-schema/core/event/EventType#split>
+                <https://opencoral.tools/oct-schema/core/event/EventType#merge>
+                <https://opencoral.tools/oct-schema/core/event/EventType#measurement>
+                <https://opencoral.tools/oct-schema/core/event/EventType#state> ] ;
+             <https://opencoral.tools/oct-schema/core/event/effectiveTime>
+             @<https://opencoral.tools/oct-schema/core/event/EffectiveTime> ;
+             <https://opencoral.tools/oct-schema/core/event/subjects> @<https://opencoral.tools/oct-schema/core/event/SubjectRef> +
+             ;
+             <https://opencoral.tools/oct-schema/core/event/location>
+             @<https://opencoral.tools/oct-schema/core/location/LocationRef> ? ;
+             <https://opencoral.tools/oct-schema/core/event/payload> @<https://opencoral.tools/oct-schema/core/event/EventPayload>
+             ? ;
+             <https://opencoral.tools/oct-schema/core/event/notes> @linkml:String ? ;
+             <https://opencoral.tools/oct-schema/core/event/source> @<https://opencoral.tools/oct-schema/core/event/EventSource> ?
+          ) ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/event/Event> ]
+       )
+    } OR @<https://opencoral.tools/oct-schema/coral/event/CoralEvent>
 )
 
-<InventoryRecord_struct> {
-    (  $<InventoryRecord_tes> (  &<Record_tes> ;
-          rdf:type [ <Record> ] ? ;
-          <url_path> @linkml:String ? ;
-          <internal_path> @linkml:String ? ;
-          <slug> @linkml:String ?
-       ) ;
-       rdf:type [ <InventoryRecord> ]
-    )
-}
-
-<Location> CLOSED {
-    (  $<Location_tes> (  &<InventoryRecord_tes> ;
-          rdf:type [ <InventoryRecord> ] ? ;
-          <group_type_id> @linkml:String ;
-          <name> @linkml:String ;
-          <site_id> @linkml:String ;
-          <parent_id> @linkml:String ;
-          <description> @linkml:String ? ;
-          <capacity> @linkml:Integer ?
-       ) ;
-       rdf:type [ <Location> ]
-    )
-}
-
-<Organization> CLOSED {
-    (  $<Organization_tes> (  &<InventoryRecord_tes> ;
-          rdf:type [ <InventoryRecord> ] ? ;
-          <name> @linkml:String ;
-          <domain> @linkml:String ;
-          <site_type_ids> @linkml:String * ;
-          <species_ids> @linkml:String *
-       ) ;
-       rdf:type [ <Organization> ]
-    )
-}
-
-<OrganizationRegisterEntry> CLOSED {
-    (  $<OrganizationRegisterEntry_tes> (  <created_at> @linkml:Datetime ;
-          <updated_at> @linkml:Datetime ;
-          <name> @linkml:String ;
-          <description> @linkml:String ? ;
-          <region> @linkml:String ;
-          <website_url> @linkml:String ? ;
-          <contact_email> @linkml:String ? ;
-          <logo_url> @linkml:String ? ;
-          <is_active> @linkml:Boolean ?
-       ) ;
-       rdf:type [ <OrganizationRegisterEntry> ]
-    )
-}
-
-<Person> CLOSED {
-    (  $<Person_tes> (  &<Record_tes> ;
-          rdf:type [ <Record> ] ? ;
-          <name> @linkml:String ;
-          <email> @linkml:String ;
-          <image_url> @linkml:String ?
-       ) ;
-       rdf:type [ <Person> ]
-    )
-}
-
-<Record>  (
-    @<InventoryRecord> OR @<Person>
+<https://opencoral.tools/oct-schema/core/event/EventPayload>  (
+    {
+       (  $<https://opencoral.tools/oct-schema/core/event/EventPayload_tes> rdf:type . * ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/event/EventPayload> ] ?
+       )
+    } OR @<https://opencoral.tools/oct-schema/core/event/StateEventPayload>
 )
 
-<Record_struct> {
-    (  $<Record_tes> (  <created_at> @linkml:Datetime ? ;
-          <created_by_id> @linkml:String ? ;
-          <updated_at> @linkml:Datetime ? ;
-          <updated_by_id> @linkml:String ? ;
-          <organization_id> @linkml:String ?
+<https://opencoral.tools/oct-schema/core/event/EventSource> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/event/EventSource_tes> (
+          <https://opencoral.tools/oct-schema/core/event/datasetId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/event/externalEventId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/event/ingestedAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ?
        ) ;
-       rdf:type [ <Record> ]
+       rdf:type [ <https://opencoral.tools/oct-schema/core/event/EventSource> ] ?
     )
 }
 
-<Site> CLOSED {
-    (  $<Site_tes> (  &<InventoryRecord_tes> ;
-          rdf:type [ <InventoryRecord> ] ? ;
-          <site_type_id> @linkml:String ;
-          <name> @linkml:String ;
-          <group_id_hierarchy> @linkml:String * ;
-          <description> @linkml:String ?
+<https://opencoral.tools/oct-schema/coral/genet/GenetOrigin> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/genet/GenetOrigin_tes> (
+          <https://opencoral.tools/oct-schema/coral/genet/originType> [
+             <https://opencoral.tools/oct-schema/coral/genet/GenetOriginType#wild_collection>
+             <https://opencoral.tools/oct-schema/coral/genet/GenetOriginType#sexual_cohort_root>
+             <https://opencoral.tools/oct-schema/coral/genet/GenetOriginType#unknown>
+             <https://opencoral.tools/oct-schema/coral/genet/GenetOriginType#other> ] ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/collectedAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ?
+          ;
+          <https://opencoral.tools/oct-schema/coral/genet/collectionLocationRef>
+          @<https://opencoral.tools/oct-schema/core/location/LocationRef> ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/notes> @linkml:String ?
        ) ;
-       rdf:type [ <Site> ]
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/genet/GenetOrigin> ] ?
     )
 }
 
-<Species> CLOSED {
-    (  $<Species_tes> (  <common_name> @linkml:String ? ;
-          <genus> @linkml:String ;
-          <specific_epithet> @linkml:String
+<https://opencoral.tools/oct-schema/coral/genet/GenetPedigree> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/genet/GenetPedigree_tes> (
+          <https://opencoral.tools/oct-schema/coral/genet/damGenetId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/sireGenetId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/cohortId> @linkml:String ?
        ) ;
-       rdf:type [ <Species> ]
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/genet/GenetPedigree> ] ?
     )
 }
 
-<SpeciesRegisterEntry> CLOSED {
-    (  $<SpeciesRegisterEntry_tes> (  <created_at> @linkml:Datetime ;
-          <updated_at> @linkml:Datetime ;
-          <common_name> @linkml:String ? ;
-          <genus> @linkml:String ;
-          <specific_epithet> @linkml:String ;
-          <scientific_name> @linkml:String ? ;
-          <photo_url> @linkml:String ? ;
-          <tags> @linkml:String *
+<https://opencoral.tools/oct-schema/coral/genet/GenetRecord> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/genet/GenetRecord_tes> (
+          &<https://opencoral.tools/oct-schema/core/record/Record_tes> ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/record/Record> ] ? ;
+          rdf1:type @linkml:String ;
+          <https://opencoral.tools/oct-schema/coral/genet/createdAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ;
+          <https://opencoral.tools/oct-schema/coral/genet/updatedAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/taxon> @<https://opencoral.tools/oct-schema/coral/genet/CoralTaxonRef> ;
+          <https://opencoral.tools/oct-schema/coral/genet/genetCode> @linkml:String ;
+          <https://opencoral.tools/oct-schema/coral/genet/origin> @<https://opencoral.tools/oct-schema/coral/genet/GenetOrigin> ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/genotyping>
+          @<https://opencoral.tools/oct-schema/coral/genet/GenotypingMetadata> ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/pedigree> @<https://opencoral.tools/oct-schema/coral/genet/GenetPedigree>
+          ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/notes> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/source>
+          @<https://opencoral.tools/oct-schema/coral/genet/GenetRecordSource> ?
        ) ;
-       rdf:type [ <SpeciesRegisterEntry> ]
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/genet/GenetRecord> ]
+    )
+}
+
+<https://opencoral.tools/oct-schema/coral/genet/GenetRecordSource> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/genet/GenetRecordSource_tes> (
+          <https://opencoral.tools/oct-schema/coral/genet/datasetId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/externalRecordId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/ingestedAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/genet/GenetRecordSource> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/coral/genet/GenotypingMetadata> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/coral/genet/GenotypingMetadata_tes> (
+          <https://opencoral.tools/oct-schema/coral/genet/method> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/lab> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/assayDate> @<https://opencoral.tools/oct-schema/core/types/DateTime> ? ;
+          <https://opencoral.tools/oct-schema/coral/genet/associatedSequences> @linkml:String *
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/coral/genet/GenotypingMetadata> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/types/GeoPoint> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/types/GeoPoint_tes> (
+          <https://opencoral.tools/oct-schema/core/types/decimalLatitude> @linkml:Float ;
+          <https://opencoral.tools/oct-schema/core/types/decimalLongitude> @linkml:Float ;
+          <https://opencoral.tools/oct-schema/core/types/geodeticDatum> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/types/coordinateUncertaintyMeters> @linkml:Float ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/types/GeoPoint> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/location/LocationRecord>  (
+    CLOSED {
+       (  $<https://opencoral.tools/oct-schema/core/location/LocationRecord_tes> (
+             &<https://opencoral.tools/oct-schema/core/record/Record_tes> ;
+             rdf:type [ <https://opencoral.tools/oct-schema/core/record/Record> ] ? ;
+             rdf1:type @linkml:String ;
+             <https://opencoral.tools/oct-schema/core/location/locationType> [
+                <https://opencoral.tools/oct-schema/core/location/LocationType#organization>
+                <https://opencoral.tools/oct-schema/core/location/LocationType#site>
+                <https://opencoral.tools/oct-schema/core/location/LocationType#container>
+                <https://opencoral.tools/oct-schema/core/location/LocationType#position> ] ;
+             <https://opencoral.tools/oct-schema/core/location/name> @linkml:String ;
+             <https://opencoral.tools/oct-schema/core/location/parentLocationRef>
+             @<https://opencoral.tools/oct-schema/core/location/ParentLocationRef> ? ;
+             <https://opencoral.tools/oct-schema/core/location/siteType> [
+                <https://opencoral.tools/oct-schema/core/location/SiteType#in_situ_nursery>
+                <https://opencoral.tools/oct-schema/core/location/SiteType#ex_situ_nursery>
+                <https://opencoral.tools/oct-schema/core/location/SiteType#gene_bank>
+                <https://opencoral.tools/oct-schema/core/location/SiteType#outplant_site>
+                <https://opencoral.tools/oct-schema/core/location/SiteType#lab>
+                <https://opencoral.tools/oct-schema/core/location/SiteType#other> ] ? ;
+             <https://opencoral.tools/oct-schema/core/location/containerType> [
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#system>
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#tank>
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#tray>
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#rack>
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#table>
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#tree>
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#tree_branch>
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#rebar_table>
+                <https://opencoral.tools/oct-schema/core/location/ContainerType#other> ] ? ;
+             <https://opencoral.tools/oct-schema/core/location/positionType> [
+                <https://opencoral.tools/oct-schema/core/location/PositionType#slot>
+                <https://opencoral.tools/oct-schema/core/location/PositionType#cell>
+                <https://opencoral.tools/oct-schema/core/location/PositionType#quadrant>
+                <https://opencoral.tools/oct-schema/core/location/PositionType#row>
+                <https://opencoral.tools/oct-schema/core/location/PositionType#column>
+                <https://opencoral.tools/oct-schema/core/location/PositionType#other> ] ? ;
+             <https://opencoral.tools/oct-schema/core/location/geo> @<https://opencoral.tools/oct-schema/core/types/GeoPoint> ? ;
+             <https://opencoral.tools/oct-schema/core/location/depth> @<https://opencoral.tools/oct-schema/core/types/MeasureValue>
+             ? ;
+             <https://opencoral.tools/oct-schema/core/location/notes> @linkml:String ? ;
+             <https://opencoral.tools/oct-schema/core/location/codes> @linkml:String *
+          ) ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/location/LocationRecord> ]
+       )
+    } OR @<https://opencoral.tools/oct-schema/coral/location/CoralLocationRecord>
+)
+
+<https://opencoral.tools/oct-schema/core/location/LocationRef>  (
+    CLOSED {
+       (  $<https://opencoral.tools/oct-schema/core/location/LocationRef_tes> (
+             <https://opencoral.tools/oct-schema/core/location/locationId> @linkml:String ;
+             <https://opencoral.tools/oct-schema/core/location/locationType> [
+                <https://opencoral.tools/oct-schema/core/location/LocationType#organization>
+                <https://opencoral.tools/oct-schema/core/location/LocationType#site>
+                <https://opencoral.tools/oct-schema/core/location/LocationType#container>
+                <https://opencoral.tools/oct-schema/core/location/LocationType#position> ] ? ;
+             <https://opencoral.tools/oct-schema/core/location/label> @linkml:String ?
+          ) ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/location/LocationRef> ] ?
+       )
+    } OR @<https://opencoral.tools/oct-schema/core/location/ParentLocationRef>
+)
+
+<https://opencoral.tools/oct-schema/core/types/MeasureValue> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/types/MeasureValue_tes> (  <https://opencoral.tools/oct-schema/core/types/value>
+          @linkml:Float ;
+          <https://opencoral.tools/oct-schema/core/types/unit> @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/types/method> @linkml:String ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/types/MeasureValue> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/organization/Organization> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/organization/Organization_tes> (
+          &<https://opencoral.tools/oct-schema/core/record/Record_tes> ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/record/Record> ] ? ;
+          rdf1:type @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/organization/name> @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/organization/domain> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/organization/supportedSiteTypes> [
+             <https://opencoral.tools/oct-schema/core/location/SiteType#in_situ_nursery>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#ex_situ_nursery>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#gene_bank>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#outplant_site>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#lab>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#other> ] * ;
+          <https://opencoral.tools/oct-schema/core/organization/supportedSpecies> @linkml:String *
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/organization/Organization> ]
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/location/ParentLocationRef> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/location/ParentLocationRef_tes> (
+          &<https://opencoral.tools/oct-schema/core/location/LocationRef_tes> ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/location/LocationRef> ] ? ;
+          <https://opencoral.tools/oct-schema/core/location/siteType> [
+             <https://opencoral.tools/oct-schema/core/location/SiteType#in_situ_nursery>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#ex_situ_nursery>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#gene_bank>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#outplant_site>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#lab>
+             <https://opencoral.tools/oct-schema/core/location/SiteType#other> ] ? ;
+          <https://opencoral.tools/oct-schema/core/location/containerType> [
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#system>
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#tank>
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#tray>
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#rack>
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#table>
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#tree>
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#tree_branch>
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#rebar_table>
+             <https://opencoral.tools/oct-schema/core/location/ContainerType#other> ] ? ;
+          <https://opencoral.tools/oct-schema/core/location/name> @linkml:String ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/location/ParentLocationRef> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/person/Person> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/person/Person_tes> (  &<https://opencoral.tools/oct-schema/core/record/Record_tes>
+          ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/record/Record> ] ? ;
+          rdf1:type @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/person/name> @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/person/email> @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/person/imageUrl> @linkml:String ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/person/Person> ]
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/specimen/Quantity> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/specimen/Quantity_tes> (  <https://opencoral.tools/oct-schema/core/specimen/count>
+          @linkml:Float ;
+          <https://opencoral.tools/oct-schema/core/specimen/countUncertainty> @linkml:Float ? ;
+          <https://opencoral.tools/oct-schema/core/specimen/surfaceArea>
+          @<https://opencoral.tools/oct-schema/core/types/MeasureValue> ? ;
+          <https://opencoral.tools/oct-schema/core/specimen/volume> @<https://opencoral.tools/oct-schema/core/types/MeasureValue> ?
+          ;
+          <https://opencoral.tools/oct-schema/core/specimen/biomass> @<https://opencoral.tools/oct-schema/core/types/MeasureValue>
+          ? ;
+          <https://opencoral.tools/oct-schema/core/specimen/linearSize>
+          @<https://opencoral.tools/oct-schema/core/types/MeasureValue> ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/specimen/Quantity> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/record/Record>  (
+    @<https://opencoral.tools/oct-schema/core/event/Event> OR @<https://opencoral.tools/oct-schema/coral/genet/GenetRecord> OR
+    @<https://opencoral.tools/oct-schema/core/location/LocationRecord> OR
+    @<https://opencoral.tools/oct-schema/core/organization/Organization> OR
+    @<https://opencoral.tools/oct-schema/core/person/Person> OR @<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord>
+)
+
+<https://opencoral.tools/oct-schema/core/record/Record_struct> {
+    (  $<https://opencoral.tools/oct-schema/core/record/Record_tes> (  <https://opencoral.tools/oct-schema/core/record/recordType>
+          @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/record/orgId> @<https://opencoral.tools/oct-schema/core/types/Identifier> ;
+          <https://opencoral.tools/oct-schema/core/record/createdAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ? ;
+          <https://opencoral.tools/oct-schema/core/record/createdBy> @<https://opencoral.tools/oct-schema/core/types/Identifier> ?
+          ;
+          <https://opencoral.tools/oct-schema/core/record/updatedAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ? ;
+          <https://opencoral.tools/oct-schema/core/record/updatedBy> @<https://opencoral.tools/oct-schema/core/types/Identifier> ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/record/Record> ]
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord>  (
+    CLOSED {
+       (  $<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord_tes> (
+             &<https://opencoral.tools/oct-schema/core/record/Record_tes> ;
+             rdf:type [ <https://opencoral.tools/oct-schema/core/record/Record> ] ? ;
+             rdf1:type @linkml:String ;
+             <https://opencoral.tools/oct-schema/core/specimen/asOf> @<https://opencoral.tools/oct-schema/core/types/DateTime> ;
+             <https://opencoral.tools/oct-schema/core/specimen/taxon> @<https://opencoral.tools/oct-schema/core/types/TaxonRef> ;
+             <https://opencoral.tools/oct-schema/core/specimen/geneticGroupRef>
+             @<https://opencoral.tools/oct-schema/core/types/EntityRef> ? ;
+             <https://opencoral.tools/oct-schema/core/specimen/inventoryUnitType> [
+                <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#individual>
+                <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#colony>
+                <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#fragment>
+                <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#substrate_unit>
+                <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#propagule_batch>
+                <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#sample>
+                <https://opencoral.tools/oct-schema/core/specimen/InventoryUnitType#unknown> ] ;
+             <https://opencoral.tools/oct-schema/core/specimen/developmentalStage> [
+                <https://opencoral.tools/oct-schema/core/specimen/DevelopmentalStage#gamete>
+                <https://opencoral.tools/oct-schema/core/specimen/DevelopmentalStage#embryo>
+                <https://opencoral.tools/oct-schema/core/specimen/DevelopmentalStage#larva>
+                <https://opencoral.tools/oct-schema/core/specimen/DevelopmentalStage#recruit>
+                <https://opencoral.tools/oct-schema/core/specimen/DevelopmentalStage#juvenile>
+                <https://opencoral.tools/oct-schema/core/specimen/DevelopmentalStage#adult>
+                <https://opencoral.tools/oct-schema/core/specimen/DevelopmentalStage#unknown> ] ? ;
+             <https://opencoral.tools/oct-schema/core/specimen/quantity>
+             @<https://opencoral.tools/oct-schema/core/specimen/Quantity> ;
+             <https://opencoral.tools/oct-schema/core/specimen/locationRef>
+             @<https://opencoral.tools/oct-schema/core/location/LocationRef> ;
+             <https://opencoral.tools/oct-schema/core/specimen/state>
+             @<https://opencoral.tools/oct-schema/core/specimen/SpecimenState> ? ;
+             <https://opencoral.tools/oct-schema/core/specimen/tags> @linkml:String * ;
+             <https://opencoral.tools/oct-schema/core/specimen/notes> @linkml:String ? ;
+             <https://opencoral.tools/oct-schema/core/specimen/source>
+             @<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecordSource> ?
+          ) ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/specimen/SpecimenRecord> ]
+       )
+    } OR @<https://opencoral.tools/oct-schema/coral/specimen/CoralSpecimenRecord>
+)
+
+<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecordSource> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/specimen/SpecimenRecordSource_tes> (
+          <https://opencoral.tools/oct-schema/core/specimen/datasetId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/specimen/externalRecordId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/specimen/ingestedAt> @<https://opencoral.tools/oct-schema/core/types/DateTime> ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/specimen/SpecimenRecordSource> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/specimen/SpecimenState> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/specimen/SpecimenState_tes> (
+          <https://opencoral.tools/oct-schema/core/specimen/disposition> [
+             <https://opencoral.tools/oct-schema/core/specimen/DispositionStatus#available>
+             <https://opencoral.tools/oct-schema/core/specimen/DispositionStatus#reserved>
+             <https://opencoral.tools/oct-schema/core/specimen/DispositionStatus#quarantine>
+             <https://opencoral.tools/oct-schema/core/specimen/DispositionStatus#grow_out>
+             <https://opencoral.tools/oct-schema/core/specimen/DispositionStatus#broodstock>
+             <https://opencoral.tools/oct-schema/core/specimen/DispositionStatus#research_only>
+             <https://opencoral.tools/oct-schema/core/specimen/DispositionStatus#unknown> ] ? ;
+          <https://opencoral.tools/oct-schema/core/specimen/health> [
+             <https://opencoral.tools/oct-schema/core/specimen/HealthStatus#healthy>
+             <https://opencoral.tools/oct-schema/core/specimen/HealthStatus#stressed>
+             <https://opencoral.tools/oct-schema/core/specimen/HealthStatus#bleached>
+             <https://opencoral.tools/oct-schema/core/specimen/HealthStatus#diseased>
+             <https://opencoral.tools/oct-schema/core/specimen/HealthStatus#dead>
+             <https://opencoral.tools/oct-schema/core/specimen/HealthStatus#unknown> ] ? ;
+          <https://opencoral.tools/oct-schema/core/specimen/readyForPropagation> @linkml:Boolean ? ;
+          <https://opencoral.tools/oct-schema/core/specimen/readyForOutplant> @linkml:Boolean ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/specimen/SpecimenState> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/event/StateEventPayload> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/event/StateEventPayload_tes> (
+          &<https://opencoral.tools/oct-schema/core/event/EventPayload_tes> ;
+          rdf:type [ <https://opencoral.tools/oct-schema/core/event/EventPayload> ] ? ;
+          <https://opencoral.tools/oct-schema/core/event/stateType> @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/event/stateValue> @linkml:String
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/event/StateEventPayload> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/event/SubjectRef> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/event/SubjectRef_tes> (  <https://opencoral.tools/oct-schema/core/event/recordId>
+          @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/event/recordType> [
+             <https://opencoral.tools/oct-schema/core/event/RecordTypeEnum#Specimen>
+             <https://opencoral.tools/oct-schema/core/event/RecordTypeEnum#Location>
+             <https://opencoral.tools/oct-schema/core/event/RecordTypeEnum#Genet>
+             <https://opencoral.tools/oct-schema/core/event/RecordTypeEnum#Other> ] ;
+          <https://opencoral.tools/oct-schema/core/event/role> @linkml:String ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/event/SubjectRef> ] ?
+    )
+}
+
+<https://opencoral.tools/oct-schema/core/types/TaxonRef> CLOSED {
+    (  $<https://opencoral.tools/oct-schema/core/types/TaxonRef_tes> (  <https://opencoral.tools/oct-schema/core/types/name>
+          @linkml:String ;
+          <https://opencoral.tools/oct-schema/core/types/taxonId> @linkml:String ? ;
+          <https://opencoral.tools/oct-schema/core/types/rank> @linkml:String ?
+       ) ;
+       rdf:type [ <https://opencoral.tools/oct-schema/core/types/TaxonRef> ] ?
     )
 }
