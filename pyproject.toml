@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[project]
+name = "oct_schema"
+description = "Data standards for coral research and conservation"
+authors = [
+  {name = "Charli Forkish", email = "opencoraltools@gmail.com"},
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+dynamic = ["version"]
+
+dependencies = [
+  "linkml-runtime >=1.9.4",
+]
+
+[dependency-groups]
+dev = [
+    "linkml>=1.9.3",
+]
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+style = "pep440"
+fallback-version = "0.0.0"
