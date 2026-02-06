@@ -1,0 +1,16 @@
+# Configuration for gen-project
+---
+# Only generate these artifacts (node/dart handled by custom scripts)
+includes:
+  - jsonschema
+  - markdown
+  - excel
+
+generator_args:
+  jsonschema:
+    mergeimports: true
+  markdown:
+    mergeimports: true
+    directory: "project/docs"
+  excel:
+    mergeimports: true

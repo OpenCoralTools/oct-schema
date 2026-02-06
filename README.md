@@ -27,11 +27,13 @@ The schemas here are intended to be:
 
 ## What this repo provides
 
-- Standardized data descriptions in the form of [**JSON Schemas**](https://json-schema.org/)
-- Complete documentation of every aspect of the schemas
-- Spreadsheet workbook templates for working with validated data
-- Code libraries for working with the schemas in TypeScript and Dart (e.g. React and Flutter apps)
-- A web-based playground for exploring the schemas interactively
+All generated artifacts live in [`project/`](project/):
+
+- [`project/jsonschema/`](project/jsonschema/) — [JSON Schema](https://json-schema.org/) definitions for validation
+- [`project/docs/`](project/docs/) — Markdown documentation for MkDocs
+- [`project/excel/`](project/excel/) — Spreadsheet workbook templates
+- [`project/node/`](project/node/) — TypeScript types for React/Node.js apps
+- [`project/dart/`](project/dart/) — Dart classes for Flutter apps
 
 ## What this repo is **not**
 

@@ -10,7 +10,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+/lib/
 lib64/
 parts/
 sdist/
@@ -31,6 +31,7 @@ ENV/
 *.swp
 *.swo
 .cursor/
+.claude/
 
 # OS
 .DS_Store
@@ -45,7 +46,7 @@ htmlcov/
 .ruff_cache/
 
 # Generated files
-project/
 tmp/
 
 # Lock files (keep uv.lock)
+/uv.lock

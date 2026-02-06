@@ -1,0 +1,26 @@
+{
+    "$defs": {
+        "Coral": {
+            "additionalProperties": false,
+            "description": "A coral entity.",
+            "properties": {
+                "name": {
+                    "description": "The name of the coral, e.g. \"APAL001\"",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Coral",
+            "type": "object"
+        }
+    },
+    "$id": "https://opencoral.tools/oct-schema",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "metamodel_version": "1.7.0",
+    "title": "oct-schema",
+    "type": "object",
+    "version": null
+}
