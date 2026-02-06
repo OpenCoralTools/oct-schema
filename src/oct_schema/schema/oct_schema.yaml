@@ -1,6 +1,6 @@
 id: https://opencoral.tools/oct-schema
 name: oct-schema
-title: Open Coral Tools Schema
+title: OpenCoral.Tools Schema
 description: Data standards for coral research and conservation.
 
 prefixes:
@@ -17,5 +17,5 @@ classes:
     description: A coral entity.
     attributes:
       name:
-        description: The name of the coral.
+        description: The name of the coral, e.g. "APAL001"
         range: string
