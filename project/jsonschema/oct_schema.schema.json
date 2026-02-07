@@ -6,12 +6,18 @@
             "properties": {
                 "name": {
                     "description": "The name of the coral, e.g. \"APAL001\"",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
+                },
+                "quantity": {
+                    "description": "The number of coral specimens.",
+                    "minimum": 1,
+                    "type": "integer"
                 }
             },
+            "required": [
+                "name",
+                "quantity"
+            ],
             "title": "Coral",
             "type": "object"
         }

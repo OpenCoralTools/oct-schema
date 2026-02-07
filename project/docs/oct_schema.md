@@ -20,6 +20,7 @@ Data standards for coral research and conservation.
 ### Slots
 
  * [➞name](coral__name.md) - The name of the coral, e.g. "APAL001"
+ * [➞quantity](coral__quantity.md) - The number of coral specimens.
 
 ### Enums
 

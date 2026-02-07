@@ -7,24 +7,33 @@
 class Coral {
 
     /// The name of the coral, e.g. "APAL001"
-    String? name;
+    String name;
+
+    /// The number of coral specimens.
+    int quantity;
 
 
     Coral({
 
-        this.name
+        required this.name,
+
+        required this.quantity
 
     });
 
     factory Coral.fromJson(Map<String, dynamic> json) => Coral(
 
-        name: json["name"]
+        name: json["name"],
+
+        quantity: json["quantity"]
 
     );
 
     Map<String, dynamic> toJson() => {
 
-        "name": name
+        "name": name,
+
+        "quantity": quantity
 
     };
 }

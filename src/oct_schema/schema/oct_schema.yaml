@@ -19,3 +19,9 @@ classes:
       name:
         description: The name of the coral, e.g. "APAL001"
         range: string
+        required: true
+      quantity:
+        description: The number of coral specimens.
+        range: integer
+        required: true
+        minimum_value: 1
